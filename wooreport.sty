@@ -1,0 +1,96 @@
+% \usepackage{amsmath, amssymb, mathrsfs}
+\usepackage{kpfonts}
+\usepackage{fourier-orns}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts, amsthm, mathabx}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{empheq}
+\usepackage{tikz, pgf}
+\usepackage{pgfplots}
+\usepackage{dynkin-diagrams}
+\usepackage{tabularx, makecell}
+\usepackage{lipsum}
+% \usepackage[top=1.2in, inner=1.2in, outer=0.8in, bottom=1in]{geometry}
+\usepackage[top=1.2in, inner=1.2in, outer=1.2in, bottom=1in]{geometry}
+
+\usepackage{kotex}
+\usepackage{fancyhdr, titlesec, caption, xcolor}
+\usepackage[Sonny]{fncychap}
+\usepackage[super]{nth}
+
+\usepackage[bb=boondox]{mathalfa}
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{physics}
+\usepackage{tensor}
+\usepackage[makeroom]{cancel}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{shapes, arrows}
+\usepackage{titling}
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\preauthor{\begin{flushright}\large \lineskip 0.5em}
+\postauthor{\par\end{flushright}}
+\predate{\begin{flushright}\large}
+\postdate{\par\end{flushright}}
+\graphicspath{{/Users/reuter/Documents/figures/}}
+% \usetikzlibrary{mindmap}
+% \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30]
+% \tikzstyle{io} = [trapezium, trapezium left angle = 70, trapezium right angle = 110, minimum width = 3cm, minimum height = 1cm, text centered, draw=black, fill=blue!30]
+% \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text width = 3cm, text centered, draw=black, fill=orange!30]
+% \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick, ->,>=stealth]
+\usepgfplotslibrary{fillbetween}
+
+\renewcommand{\arraystretch}{1.4}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+
+% \renewcommand{\emph}[1]{\textcolor{red}{\textit{#1}}}
+
+\newcommand{\chapterauthor}[1]{%
+  {\parindent0pt\vspace*{-25pt}%
+  \linespread{1.1}\large#1%
+  \par\nobreak\vspace*{35pt}}
+  \@afterheading%
+}
+\newcommand{\subsubmark}{{\text{\(\Asterisk\)}}}
+\newcommand{\lorentzm}{{\begin{pmatrix}
+  \gamma & -\gamma\beta & 0 \\
+  -\gamma\beta & \gamma & 0 \\
+  0 & 0 & 1
+\end{pmatrix}}}
+\newcommand{\chris}[3]{{\tensor{\Gamma}{^ #1 _{ #2 #3}}}}
+\newcommand{\scalar}[2]{{\langle #1 | #2 \rangle}}
+\renewcommand{\ket}[1]{{| #1 \rangle}}
+\renewcommand{\bra}[1]{{\langle #1 |}}
+% \let\oldproofname=\proofname
+% \renewcommand{\proofname}{\rm\bf{\oldproofname}}
+% \renewcommand\qedsymbol{}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+\renewcommand{\underbrace}{\LaTeXunderbrace}
+\renewcommand{\overbrace}{\LaTeXoverbrace}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\pprime}{{\prime\prime}}
+\newcommand{\dbar}{{d\mkern-7mu\mathchar'26\mkern-2mu}}
+\newcommand{\ad}{{\text{ad}}}
+\titleformat{\subsubsection}[hang]{\normalfont\bfseries}{}{1em}{\subsubmark\;\:}
+\DeclareCaptionLabelFormat{scap}{[#1 #2]}
+\captionsetup[figure]{labelfont=bf, labelsep=period}

@@ -1,0 +1,1295 @@
+\documentclass[10pt, a4paper, twoside]{report}
+\usepackage{wooreport}
+\renewcommand\labelenumi{(\theenumi)}
+% \fancyhead[RO, LE]{Junwoo Lee}
+% \fancyhead[LO, RE]{Lecture Notes}
+\title{\LARGE{\textsc{Lecture Notes}}}
+\author{Junwoo Lee}
+\date{}
+
+
+\begin{document}
+\begin{titlepage}
+  \begingroup % University of Liege
+  \def\drop{0.1\textheight}
+  \vspace*{\drop}
+  \begin{center}
+  {\LARGE\textsc{Transcribed and edited by WOO}}\\[\drop]
+  % University logo
+  % {\LARGE \plogo}\\[\drop]
+  \rule{\textwidth}{1pt}\par
+  \vspace{0.5\baselineskip}
+  {\huge\bfseries Part IA\\
+   \large Cambridge Mathematical Tripos}\\[0.5\baselineskip]
+  \rule{\textwidth}{1pt}\par
+  \vfill
+  {\Large\textsc{Lee, Junwoo}}
+  \vfill
+  Trinity College, Cambridge
+  \vfill
+  {\large 2024 Summer}
+  \end{center}
+  \endgroup
+\end{titlepage}
+% \setcounter{tocdepth}{1}
+\tableofcontents
+\chapter*{Preface}
+These are what I studied during the 2024 long vacation for transfer into part IB mathematical tripos. I guess nobody can tell if it was valuable, or if this was a right decision. Nevertheless, I do not want to study beam bending. Since it is more mathematics-oriented document, I will use the usual conventions, such as definition, lemma, etc.
+
+\noindent\hrulefill\hspace{0.2cm} \floweroneleft\floweroneright \hspace{0.2cm} \hrulefill
+\chapter{Numbers and Sets}
+\chapterauthor{Lecture given by 
+Professor Julia Wolf, Michaelmas Term 2023.
+}
+\section{Elementary Number Theory}
+\subsection{Natural Number}
+Intuitively speaking, the natural numbers consists of
+\[1,1+1,1+1+1,\ldots\]
+But we cannot be sure if the list above contains all of the natural numbers, or if there are no duplicate numbes. Hence, for more rigorous understanding, we assume the natural numbers, \(\mathbb{N}\), is a set containing ``\(1\)'', with an operation ``\(+\)'' satisfying
+\begin{enumerate}
+    \item \(\forall n\in\mathbb{N}\), \(n+1\neq 1\).
+    \item \(\forall m,n\in\mathbb{N}\), if \(m\neq n\), then \(m+1\neq n+1\).
+    \item For any property \(P(n)\), if \(P(1)\) is true and \(\forall n\in\mathbb{N}\), \(P(n)\Rightarrow P(n+1)\), then \(P(n)\) is true for all natural numbers.
+\end{enumerate}
+(1), (2), and (3) are known as the \emph{Peano axioms}, and (3) is called the \emph{induction axiom}.
+(1) and (2) capture the idea that any two natural numbers are distinct; (3) captures our intuition that the list is complete.\footnote{Take \(P(n)=\text{``\(n\) is on this list''}\).} Now we can write \(2\) for \(1+1\), \(3\) for \(1+1+1\) etc. and we can define ``\(+k\)'' for any natural number \(k\):
+\begin{definition}
+    For every natural number \(n\),
+    \[n+(k+1)=(n+k)+1\]
+\end{definition}
+It can be thought from induction, taking \(P(k)=\text{``\(+k\) is defined''}\). Similarly, we can define multiplication, powers etc. satisfying
+\begin{enumerate}
+    \item \(\forall a,b\), \(a+b=b+a\) \space   (\(+\) is commutative).
+    \item \(\forall a,b\), \(ab=ba\) \space   (\(\cdot\) is commutative).
+    \item \(\forall a,b,c\), \(a+(b+c)=(a+b)+c\)  \space  (\(+\) is associative).
+    \item \(\forall a,b,c\), \(a(bc)=(ab)c\)   \space (\(\cdot\) is associative).
+    \item \(\forall a,b,c\), \(a(b+c)=ab+ac\) \space (multiplication is distributive over addition).
+\end{enumerate}
+We define ``\(a<b\)'' if \(a+c=b\) for some \(c\in\mathbb{N}\), satisfying
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item \(\forall a,b,c\), \(a<b\Rightarrow a+c<b+c\).
+    \item \(\forall a,b,c\), \(a<b\Rightarrow ac<bc\).
+    \item \(\forall a,b,c\), \(a<b\) and \(b<c\Rightarrow a<c\).
+    \item \(\forall a\), \(\neg(a<a)\).
+\end{enumerate}
+
+The induction axiom is also known as the \emph{weak principle of induction} (WPI). Equivalent form of this is the strong principle of induction (SPI):
+\begin{theorem}
+    (\emph{Strong Principle of Induction}) If
+    \begin{enumerate}
+        \item \(P(1)\) holds, and
+        \item \(\forall n\in\mathbb{N}\), we have \((P(m)\:\forall m\leq n)\Rightarrow P(n+1)\), 
+    \end{enumerate}
+    then \(P(n)\) holds \(\forall n\in\mathbb{N}\).
+\end{theorem}
+Clearly, \(\text{SPI}\Rightarrow\text{WPI}\). To see that \(\text{WPI}\Rightarrow\text{SPI}\), apply the former to
+\[Q(n)=\text{``\(P(m)\) holds \(\forall m\leq n\)''}\]
+\begin{theorem}
+    (\emph{Well-Ordering Principle} (WOP)) If \(P(n)\) holds for some \(n\in\mathbb{N}\), then there is a least \(n\in\mathbb{N}\) such that \(P(n)\) holds. ``\emph{Every non-empty subset of \(\mathbb{N}\) has a minimal element}.''
+\end{theorem}
+\begin{theorem}
+    SPI is equivalent to WOP.
+\end{theorem}
+\begin{proof}
+    First we show that WOP implies SPI. We assume (1) and (2) of SPI, and show that \(P(n)\) holds \(\forall n\in\mathbb{N}\), using WOP. Suppose, on the contrary, that \(P(n)\) is not true for all \(n\in\mathbb{N}\). Then,
+    \[C=\{n\in\mathbb{N}\:|\:P(n)\text{ is false}\}\neq\emptyset\]
+    By well-ordering principle, \(C\) has a minimal element, say \(m\). Now \(\forall k<m\), \(k\notin C\) (by minimality of \(m\)), so \(P(k)\) holds \(\forall k<m\). But by (2) of strong principle of induction, \(P(m)\) holds, contradicting \(m\in C\). Hence SPI holds.
+
+    To show that SPI implies WOP, suppose there is no least \(n\in\mathbb{N}\) such that \(P(n)\) holds. We want to show that \(P(n)\) does not hold for any \(n\in\mathbb{N}\), using SPI. Consider
+    \[Q(n)=\neg P(n)\]
+    Certainly \(P(1)\) is false,\footnote{Else \(1\) would be the minimal element.} so \(Q(1)\) holds. Given \(n\in\mathbb{N}\), suppose that \(Q(k)\) is true \(\forall k<n\). Then \(P(k)\) is false \(\forall k<n\). So \(P(n)\) is false as otherwise \(n\) would be the minimal element for which \(P\) holds. Hence \(Q(n)\) is true, and (2) of SPI is satisfied, so \(Q(n)\) holds for all \(n\in\mathbb{N}\). Thus \(P(n)\) is false \(\forall n\in\mathbb{N}\).
+\end{proof}
+Well-ordering principle enables us to prove \(P(n)\) is true \(\forall n\in N\) as follows: if not, there is a minimal counterexample, and we may try and derive a contradiction.
+\subsection{Integer}
+The integer set, \(\mathbb{Z}\), consist of all symbols \(n\), \(-n\), where \(n\in\mathbb{N}\), along with \(0\). We can also define \(+\) and \(\cdots\) etc. on \(\mathbb{Z}\) from \(\mathbb{N}\), and check that the usual rules (1) - (5) of arithmetic hold. We also have
+\begin{enumerate}
+    \setcounter{enumi}{9}
+    \item \(\forall a\in\mathbb{Z}\), \(a+0=0\) \space (identity for \(+\)).
+    \item \(\forall a\in\mathbb{Z}\), \(\exists b\in\mathbb{Z}\) such that \(a+b=0\) \space (inverses for \(+\)). Here, \(b=-a\).
+\end{enumerate}
+Similarly define \(a<b\) if \(a+c=b\) for some \(c\in\mathbb{N}\). Rules (6), (8), and (9) continue to hold, but (7) must be modified:
+\begin{enumerate}
+    \setcounter{enumi}{6}
+    \item \(\forall a,b,c\in\mathbb{Z}\), \(a<b\text{  and  }c>0\Rightarrow ac<bc\).
+\end{enumerate}
+\subsection{Rational Number}
+The rational number set, \(\mathbb{Q}\), consist of all expressions \(a/b\), where \(a\), \(b\) are integers, \(b\neq 0\), and \(a/b\) and \(c/d\) are regarded as the same if \(ad=bc\). Define 
+\[\frac ab+\frac cd=\frac{ad+bc}{bd}\]
+and one can check it does not matters how we wrote \(a/b\) or \(c/d\) (commutivity). We similarly define multiplication, and
+\[\frac ab<\frac cd\]
+where \(b,d>0\) if \(ad<bc\). All the previous rules apply to rational numbers, but, furthermore,
+\begin{enumerate}
+    \setcounter{enumi}{11}
+    \item \(\forall a\in\mathbb{Q}\), \(a\neq 0\), \(\exists b\) such that \(ab=1\) \space (inverse for \(\cdot\)).
+\end{enumerate}
+Finally, note that
+\[\mathbb{N}\subseteq\mathbb{Z}\subseteq\mathbb{Q}\]
+\subsection{Primes}
+\begin{definition}
+    A natural number \(n\geq 2\) is \emph{prime} if its only factors are \(\pm 1\) and \(\pm n\). If \(n\geq 2\) is not prime, then it is \emph{composite}.
+\end{definition}
+\begin{proposition}
+    Every natural number \(n\geq 2\) can be written as a product of primes.
+    \label{prop:prod_prime}
+\end{proposition}
+\begin{proof}
+    It is true for \(n=2\). Let \(n>2\) and suppose that claim holds up to and including \(n-1\). If \(n\) is prime, done. If \(n\) is composite, then \(n=ab\) for some \(1<a,b<n\).
+
+    By the induction hypothesis, we have
+    \begin{align*}
+        a&=p_1p_2\cdots p_k \\
+        b&=q_1q_2\cdots q_l
+    \end{align*}
+    for some primes \(p_1,\ldots,p_k,q_1,\ldots,q_l\). Hence
+    \[n=ab=p_1\cdots p_kq_1\cdots q_l\]
+    is a product of primes. Proof is complete by induction.
+\end{proof}
+\begin{theorem}
+    There are infinitely many primes.
+    \label{thm:infty_prime}
+\end{theorem}
+\begin{proof}
+    (Euclid, 300 B.C.) Suppose there are finitely many primes, say \(p_1,\ldots,p_k\). Let \(N=p_1\cdots p_k+1\). Then \(p_1\nmid N\), else
+    \[p_1|N-p_1\cdots p_k=1\]
+    Likewise, none of \(p_2,p_3,\ldots,p_k\) divide \(N\), contradicting the fact that \(N\) can be written as a product of primes (Proposition \ref{prop:prod_prime}).
+\end{proof}
+Can a number have more than one representation as a product of primes? Our proof of Proposition \ref{prop:prod_prime} does not give uniqueness. 
+\begin{definition}
+    Given \(a,b\in\mathbb{N}\), a natural number \(c\) is the \emph{highest common factor} (hcf) or \emph{greatest common divisor} (gcd) of \(a\) and \(b\) if
+    \begin{enumerate}
+        \item \(c|a\) and \(c|b\);
+        \item \(d|a\) and \(d|b\:\Rightarrow d|c\).
+    \end{enumerate}
+    We write \(c=\text{hcf}(a,b)\), or \(c=\text{gcd}(a,b)\), or \(c=(a,b)\).
+    \label{def:gcd}
+\end{definition}
+For example, the factors of \(12\) are \(1,2,3,4,6,12\), and those of \(18\) are \(1,2,3,6,9,18\). So the common factors are \(1,2,3,6\), hence \(\gcd(12,18)=6\). But observe that if \(a\) and \(b\) had common factors \(1,2,3,4,6\), then \(a\) and \(b\) would have no gcd according to Definition \ref{def:gcd} (2). We will need to show that \(\gcd(a,b)\) always exists.
+\begin{proposition}
+    (\emph{Division Algorithm}) Let \(n,k\in\mathbb{N}\). Then we can write \[n=qk+r\] where \(q\) and \(r\) are integers with \(0\leq r\leq k-1\).
+    \label{prop:da}
+\end{proposition}
+\begin{proof}
+    It is true for \(n=1\). Suppose \(n\geq 2\) and statement holds for \(n-1\), i.e. \[n-1=qk+r\] for some \(q,r\in\mathbb{Z}\), \(0\leq r\leq k-1\).
+    \begin{itemize}
+        \item If \(r<k-1\), then \(n=(n-1)+1=qk+(r+1)\).
+        \item If \(r=k-1\), then \(n=(n-1)+1=qk+(k-1)+1=(q+1)k\).
+    \end{itemize}
+\end{proof}
+Note that \(q\) and \(r\) obtained by the division algorithm are unique: if \(n=qk+r=q^\prime k+r^\prime\), then 
+\[(q-q^\prime)k=r^\prime-r\]
+is an integer smaller than \(k\) and larger than \(-k\) so \(q=q^\prime\) and \(r=r^\prime\).
+
+We now introduce the \emph{Euclid's Algorithm}. We break down \(a\) and \(b\) until \(r_{n+1}=0\) as follows;
+\begin{align*}
+    a&=q_1b+r_1 \\
+    b&=q_2r_1+r_2 \\
+    &\vdots \\
+    r_{n-2}&=q_nr_{n-1}+r_n \\
+    r_{n-1}&=q_{n+1}r_n+r_{n+1}
+\end{align*}
+and the algorithm returns \(r_n\).
+N.b. the algorithm terminates in \(n<b\) steps, since 
+\[b>r_1>r_2>\ldots>r_n>0\]
+\begin{theorem}
+    The output of Euclid's algorithm with input \(a\), \(b\) is \(\gcd(a,b)\).
+\end{theorem}
+\begin{proof}
+    We show (1) and (2) from Definition \ref{def:gcd}.
+    \begin{enumerate}
+        \item Have \(r_n/r_{n-1}\) (as \(r_{n+1}=0\)), so \(r_n/r_{n-2}\) and \(r_n/r_i\) \(\forall i=1,2,\ldots,n-1\) by induction. Hence \(r_n/b\) and \(r_n/a\).
+        \item Given \(d\) such that \(d|a\) and \(d|b\), have \(d|r_1\), so \(d|r_2\) and \(d|r_i\) \(\forall i=1,2,\ldots,n\) by induction.
+    \end{enumerate}
+\end{proof}
+By the division algorithm and Euclid's algorithm, we have found out that the gcd of any two natural numbers always exists, and is unique. For example, consider Euclid's algorithm with \(87\) and \(52\) as inputs:
+\begin{align*}
+    87&=1\cdot 52+35 \\
+    52&=1\cdot 35+17 \\
+    35&=2\cdot 17+1 \\
+    17&=17\cdot1
+\end{align*}
+so \(\gcd(87,52)=1\).
+\begin{definition}
+    When \(\gcd(a,b)=1\), we say that \(a\) and \(b\) are \emph{coprime}.
+\end{definition}
+Observe that we can reverse the Euclid's algorithm:
+\begin{align*}
+    1&=35-2\cdot 17 \\
+    &=35-2(52-1\cdot 35) \\
+    &=-2\cdot 52 + 3\cdot 35 \\
+    &=-2\cdot 52+3(87-1\cdot 52) \\
+    &=-5\cdot 52+3\cdot 87
+\end{align*}
+\begin{theorem}
+    \(\forall a,b\in\mathbb{N}\), \(\exists x,y\in\mathbb{Z}\) such that
+    \[xa+yb=\gcd(a,b)\]
+    ``\emph{We can write \(\gcd(a,b)\) as a linear combination of \(a\) and \(b\)}.''
+    \label{thm:lin_gcd}
+\end{theorem}
+\begin{proof}
+    (\emph{Method 1}) Run Euclid's algorithm with input \(a\), \(b\) to obtain an output \(r_n\). At step \(n\), have 
+    \[r_n=xr_{n-1}+yr_{n-2}\]
+    for some \(x,y\in\mathbb{Z}\). But from step \(n-1\), we see that \(r_{n-1}\) is expressible as 
+    \[r_{n-1}=xr_{n-2}+yr_{n-3}\] 
+    for some \(x,y\in\mathbb{Z}\), whence 
+    \[r_{n}=xr_{n-2}+yr_{n-3}\] 
+    for some \(x,y\in\mathbb{Z}\). Continuing inductively, we have \(\forall i=2,\ldots,n-1\),
+    \[r_n=xr_i+yr_{i-1}\]
+    for some \(x,y\in\mathbb{Z}\). Thus
+    \[r_n=xa+yb\]
+    for some \(x,y\in\mathbb{Z}\), by steps one and two.
+\end{proof}
+\begin{remark}
+    Euclid's algorithm not only proves the existence of \(x,y\in\mathbb{Z}\), but gives a quick way to find them.
+\end{remark}
+\begin{proof}
+    (\emph{Method 2}) Let \(g\) be the least positive linear combination of \(a\) and \(b\), i.e. the least positive integer of the form \(xa+yb\) for some \(x,y\in\mathbb{Z}\). We shall show that \(g=\gcd(a,b)\) (Definition \ref{def:gcd}).
+
+    To see (2), observe that given \(d\) such that \(d|a\) and \(d|b\), we have
+    \[d|ax+by\quad\forall x,y\in\mathbb{Z}\]
+    so in particular, \(d|g\).
+
+    To see (1), suppose that \(g\nmid a\). Then we can write
+    \[a=qg+r\] for some \(q,r\in\mathbb{Z}\) with \(0<r<g\). Hence
+    \[r=a-qg=a-q(xa+yb)\]
+    is also a positive linear combination of \(a\) and \(b\), and strictly smaller than \(g\), contradicting the definition of \(g\). Therefore, \(g|a\) and by the same argument, \(g|b\).
+\end{proof}
+\begin{remark}
+    (\emph{Method 2}) tells us that \(\gcd(a,b)\) exists and is a linear combination of \(a\) and \(b\), but gives no way to find \(\gcd(a,b)\) or the coefficients \(x,y\in\mathbb{Z}\).
+\end{remark}
+With help of Theorem \ref{thm:lin_gcd}, we can tell
+\[160x+72y=33\]
+does not have any integer solution, but
+\[87x+52y=33\]
+does. Let's formalise this.
+\begin{corollary}
+    (\emph{Bézout's Theorem}) Let \(a,b\in\mathbb{Z}\). Then the equation
+    \[ax+by=c\]
+    has a solution in integers \(x,y\) if and only if
+    \[\gcd(a,b)|c\]
+\end{corollary}
+\begin{proof}
+    Let \(g=\gcd(a,b)\). Suppose there are \(x,y\in\mathbb{Z}\) such that
+    \[ax+by=c\]
+    Then, since \(g|a\) and \(g|b\), \(g|c\).
+
+    Conversely, suppose \(g|c\). But Theorem \ref{thm:lin_gcd} implies that there exist \(x,y\in\mathbb{Z}\) such that
+    \[g=ax+by\]
+    But then
+    \[c=\frac cgg=\frac cg(ax+by)=a\left(x\frac cg\right)+b\left(y\frac cg\right)\]
+\end{proof}
+\begin{proposition}
+    If \(p\) is a prime and \(p|ab\), then \(p|a\) or \(p|b\).
+    \label{prop:prime_div}
+\end{proposition}
+\begin{proof}
+    Suppose \(p|ab\) but \(p\nmid a\). We claim \(p|b\). 
+
+    Since \(p\) is prime and \(p\nmid a\), \(\gcd(a,p)=1\). Thus by Theorem \ref{thm:lin_gcd}, there exists \(x,y\in\mathbb{Z}\) such that \(xp+ya=1\). It follows that \(xpb+yab=b\), whence \(b\) is a multiple of \(p\) (as each of \(p\) and \(ab\) is).
+\end{proof}
+\begin{remark} \item[]
+    \begin{enumerate}
+        \item Similarly, 
+        \[p|a_1a_2\cdots a_n\Rightarrow p|a_i\]
+        for some \(i=1,2,\ldots,n\). Indeed, Proposition \ref{prop:prod_prime} tells us that if \(p|a_1a_2\cdots a_n\), the \(p|a_1\) or \(p|a_2\cdots a_n\), so we may conclude by induction on the number of terms in the product.
+        \item We do need \(p\) to be prime.
+    \end{enumerate}
+\end{remark}
+\begin{theorem}
+    (\emph{Fundamental Theorem of Arithmetic}) Every natural number \(n\geq 2\) is expressible as a product primes, uniquely up to reordering.
+\end{theorem}
+\begin{proof}
+    Existence of factorisation follows from Proposition \ref{prop:prod_prime}. We can show uniqueness by induction. Clearly it is unique for \(n=2\). Given \(n\geq 2\), suppose 
+    \[n=p_1p_2\cdots p_k=q_1q_2\cdots q_l\]
+    where \(p_i,q_j\) are all prime. Want to show that \(k=l\), and, after reordering, \(p_i=q_i\) \(\forall i=1,\ldots,k\). We have 
+    \[p_1|n=q_1q_2\cdots q_l\]
+    so by Proposition \ref{prop:prime_div},
+    \[p_1|q_i\] for some \(i\). Relabelling the \(q_i\), we may assume that \(p_1|q_1\). Since \(q_1\) is prime, \(p_1=q_1\), so
+    \[\frac n{p_1}=p_2\cdots p_k=q_2\cdots q_l<n\]
+    By the induction hypothesis, \(k=l\), and, after reordering, \(p_2=q_2,\ldots,p_k=q_k\).
+\end{proof}
+\begin{remark}
+    There are arithmetical systems (permitting addition and multiplication) in which factorisation is not unique.
+
+    For example, consider \(\mathbb{Z}[\sqrt{-3}]\), meaning all complex numbers of the form \(x+y\sqrt{-3}=x+y\sqrt{3}i\) where \(x,y\in\mathbb{Z}\). We can add and multiply two elements of \(\mathbb{Z}[\sqrt{-3}]\) to get another element of \(\mathbb{Z}[\sqrt{-3}]\), e.g.
+    \[(1+\sqrt{-3})+(q-\sqrt{-3})=2\]
+    \[(1+\sqrt{-3})(q-\sqrt{-3})=4\]
+     In \(\mathbb{Z}[\sqrt{-3}]\), we can define what it means to be a prime, and both \(1+\sqrt{-3}\) and \(1-\sqrt{-3}\) happen to be prime in this sense. But, we can also write \(4=2\cdot 2\), so factorisation is not unique.
+\end{remark}
+Let's take a look at some applications of the fundamental theorem of arithmetic.
+\begin{enumerate}
+    \item What are the factors of \(n=2^33^711\)? -- All numbers of the form \(2^a3^b{11}^c\) where \(0\leq a\leq 3\), \(0\leq b\leq 7\), \(0\leq c\leq 1\). There are no others: if, for example, \(7|n\), then we would have a factorisation of \(n\) involving \(7\), contradicting uniqueness. More generally, the factors of \(n=p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}\) are precisely the numbers of the form 
+    \[p_1^{b_1}p_2^{b_2}\cdots p_k^{b_k}\]
+    with \(0\leq b_i\leq a_i\) \(\forall i=1,2,\ldots,k\).
+    \item What are common factors of \(2^3\cdot 3^7\cdot5\cdot11^3\) and \(2^4\cdot 3^2\cdot 11\cdot 13\)? -- All numbers of the form \(2^33^b11^c\) where \(0\leq a\leq 3\), \(0\leq b\leq 2\), \(0\leq c\leq 1\). Thus the gcd is \(2^3\cdot 3^2\cdot 11\). In general, the gcd of \(p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}\) and \(p_1^{b_1}p_2^{b_2}\cdots p_k^{b_k}\), where \(a_i, b_i\geq 0\), is 
+    \[p_1^{\min\{a_1,b_1\}}\cdots p_k^{\min\{a_k,b_k\}}\]
+    \item What are the common multiples of the two numbers in (2)? -- All numbers of the form \(2^a3^b5^c11^d13^2\) where \(a\geq 4\), \(b\geq 7\), \(c\geq 1\), \(d\geq 3\), \(e\geq 1\), times any integer. Hence \(2^4\cdot 3^7\cdot\cdot 5\cdot 11^3\cdot 13\) is a common multiple, and any other common multiple is a multiple of it. We say that it is the \emph{least common multiple} (lcm) of the two numbers.  In general, the lcm of \(p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}\) and \(p_1^{b_1}p_2^{b_2}\cdots p_k^{b_k}\), where \(a_i, b_i\geq 0\), is 
+    \[p_1^{\max\{a_1,b_1\}}\cdots p_k^{\max\{a_k,b_k\}}\]
+    Since \(\min\{a_i,b_i\}+\max{a_i,b_i}=a_i+b_i\), we have 
+    \[\gcd(x,y)\cdot\text{lcm}(x,y)=xy\]
+    for any \(x,y\).
+    \item Another proof of Theorem \ref{thm:infty_prime}, due Erdös (1930): let \(p_1,p_2,\ldots,p_k\) be all the primes. Any number which is a product of jest these primes is of the form (\(\asterisk\)):
+    \[p_1^{j_1}p_2^{j_2}\cdots p_k^{j_k}=m^2p_1^{i_1}p_2^{i_2}\cdots p_k^{i_k}\]
+    where \(i_l=0\text{ or }1\). Let \(M\in\mathbb{N}\). If a number is equal or less than \(M\) is of the form (\(\asterisk\)), then \(m\leq\sqrt{M}\). So there are at most \(\sqrt{M}2^k\) numbers of the form (\(\asterisk\)) that are equal or less than \(M\). If \(M>\sqrt{M}2^k\), i.e. if \(M>4^k\), then there must be a number equal or less than \(M\) which is not of the form (\(\asterisk\)). But this number must have a prime factor not amongst the \(p_1,\ldots,p_k\). \hfill\qedsymbol
+    
+    Proof by Euclid tells us that \(k\)\textsuperscript{th} prime is less than \(2^{2^k}\), while the proof by Erdös tells us \(k\)\textsuperscript{th} prime is less than \(4^k\). In fact, we know \(k\)\textsuperscript{th} prime is \(\sim k\ln k\) (\emph{Prime Number Theorem}).
+\end{enumerate}
+\subsection{Modular Arithmetic}
+Let \(n\geq 2\) be a natural number. Then the \emph{integer modulo \(n\)}, written as \(\mathbb{Z}_n\) or \(\mathbb{Z}/n\mathbb{Z}\) consist of the integers, with two regarded as the same if they differ by a multiple of \(n\). If \(x\) and \(y\) are the same in \(\mathbb{Z}_n\), we write 
+\[x\equiv  y\mod n\]
+or \(x\equiv y\quad(n)\) or \(x=y\text{  in  }\mathbb{Z}_n\). Thus 
+\begin{align*}
+    x\equiv y\mod n&\Leftrightarrow n|x-y \\
+    &\Leftrightarrow x=y+kn\:\text{for some \(k\in\mathbb{Z}\)}
+\end{align*}
+N.b. if \(a\equiv a^\prime\mod n\) and \(b\equiv b^\prime\mod n\), then 
+\[n|(a-a^\prime)+(b-b^\prime)=(a+b)-(a^\prime+b^\prime)\]
+so \(a+b\equiv a^\prime+b^\prime\mod n\). Similarly, 
+\[n|(a-a^\prime)b+a^\prime(b-b^\prime)=ab-a^\prime b^\prime\]
+so \(ab=a^\prime b^\prime\mod n\). Hence we can do arithmetic on modulo \(n\) with inheriting the usual rules of arithmetic in \(\mathbb{Z}\).
+\chapter{Analysis I}
+\chapterauthor{Lecture by Professor Claude Warnick. 
+    Lent term 2024.}
+\section{Limits and Convergence}
+\subsection{Sequences}
+Consider a sequence of real numbers
+\[a_1,a_2,a_3,\ldots\]
+\((a_n)\) where \(a_n\in\mathbb{R}\).
+We start by defining \emph{limit}.
+\begin{definition}
+    We say \(a_n\to a\) as \(n\to\infty\) for some \(a\in\mathbb{R}\) if: given \(\epsilon>0\), there exists \(N\in\mathbb{N}\) such that
+    \[|a_n-a|<\epsilon\quad\forall n\geq N\]
+    \label{def:limit}
+\end{definition}
+If \(a_n\leq a_{n+1}\;\forall n\) we say \((a_n)\) is \emph{increasing}; and \emph{decreasing, strictly increasing, strictly decreasing} for \(a_n\geq a_{n+1}\), \(a_n>a_{n+1}\), \(a_n<a_{n+1}\) respectively. In all above cases, \((a_n)\) is \emph{monotone}.
+\begin{theorem}
+    (\emph{Monotone Convergence Theorem}) An increasing sequence of real numbers which is bounded above converges (i.e. it has a limit).
+    \label{mct}
+\end{theorem}
+In other words, monotone convergence theorem says if \(a_n\in\mathbb{R}\) (\(n\geq 1\)), \(A\in\mathbb{R}\) with
+\[a_1\geq a_2\geq a_3\geq\cdots\text{  and  }a_n\geq A\quad\forall n\]
+there exists \(a\in\mathbb{R}\) such that \(a_n\to a\) as \(n\to\infty\). Equivalently, decreasing sequence bounded below has a limit. Theorem \ref{mct} is also equivalent with Theorem \ref{luba}
+\begin{theorem}
+    (\emph{Least Upper Bound Axiom}) Every non-empty set bounded above has a \emph{supremum}.
+    \label{luba}
+\end{theorem}
+\begin{definition}
+    (Supremum) If \(S\subset\mathbb{R}\),\(S\neq\emptyset\) we say that
+    \[\sup S=K\]
+    if 
+    \begin{enumerate}
+        \item \(x\leq K\quad\forall x\in S\) (\(K\) is upper bound for \(S\)).
+        \item Given \(\epsilon>0\), \(\exists x\in S\) such that \(x>K-\epsilon\) (\(K\) is least upper bound).
+    \end{enumerate}
+    \label{def:sup}
+\end{definition}
+Note that similar definition can be made for greatest lower bound and infimum. If \(\sup S\in S\), we say \(\sup S\) is the \emph{maximum} of \(S\), i.e. \(\sup S=\max S\).
+\begin{lemma} \hfill
+    \begin{enumerate}
+        \item The limit is unique, i.e. if \(a_n\to a\) and \(a_n\to b\) as \(n\to\infty\) then \(a=b\).
+        \item Subsequences converge to the same limit, i.e. if \(a_n\to a\) as \(n\to \infty\) and \(n_1<n_2<\cdots\), then \(a_{n_j}\to a\) as \(j\to\infty\).
+        \item If \(a_n=c\quad\forall n\), then \(a_n\to c\) as \(n\to\infty\).
+        \item If \(a_n\to a\) and \(b_n\to b\) then \(a_n+b_n\to a+b\).
+        \item If \(a_n\to a\) and \(b_n\to b\) then \(a_nb_n\to ab\).
+        \item If \(a_n\to a\), \(a_n\neq 0\) and \(a\neq 0\), then \(1/a_n\to 1/a\).
+        \item If \(a_n\leq A\quad\forall n\) and \(a_n\to a\), then \(a\leq A\).
+        \item If \(a_n\to a\) and \(c_n\to a\) as \(n\to\infty\) and
+        \(a_n\leq b_n\leq c_n\), then \(b_n\to a\).
+    \end{enumerate}
+    \label{fundlemma}
+\end{lemma}
+\begin{proof}
+    We will only prove 1, 2, and 5 here.
+    \begin{enumerate}
+        \item For any \(\epsilon>0\), we can find \(N_1(\epsilon)\) and \(N_2(\epsilon)\) such that
+        \[n\geq N_1(\epsilon)\Rightarrow|a_n-a|<\epsilon\]
+        \[n\geq N_2(\epsilon)\Rightarrow|a_n-b|<\epsilon\]
+        If \(n\geq\max\{N_1(\epsilon),N_2(\epsilon)\}\), then
+        \begin{align*}
+            0&\leq|b-a|=|b-a_n+a_n-a| \\
+            &\leq|b-a_n|+|a_n-a|<2\epsilon
+        \end{align*}
+        This implies |b-a|=0, otherwise we can set \(\epsilon=|b-a|/3\) to find
+        \[0\leq|b-a|<\frac 23|b-a|\]
+        \hfill\qedsymbol
+        \item Since \(n_j<n_{j+1}\Rightarrow n_{j+1}\geq n_j+1\), by induction, we have \(n_j\geq j\). As \(a_n\to a\) as \(n\to\infty\), given \(\epsilon>0\) there exists \(N=N(\epsilon)\) such that 
+        \[n\geq N(\epsilon)\Rightarrow|a_n-a|<\epsilon\]
+        So if \(j\geq N(\epsilon)\), then \(n_j\geq j\geq N(\epsilon)\) and 
+        \[|a_{n_j}-a|<\epsilon\]
+        \hfill\qedsymbol
+        \item As \(a_n\to a\), \(b_n\to b\) as \(n\to\infty\), for any \(\epsilon>0\), we can find \(N_1(\epsilon)\) and \(N_2(\epsilon)\) such that
+        \[n\geq N_1(\epsilon)\Rightarrow|a_n-a|<\epsilon\]
+        \[n\geq N_2(\epsilon)\Rightarrow|b_n-b|<\epsilon\]
+        Now
+        \begin{align*}
+            |a_nb_n-ab|&=|a_nb_n-a_nb+a_nb-ab| \\
+            &\leq|a_nb_n-a_nb|+|a_nb-ab| \\
+            &=|a_n||b_n-b|+|b||a_n-a|
+        \end{align*}
+        If \(n\geq N_1(1)\) then \(|a_n-a|\leq 1\) and hence
+        \[|a_n|=|a_n-a+a|\leq |a_n-a|+|a|\leq 1+|a|\]
+        Thus if \(n\geq N_3(\epsilon)=\max\{N_1(1),N_1(\epsilon),N_2(\epsilon)\}\) then
+        \[|a_nb_n-ab|<(1+|a|)\epsilon+|b|\epsilon=(1+|a|+|b|)\epsilon\]
+        which can be made as small as we like.
+    \end{enumerate}
+\end{proof}
+\begin{lemma}\item[]
+    \begin{enumerate}
+        \item \(1/n\to 0\) as \(n\to\infty\).
+        \begin{proof}
+            \((1/n)\) is a decreasing sequence, bounded below by 0, so by monotone convergence theorem it has a limit \(L\). Now,
+            \[\frac{1}{2n}=\left(\frac 12\right)\left(\frac 1n\right)\to\frac 12 L\]
+            (Lemma \ref{fundlemma} (3), (5)). But \((1/2n)\) is a subsequence of \((1/n)\), so by Lemma \ref{fundlemma} (2),
+            \[\frac 1{2n}\to L\]
+            Then, by Lemma \ref{fundlemma} (1),
+            \[\frac{1}{2}L=L\]
+            and \(L=0\).
+        \end{proof}
+        \item If \(|x|<1\), \(x^n\to 0\) as \(n\to\infty\).
+        \begin{proof}
+            Suppose \(0\leq x<1\). Then \((x^n)\) is a decreasing sequence bounded below by \(0\), and it converges by monotone convergence theorem to a limit \(L\). Now,
+            \[x^{n+1}=xx^n\to xL\]
+            (Lemma \ref{fundlemma} (5)). However, \((x^{n+1})\) is a subsequence of \((x^n)\) so by Lemma \ref{fundlemma} (2), \(x^{n+1}\to L\); and consequently by Lemma \ref{fundlemma} (1), \(L=xL\Rightarrow L=0\).
+
+            Suppose \(-1<x<1\). Then,
+            \[-|x|^n\leq x^n\leq|x|^n\]
+            We know \(|x|^n\to 0\) and \(-|x|^n\to 0\) from above, so
+            \(x^n\to 0\) by Lemma \ref{fundlemma} (8).
+        \end{proof}
+    \end{enumerate}
+\end{lemma}
+Note that when we talk about a sequence converging, we mean to a \emph{finite} limit, while there is a notion of \emph{tending to infinity}: \(a_n\to\infty\) if \(\forall M\in\mathbb{R}\) \(\exists N=N(M)\) such that \(n\geq N\Rightarrow a_n>M\). 
+
+Meanwhile, we can see that our definition of convergence still works if \(a_n,a\in\mathbb{C}\) (Definition \ref{def:limit}). Furthermore, Lemma \ref{fundlemma} (1) to (6) all apply for complex sequences, but (7), (8), and Theorem \ref{mct} use the \emph{order relation} so do not carry over directly.
+\begin{lemma}
+    If \((z_n)\) is a complex sequence, then \(z_n\to z\) if and only if \(\Re(z_n)\to\Re(z)\) and \(\Im(z_n)\to\Im(z)\). 
+    \label{lemma:complex_conv}
+\end{lemma}
+\begin{proof}
+    Note if \(\omega\in\mathbb{C}\),
+    \[\max\{|\Re(\omega)|,|\Im(\omega)|\}\leq|\omega|\leq|\Re(\omega)|+|\Im(\omega)|\]
+    
+    (\(\Rightarrow\)) Suppose \(z_n\to z\). Then, \(\forall\epsilon>0\) there exists \(N=N(\epsilon)\) such that
+    \begin{align*}
+        n\geq N\Rightarrow|z_n-z|<\epsilon&\Rightarrow|\Re(z_n)-\Re(z)|<\epsilon \\
+        &\text{and } |\Im(z_n)-\Im(z)|<\epsilon
+    \end{align*} 
+    Therefore  \(\Re(z_n)\to\Re(z)\) and \(\Im(z_n)\to\Im(z)\).
+
+    (\(\Leftarrow\)) Suppose \(\Re(z_n)\to\Re(z)\) and \(\Im(z_n)\to\Im(z)\). Then \(\forall\epsilon>0\) \(\exists N_1=N_1(\epsilon),N_2=N_2(\epsilon)\) such that 
+    \begin{align*}
+        n\geq N_1&\Rightarrow|\Re(z_n)-\Re(z)|<\epsilon \\
+        n\geq N_2&\Rightarrow|\Im(z_n)-\Im(z)|<\epsilon
+    \end{align*}
+    So if \(n\geq\max\{N_1(\epsilon),N_2(\epsilon)\}=N_3(\epsilon)\), then
+    \[|z_n-z|\leq|\Re(z_n)-\Re(z)|+|\Im(z_n)-\Im(z)|<2\epsilon\]
+    and therefore \(z_n\to z\).
+\end{proof}
+\begin{theorem}
+    (\emph{Bolzano-Weierstrass Theorem}) Every bounded sequence in \(\mathbb{R}\) has a convergent subsequence, i.e. if \(x_n\in\mathbb{R}\) and there exists \(K>0\) such that \(|x_n|\leq K\quad\forall n\), we can find \(n_1<n_2<n_3<\cdots\) and \(x\in\mathbb{R}\) such that \(x_{n_j}\to x\) as \(j\to\infty\). 
+    N.b. we do not assert uniqueness, e.g. if \(x_n=(-1)^n\), \(x_{2n}\to 1\) but \(x_{2n+1}\to -1\).
+    \label{thm:bwt}
+\end{theorem}
+\begin{proof}
+    Set \(a_1=-K\), \(b_1=K\) so that all terms of \((x_n)\) lie in \([a_1,b_1]\). Let \(c=(a_1+b_1)/2\). Either
+    \begin{enumerate}
+        \item There are infinitely many terms of \((x_n)\) in \([a_1,c]\) or 
+        \item There are infinitely many terms of \((x_n)\) in \([c,b_1]\).
+    \end{enumerate}
+    If (1) holds, we set \(a_2=a_1\), \(b_2=c\); or if (1) does not hold, we set \(a_2=c\), \(b_2=b_1\). Continue inductively to construct \(a_k\), \(b_k\) such that infinitely many terms of \((x_n)\) lie in \([a_k,b_k]\), with
+    \[b_{k+1}-a_{k+1}=\frac 12(b_k-a_k)\]
+    and 
+    \[a_k\leq a_{k+1}<b_{k+1}\leq b_k\]
+    By construction, \((a_k)\) is increasing and bounded above by \(b_1\). So, from the monotone convergence theorem,
+    \[a_k\to a\in[a_1,b_1]\text{  as  }k\to\infty\]
+    Similarly, since \((b_k)\) is decreasing and bounded below by \(a_1\),
+    \[b_k\to b\in[a_1,b_1]\text{  as  }k\to\infty\]
+    But
+    \[b_{k+1}-a_{k+1}=\frac 12(b_k-a_k)\Rightarrow b-a=\frac 12(b-a)\]
+    and \(b=a\). Now construct \(n_j\) as follows.
+    \begin{itemize}
+        \item Pick \(n_1=1\).
+        \item Pick \(n_j\) to be the smallest integer greater than \(n_{j-1}\) such that \(x_{n_j}\in[a_j,b_j]\).
+    \end{itemize}
+    We can do this as \([a_j,b_j]\) contains infinitely many terms of \((x_n)\). Viz, \(a_j\leq x_{n_j}\leq b_j\) and by Lemma \ref{fundlemma} (8), \(x_{n_j}\to a\).
+\end{proof}
+\begin{definition}
+    A sequence \((a_n)\) of real numbers is a \emph{Cauchy sequence} (Cauchy) if for all \(\epsilon>0\) there exists \(N=N(\epsilon)\) such that \(n,m\geq N\Rightarrow|a_n-a_m|<\epsilon\).
+\end{definition}
+\begin{lemma}
+    Every convergent sequence is a Cauchy sequence.
+    \label{lemma:conv_cauchy}
+\end{lemma}
+\begin{proof}
+    If \(a_n\to a\), then given \(\epsilon>0\) \(\exists N=N(\epsilon)\) such that if \(n\geq N\), \(|a_n-a|<\epsilon\). But if \(m,n\geq N\),
+    \[|a_n-a_m|=|a_n-a+a-a_m|\leq |a_n-a|+|a_m-a|<2\epsilon\]
+\end{proof}
+\begin{theorem}
+    Every Cauchy sequence is convergent.
+    \label{thm:conv_cauchy}
+\end{theorem}
+\begin{proof}
+    Suppose \((a_n)\) is Cauchy. First we show \((a_n)\) is bounded. Since \((a_n)\) is Cauchy, given \(\epsilon>0\) \(\exists N=N(\epsilon)\) such that 
+    \[|a_n-a_m|<\epsilon\quad\forall n,m\geq N(\epsilon)\]
+    So if \(n,m\geq N(1)\), then \(|a_n-a_m|<1\). Set \(m=N(1)\) to see 
+    \[|a_n|=|a_n-a_{N(1)}+a_{N(1)}|\leq|a_n-a_{N(1)}|+|a_{N(1)}|\leq 1+|a_{N(1)}|\quad\forall n\geq N(1)\]
+    Thus if \(K=1+\max\{|a_1|,\ldots,|a_{N(1)}|\}\),
+    \[|a_n|\leq K\quad\forall n\]
+    Now, by Bolzano-Weierstrass theorem (Theorem \ref{thm:bwt}), there must be \(a\in\mathbb{R}\) and \(n_1<n_2<n_3<\cdots\) such that \(a_{n_j}\to a\) as \(j\to\infty\). We claim, in fact, \(a_n\to a\) as \(n\to\infty\). To see this, write
+    \[|a_n-a|=|a_n-a_{n_j}+a_{n_j}-a|\leq|a_n-a_{n_j}|+|a_{n_j}-a|\] and fix \(\epsilon>0\). Since \((a_n)\) is Cauchy, \(\exists N_1(\epsilon)\) such that if \(n,n_j\geq N_1(\epsilon)\), \(|a_n-a_{n_j}|<\epsilon\). 
+
+    Since \(a_{n_j}\to a\), \(\exists N_2(\epsilon)\) such that if \(j\geq N_2(\epsilon)\), \(|a_{n_j}-a|<\epsilon\). Fix \(j\) such that \(j\geq N_2(\epsilon)\) and \(n_j\geq N_1(\epsilon)\). Then we have, for any \(n\geq N_1(\epsilon)\),
+    \[|a_n-a|<2\epsilon\]
+    i.e. \(a_n\to a\).
+\end{proof}
+We have shown a real sequence converges if and only if it is Cauchy (Lemma \ref{lemma:conv_cauchy} and Theorem \ref{thm:conv_cauchy}). This is called the \emph{Cauchy's general principle of convergence}.
+\begin{corollary}
+    A complex sequence converges if and only if it is Cauchy.
+\end{corollary}
+\begin{proof}
+    From estimate at start of proof of Lemma \ref{lemma:complex_conv}, it follows that \((z_n)\) is Cauchy if and only if \((\Re(z_n))\) and \((\Im(z_n))\) are both Cauchy.
+\end{proof}
+\subsection{Series and Convergence Tests}
+\begin{definition}
+    Suppose \(a_j\in\mathbb{R}(\text{ or }\mathbb{C})\). Define sequence of \emph{partial sums} \((S_N)\) where
+    \[S_N=\sum_{j=1}^N a_j\]
+    Then, if \(S_N\to S\) as \(N\to\infty\), we write
+    \[S=\sum_{j=1}^\infty a_j\]
+    and say \(\sum_{j=1}^\infty a_j\) converges. Conversely, if \(S_N\) does not converge, we say \(\sum_{j=1}^\infty a_j\) diverges.
+\end{definition}
+\begin{remark}
+    Any problem on series is a problem about sequences, and vice versa.
+\end{remark}
+\begin{lemma} \item[]
+    \begin{enumerate}
+        \item If \(\sum_{j=1}^\infty a_j\) and \(\sum_{j=1}^\infty b_j\) converge, then so does 
+        \[\sum_{j=1}^\infty(\lambda a_j+\mu b_j)\]
+        for \(\lambda, \mu\in\mathbb{R}(\text{ or }\mathbb{C})\); and 
+        \[\sum_{j=1}^\infty(\lambda a_j+\mu b_j)=\lambda\sum_{j=1}^\infty a_j+\mu\sum_{j=1}^\infty b_j\]
+        \item Suppose there exists \(N\) such that \(a_j=b_j\) \(\forall j\geq N\). Then either \(\sum_{j=1}^\infty a_j\) and \(\sum_{j=1}^\infty b_j\) both converge, or both diverge.
+        \begin{proof}
+            Suppose \(n\geq N\). Then,
+            \[S_n=\sum_{j=1}^{N-1} a_j+\sum_{j=N}^n a_j\]
+            and
+            \begin{align*}
+                D_n&=\sum_{j=1}^{N-1} b_j+\sum_{j=N}^n b_j \\
+                &=S_n+\left(\sum_{j=1}^{N-1}b_j-\sum_{j=1}^{N-1}a_j\right) \\
+                &=S_n+k
+            \end{align*}
+            where \(k\) finite constant. Thus, \(D_n\) converges if and only if \(S_n\) converges.
+        \end{proof}
+    \end{enumerate}
+    \label{lemma:series}
+\end{lemma}
+An important example is the \emph{geometric series}. Suppose \(x\in\mathbb{R}\) and let \(a_j=x^{j-1}\) for \(j\geq 1\). Then,
+\[S_n=\sum_{j=1}^{n}x^{j-1}=1+x+x^2+\cdots+x^{n-1}\]
+and 
+\[S_n=\begin{cases}
+    \frac{1-x^n}{1-x} & x\neq 1 \\
+    n & x=1
+\end{cases}\]
+We can check the convergence of \(S_n\) for different values of \(x\):
+\begin{itemize}
+    \item if \(|x|<1\), \(x^n\to 0\) and \(S_n\to 1/(1-x)\). 
+    \item if \(x\geq 1\), write \(x=1+\delta\) where \(\delta\geq 0\). By expansion,
+    \[x^n=1+\delta n+\cdots+\delta^n\geq 1+\delta n\]
+    Hence, \(x^n\to\infty\) and \(S_n\to\infty\) for \(x>1\).
+    \item if \(x=1\), trivially \(S_n=n\to\infty\).
+    \item if \(x<-1\), \(x^n=(-1)^n|x|^n\) does not converge as \(|x|^n\to\infty\). \(|S_n|\to\infty\) but \(S_n\) may alternate in sign.
+    \item if \(x=-1\), 
+    \[S_n=\begin{cases}
+        1 & n\text{ odd} \\
+        0 & n\text{ even}
+    \end{cases}\]
+    and hence it does not converge.
+\end{itemize}
+Therefore, we may conclude that \(\sum_{j=1}^{\infty}x^{j-1}\) converges if and only if \(|x|<1\).
+
+Let's take a further look into convergence tests. A simple, but useful result is the \emph{n{\textsuperscript{th}} term test}.
+\begin{lemma}
+    If \(\sum_{j=1}^{\infty}a_j\) converges, then \(a_j\to 0\) as \(j\to\infty\).
+    \label{lemma:nth_test}
+\end{lemma}
+
+\begin{proof}
+    If \(S_n=\sum_{j=1}^{n}a_j\), \(a_n=S_n-S_{n-1}\) but
+    \[S_n\to S\Rightarrow S_{n-1}\to S\]
+    so \(a_n\to 0\).
+\end{proof}
+Note that converse of Lemma \ref{lemma:nth_test} is false. For example, consider \(\sum_{j=1}^{\infty}1/j\), i.e. \emph{harmonic series}. If we let \(S_n=\sum_{j=1}^{n}1/j\),
+\begin{align*}
+    S_{2n}&=S_n+\frac{1}{n+1}+\frac{1}{n+2}+\cdots +\frac{1}{2n} \\
+    &\geq S_n+\frac{1}{2n}+\frac{1}{2n+1}+\cdots +\frac{1}{2n}
+\end{align*}
+Thus \(S_{2n}\geq S_n+1/2\) and \(S_{2n}-S_n\geq 1/2\). If \(S_n\to S\), then \(S_{2n}\to S\) and \(0\geq 1/2\), which is a contradiction. Therefore, \(S_n=\sum_{j=1}^{n}1/j\) diverges. 
+
+Moreover, Lemma \ref{lemma:nth_test} is often used to show a series does not converge. 
+
+
+\subsubsection{Series with non-negative terms}
+We consider, for the time being, series whose terms satisfy 
+\[a_j\geq 0\quad\forall j\]
+\begin{theorem}
+    (\emph{Comparison Test})
+    Suppose \(0\leq b_n\leq a_n\quad\forall n\). Then if \(\sum_{n=1}^{\infty}a_n\) converges, so does \(\sum_{n=1}^{\infty}b_n\).
+    \label{thm:comparison_test}
+\end{theorem}
+\begin{proof}
+    Let \(S_N=\sum_{n=1}^{N}a_n\) and \(D_N=\sum_{n=1}^{N}b_n\). Both \(S_N\) and \(D_N\) are monotonically increasing and \(S_N\to S\). But
+    \[b_n\leq a_n\Rightarrow D_N\leq S_N\leq S\]
+    So, since \((D_N)\) is increasing and bounded above, \(D_N\) converges (Theorem \ref{mct}).
+\end{proof}
+For example of the comparison test, consider \(\sum_{n=1}^{\infty}1/n^2\). We have
+\[0\leq\frac{1}{n^2}<\frac{1}{n(n-1)}=\underbrace{\frac{1}{n-1}-\frac 1n}_{a_n}\]
+for \(n\geq 2\). Then,
+\[\sum_{n=2}^{N}a_n=\left(1-\frac 12\right)+\left(\frac 12-\frac 13\right)+\cdots+\left(\frac 1{N-1}-\frac 1N\right)=1-\frac 1N\to 1\]
+as \(N\to\infty\).
+Hence, since \(\sum_{n=2}^{\infty}1/(n-1)n\) converges, \(\sum_{n=2}^{\infty}1/n^2\) and consequently \(\sum_{n=1}^{\infty}1/n^2\) converges by comparison test.
+\begin{theorem}
+    (\emph{Root Test}) Suppose \(a_n\geq 0\) and \(a_n^{1/n}\to a\) as \(n\to\infty\). Then if \(a<1\), \(\sum a_n\) converges; else if \(a>1\), \(\sum a_n\) diverges. If \(a=1\), test is inconclusive.
+\end{theorem}
+\begin{proof}
+    If \(a<1\), choose \(r\) such that \(a<r<1\). From Definition \ref{def:limit}, \(\exists N\) such that \(\forall n\geq N\)\footnote{Choose \(\epsilon=r-a>0\).} 
+    \[a_n^{1/n}<r\Rightarrow a_n<r^n\]
+    Since \(r<1\), the series \(\sum r^n\) converges, so by comparison test and Lemma \ref{lemma:series} (2), we have that \(\sum a_n\) converges.
+
+    If \(a>1\), \(\exists N\) such that \(\forall n\geq N\) \(a_n^{1/n}>1\Rightarrow a_n>1\). Hence, \(\sum a_n\) diverges (Lemma \ref{lemma:nth_test}).
+\end{proof}
+\begin{theorem}
+    (\emph{Ratio Test}) Suppose \(a_n>0\) and \(a_{n+1}/a_n\to l\). If \(l<1\) \(\sum a_n\) converge; else if \(l>1\) \(\sum a_n\) diverge. If \(l=1\), test is inconclusive.
+\end{theorem}
+\begin{proof}
+   Suppose \(l<1\) and choose \(r\) with \(l<r<1\). Then from Definition \ref{def:limit}, \(\exists N\) such that \(\forall n\geq N\) \(a_{n+1}/a_n<r\). Hence, for \(n>N\),
+   \[a_n=\frac{a_n}{a_{n-1}}\frac{a_{n-1}}{a_{n-2}}\cdots\frac{a_{N+1}}{a_{N}}a_N<a_Nr^{n-N}\Rightarrow a_n<kr^n\]
+   where \(k\) is independent of \(n\). But since \(\sum kr^n\) converges, so does \(\sum a_n\) (Lemma \ref{lemma:series} (2)).
+
+   If \(l>1\), pick \(r>1\) such that \(1<r<l\). Then, \(\exists N\) such that \(\forall n\geq N\) \(a_{n+1}/a_n>r\) and
+   \[a_n=\frac{a_n}{a_{n-1}}\frac{a_{n-1}}{a_{n-2}}\cdots\frac{a_{N+1}}{a_{N}}a_N>a_Nr^{n-N}\]
+   But \(r^{n-N}\to\infty\) as \(n\to\infty\). Thus \(a_n\to\infty\) and \(\sum a_n\) diverges.
+\end{proof}
+Here are some examples for the tests above.
+\begin{itemize}
+    \item \(\sum(n/2^n)\). Can show the covergence by both ratio and root test.
+    \item \(\sum 1/n\) diverges but ratio test and root test both yields 1 (inconclusive).
+    \item \(\sum 1/n^2\) converges but ratio test and root test both yields 1 (inconclusive).
+\end{itemize}
+\begin{remark}
+    To show \(n^{1/n}\to 1\), write \(n^{1/n}=1+\delta_n\) (\(\delta_n>0\)). Then, binomial expansion gives
+    \[n=(1+\delta_n)^n>\frac{n(n-1)}{2}\delta_n^2\]
+    and
+    \[0<\delta_n^2<\frac{2}{n+1}\Rightarrow\delta_n=0\]
+\end{remark}
+\begin{theorem}
+    (\emph{Cauchy's Condensation Test}) Let \((a_n)\) be a decreasing sequence of positive terms. Then \(\sum_{n=1}^{\infty}a_n\) converges if and only if
+    \[\sum_{n=1}^{\infty}2^na_{2^n}\]
+    converges.
+    \label{thm:cauchy_condensation_test}
+\end{theorem}
+\begin{proof}
+    Since \(a_n\) is decreasing, note that
+    \[a_{2^k}\leq a_{2^{k-1}+i}\leq a_{2^{k-1}}\]
+    for \(1\leq i\leq 2^{k-1}\). Let us prove each direction seperately.
+
+    (\(\Rightarrow\)) Suppose \(\sum a_n\) converges. But
+    \begin{align*}
+        2^{k-1}a_{2^k}&=a_{2^k}+\cdots+a_{2^k} \\
+        &\leq a_{2^{k-1}+1}+a_{2^{k-1}+2}+\cdots+a_{2^{k-1}+2^{k-1}} \\
+        &=\sum_{n=2^{k-1}+1}^{2^k}a_n
+    \end{align*}
+    Hence,
+    \[\sum_{k=1}^{K}2^{k-1}a_{2^k}\leq\sum_{k=1}^{K}\left(\sum_{n=2^{k-1}+1}^{2^k}a_n\right)=\sum_{n=2}^{2^K}a_n\leq\sum_{n=1}^{\infty}a_n\]
+    and \(\sum_{k=1}^{K}2^ka_{2^k}\) converges since it is increasing in \(K\) and bounded above.
+
+    (\(\Leftarrow\)) Suppose \(\sum 2^na_{2^n}\) converges. Then,
+    \begin{align*}
+        \sum_{n=2^{k-1}+1}^{2^k}a_n&= a_{2^{k-1}+1}+a_{2^{k-1}+2}+\cdots+a_{2^{k-1}+2^{k-1}} \\
+        &\leq
+        a_{2^{k-1}}+\cdots+a_{2^{k-1}} \\
+        &=2^{k-1}a_{2^{k-1}}
+    \end{align*}
+    This implies
+    \[\sum_{n=2}^{2^K}a_n=\sum_{k=1}^{K}\left(\sum_{n=2^{k-1}+1}^{2^k}a_n\right)\leq\sum_{k=1}^{K}2^{k-1}a_{2^{k-1}}\leq\sum_{n=1}^{\infty}2^{k-1}a_{2^{k-1}}\]
+    Thus for any \(N\), if we pick \(K\) such that \(2^K>N\),
+    \[\sum_{n=2}^{N}\leq\sum_{n=2}^{2^K}a_n\leq\sum_{n=1}^{\infty}2^{k-1}a_{2^{k-1}}\]
+    Similarly, by monotone convergence theorem, \(\sum_{n=2}^Na_n\) converges.
+\end{proof}
+\begin{corollary}
+    (\emph{\(p\)-series test}) \(\sum_{n\geq 1}(1/n^p)\) (for \(p>0\)) converges if and only if \(p>1\).
+\end{corollary}
+\begin{proof}
+    \(a_n=1/n^p\) is a decreasing sequence of positive numbers, since
+    \[\frac{n}{n+1}<1\Rightarrow\left(\frac{n}{n+1}\right)^p<1\Rightarrow\frac{1}{(n+1)^p}<\frac{1}{n^p}\]
+    Meanwhile,
+    \[2^na_{2^n}=2^n\left(\frac{1}{2^n}\right)^p=2^{n-np}=\left(2^{1-p}\right)^n=r^n\]
+    We know that \(\sum r^n\) converges if and only if \(r<1\), which is equivalent to \(p>1\). Hence, by Cauchy's condensation test, \(\sum_{n\geq 1}(1/n^p)\) (for \(p>0\)) converges if and only if \(p>1\).
+\end{proof}
+\subsubsection{Alternating series}
+\begin{theorem}
+    (\emph{Alternating Series Test}) Suppose \((a_n)\) is a decreasing sequence, tending to \(0\) as \(n\to\infty\). Then, the series 
+    \[\sum_{n=1}^{\infty}(-1)^{n+1}a_n\]
+    converges.
+    \label{thm:alter_test}
+\end{theorem}
+\begin{proof}
+    Let
+    \[S_n=\sum_{k=1}^{n}(-1)^{k+1}a_k\]
+    Then we can find \(S_{2n}\) is increasing, since
+    \[S_{2n}=(a_1-a_2)+(a_3-a_4)+\cdots+(a_{2n-1}-a_{2n})\]
+    Similarly,
+    \[S_{2n+1}=a_1-(a_2-a_3)-(a_4-a_5)-\cdots-(a_{2n}-a_{2n+1})\]
+    gives
+    \[S_{2n+1}\leq S_{2n-1}\leq\cdots\leq S_3\leq S_1\]
+    Furthermore,
+    \(S_{2n+1}=S_{2n}+a_{2n+1}\leq S_{2n}\), so
+    \[S_2\leq S_4\leq\cdots\leq S_{2n}\leq S_{2n+1}\leq S_{2n-1}\leq\cdots\leq S_3\leq S_1\]
+    See that \((S_{2n})\) is increasing, bounded above by \(S_1\); so \(S_{2n}\to S\); and \((S_{2n+1})\) is decreasing, bounded below by \(S_2\), so \(S_{2n+1}\to\tilde{S}\). But
+    \[S_{2n+1}=S_{2n}+a_{2n+1}\]
+    implies \(\tilde{S}=S\). Thus, given \(\epsilon>0\) there exists \(N_1,N_2\) such that
+    \[|S_{2n}-S|<\epsilon\quad\forall n\geq N_1\]
+    \[|S_{2n+1}-S|<\epsilon\quad\forall n\geq N_2\]
+    Therefore, if we choose \(n\geq 2\max\{N_1,N_2\}+1=N\), \(|S_n-S|<\epsilon\Rightarrow S_n\to S\).
+\end{proof}
+One may easily see that \(\sum(-1)^{n+1}/n\) converges using the alternating series test.
+\subsubsection{Absolute  and conditional convergence}
+\begin{definition}
+    Let \(a_n\in\mathbb{C}\). If \(\sum_{n=1}^{\infty}|a_n|\) converges, we say \(\sum_{n=1}^\infty a_n\) is \emph{absolutely convergent}.
+\end{definition}
+Note that since \(|a_n|\geq 0\), previous tests can be applied to show absolute convergence.
+\begin{theorem}
+    If \(\sum_{n=1}^{\infty}a_n\) is absolutely convergent, then it is convergent.
+    \label{thm:abconv}
+\end{theorem}
+\begin{proof}
+    Let
+    \[S_n=\sum_{k=1}^{n}a_k,\quad\bar{S}_n=\sum_{k=1}^{n}|a_k|\]
+    Suppose that \(n\leq m\). Then
+    \[|S_m-S_n|=\left|\sum_{k=n+1}^{m}a_k\right|\leq\sum_{k=n+1}^{m}|a_k|=|\bar{S}_m-\bar{S}_n|\]
+    \((\bar{S}_n)\) is convergent, hence Cauchy (Lemma \ref{lemma:conv_cauchy}), so given \(\epsilon>0\) \(\exists N\) such that \(\forall m\geq n\geq N\) we have 
+    \[|\bar{S}_m-\bar{S}_n|<\epsilon\Rightarrow|S_m-S_n|<\epsilon\]
+    Thus \((S_n)\) is Cauchy and it converges (Theorem \ref{thm:conv_cauchy}).
+\end{proof}
+For example of absolute convergence, consider \(\sum_{n=1}^{\infty}a_n\) where \(z\in\mathbb{C}\) and \(a_n=(z^n/2^n)\). \(|a_n|=(|z|/2)^n\) so \(\sum|a_n|\) converges if and only if \(|z|/2<1\). This gives absolute convergence for \(|z|<2\). If \(|z|\geq 2\), \(|a_n|\geq 1\) and there is no absolute convergence. Finally, note that coverse of Theorem \ref{thm:abconv} is false. 
+\begin{definition}
+    If \(\sum a_n\) converges, but \(\sum|a_n|\) does not, we say series is \emph{conditionally convergent}. 
+\end{definition}
+N.b. order of terms matters. If rearranged, the sum may change. Consider the rearranged sequences below.
+\begin{enumerate}
+    \item \(1-\frac 12+\frac 13-\frac 14+\cdots\)
+    \item \(1+\frac 13-\frac 12+\frac 15-\frac 17-\frac 14+\frac 19+\frac 1{11}-\frac 16+\cdots\)
+\end{enumerate}
+If \(S_n\) is partial sum of (1), \(T_n\) partial sum of (2), then
+\begin{align*}
+    S_n&\to S>0 \\
+    T_n&\to\frac{3S}{2}\neq S
+\end{align*}
+\begin{definition}
+    Let \(\sigma\::\:\mathbb{N}\to\mathbb{N}\) be a bijection, then \((a_n^\prime)\) with \(a_n^\prime=a_{\sigma(n)}\) is a \emph{rearrangement} of \((a_n)\).
+\end{definition}
+\begin{theorem}
+    If \(a_n^\prime=a_{\sigma(n)}\) is a rearrangement of \((a_n)\), and \(\sum_{n=1}^\infty a_n\) is absolutely convergent, then
+    \[\sum_{n=1}^\infty a_n=\sum_{n=1}^\infty a_n^\prime\]
+\end{theorem}
+\begin{proof}
+    Fix \(\epsilon>0\). Since \(\sum_{n=1}^\infty |a_n|\) converges, \(\exists N\) such that
+    \[\sum_{n=N+1}^\infty |a_n|<\epsilon\]
+    Pick \(M\) such that \(\sigma^{-1}(k)<M\) for \(k=1,\ldots,N\). Then if \(m\geq M\),
+    \[\sum_{n=1}^\infty a_n-\sum_{n=1}^m a_{\sigma(n)}=\sum_{n\in K_m}a_n\]
+    where \(K_m=\{N+1,N+2,\ldots\}\setminus\{\text{finitely many points}\}\). So
+    \[\left|\sum_{n=1}^\infty a_n-\sum_{n=1}^m a_n^\prime\right|\leq\sum_{n\in K_m}|a_n|\leq\sum_{n\geq N+1}|a_n|<\epsilon\]
+    i.e. \(\sum_{n=1}^{m}a_n^\prime\to\sum_{n=1}^{\infty}a_n\) as \(m\to\infty\).
+\end{proof}
+\section{Continuity}
+\subsection{Continuity of a Function}
+Suppose \(\mathrm{E}\subseteq\mathbb{C}\) is non-empty, and \(f:\mathrm{E}\to\mathbb{C}\) is any function (includes case where \(\mathrm{E}\subseteq\mathbb{R}\), \(f\::\:\mathrm{E}\to\mathbb{R}\)).
+\begin{definition}
+    \(f\) is \emph{continuous} at \(a\in\mathrm{E}\) if: given \(\epsilon>0\), there exists \(\delta=\delta(\epsilon)>0\) such that
+    \[|f(z)-f(a)|<\epsilon\]
+    for all \(z\in\mathrm{E}\) with \(|z-a|<\delta\), i.e. ``\emph{Points close to \(a\) in the domain are mapped close to \(f(a)\) in range}.''
+    \label{def:contd}
+\end{definition}
+We say \(f\) is continuous on \(\mathrm{E}\) if \(f\) is continuous at \(a\) for all \(a\in\mathrm{E}\). 
+% N.b. if \(\mathrm{E}^\prime\subseteq\mathrm{E}\) then \(f\) continuous on \(\mathrm{E}\), 
+\begin{theorem}
+    \(f:\mathrm{E}\to\mathbb{C}\) is continuous at \(a\in\mathrm{E}\) if and only if
+    \[f(z_n)\to f(a)\]
+    for all sequences \((z_n)\) with \(z_n\in\mathrm{E}\), \(z_n\to a\).
+    \label{thm:contd}
+\end{theorem}
+\begin{proof}
+    (\(\Rightarrow\)) Suppose \(f\) is continuous at \(a\), and \((z_n)\) is a sequence \(z_n\in\mathrm{E}\) with \(z_n\to a\). Let \(\epsilon>0\). Then \(\exists\delta>0\) such that
+    \[z\in\mathrm{E},|z-a|<\delta\Rightarrow|f(z)-f(a)|<\epsilon\]
+    Since \(z_n\to a\), there exists \(N\) such that 
+    \[n\geq N\Rightarrow|z_n-a|<\delta\Rightarrow|f(z)-f(a)|<\epsilon\]
+    Therefore \(f(z_n)\to f(a)\).
+
+    (\(\Leftarrow\)) Suppose \(f\) is not continuous at \(a\). Then,
+    \(\exists\epsilon>0\) such that \(\forall\delta>0\), \(\exists z\in\mathrm{E}\) with
+    \[|z-a|<\delta\text{  and  }|f(z)-f(a)|\geq\epsilon\]
+    apply this with 
+    \[\delta=1,\frac 12,\frac 13,\ldots,\frac 1n,\ldots\]
+    to find for each \(n\) and \(z_n\in\mathrm{E}\) with
+    \[|z_n-a|<\frac 1n\text{  and  }|f(z_n)-f(a)|\geq\epsilon>0\]
+    Then \(z_n\to a\) as \(n\to\infty\) but \(f(z_n)\nrightarrow f(a)\), which is a contradiction. Hence \(f\) is continuous at \(a\).
+\end{proof}
+This means we could alternatively take our definition of continuity as:
+\[f(z_n)\to f(a)\]
+for all sequences \((z_n)\) with \(z_n\in\mathrm{E}\), \(z_n\to a\).
+\begin{lemma}
+    Suppose \(f,g:\mathrm{E}\to\mathbb{C}\) are continuous at \(a\in\mathrm{E}\). Then so are the functions
+    \begin{enumerate}
+        \item \(f(z)+g(z)\),
+        \item \(f(z)g(z)\),
+        \item \(\lambda g(z)\) \space (constant \(\lambda\in\mathbb{C}\)),
+        \item \(1/f(z)\) \space provided \(f(z)\neq 0\) \(\forall z\in\mathrm{E}\).
+    \end{enumerate}
+    \label{lemma:fund_contd}
+\end{lemma}
+\begin{proof}
+    Using the sequential characterisation of continuity, this follows easily from analogous results for sequences (Lemma \ref{fundlemma}). E.g. if \(z_n\to a\),
+    \[f(z_n)\to f(a)\text{  and  }g(z)\to g(a)\Rightarrow f(z_n)+g(z_n)\to f(a)+g(a)\]
+    etc.
+\end{proof}
+Note that Lemma \ref{lemma:fund_contd} can also be directly proved from Definition \ref{def:contd}. We now show that composition of continuous functions is continuous.
+\begin{theorem}
+    Suppose \(A,B\subseteq\mathbb{C}\), \(f:A\to B\), \(g:B\to C\) and that \(f\) is continuous at \(a\in A\), \(g\) is continuous at \(f(a)\in B\). Then \(g\circ f:A\to\mathbb{C}\) is continuous at \(a\).
+    \label{thm:comp_contd}
+\end{theorem}
+\begin{proof}
+    Suppose \((z_n)\) is any sequence with \(z_n\in A\), \(z_n\to a\). Then by continuity of \(f\) at \(a\),
+    \[f(z_n)\to f(a)\]
+    By continuity of \(g\) at \(f(a)\),
+    \[g(f(z_n))\to g(f(a))\Leftrightarrow g\circ f(z_n)\to g\circ f(a)\]
+    Hence \(g\circ f\) is continuous at \(a\).
+\end{proof}
+Here are some examples of continuous (and discontinuous) functions.
+\begin{enumerate}
+    \item \(f(z)=z\) is continuous at all points of \(\mathbb{C}\).
+    \item By Lemma \ref{lemma:fund_contd} and Example (1) above, any polynomial in \(z\) is continuous at all points of \(\mathbb{C}\).
+    \item \(f(z)=|z|\) is continuous at all points of \(\mathbb{C}\).\footnote{See reverse triangle inequality.}
+    \item \(f:\mathbb{R}\to\mathbb{R}\),
+    \[x\mapsto\begin{cases}
+        0 & x<0 \\
+        1 & x\geq 0
+    \end{cases}\]
+    is not continuous at \(x=0\).
+    \item \(f:\mathbb{R}\to\mathbb{R}\),
+    \[f(x)=\begin{cases}
+        \sin\frac 1x & x\neq 0 \\
+        0 & x=0
+    \end{cases}\]
+    \(\sin x\) is continuous,\footnote{See later sections for proof.} so if \(x\neq 0\) then Theorem \ref{thm:comp_contd} and Lemma \ref{lemma:fund_contd} imply \(f\) is continuous at \(x\). However, \(f\) is discontinuous at \(x=0\). Choose \(x_n\) such that
+    \[\frac 1{x_n}=\left(2n+\frac 12\right)\pi\]
+    which imply \(f(x_n)=1\), \(x_n\to 0\), \(f(0)=0\neq\lim_{n\to\infty}f(x_n)\).
+    \item \(f:\mathbb{R}\to\mathbb{R}\),
+    \[f(x)=\begin{cases}
+        x\sin\frac 1x & x\neq 0 \\
+        0 & x=0
+    \end{cases}\]
+    \(f\) is continuous at \(x\neq 0\) by same reasons as (5). But \(f\) is also continuous at \(0\) this time. Suppose \(x_n\to 0\). Then
+    \[|f(x_n)|=|x_n|\left|\sin\frac 1{x_n}\right|\leq|x_n|\]
+    So \(|f(x_n)|\leq|x_n|\) and \(f(x_n)\to 0=f(0)\).
+    \item (\emph{Dirichlet Function})  \(f:\mathbb{R}\to\mathbb{R}\),
+    \[f(x)=\begin{cases}
+        1 & x\in\mathbb{Q} \\
+        0 & x\notin\mathbb{Q}
+    \end{cases}\]
+    is discontinuous at every point. If \(x\in\mathbb{Q}\), take sequence \(x_n\notin\mathbb{Q}\), then \(x_n\to x\) but 
+    \[f(x_n)=0\nrightarrow f(x)=1\]
+    If \(x\notin\mathbb{Q}\), take \(x_n\in\mathbb{Q}\), \(x_n\to x\) but
+    \[f(x_n)=1\nrightarrow f(x)=0\]
+\end{enumerate}
+\subsection{Limit of a Function}
+Suppose \(\mathrm{E}\subseteq\mathbb{C}\), \(f:\mathrm{E}\to\mathbb{C}\). We want to define 
+\[\lim_{z\to a}f(z)\]
+even when \(a\) may not belong to \(\mathrm{E}\). For instance, consider \(f:\mathbb{C}\backslash\{0\}\to\mathbb{C}\),
+\[z\mapsto{\sin z}/{z}\] What is \(\lim_{z\to 0}f(z)\)? -- However, this does not always make sense. If \(\mathrm{E}=\{0\}\cup[1,2]\), for \(f:\mathrm{E}\to\mathbb{R}\) it is impossible to consider \(\lim_{x\to 0}f(x)\), because there are no point near \(0\) except \(0\) itself. 
+\begin{definition}
+    Suppose \(\mathrm{E}\subseteq\mathbb{C}\), \(a\in\mathbb{C}\). We say that \(a\) is a \emph{limit point} of \(\mathrm{E}\) if for any \(\delta>0\) there exists \(z\in\mathrm{E}\) such that
+    \[0<|z-a|<\delta\]
+    \label{def:limit_point}
+\end{definition}
+N.b. \(a\) is a limit point of \(\mathrm{E}\) if and only if there exists a sequence \((z_n)\) such that \(z_n\in\mathrm{E}\), \(z_n\neq a\), and 
+\[z_n\to a\]
+\begin{definition}
+    Suppose \(\mathrm{E}\subseteq C\), \(f:\mathrm{E}\to\mathbb{C}\) and let \(a\in\mathbb{C}\) be a limit point of \(\mathrm{E}\). We say 
+    \[\lim_{z\to a}f(z)=l\]
+    if: given \(\epsilon>0\), \(\exists\delta>0\) such that \(\forall z\in\mathrm{E}\),
+    \[0<|z-a|<\delta\Rightarrow|f(z)-l|<\epsilon\]
+    \label{def:limit_ed}
+\end{definition}
+\begin{lemma}
+    If \(f,\mathrm{E},a\) as above, then 
+    \[\lim_{z\to a}f(z)=l\]
+    if and only if \(f(z_n)\to l\) for all sequences \(z_n\in\mathrm{E}\), \(z_n\neq a\), \(z_n\to a\).
+\end{lemma}
+Observe that the definitions immediately tell us that if \(a\in\mathrm{E}\) is a limit point then \(f\) is continuous at \(a\) if and only if 
+\[\lim_{z\to a}f(z)=f(a)\]
+If \(a\in\mathrm{E}\) is \emph{isolated}, i.e. not a limit point, then \(f\) is always continuous at \(a\). 
+
+Note that limit of functions behave similarly to limits of sequences.
+\begin{lemma}
+    Suppose \(\mathrm{E}\subseteq\mathbb{C}\), \(a\in\mathbb{C}\) is a limit point, and \(f,g:\mathrm{E}\to\mathbb{C}\)
+    \begin{enumerate}
+        \item The limit is unique, i.e. if \(f(z)\to A\) and \(f(z)\to B\) as \(z\to a\), then \(A=B\).
+        \item If \(f(z)\to l\), \(g(z)\to k\), then\(f(z)+g(z)=l+k\) \space as \(z\to a\);
+        \item \(f(z)g(z)=lk\) \space as \(z\to a\);
+        \item \(f(z)/g(z)=l/k\) \space as \(z\to a\) (if \(k\neq 0\)).
+    \end{enumerate}
+    \label{lemma:fund_limit}
+\end{lemma}
+\begin{proof}
+    (of (1))
+    \[|A-B|=|A-f(z)+f(z)-B|\leq|A-f(z)|+|f(z)-B|\]
+    for all \(z\in\mathrm{E}\), \(z\neq a\). Given \(\epsilon>0\), \(\exists\delta_1>0\) such that
+    \[0<|z-a|<\delta_1,z\in\mathrm{E}\Rightarrow |f(z)-A|<\epsilon,\:z\in\mathrm{E}\]
+    Also \(\exists\delta_2>0\) such that 
+    \[0<|z-a|<\delta_2,z\in\mathrm{E}\Rightarrow |f(z)-B|<\epsilon,\:z\in\mathrm{E}\]
+    Since \(a\) is a limit point, \(\exists z\in\mathrm{E}\) such that 
+    \[0<|z-a|<\min\{\delta_1,\delta_2\}\Rightarrow|A-B|<2\epsilon\]
+    Because \(\epsilon\) is arbitrary, \(A=B\).
+\end{proof}
+\begin{theorem}
+    (\emph{Intermediate Value Theorem}) Suppose \(f:[a,b]\to\mathbb{R}\) is continuous and \(f(a)<f(b)\). Then for any \(\eta\) with \(f(a)<\eta<f(b)\) there exists \(c\in[a,b]\) such that \(f(c)=\eta\).
+    \label{thm:ivt}
+\end{theorem}
+\begin{proof}
+    Let 
+    \[S=\{x\in[a,b]\:|\:f(x)<\eta\}\]
+    Clearly \(S\) is not empty as \(a\in S\). \(S\) is bounded above by \(b\). So \(S\) has a supremum, \(c\) (Theorem \ref{luba}). We claim \(f(c)=\eta\). From the definition of a supremum (Definition \ref{def:sup}), for each \(n\in\mathrm{N}\) there exists \(x_n\in S\) with 
+    \[c-\frac 1n\leq x_n\leq c\]
+    Hence \(x_n\to c\). But \(f\) is continuous so \(f(x_n)\to f(c)\) and 
+    \[f(x_n)<\eta\Rightarrow f(c)\leq\eta\]
+    In particular, \(c\neq b\). Now let
+    \[\tilde{x}_n=c+\frac 1n\]
+    For \(n\) large enough, \(\tilde{x}_n\in[a,b]\), and \(\tilde{x}_n\to c\). Furthermore, \(f(\tilde{x}_n)\geq\eta\) since \[\tilde{x}_n>c\Rightarrow\tilde{x}_n\notin S\]
+    Hence 
+    \[f(c)=\lim_{n\to\infty}f(\tilde{x}_n)\geq\eta\]
+    and thus \(f(c)=\eta\).
+\end{proof}
+This theorem is useful to find roots of functions. For example, we can check existence of \(N\){\textsuperscript{th}} roots. Suppose \(y>0\). Consider for \(N\in\mathbb{N}\) the function \(f:[0,1+y]\to\mathbb{R}\),
+\[x\mapsto x^N\]
+Then since
+\[(a+y)^N\geq 1+Ny>y\]
+we have 
+\[f(0)<y<f(1+y)\]
+and there exists \(c\in(0,1+y)\) such that \(f(c)=y\) by intermediate value theorem (IVT). \(c\) is a \emph{positive \(N\)\textsuperscript{th} root} of \(y\). In fact, since
+\[y_1<y_2\Rightarrow f(y_1)<f(y_2)\]
+\(c\) is unique.
+\begin{lemma}
+    (\emph{Bounds on Continuous Function}) Suppose \(f:[a,b]\to\mathbb{R}\) is continuous. Then there exist \(K\) such that
+    \[|f(x)|\leq K\quad\forall x\in[a,b]\]
+    \label{lemma:fn_bound}
+\end{lemma}
+\begin{proof}
+    Suppose not. Then for each \(n=1,2,\ldots\) we can find \(x_n\in[a,b]\) with \(|f(x_n)|>n\). By Bolzano-Weierstrass theorem (Theorem \ref{thm:bwt}), \((x_n)\) is a bounded sequence, and hence has a subsequence \(x_{n_j}\to x\) for some \(x\). Moreover, since
+    \[a\leq x_{n_j}\leq b\Rightarrow a\leq x\leq b\]
+    so \(x\in[a,b]\). But 
+    \[|f(x_{n_j})|>n_j\geq j\]
+    so \(f(x_{n_j})\) cannot converge. This contradicts the assumption that \(f\) is continuous as \(f(x_{n_j})\nrightarrow f(x)\).
+\end{proof}
+\begin{theorem}
+    (\emph{Extreme Value Theorem}) Suppose \(f:[a,b]\to\mathbb{R}\) is continuous. Then there exist \(y,Y\in[a,b]\) such that
+    \[f(y)\leq f(x)\leq f(Y)\quad\forall x\in[a,b]\]
+    \label{thm:evt}
+\end{theorem}
+\begin{proof}
+    The set 
+    \[A=\{f(x)\:|\:x\in[a,b]\}\]
+    is bounded by Lemma \ref{lemma:fn_bound}, so has a supremum \(M=\sup A\). From Definition \ref{def:sup}, \(M-1/n\) is not an upper bound of \(A\) for \(n\in\mathbb{N}\). So \(\exists y_n\in A\) with 
+    \[M-\frac 1n\leq y_n\leq M\]
+    From definition of \(A\), there exists \(x_n\in[a,b]\) with
+    \[y_n=f(x_n)\Rightarrow M-\frac 1n\leq f(x_n)\leq M\]
+    \((x_n)\) is a bounded sequence. So by Bolzano-Weierstrass theorem we can pick a subsequence \((x_{n_j})\) such that \[x_{n_j}\to y\] for some \(y\in[a,b]\). Also \(f(x_{n_j})\to M\), so by continuity of \(f\),
+    \[f(y)=\lim_{j\to\infty}f(x_{n_j})=M\]
+    It follows immediately that
+    \[f(x)\leq f(y)\quad\forall x\in[a,b]\]
+    For lower bound, we can either consider \(\inf A\) and argue similarly, or apply result already established to \(-f\).
+\end{proof}
+Note that, for Lemma \ref{lemma:fn_bound} and Theorem \ref{thm:evt}, it is crucial that \(f\) is defined on a closed bounded interval: e.g. consider 
+\begin{itemize}
+    \item \(f:(0,1]\to\mathbb{R},\:x\mapsto 1/x\), continuous, but unbounded.
+    \item \(f:[0,\infty)\to\mathbb{R},\:x\mapsto x\), continuous, but unbounded.
+\end{itemize}
+\subsection{Inverse Function Theorem}
+\begin{definition}
+    Function \(f:[a,b]\to\mathbb{R}\) is 
+    \begin{itemize}
+        \item \emph{increasing} if \(a\leq x_1<x_2\leq b\Rightarrow f(x_1)\leq f(x_2)\);
+        \item \emph{strictly increasing} if \(a\leq x_1<x_2\leq b\Rightarrow f(x_1)< f(x_2)\).
+    \end{itemize}
+    Decreasing and strictly decreasing are defined similarly.
+    \label{def:f_increasing}
+\end{definition}
+\begin{theorem}
+    Suppose \(f:[a,b]\to\mathbb{R}\) is continuous and strictly increasing. Let \(c=f(a)\), \(d=f(b)\). Then 
+    \[f:[a,b]\to[c,d]\]
+    is a bijection and
+    \[f^{-1}:[c,d]\to[a,b]\]
+    is continuous and strictly increasing.
+    \label{thm:ift_1}
+\end{theorem}
+\begin{proof}
+    First we note that \(f\) is injective. If \(x\neq y\), then without loss of generality
+    \[a\leq x<y\leq b\Rightarrow f(x)<f(y)\Rightarrow f(x)\neq f(y)\]
+    Next, \(f\) maps into \([c,d]\). If \(a\leq x\leq b\), then 
+    \[c=f(a)\leq f(x)\leq f(b)=d\]
+    Also, \(f\) is surjective by intermediate value theorem: if \(\eta\in[c,d]\) then \(\exists x\in[a,b]\) with \(f(x)=\eta\).
+
+    To show \(f^{-1}\) is continuous, fix \(z\in(c,d)\) and let \(y=f^{-1}(z)\in(a,b)\). Let \(\epsilon>0\) to be sufficiently small that
+    \[a\leq y-\epsilon<y<y+\epsilon\leq b\Rightarrow c\leq f(y-\epsilon)<f(y)<f(y+\epsilon)\leq d\]
+    Pick \(\delta>0\) such that \((z-\delta,z+\delta)\subset(f(y-\epsilon),f(y+\epsilon))\). Since \(f:(y-\epsilon,y+\epsilon)\to(f(y-\epsilon),f(y+\epsilon))\) is bijective, if \(|z^\prime-z|<\delta\), then 
+    \begin{align*}
+        z^\prime\in(f(y-\epsilon),f(y+\epsilon))&\Rightarrow f^{-1}(z^\prime)\in(y-\epsilon,y+\epsilon) \\
+        &\Rightarrow|f^{-1}(z^\prime)-f^{-1}(z)|<\epsilon
+    \end{align*}
+    If \(z=c\) or \(d\) similar argument works. Therefore \(f^{-1}\) is continuous.
+
+    To see \(f^{-1}\) is increasing, suppose not. Then \(\exists c\leq z_1<z_2\leq d\) with \(f^{-1}(z_1)\geq f^{-1}(z_2)\). But \(f\) is strictly increasing; this implies 
+    \[f\left(f^{-1}(z_1)\right)\geq f\left(f^{-1}(z_2)\right)\Rightarrow z_1\geq z_2\]
+    which is a contradiction. Thus \(f^{-1}\) is strictly increasing.
+\end{proof}
+\section{Differentiability}
+In this section, let
+\[f:\mathrm{E}\to\mathbb{C}\]
+where \(\mathrm{E}\subseteq\mathbb{C}\), while mostly \(\mathrm{E}\) will be a real interval.
+\begin{definition}
+    Let \(x\in\mathrm{E}\) be a limit point. \(f\) is said to be \emph{differentiable} at \(x\), with derivative \(f^\prime(x)\) if
+    \[\lim_{y\to x}\frac{f(y)-f(x)}{y-x}=f^\prime(x)\]
+    exists.
+\end{definition}
+If \(f\) is differentiable at each \(x\in\mathrm{E}\), we say \(f\) is differentiable on \(\mathrm{E}\). Also, we will assume from now on \(\mathrm{E}\) has no isolated points (set is either interval or disc).
+\begin{remark} \item[]
+    \begin{enumerate}
+        \item Other common notations are 
+        \[\frac{df}{dx},\frac{dy}{dx}\]
+        etc.
+        \item We can equivalently write \[f^\prime(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\]
+        \item Another ways to phrase definition: 
+        let \(\epsilon(h)=f(x+h)-f(x)-hf^\prime(x)\); then 
+        \[\lim_{h\to 0}\frac{\epsilon(h)}{h}=0\]
+        We say, \(f\) has a \emph{best affine approximation} near \(x\).
+        \item If \(f\) is differentiable at \(x\), then \(f\) is continuous at \(x\), since \(\epsilon(h)\to 0\) as \(h\to 0\) giving \(f(x+h)\to f(x)\) as \(h\to 0\).
+    \end{enumerate}
+\end{remark}
+Let's look at some examples.
+\begin{enumerate}
+    \item \(f:\mathbb{R}\to\mathbb{R}\), \(x\mapsto x\) is differentiable at each \(x\) and \(f^\prime(x)=1\), i.e.
+    \[f(x+h)=x+h=f(x)+h\cdot 1+0\]
+    where \(1=f^\prime(x)\) and \(0=\epsilon(h)\).
+    \item \(f:\mathbb{R}\to\mathbb{R}\), \(x\to|x|\) is differentiable for \(x\neq 0\). At \(x=0\) consider
+    \[\frac{f(h)-f(0)}{h}=\frac{|h|}{h}\]
+    We have
+    \[\lim_{h_n\to 0+}\frac{f(h)-f(0)}{h}=1\]
+    but
+    \[\lim_{h_n\to 0-}\frac{f(h)-f(0)}{h}=-1\]
+    hence the limit does not exist and \(f\) is not differentiable at \(x=0\).
+\end{enumerate}
+\subsection{Differentiation of Sums and Products}
+\begin{proposition} \item[]
+    \begin{enumerate}
+        \item If \(f(x)=c\) \(\forall x\in\mathrm{E}\) then \(f\) is differentiable on \(\mathrm{E}\) with \(f^\prime(x)=0\).
+        \item If \(f,g\) are differentiable at \(x\), so is \(f+g\) and 
+        \[(f+g)^\prime(x)=f^\prime(x)+g^\prime(x)\]
+        \item If \(f,g\) are differentiable at \(x\), so is \(fg\) and
+        \[(fg)^\prime(x)=f(x)g^\prime(x)+f^\prime(x)g(x)\]
+        \item If \(f\) is differentiable at \(x\) and \(f(y)\neq 0\) \(\forall y\in E\) then \(1/f\) is differentiable at \(x\) and 
+        \[\left(\frac 1f\right)^\prime=-\frac{f^\prime(x)}{f(x)^2}\]
+    \end{enumerate}
+    \label{prop:diff_sp}
+\end{proposition}
+\begin{proof}
+    \item[]
+    \begin{enumerate}
+        \item Can easily see
+        \[\lim_{h\to 0}\frac{c-c}{h}=0\]
+        \hfill\qedsymbol
+        \item By Lemma \ref{lemma:fund_limit}, and from 
+        \[\frac{f(x+h)+g(x+h)-f(x)-g(x)}{h}=\frac{f(x+h)-f(x)}{h}+\frac{g(x+h)-g(x)}{h}\]
+        we have 
+        \[\lim_{h\to 0}\frac{(f+g)(x+h)-(f+g)(x)}{h}=f^\prime(x)+g^\prime(x)\]
+        \hfill\qedsymbol
+        \item Let \(\phi(x)=f(x)g(x)\). Then for \(h\neq 0\)
+        \begin{align*}
+            \frac{\phi(x+h)-\phi(x)}{h}&=\frac{f(x+h)g(x+h)-f(x)g(x)}{h} \\
+            &=\frac{f(x+h)g(x+h)-f(x+h)g(x)+f(x+h)g(x)-f(x)g(x)}{h} \\
+            &=f(x+h)\left(\frac{g(x+h)-g(x)}{h}\right)+g(x)\left(\frac{f(x+h)-f(x)}{h}\right)
+        \end{align*}
+        implying 
+        \[\frac{\phi(x+h)-\phi(x)}{h}\to f(x)g^\prime(x)+f^\prime(x)g(x)\]
+        \hfill\qedsymbol
+        \item Let \(\phi(x)=1/f(x)\). Then,
+        \[\frac{\phi(x+h)-\phi(x)}{h}=\frac{\frac{1}{f(x+h)}-\frac{1}{f(x)}}{h}=\frac{f(x)-f(x+h)}{h}\frac{1}{f(x)f(x+h)}\]
+        Again, by Lemma \ref{lemma:fund_limit}, 
+        \[\frac{\phi(x+h)-\phi(x)}{h}\to-\frac{f^\prime(x)}{f(x)^2}\]
+    \end{enumerate}
+\end{proof}
+Note that (3) and (4) give the quotient rule:
+\[\left(\frac fg\right)^\prime(x)=\frac{f^\prime(x)g(x)-g^\prime(x)f(x)}{g(x)^2}\]
+For example, consider \(f_n(x)=x^n\) where \(n\in\mathbb{N}\). Shown that \(f_1(x)\) is differentiable and \(f^\prime_1(x)=1\), we claim \(f_n(x)\) is differentiable with \(f_n^\prime(x)=nx^{n-1}\) for all \(n\). If the claim is true for \(f_{n-1}\), observe that
+\[f_n(x)=x^{n-1}x=f_{n-1}(x)f_1(x)\]
+By Proposition \ref{prop:diff_sp} (3), \(f_n\) is differentiable, and 
+\begin{align*}
+    f_n^\prime(x)&=f_1(x)f_{n-1}^\prime(x)+f_1^\prime(x)f_{n-1}(x) \\
+    &=x(n-1)x^{n-2}+x^{n-1}=nx^{n-2}
+\end{align*}
+Hence, by induction,  \(f_n^\prime(x)=nx^{n-1}\) for all \(n\in\mathbb{N}\). 
+
+Now consider \(f_{-n}(x)=x^{-n}\) where \(n\in\mathbb{N}\). If \(x\neq 0\) \(f_{-n}(x)=1/f_{n}(x)\). So by Proposition \ref{prop:diff_sp} (4), \(f_{-n}(x)\) is differentiable and 
+\[f_{-n}^\prime(x)=-\frac{f_n^\prime(x)}{f_n(x)^2}=-\frac{nx^{n-1}}{x^{2n}}=-nx^{-n-1}\]
+Therefore \(f_n^\prime(x)=nx^{n-1}\) holds for all \(n\in\mathbb{Z}\) (with condition \(x\neq 0\) if \(n<0\)).
+
+Combining results above with Proposition \ref{prop:diff_sp}, we see all polynomial functions are differentiable everywhere, and rational functions \(f(x)=p(x)/q(x)\) (\(p\), \(q\) coprime polynomials) are differentiable everywhere except the roots of \(q\).
+\begin{theorem}
+    (\emph{Chain Rule}) Suppose \(U,V\subset\mathbb{C}\) and \(f:U\to V\), \(g:V\to\mathbb{C}\) are such that \(f\) is differentiable at \(a\in{U}\) and \(g\) is differentiable at \(f(a)\in  V\). Then,
+    \(g\circ f:U\to \mathbb{C}\) 
+    is differentiable at \(a\) and 
+    \[(g\circ f)^\prime(a)=g^\prime(f(a))f^\prime(a)\]
+    \label{thm:diff_chain}
+\end{theorem}
+\begin{proof}
+    Let \(f(a)=b\). We can restate the differentiability of \(f\) at \(a\), \(g\) at \(b\) as:
+    \[f(x)=f(a)+(x-a)f^\prime(a)+\epsilon_f(x)(x-a)\]
+    \[g(y)=g(b)+(y-b)g^\prime(b)+\epsilon_g(y)(y-b)\]
+    with \(\lim_{x\to a}\epsilon_f(x)=\lim_{y\to b}\epsilon_g(y)=0\). Notice we can set \(\epsilon_f(a)=0\), \(\epsilon_g(b)=0\) to make \(\epsilon_f\), \(\epsilon_g\) continuous at \(a\), \(b\) respectively. Now set \(y=f(x)\) and write 
+    \begin{align*}
+        g(f(x))&=g(f(a))+(f(x)-f(a))g^\prime(f(a))+\epsilon_g(f(x))(f(x)-f(a)) \\
+        &=g(f(a))+\left((x-a)f^\prime(a)+\epsilon_f(x-a)\right)g^\prime(f(a)) \\
+        &+\epsilon_g(f(x))\left((x-a)f^\prime(a)+\epsilon_f(x)(x-a)\right)
+    \end{align*}
+    Thus 
+    \begin{align*}
+        g(f(x))&=g(f(a))+(x-a)f^\prime(a)g^\prime(f(a)) +(x-a)\left[g^\prime(f(a))\epsilon_f(x)+f^\prime(a)\epsilon_g(f(x))+\epsilon_g(f(x))\epsilon_f(x)\right] \\
+        &=g(f(a))+(x-a)f^\prime(a)g^\prime(f(a)) +(x-a)\sigma(x)
+    \end{align*}
+    where 
+    \[\sigma(x)=g^\prime(f(a))\epsilon_f(x)+f^\prime(a)\epsilon_g(f(x))+\epsilon_g(f(x))\epsilon_f(x)\]
+    Note that \(\epsilon_f(x)\to 0\) as \(x\to a\), and \(\epsilon_g(f(x))\) is composition of continuous functions, so \(\epsilon_g(f(x))\to 0\) as \(x\to a\). Hence \(\sigma(x)\to 0\) as \(x\to a\) and therefore \((g\circ f)^\prime(a)=g^\prime(f(a))f^\prime(a)\) from definition of differentiation.
+\end{proof}
+\begin{remark}
+    Chain rule is often written as
+    \[\frac{dy}{dx}=\frac{dy}{dt}\frac{dt}{dx}\]
+    where \(y(t(x))\).
+\end{remark}
+\subsection{The Mean Value Theorem}
+\begin{theorem}
+    (\emph{Rolle's Theorem})
+    Let \(f:[a,b]\to\mathbb{R}\) be continuous on \([a,b]\) and differentiable on \((a,b)\). If \(f(a)=f(b)\) then \(\exists c\in(a,b)\) such that \(f^\prime(c)=0\).
+    \label{thm:rolle}
+\end{theorem}
+\begin{proof}
+    By Theorem \ref{thm:evt} (EVT), \(\exists y,Y\in[a,b]\) such that 
+    \[m=f(y)\leq f(x)\leq f(Y)=M\]
+    \(\forall x\in[a,b]\). If \(m=M=f(a)\) then \(f(x)=M\) and \(f\) constant, so we can take any \(c\in(a,b)\).
+
+    Otherwise, either \(M>f(a)\) or \(m<f(a)\). If \(M>f(a)\), then \(Y\in(a,b)\). We claim \(f^\prime(Y)=0\). To see this, suppose \(h_n\to 0+\). Then
+    \[\frac{f(Y+h_n)-f(Y)}{h_n}\leq 0\Rightarrow\lim_{h\to 0}\frac{f(Y+h)-f(Y)}{h}\leq 0\]
+    If \(h_n\to 0-\),
+    \[\frac{f(Y+h_n)-f(Y)}{h_n}\geq 0\Rightarrow\lim_{h\to 0}\frac{f(Y+h)-f(Y)}{h}\geq 0\]
+    Hence by uniqueness of limit, \(f^\prime(Y)=0\). If \(m<f(a)\) a similiar argument shows \(y\in(a,b)\) and \(f^\prime(y)=0\). Regardless \(\exists c\in(a,b)\) such that \(f^\prime(c)=0\).
+\end{proof}
+\begin{theorem}
+    (\emph{Mean Value Theorem}) Let \(f:[a,b]\to\mathbb{R}\) be a continuous function, differentiable on \((a,b)\). Then there exists \(c\in(a,b)\) such that
+    \[f(b)-f(a)=f^\prime(c)(b-a)\Leftrightarrow f^\prime(c)=\frac{f(b)-f(a)}{b-a}\]
+    \label{thm:mvt}
+\end{theorem}
+\begin{proof}
+    Consider 
+    \[\phi(x)=(x-a)(f(b)-f(a))-(b-a)(f(x)-f(a))\]
+    Clearly, \(\phi\) satisfies conditions of Rolle's theorem, so \(\exists c\in(a,b)\) such that 
+    \[\phi^\prime(c)=0\Rightarrow 0=(f(b)-f(a))-(b-a)f^\prime(c)\]
+\end{proof}
+If \(f\) is differentiable on an open interval \(I\) containing \(a\), another way to state mean value theorem (MVT) is: given \(h\) such that \(a+h\in I\), \(\exists \Theta=\Theta(h)\in(0,1)\) such that 
+\[f(a+h)=f(a)+hf^\prime(a+\Theta h)\]
+
+The mean value theorem allows us to export local information about the derivative to global properties of the function.
+\begin{corollary}
+    Let \(f:[a,b]\to\mathbb{R}\) continuous, and differentiable on \((a,b)\). Then, 
+    \begin{enumerate}
+        \item if \(f^\prime(x)>0\) \(\forall x\in(a,b)\), \(f\) is strictly increasing.
+        \item if \(f^\prime(x)\geq 0\) \(\forall x\in(a,b)\), \(f\) is increasing.
+        \item if \(f^\prime(x)=0\) \(\forall x\in(a,b)\), \(f\) is constant on \([a,b]\)
+    \end{enumerate}
+    \label{coro:inc}
+\end{corollary}
+\begin{proof} \item[]
+    \begin{enumerate}
+        \item Let \(a\leq x<y\leq b\). Hypothesis of mean value theorem apply to \(f:[x,y]\to\mathbb{R}\) so \(\exists c\in(x,y)\) such that 
+        \[f(y)-f(x)=f^\prime(c)(y-x)>0\]
+        \item Same as above, but use \(f^\prime(c)\geq 0\).
+        \item Pick \(x\in(a,b]\). Then, by applying mean value theorem on \([a,x]\), we deduce that there exists \(c\in(a,x)\) such that 
+        \[f(x)-f(a)=f^\prime(c)(x-a)=0\]
+        and \(f\) is constant.
+    \end{enumerate}
+\end{proof}
+Meanwhile, note that the mean value theorem is not necessarily true on general sets: e.g. \(f:\mathbb{Q}\to\mathbb{Q}\),
+\[x\mapsto\begin{cases}
+    0 & x^2<2 \\
+    1 & x^2>2
+\end{cases}\]
+Now we revisit the inverse function theorem.
+\begin{theorem}
+    Suppose \(f:[a,b]\to\mathbb{R}\) is continuous and differentiable on \((a,b)\), with \(f^\prime(x)>0\) \(\forall x\in(a,b)\). Let \(f(a)=c\), \(f(b)=d\). Then,
+    \[f:[a,b]\to[c,d]\]
+    is bijective and \(f^{-1}\) is differentiable on \((c,d)\) with
+    \[(f^{-1})^\prime(y)=\frac{1}{f^\prime(f^{-1}(y))}\]
+    \label{thm:ift_diff}
+\end{theorem}
+\begin{proof}
+    By Corollary \ref{coro:inc} \(f\) is strictly increasing on \([a,b]\). By Theorem \ref{thm:ift_1}, 
+    \[f:[a,b]\to[c,d]\]
+    is bijective and 
+    \[f^{-1}:[c,d]\to[a,b]\]
+    is continuous and strictly increasing. However, it remains to show \(f^{-1}\) is differentiable on \((c,d)\).
+
+    Let \(y\in(c,d)\) and set \(x=f^{-1}(y)\). Given \(h\) such that \(y+h\in(c,d)\), let \(k\) be such that \(y+h=f(x+k)\). Then,
+    \[\frac{f^{-1}(y+h)-f^{-1}(y)}{h}=\frac{x+k-x}{f(x+k)-y}=\frac{k}{f(x+k)-f(x)}\]
+    Fix \(\epsilon>0\); then by differentiability of \(f\) and facts about limits, \(\exists\delta>0\) such that for all \(0<|k|<\delta\) we have 
+    \[\left|\frac{k}{f(x+k)-f(x)}-\frac{1}{f^\prime(x)}\right|<\epsilon\] 
+    Since \(f^{-1}\) is continuous, there exists \(\delta^\prime\) such that 
+    \begin{align*}
+        0<|h|<\delta^\prime&\Rightarrow 0<|f^{-1}(y+h)-x|<\delta \\
+        &\Rightarrow 0<k<\delta \\
+        &\Rightarrow \left|\frac{f^{-1}(y+h)-f^{-1}(y)}h-\frac{1}{f^\prime(x)}\right|<\epsilon
+    \end{align*}
+    Therefore \(f^{-1}\) is differentiable at \(y\) and 
+    \[(f^{-1})^\prime(y)=\frac{1}{f^\prime(f^{-1}(y))}\]
+\end{proof}
+With fixed \(R>0\), consider \(f:[0,R]\to\mathbb{R}\), \(x\mapsto x^n\) for \(n\in\mathbb{N}\). \(f\) is continuous on \([0,R]\), differentiable on \((0,R)\) with \(f^\prime(x)=nx^{n-1}>0\) (\(x\in(0,R)\)). Hence by Theorem \ref{thm:ift_diff}, \(f\) maps \([0,R]\) bijectively onto \([0,R^n]\) and the inverse \(g(y)=f^{-1}(y)=y^{1/n}\) is differentiable with 
+\[g^\prime(y)=\frac{1}{f^\prime(f^{-1}(y))}=\frac{1}{n(y^{1/n})^{n-1}}=\frac 1ny^{\frac 1n-1}\]
+More generally, let \(h(x)=x^r\) where \(r\in\mathbb{Q}\). Writing \(r=m/n\) for \(m\in\mathbb{Z}\), \(n\in\mathbb{N}\) and defining 
+\[x^r=\left(x^{1/n}\right)^m\]
+\(h\) is differentiable on \((0,\infty)\) and 
+\[h^\prime(x)=m\left(x^{n-1}\right)^{m-1}\left(\frac 1nx^{\frac 1n-1}\right)=\frac mnx^{\frac mn-1}=rx^{r-1}\]
+by chain rule.
+\begin{theorem}
+    (\emph{Cauchy's Mean Value Theorem}) Let \(f,g:[a,b]\to\mathbb{R}\) be continuous on \([a,b]\) and differentiable on \((a,b)\). Then there exists \(c\in(a,b)\) such that 
+    \[g^\prime(f(a)-f(b))=f^\prime(c)(g(a)-g(b))\]
+    which can be also written as 
+    \[\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f^\prime(c)}{g^\prime(c)}\]
+    if both sides are well-defined.
+    \label{thm:mvt_cauchy}
+\end{theorem}
+\begin{proof}
+    Let 
+    \[\phi(x)=(g(x)-g(a))(f(b)-f(a))-(g(b)-g(a))(f(x)-f(a))\]
+    \(\phi\) is continuous on \([a,b]\), differentiable on \((a,b)\) and \(\phi(a)=\phi(b)=0\). Hence by Rolle's theorem, there exists \(c\in(a,b)\) such that
+    \[\phi^\prime(c)=0\Rightarrow g^\prime(c)(f(a)-f(b))-f^\prime(c)(g(a)-g(b))=0\]
+\end{proof}
+A famous application of Cauchy's mean value theorem is the \emph{L'Hôpital's rule}. Consider
+\[\frac{e^x-1}{\sin x}\]
+as \(x\to 0\).\footnote{We will formally define \(e\) and \(\sin\) later.} With noting that 
+\[\frac{e^x-1}{\sin x}=\frac{e^x-e^0}{\sin x-\sin 0}\]
+apply Cauchy's mean value theorem with \(f(x)=e^x\), \(g(x)=\sin x\) on interval \([x,0]\) or \([0,x]\) to deduce that \(\exists\theta_x\in(0,1)\) such that 
+\[\frac{e^x-1}{\sin x}=\frac{e^{\theta_xx}}{\cos(\theta_xx)}\]
+Now \(0<|\theta_xx|<|x|\) so as \(x\to 0\) \(\theta_xx\to 0\). Further, because \(e^y/\cos y\) is continuous, we have 
+\[\frac{e^{\theta_xx}}{\cos(\theta_xx)}\to 1\]
+as \(x\to 0\). Thus
+\[\lim_{x\to 0}\frac{e^x-1}{\sin x}=1\]
+\subsection{Higher Derivatives and Taylor's Theorem}
+
+
+
+\chapter{Groups}
+\chapterauthor{Lecture by Professor Claude Warnick. 
+    Lent term 2024.}
+\end{document}

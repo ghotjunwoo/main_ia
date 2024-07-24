@@ -347,6 +347,9 @@ N.b. if \(a\equiv a^\prime\mod n\) and \(b\equiv b^\prime\mod n\), then
 so \(a+b\equiv a^\prime+b^\prime\mod n\). Similarly, 
 \[n|(a-a^\prime)b+a^\prime(b-b^\prime)=ab-a^\prime b^\prime\]
 so \(ab=a^\prime b^\prime\mod n\). Hence we can do arithmetic on modulo \(n\) with inheriting the usual rules of arithmetic in \(\mathbb{Z}\).
+\chapter{Groups}
+\chapterauthor{Lecture by Professor Claude Warnick. 
+    Michaelmas term 2023.}
 \chapter{Analysis I}
 \chapterauthor{Lecture by Professor Claude Warnick. 
     Lent term 2024.}
@@ -1213,7 +1216,7 @@ The mean value theorem allows us to export local information about the derivativ
 \end{corollary}
 \begin{proof} \item[]
     \begin{enumerate}
-        \item Let \(a\leq x<y\leq b\). Hypothesis of mean value theorem apply to \(f:[x,y]\to\mathbb{R}\) so \(\exists c\in(x,y)\) such that 
+        \item Let \(a\leq x<y\leq b\). Hypotheses of mean value theorem apply to \(f:[x,y]\to\mathbb{R}\) so \(\exists c\in(x,y)\) such that 
         \[f(y)-f(x)=f^\prime(c)(y-x)>0\]
         \item Same as above, but use \(f^\prime(c)\geq 0\).
         \item Pick \(x\in(a,b]\). Then, by applying mean value theorem on \([a,x]\), we deduce that there exists \(c\in(a,x)\) such that 
@@ -1286,10 +1289,248 @@ Now \(0<|\theta_xx|<|x|\) so as \(x\to 0\) \(\theta_xx\to 0\). Further, because 
 as \(x\to 0\). Thus
 \[\lim_{x\to 0}\frac{e^x-1}{\sin x}=1\]
 \subsection{Higher Derivatives and Taylor's Theorem}
+Suppose \(f:(a,b)\to\mathbb{R}\) is differentiable on \((a,b)\). Then we can consider the function 
+\[f^\prime:(a,b)\to\mathbb{R},\quad x\mapsto f^\prime(x)\]
+If this is differentiable at \(x\in(a,b)\) we say \(f\) is twice differentiable at \(x\) and write 
+\[(f^\prime)^\prime(x)=f^\pprime(x)=f^{(2)}(x)\]
+We can iterate to define \(k\)-times differentiability and write 
+\[f^{(k)}(x)=\left(f^{(k-1)}\right)^\prime(x)\]
+Furthermore, function is said to be \emph{smooth} if it is \(k\)-times differentiable on \((a,b)\) for every \(k\). We would like to extend mean value theorem for a function which is more differentiable to incorporate higher derivatives.
+\begin{theorem}
+    (\emph{Taylor's Theorem with Lagrange Remainder})
+    Suppose \(f\) and its derivatives to order \(n-1\) are continuous on \([a,a+h]\) and \(f\) is \(n\) times differentiable on \((a,a+h)\). Then there exists \(\theta\in(0,1)\) such that 
+    \[f(a+h)=f(a)+hf^\prime(a)+\frac{h^2}{2!}f^\pprime(a)+\cdots+\frac{h^{n-1}}{(n-1)!}f^{(n-1)}(a)+\frac{h^n}{n!}f^{(n)}(a+\theta h)\]
+    \label{thm:taylor_lagrange}
+\end{theorem}
+N.b. for \(n=1\) Theorem \ref{thm:taylor_lagrange} is mean value theorem, so Theorem \ref{thm:taylor_lagrange} is a \(n\)\textsuperscript{th} order mean value theorem. We say 
+\[R_n=\frac{h^n}{n!}f^{(n)}(a+\theta h)\]
+is \emph{Lagrange's form of the remainder}. 
 
+Also, considering \(g(x)=-f(x)\) and applying Theorem \ref{thm:taylor_lagrange} at \(x=-a\), we can show the result also holds if \(h<0\), provided conditions hold on \([a+h,a],(a+h,a)\) etc. -- which is able to be assured by stating \(f\) is \(n\) times differentiable on some interval \((c,d)\) with \([a,a+h]\subset(c,d)\) (or \([a+h,a]\)).
+\begin{proof}
+    (\emph{Method 1}) Observe we can choose \(a=0\) without loss of generality; if we prove the result for \(a=0\), applying it to \(g(x)=f(a+x)\) gives general case.
 
+    For \(0\leq t\leq h\) let 
+    \[\phi(t)=f(t)-f(0)-tf^\prime(0)-\cdots-\frac{t^{n-1}}{(n-1)!}f^{(n-1)}(0)-\frac{t^n}{n!}B\]
+    where we choose \(B\) such that \(\phi(h)=0\), i.e. 
+    \[\frac{h^n}{n!}B=f(h)-f(0)-tf^\prime(0)-\cdots-\frac{t^{n-1}}{(n-1)!}f^{(n-1)}(0)\tag{\(\asterisk\)}\]
+    Now repeatedly apply Rolle's theorem (Theorem \ref{thm:rolle}) to find another expression for B. First observe \(\phi\) and its first \(n-1\) derivatives are continuous on \([0,h]\), and \(\phi^{(n)}\) exists on \((0,h)\). Also note that \(\phi^{(k)}(0)=0\) for \(0\leq k\leq n-1\). Then
+    \[\phi(0)=\phi(h)=0\Rightarrow\exists\theta_1\in(0,1)\text{  such that  }\phi^\prime(\theta_1h)=0\]
+    \[\phi^\prime(0)=\phi^\prime(\theta_1h)=0\Rightarrow\exists\theta_2\in(0,1)\text{  such that  }\phi^\pprime(\theta_2\theta_1h)=0\]
+    \[\vdots\]
+    \[\phi^{(n-1)}(0)=\phi^{(n-1)}(\theta_{n-1}\cdots\theta_1h)=0\Rightarrow\exists\theta_n\in(0,1)\text{  such that  }\phi^{(n)}(\theta_n\theta_{n-1}\cdots\theta_1h)=0\]
+    Let \(\theta=\theta_1\theta_2\cdots\theta_n\in(0,1)\). Then
+    \[\phi^{(n)}(\theta h)=0\Rightarrow f^{(n)}(\theta h)-B=0\]
+    i.e. \(B=f^{(n)}(\theta h)\) for some \(\theta\in(0,1)\). Rearranging equation (\(\asterisk\)) gives us the desired result.
+\end{proof}
+\begin{proof}
+    (\emph{Method 2}) Again, assume \(a=0\) without loss of generality. This time, for \(0\leq t\leq h\), let 
+    \[F(t)=f(h)-f(t)-(h-t)f^\prime(t)-\frac{(h-t)^2}{2!}f^\pprime(t)-\cdots-\frac{(h-t)^{n-1}}{(n-1)!}f^{(n-1)}(t)\]
+    F is continuous on \([0,h]\) and differentiable on \((0,h)\), and 
+    \begin{align*}
+        F^\prime(t)&=-f^\prime(t)+f^\prime(t)-(h-t)f^\pprime(t)+(h-t)f^\pprime(t)-\frac{(h-t)^2}{2!}f^{(3)}(t)+\cdots-\frac{(h-t)^{n-1}}{(n-1)!}f^{(n)}(t) \\
+        &=-\frac{(h-t)^{n-1}}{(n-1)!}f^{(n)}(t)
+    \end{align*}
+    Now set 
+    \[\phi(t)=F(t)-\left(\frac{h-t}{h}\right)^pF(0)\]
+    with \(1\leq p\leq n,\:p\in\mathbb{N}\). Then \(\phi(0)=0=\phi(h)\). So by Rolle's theorem there exists \(\theta\in(0,1)\) such that \(\phi^\prime(\theta h)=0\). But 
+    \[\phi^\prime(\theta h)=F^\prime(\theta h)+\frac{p(1-\theta)^{p-1}}{h}F(0)\]
+    Hence
+    \begin{align*}
+        0&=-\frac{h^{n-1}(1-\theta)^{n-1}}{(n-1)!}f^{(n)}(\theta h) \\&+\frac{p(1-\theta)^{p-1}}{h}\left(f(h)-f(0)-hf^\prime(0)-\frac{h^2}{2!}f^\pprime(0)-\cdots-\frac{h^{n-1}}{(n-1)!}f^{(n-1)}(0)\right)        
+    \end{align*}
+    If \(p=n\), we can rearrange to find Taylor's theorem with Lagrange remainder. Otherwise, if \(p=1\), we have proved the \emph{Taylor's theorem with Cauchy remainder}.
+\end{proof}
+\begin{theorem}
+    (\emph{Taylor's Theorem with Cauchy Remainder}) With the same hypotheses as Theorem \ref{thm:taylor_lagrange}, we have 
+    \[f(a+h)=f(a)+hf^\prime(a)+\cdots+\frac{h^{n-1}}{(n-1)!}f^{(n-1)}f^{(n-1)}(a)+\tilde{R}_n\]
+    where 
+    \[\tilde{R}_n=\frac{(1-\theta)^{n-1}h^n}{(n-1)!}f^{(n)}(a+\theta h)\]
+    for some \(\theta\in(0,1)\).
+    \label{thm:taylor_cauchy}
+\end{theorem}
 
-\chapter{Groups}
-\chapterauthor{Lecture by Professor Claude Warnick. 
-    Lent term 2024.}
+Both versions of Taylor's theorem assert that 
+\[f(h)=P_{n-1}(h)+R_n(h)\]
+where 
+\[P_{n-1}(h)=\sum_{i=0}^{n-1}\frac{h^i}{i!}f^{(i)}(0)\]
+the \emph{Taylor polynomial}, and
+\[R_n(h)=\begin{cases}
+    \frac{h^n}{n!}f^{(n)}(a+\theta h) & (\text{Lagrange}) \\
+    \frac{(1-\tilde{\theta})^{n-1}h^n}{(n-1)!}f^{(n)}(a+\tilde{\theta}h) & (\text{Cauchy})
+\end{cases}\] 
+for some \(\theta,\tilde{\theta}\in(0,1)\). Finally, be aware that Taylor's theorem does not say 
+\[f(h)=\sum_{i=0}^\infty\frac{h^i}{i!}f^{(i)}(0)\]
+where the right hand side is called the \emph{Taylor series}.
+In fact this is not always true, even if \(f\) is smooth and even if the series converges. To show a function is equal to its Taylor series, we need to show \(R_n(h)\to 0\) as \(n\to\infty\) for fixed \(h\). For example, consider the binomial series \(f(x)=(1+x)^r\) where \(r\in\mathbb{Q}\). Claim that if \(|x|<1\), then 
+\[(1+x)^r=1+\binom{r}{1}x+\cdots+\binom rnx^n+\cdots\]
+where we define 
+\[\binom rn=\frac{r(r-1)\cdots(r-n+1)}{n!}\]
+where the series converges absolutely.
+\begin{proof}
+    Clearly,
+    \[f^{(n)}(x)=r(r-1)\cdots(r-n+1)(1+x)^{r-n}\]
+    By Theorem \ref{thm:taylor_lagrange}, for \(|x|<1\) and \(n\geq r\),
+    \[(1+x)^r=1+\binom{r}{1}x+\cdots+\binom r{n-1}x^{n-1}+\binom rn\frac{x^n}{(1+\theta x)^{n-r}}\]
+    for some \(\theta\in(0,1)\), which can depend on both \(n\) and \(x\). But if \(x\geq 0\), \((1+\theta x)^{n-r}\geq 1\) so 
+    \[0\leq\frac{1}{(1+\theta x)^{n-r}}\leq 1\Rightarrow|R_n(x)|=\left|\binom rn\frac{x^n}{(1+\theta x)^{n-r}}\right|\leq\left|\binom rnx^n\right|\]
+    Now observe that \(\sum_{n\geq 0}{\binom rnx^n}\) converges absolutely for \(|x|<1\):
+    \[\left|\frac{a_{n+1}}{a_n}\right|=\left|\frac{r-n}{n+1}\right||x|\to|x|<1\quad\text{as  }n\to\infty\]
+    So by ratio test and Theorem \ref{thm:abconv}, \(\sum_{n\geq 0}{\binom rnx^n}\) converges. This implies 
+    \[\binom rnx^n\to 0\quad\text{as  }n\to\infty\]
+    Thus, \(R_n(x)\to 0\) as \(n\to\infty\) for \(x\in[0,1)\).
+
+    However, if \(-1<x<0\), the above approach does not work as \((1+\theta x)^{n-1}<1\). Instead, we can use Cauchy's remainder 
+    \[R_n=\frac{(1-\theta)^{n-1}x^n}{(n-1)!}r(r-1)\cdots(r-n+1)(1+\theta x)^{r-n}=r\binom{r-1}{n-1}\left(\frac{1-\theta}{1+\theta x}\right)^{n-1}(1+\theta x)^{r-1}x^n\]
+    for some \(\theta\in(0,1)\). But \((1-\theta)/(1+\theta x)<1\) for all \(x\in(-1,1)\) as \(1+\theta x=1-\theta +\theta(x+1)\geq 1-\theta\). Hence 
+    \[|R_n|\leq r|x|\left|\binom{r-1}{n-1}x^{n-1}\right|(1+\theta x)^{r-1}\]
+    Moreover, \((1+\theta x)^{r-1}\leq\max\{(1-|x|)^{r-1},(1+|x|)^{r-1}\}\), and 
+    \[|R_n|\leq r|x|\max\{(1-|x|)^{r-1},(1+|x|)^{r-1}\}\left|\binom{r-1}{n-1}x^{n-1}\right|=K_{r,x}\left|\binom{r-1}{n-1}x^{n-1}\right|\to 0\] as \(n\to\infty\) since \(K_{r,x}\) is independent of \(n\). Therefore \(R_n\to 0\) as \(n\to\infty\) for \(x\) fixed in \(-1,1\).
+\end{proof}
+% \subsection{Complex Differentiability}
+% We defined differentiability for functions 
+\section{Power Series}
+We want to consider functions defined by power series of the form 
+\[f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n\]
+where \(a_n,z,z_0\in\mathbb{C}\). Obviously the series may not converge for every \(z\in\mathbb{C}\). First thing to do is to find out the set of points for which it does converge.\footnote{Note that set is always non-empty as it contains \(z_0\).} By translation, we can assume \(z_0=0\). 
+\begin{lemma}
+    If \(\sum_{n=0}^\infty a_nz^n\) converges, and \(|w|<|z|\), then \(\sum_{n=0}^\infty a_nw^n\) converges absolutely.
+    \label{lemma:small_conv}
+\end{lemma}
+\begin{proof}
+    Since \(\sum_{n=0}^\infty a_nz^n\) converges, \(a_nz^n\to 0\). Thus \(\exists K>0\) such that\footnote{Recall that convergent series is bounded.} 
+    \[|a_nz^n|\leq K\quad\forall n\]
+    Now consider (note that \(z>0\) to define \(w\))
+    \[|a_nw^n|=|a_nz^n|\left|\frac wz\right|^n\leq K\rho^n\]
+    where \(\rho=|w/z|<1\) by assumption. Thus \(\sum_{n=0}^\infty |a_nw^n|\) converges by comparison to the geometric series \(\sum_{n=0}^\infty K\rho^n\), which converges.
+\end{proof}
+We now use Lemma \ref{lemma:small_conv} to show every power series has a well-defined \emph{radius of convergence}.
+\begin{theorem}
+    Let \(\sum_{n=0}^\infty a_nz^n\) be a power series. Then there exists \(R\in[0,\infty]\), the radius of convergence, such that the series converges absolutely for \(|z|<R\) and diverges for \(|z|>R\).
+\end{theorem}
+\begin{proof}
+    Let
+    \[A=\left\{r\geq 0\:\left|\:\exists z\in\mathbb{C}\text{  with  }|z|=r\text{  such that }\sum_{n=0}^\infty a_nz^n\text{  converges}\right.\right\}\]
+    Clearly, \(0\in A\), and \(A\) is non-empty. So let 
+\[R=\sup A\]
+with noting that \(\sup A=\infty\) meaning \(A\) is unbounded above. From definition of \(A\), \(\sum a_nz^n\) diverges for \(|z|>R\). Suppose \(|w|<R\). Then there exists \(r\in\mathbb{A}\) with \(|w|<r\) so \(\exists z\in\mathbb{C}\) with \(|z|=r\) and \(\sum a_nz^n\) converging. \(|w|<|z|\) so by Lemma \ref{lemma:small_conv} \(\sum a_nw^n\) converges absolutely.
+\end{proof}
+Note that \(R=0\) means \(\sum a_nz^n\) converges only for \(z=0\), and \(R=\infty\) means \(\sum a_nz^n\) converges absolutely for all \(z\in\mathbb{C}\). When \(0<R<\infty\) theorem tells us nothing about convergence for \(|z|=R\). Now we introduce a lemma that is useful at finding \(R\):
+\begin{lemma}
+    If \(|a_{n+1}/a_n|\to l\) as \(n\to\infty\), then \(R=1/l\). 
+\end{lemma}
+\begin{proof}
+    We use ratio test. Consider 
+    \[\lim_{n\to\infty}\left|\frac{a_{n+1}z^{n+1}}{a_nz^n}\right|=\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right||z|=l|z|\]
+    so if \(l|z|<1\) we get absolute convergence, and if \(l|z|>1\) we get divergence.
+\end{proof}
+Let's take a look at some examples.
+\begin{itemize}
+    \item \(\sum_{n=0}^\infty z^n/n!\) converges absolutely for all \(z\in\mathbb{C}\), since 
+    \[\left|\frac{a_{n+1}}{a_n}\right|=\frac{n!}{(n+1)!}=\frac{1}{n+1}\to 0=l\]
+    and \(R=\infty\).
+    \item \(\sum_{n=0}^\infty n!z^n\) converges only for \(z=0\), since \(|a_{n+1}/a_n|=n+1\to\infty\) for \(R=0\).
+    \item \(\sum_{n=0}^\infty z^n\) geometric series converges if and only if \(|z|<1\).
+    \item \(\sum_{n=0}^\infty z^n/n^2\) has radius of convergence \(R=1\); specifically, absolute convergence for \(|z|\leq 1\) and divergence for \(|z|>1\).
+    \item \(\sum_{n=0}^\infty z^n/n\) has radius of convergence \(R=1\). For \(z=1\), it diverges (harmonic series). For \(|z|=1\), \(z\neq 1\), consider 
+    \begin{align*}
+        (1-z)\sum_{n=1}^{N}\frac{z^n}{n}&=\sum_{n=1}^{N}\left(\frac{z^n}{n}-\frac{z^{n+1}}{n}\right) \\
+        &=\sum_{n=1}^{N}\left(\frac{z^{n+1}}{n+1}-\frac{z^{n+1}}{n}\right)+z-\frac{z^{N+1}}{N+1} \\
+        &=z-z\sum_{n=1}^{N}\frac{1}{n(n+1)}z^n-\frac{z^{N+1}}{N+1}
+    \end{align*}
+    If \(|z|\leq 1\), 
+    \[\sum_{n=1}^{N}\frac{1}{n(n+1)}z^n\] converges absolutely by comparison to \(\sum 1/n(n+1)\), and 
+    \[\left|\frac{z^{N+1}}{N+1}\right|\leq\frac{1}{N+1}\to 0\]
+    Therefore \(\sum_{n=0}^\infty z^n/n\) converges for \(|z|\leq 1\), \(z\neq 1\).
+\end{itemize}
+We conclude that nothing can be said in general about convergence on \(|z|=R\), and need to analyse case by case. We shall see that inside the radius of convergence, power series are very well behaved, and ``can treated like polynomials.''
+\begin{theorem}
+    Suppose 
+    \[f(z)=\sum_{n=0}^{\infty}a_nz^n\]
+    has radius of convergence \(R>0\). Then \(f\) is differentiable at all points \(z\) with \(|z|<R\), and 
+    \[f^\prime(z)=\sum_{n=1}^{\infty}na_nz^{n-1}\]
+    \label{thm:taylor_diff}
+\end{theorem}
+\begin{proof} We start by stating two auxillary lemmas:
+    \begin{lemma}
+        If \(\sum_{n=0}^{\infty}a_nz^n\) has radius of convergence \(R\), then so do \(\sum_{n=1}^{\infty}na_nz^{n-1}\) \newline and  \(\sum_{n=2}^{\infty}n(n-1)a_nz^{n-2}\)
+        \label{lemma:aux:rc_1}
+    \end{lemma}
+    \begin{lemma}\item[]
+        \begin{enumerate} 
+            \item Let \(n,r\in\mathbb{N}\). For all \( 2\leq r\leq n \),
+            \[\binom nr\leq n(n-1)\binom{n-2}{r-2}\]
+            \item Let \(n\in\mathbb{N}\). For all \(z,h\in\mathbb{C}\),
+            \[|(z+h)^n-z^n-nhz^{n-1}|\leq n(n-1)(|z|+|h|)^{n-2}|h|^2\]
+        \end{enumerate}
+        \label{lemma:aux:rc_2}
+    \end{lemma}
+    Assume, for now, that these results hold. By Lemma \ref{lemma:aux:rc_1}, we may define 
+    \[g(z)=\sum_{n=1}^{\infty}na_nz^{n-1}\]
+    where \(|z|<R\). We need to show 
+    \[I=\frac{f(z+h)-f(z)-hg(z)}{h}\to 0\]
+    as \(h\to 0\). Fix \(z\) with \(|z|<R\), and assume \(|z|+|h|<r<R\) for some \(r\). All sums in \(I\) converge by Lemma \ref{lemma:aux:rc_1}, and 
+    \[I=\frac 1h\sum_{n=0}^\infty a_n[(z+h)^n-z^n-hnz^{n-1}]\]
+    Then by continuity of absolute value function,
+    \begin{align*}
+        |I|&=\frac 1{|h|}\left|\lim_{N\to\infty}\sum_{n=0}^{N} a_n[(z+h)^n-z^n-hnz^{n-1}]\right| \\
+        &=\lim_{N\to\infty}\underbrace{\frac 1{|h|}\left|\sum_{n=0}^{N} a_n[(z+h)^n-z^n-hnz^{n-1}]\right|}_{I_N}
+    \end{align*}
+    Now, using the triangle inequality and Lemma \ref{lemma:aux:rc_2} (2), 
+    \begin{align*}
+        |I_N|&\leq\frac 1{|h|}\sum_{n=0}^{N}|a_n||(z+h)^n-z^n-hnz^{n-1}| \\
+        &\leq\frac 1{|h|}\sum_{n=0}^{N}|a_n||n(n-1)(|z|+|h|)^{n-2}|h|^2| \\
+        &\leq |h|\sum_{n=0}^{N}n(n-1)|a_n|r^{n-2} \\
+        &\leq |h|\sum_{n=0}^\infty n(n-1)|a_n|r^{n-2} =|h|A_r
+    \end{align*}
+    where \(A_r\) converges by Lemma \ref{lemma:aux:rc_1} plus the fact that \(r<R\). We have shown that 
+    \[|I|=\lim_{N\to\infty}|I_N|\leq|h|A_r\to 0\]
+    as \(h\to 0\).
+\end{proof}
+Here we proof two auxillary lemmas:
+\begin{proof}
+    (Lemma \ref{lemma:aux:rc_1}) Suppose \(0<|z|<R\), then \(\exists r\) such that \(|z|<r<R\).
+\end{proof}
+\subsection{The Standard Functions}
+We saw in previous example that \(\sum_{n=0}^{\infty}z^n/n!\) has \(R=\infty\), i.e. it converges at all \(z\in\mathbb{C}\). With this fact, we define the \emph{exponential function} as follows.
+\begin{definition} (\emph{Exponential Function})
+    Let \(\exp:\mathbb{C}\to\mathbb{C}\),
+    \[z\mapsto \exp(z)=\sum_{n=0}^{\infty}\frac{z^n}{n!}\]
+    \label{def:exp}
+\end{definition}
+We immediately have from Theorem \ref{thm:taylor_diff} that \(\exp\) is differentiable and 
+\[\exp^\prime(z)=\exp(z)\]
+Nextly, we claim \(\exp(a+b)=\exp(a)\exp(b)\). To show this, we need the following fact: if \(F:\mathbb{C}\to\mathbb{C}\) satisfies \(F^\prime(z)=0\) for all \(z\in\mathbb{C}\), then \(F\) is constant.\footnote{Note the difference with Corollary \ref{coro:inc} -- range is now \(\mathbb{C}\).}
+\begin{proof}
+    Consider \(g:\mathbb{R}\to\mathbb{C}\), \(g(t)=F(tz)\) for some fixed \(z\in\mathbb{C}\). By chain rule,
+    \[g^\prime(t)=zF^\prime(tz)=0\]
+    We can write 
+    \[g(t)=u(t)+iv(t)\]
+    with \(u,v\) real, and then 
+    \[g^\prime(t)=u^\prime(t)+iv^\prime(t)\]
+    giving
+    \[u^\prime(t)=v^\prime(t)=0\Rightarrow u,v\text{  constant}\]
+    by Corollary \ref{coro:inc}. Therefore \(F(z)=F(0)\) (put \(t=0\) and \(t=1\)). But since \(z\) is arbitrary, \(F\) is constant.
+\end{proof}
+Now for \(a,b\in\mathbb{C}\) consider 
+\[F(z)=\exp(a+b-z)\exp(z)\]
+We compute 
+\[F^\prime(z)=-\exp^\prime(a+b-z)\exp(z)+\exp(a+b-z)\exp^\prime(z)=0\]
+to find out that \(F(0)=F(b)\). Hence \(\exp(a+b)\exp(0)=\exp(a)\exp(b)\), but
+\[\exp(0)=\sum_{n=0}^{\infty}\frac{0^n}{n!}=1\]
+Therefore, \(\exp(a+b)=\exp(a)\exp(b)\) for all \(a,b\in\mathbb{C}\).
+
+From now on we restrict to \(\mathbb{R}\).
+\begin{theorem}
+    Consider \(\exp:\mathbb{R}\to\mathbb{R}\).
+    \begin{enumerate}
+        \item \(\exp\) is everywhere differentiable and \(\exp^\prime(x)=\exp(x)\).
+        \item \(\exp(x+y)=\exp(x)\exp(y)\) for all \(x,y\in\mathbb{R}\).
+        \item \(\exp(x)>0\) for all \(x\in\mathbb{R}\).
+        \item \(\exp\) is strictly increasing.
+        \item \(\exp(x)\to\infty\) as \(x\to\infty\); and \(\exp\to 0\) as \(x\to-\infty\).
+        \item \(\exp:\mathbb{R}\to(0,\infty)\) is a bijection.
+    \end{enumerate}
+    \label{thm:exp_property}
+\end{theorem}
 \end{document}

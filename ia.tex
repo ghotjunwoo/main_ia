@@ -267,6 +267,7 @@ does. Let's formalise this.
     \[ax+by=c\]
     has a solution in integers \(x,y\) if and only if
     \[\gcd(a,b)|c\]
+    \label{coro:bezout}
 \end{corollary}
 \begin{proof}
     Let \(g=\gcd(a,b)\). Suppose there are \(x,y\in\mathbb{Z}\) such that
@@ -347,6 +348,140 @@ N.b. if \(a\equiv a^\prime\mod n\) and \(b\equiv b^\prime\mod n\), then
 so \(a+b\equiv a^\prime+b^\prime\mod n\). Similarly, 
 \[n|(a-a^\prime)b+a^\prime(b-b^\prime)=ab-a^\prime b^\prime\]
 so \(ab=a^\prime b^\prime\mod n\). Hence we can do arithmetic on modulo \(n\) with inheriting the usual rules of arithmetic in \(\mathbb{Z}\).
+\begin{example}
+    Does \(2a^2+3b^3=1\) have a solution with \(a,b\in\mathbb{Z}\)? \newline 
+    If there is a solution, then \(2a^2\equiv 1\mod 3\), but \(2\cdot 0^2\equiv 0\), \(2\cdot 1^2\equiv 2\), \(2\cdot 2^2\equiv 2\mod 3\) so there is no solution.
+\end{example}
+\subsubsection{Solution of congruences}
+\begin{example}
+    Solve \(7n\equiv 2\mod 10\).\newline 
+    We note \(3\cdot 7\equiv 1\mod 10\) so \(3\cdot 7n\equiv 3\cdot 2\mod 10\) and \(n\equiv 6\mod 10\).
+\end{example}
+As shown in the example above, given \(a,b\in\mathbb{Z}\), we say that \(b\) is an \emph{inverse of a modulo \(n\)} if \[ab\equiv 1\mod n\]
+We say that \(a\) is \emph{invertible modulo \(n\)} or that \(a\) is a \emph{unit modulo \(n\)}, if it has an inverse. For example, in \(\mathbb{Z}_{10}\), \(3\) is an inverse of \(7\), and both \(3\) and \(7\) are units modulo \(10\); but \(4\) is not a unit modulo \(10\) since \(4n\nequiv 1\mod 10\) for all \(n\in\mathbb{Z}\).
+\begin{remark}
+    If \(a\) is a unit modulo \(n\), then 
+    \begin{enumerate}
+        \item its inverse is unique. Suppose \(\exists b,b^\prime\) such that 
+        \[ab\equiv ab^\prime\equiv 1\mod n\]
+        then
+        \[b\equiv bab\equiv bab^\prime\equiv b^\prime\mod n\]
+        \item we can write \(a^{-1}\) for its inverse.
+        \item if \(ab\equiv ac\mod n\), then \(b\equiv c\mod n\).
+    \end{enumerate}
+    However, this is not true in general, e.g. 
+    \[4\cdot 3\equiv 4\cdot 8\mod 10\]
+    but \(3\nequiv 8\mod 10\).
+\end{remark}
+\begin{proposition}
+    Let \(p\) be prime. Then every \(a\neq 0\mod p\) is a unit modulo \(p\).
+\end{proposition}
+\begin{proof}
+    From \(\gcd(a,p)=1\), \(\exists x,y\in\mathbb{Z}\) such that \(ax+py=1\) (Corollary \ref{coro:bezout}). Hence \(ax=1-py\), so 
+    \[ax\equiv 1\mod p\]
+    for some \(x\in\mathbb{Z}\).
+\end{proof}
+\begin{proposition}
+    Let \(n\geq 2\). Then \(a\) is a unit modulo \(n\) if and only if \(\gcd(a,n)=1\).
+\end{proposition}
+\proof
+\begin{align*}
+    \gcd(a,n)=1&\Leftrightarrow ax+ny=1\:\text{ for some \(x,y\in\mathbb{z}\)} \\
+    &\Leftrightarrow ax=1-ny:\text{ for some \(x,y\in\mathbb{z}\)} \\
+    &\Leftrightarrow ax\equiv 1\mod n:\text{ for some \(x,y\in\mathbb{z}\)}
+\end{align*}
+\begin{corollary}
+    If \(\gcd(a,n)=1\), then the congruence
+    \[ax\equiv b\mod n\]
+    has a unique solution. In particular, if \(\gcd(a,n)=1\), then there is a unique inverse of \(a\) modulo \(n\).
+\end{corollary}
+For cases like \(ax\equiv b\mod n\) with \(\gcd(a,n)=d\neq 1\), the solution may not exist. \(n|ax-b\) so \(d|ax-b\) and thus \(d|b\) for solution to exist. If \(d|b\), write \(n=dn^\prime\), \(a=da^\prime\), \(b=db^\prime\). Then,
+\begin{align*}
+    ax\equiv b\mod n&\Leftrightarrow ax-b=kn\:\text{ for some \(k\in\mathbb{Z}\)} \\
+    &\Leftrightarrow da^\prime x-db^\prime=kdn^\prime:\text{ for some \(k\in\mathbb{Z}\)} \\
+    &\Leftrightarrow a^\prime x-b^\prime=kn^\prime :\text{ for some \(k\in\mathbb{Z}\)} \\
+    &\Leftrightarrow a^\prime x\equiv b^\prime\mod n^\prime
+\end{align*}
+Since \(\gcd(a^\prime,n^\prime)=1\), \(a^\prime x\equiv b^\prime\mod n^\prime\) has a unique solution.
+\begin{example}
+    Solve \(7x\equiv 4\mod 30\).\newline 
+    We have \(\gcd(7,30)=1\), so by Euclid's algorithm, \(13\cdot 7-3\cdot 30=1\). Hence \(13\cdot 7\equiv 1\mod 30\), whence 
+    \[x\equiv 13\cdot 4\equiv 22\mod 30\]
+\end{example}
+\begin{example}
+    Solve \(10x\equiv 12\mod 34\). \newline 
+    This is equivalent with \(5x\equiv 6\mod 17\), and we can now solve as the example above to obtain \(x\equiv 6\cdot 7\equiv 8\mod 17\).
+\end{example}
+\subsubsection{Simultaneous congruences}
+Note 
+\[x\equiv 5\mod 12\Rightarrow\begin{cases}
+    x\equiv 2\mod 3 \\
+    x\equiv 1\mod 4
+\end{cases}\]
+However, we cannot be sure if the converse is true, i.e. does \(x\equiv 2\mod 3\) and \(x\equiv 1\mod 4\) imply that \(x\equiv 5\mod 12\)? It turns out that it is true for the case above, but it is not generally true -- see \(x\equiv 1\mod 4\) and \(x\equiv 2\mod 6\).
+\begin{theorem}
+    (\emph{The Chinese Remainder Theorem}) Let \(m,n\) be coprime, and \(a,b\in\mathbb{Z}\). Then there is a unique solution modulo \(mn\) to the simultaneous congruences 
+    \[x\equiv a\mod m\text{  and  }x\equiv b\mod n\]
+    That is, there is a solution \(x\) to 
+    \[\begin{cases}
+        x\equiv a\mod m \\
+        x\equiv b\mod n
+    \end{cases}\]
+    and \(y\) is a solution if and only if \(x\equiv y\mod mn\).
+    \label{thm:crt}
+\end{theorem}
+\begin{proof}
+    We first prove existence. Since \(\gcd(m,n)=1\), \(\exists s,t\in\mathbb{Z}\) with \(sm+tn=1\). Note 
+    \[sm\equiv 1\mod n,\quad sm\equiv 0\mod m\]
+    and 
+    \[tn\equiv 1\mod m,\quad tn\equiv 0\mod n\]
+    Hence 
+    \begin{align*}
+        x=a(tn)+b(sm)&\equiv a\mod m \\
+        &\equiv b\mod n 
+    \end{align*}
+    Next, for uniqueness, suppose \(y\) is also a solution, i.e. \(y\equiv a\mod m\) and \(y\equiv b\mod n\). This implies 
+    \begin{align*}
+        y\equiv x\mod m\text{  and  }y\equiv x\mod n&\Leftrightarrow m|y-x\text{  and }n|y-x \\
+        &\Leftrightarrow mn|y-x \text{  since  } \gcd(m,n)=1 \\
+        &\Leftrightarrow y\equiv x\mod mn
+    \end{align*}
+\end{proof}
+\begin{remark}
+    Theorem \ref{thm:crt} can be extended, by induction, to more than two moduli: \newline if \(m_1,m_2,\ldots,m_k\) are pairwise coprime, then \(\forall a_1,a_2,\ldots,a_k\in\mathbb{Z}\), \(\exists x\in\mathbb{Z}\) such that 
+    \[x\equiv a_1\mod m_1\]
+    \[x\equiv a_2\mod m_2\]
+    \[\vdots\]
+    \[x\equiv a_k\mod m_k\]
+\end{remark}
+\begin{definition}
+    We define the \emph{Euler totient function}, \(\varphi(m)\), as the number of integers \(a\) with \(1\leq a\leq m\) such that \(\gcd(a,m)=1\), i.e. \(\varphi(m)\) is the number of units modulo \(m\). Additionally, we define \(\varphi(1)=1\).
+\end{definition}
+For example, when \(p\) is prime, \(\varphi(p)=p-1\), and \(\varphi(p^2)=p^2-p\). When \(p\), \(q\) are distinct primes,
+\[\varphi(p,q)=pq-p-q+1\]
+Next, let's take a look at behavior of a power of an integer modulo \(p\).
+\begin{theorem}
+    (\emph{Fermat's Little Theorem})
+    Let \(p\) be a prime. Then \(a^p\equiv a\mod p\) for all \(a\in\mathbb{Z}\). Equivalently, 
+    \[a^{p-1}\equiv 1\mod p\]
+    for all \(a\nequiv 0\mod p\).
+    \label{thm:flt}
+\end{theorem}
+\begin{proof}
+    If \(a\nequiv 0\mod p\), then \(a\) is a unit mod \(p\). Thus \(ax\equiv ay\mod p\) if and only if \(x\equiv y\mod p\). Hence the numbers \(a,2a,\ldots,(p-1)a\) are pairwise incongruent (distinct) modulo \(p\), and \(\nequiv 0\mod p\), so they are \(1,2,3,\ldots,p-1\) in some order. Hence 
+    \[a\cdot 2a\cdots(p-1)a\equiv 1\cdot2\cdots(p-1)\mod p\]
+    or 
+    \[a^{p-1}(p-1)!\equiv(p-1)!\mod p\]
+    But \((p-1)!\) is a unit mod \(p\) (since it is a product of units), so we can cancel it to obtain \(a^{p-1}\equiv 1\mod p\).
+\end{proof}
+\begin{theorem}
+    (\emph{Fermat-Euler Theorem}) Let \(\gcd(a,m)=1\). Then \(a^{\varphi(m)}\equiv 1\mod m\).
+    \label{thm:euler}
+\end{theorem}
+\begin{proof}
+    Let 
+    \[U=\{x\in\mathbb{Z}\:|\:0<x<m,\gcd(x,m)=1\}\]
+\end{proof}
 \chapter{Groups}
 \chapterauthor{Lecture by Professor Claude Warnick. 
     Michaelmas term 2023.}
@@ -1262,7 +1397,7 @@ With fixed \(R>0\), consider \(f:[0,R]\to\mathbb{R}\), \(x\mapsto x^n\) for \(n\
 More generally, let \(h(x)=x^r\) where \(r\in\mathbb{Q}\). Writing \(r=m/n\) for \(m\in\mathbb{Z}\), \(n\in\mathbb{N}\) and defining 
 \[x^r=\left(x^{1/n}\right)^m\]
 \(h\) is differentiable on \((0,\infty)\) and 
-\[h^\prime(x)=m\left(x^{n-1}\right)^{m-1}\left(\frac 1nx^{\frac 1n-1}\right)=\frac mnx^{\frac mn-1}=rx^{r-1}\]
+\[h^\prime(x)=m\left(x^{1/n}\right)^{m-1}\left(\frac 1nx^{\frac 1n-1}\right)=\frac mnx^{\frac mn-1}=rx^{r-1}\]
 by chain rule.
 \begin{theorem}
     (\emph{Cauchy's Mean Value Theorem}) Let \(f,g:[a,b]\to\mathbb{R}\) be continuous on \([a,b]\) and differentiable on \((a,b)\). Then there exists \(c\in(a,b)\) such that 
@@ -1489,9 +1624,38 @@ We conclude that nothing can be said in general about convergence on \(|z|=R\), 
 \end{proof}
 Here we proof two auxillary lemmas:
 \begin{proof}
-    (Lemma \ref{lemma:aux:rc_1}) Suppose \(0<|z|<R\), then \(\exists r\) such that \(|z|<r<R\).
+    (Lemma \ref{lemma:aux:rc_1}) Suppose \(0<|z|<R\), then \(\exists r\) such that \(|z|<r<R\). We know \(\sum_{n=0}^{\infty}a_nr^n\) converges so \(a_nr^n\to 0\) as \(n\to\infty\) and hence \(\exists K\) such that 
+    \[|a_nr^n|\leq K\quad\forall n\geq 0\]
+    Thus 
+    \[|na_nz^{n-1}|=\frac{|a_nr^n|}{|z|}n\left|\frac zr\right|^n\leq\frac K{|z|}n\rho^n\]
+    where \(K\) is independent of \(n\) and \(\rho=|z|/r<1\). But \(\sum_{n=1}^{\infty}n\rho^n\) converges by ratio test:
+    \[\left|\frac{(n+1)\rho^{n+1}}{n\rho^n}\right|=\rho\left(1+\frac 1n\right)\to\rho<1\]
+    Therefore, \(\sum_{n=1}^\infty na_nz^{n-1}\) converges absolutely by comparison.
+
+    If \(|z|>R\), then 
+    \[|na_nz^{n-1}|\geq\frac 1{|z|}|a_nz^n|\]
+    If \(\sum_{n=1}^{\infty}na_nw^{n-1}\) converges for some \(|w|>R\), then taking \(|w|>|z|>R\) we have \(\sum_{n=1}^{\infty}na_nz^{n-1}\) converging absolutely by Lemma \ref{lemma:small_conv}. This implies that \(\sum a_nz^n\) converges absolutely (by comparison), contradicting \(R\) being radius of convergence of \(\sum a_nz^n\). Therefore \(\sum_{n=1}^{\infty}na_nw^{n-1}\) diverges, and \(\sum_{n=1}^{\infty}na_nz^{n-1}\) has radius of convergence \(R\).
+
+    For the series \(\sum_{n=2}^{\infty}n(n-1)a_nz^{n-2}\), apply result above, starting with \(\sum_{n=1}^{\infty}na_nz^{n-1}\).
 \end{proof}
+\begin{proof}
+    (Lemma \ref{lemma:aux:rc_2})
+    \begin{enumerate}
+        \item Simple manipulation gives
+        \[{\binom nr}/{\binom{n-2}{r-2}}=\frac{n!}{(n-r)!r!}\frac{(n-r)!(r-2)!}{(n-2)!}=\frac{n(n-1)}{r(r-1)}\geq n(n-1)\]
+        since \(r\in\mathbb{N}\), \(r\geq 2\).
+        \item By binomial expansion, (1), and triangle inequality, we have 
+        \begin{align*}
+            |(z+h)^n-z^n-nhz^{n-1}|&=\left|\sum_{r=2}^{n}\binom nrz^{n-r}h^r\right| \\
+            &\leq\sum_{r=2}^{n}n(n-1)\binom{n-2}{r-2}|z|^{n-r}|h|^r \\
+            &=n(n-1)|h|^2\sum_{r=2}^{n}\binom{n-2}{r-2}|z|^{n-r} \\
+            &=n(n-1)|h|^2(|z|+|h|)^{n-2}
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+N.b. Theorem \ref{thm:taylor_diff} can be iterated: power series are smooth inside the radius of convergence. 
 \subsection{The Standard Functions}
+\subsubsection{Exponentials and logarithms}
 We saw in previous example that \(\sum_{n=0}^{\infty}z^n/n!\) has \(R=\infty\), i.e. it converges at all \(z\in\mathbb{C}\). With this fact, we define the \emph{exponential function} as follows.
 \begin{definition} (\emph{Exponential Function})
     Let \(\exp:\mathbb{C}\to\mathbb{C}\),
@@ -1533,4 +1697,866 @@ From now on we restrict to \(\mathbb{R}\).
     \end{enumerate}
     \label{thm:exp_property}
 \end{theorem}
+\begin{proof}
+    (1) and (2) are done. We prove the remainings.
+    \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item If \(x>0\), clearly 
+        \[\exp(x)=\sum_{n=0}^{\infty}\frac{x^n}{n!}\geq 1>0\]
+        Also, \(\exp(0)=1\) and \(\exp(x-x)=\exp(x)\exp(-x)=1\).
+        Thus \(\exp(-x)>0\) for all \(x>0\).
+        \item \(\exp^\prime(x)=\exp(x)>0\). Hence \(\exp\) is strictly increasing by Corollary \ref{coro:inc}.
+        \item \(\exp(x)\geq 1+x\) for \(x\geq 0\) so if \(x\to\infty\), \(\exp(x)\to\infty\).
+        Meanwhile, for \(x\geq 0\),
+        \[\exp(-x)=\frac{1}{\exp(x)}\]
+        so \(\exp(-x)\to 0\) as \(x\to\infty\), i.e. \(\exp(x)\to 0\) as \(x\to-\infty\).
+        \item Injectivity is immediate from being strictly increasing. For surjectivity, suppose \(y\in(0,\infty)\). Then from (4), there exists \(a,b\in\mathbb{R}\) such that 
+        \[\exp(a)<y<\exp(b)\]
+        Applying intermediate value theorem (Theorem \ref{thm:ivt}) to \(\exp:[a,b]\to\mathbb{R}\) gives \(\exists x\in\mathbb{R}\) such that \(\exp(x)=y\). Hence \(\exp\) is surjective.
+    \end{enumerate}
+\end{proof}
+Notice that \(\exp:(\mathbb{R},+)\to((0,\infty),\times)\) is a group isomorphism. And since \(\exp\) is a bijection, it has an inverse function
+\[\ln:(0,\infty)\to\mathbb{R}\]
+which is called the \emph{logarithmic function}. 
+\begin{theorem} \item[]
+    \begin{enumerate}
+        \item \(\ln:(0,\infty)\to\mathbb{R}\) is a bijection, and 
+        \[\ln(\exp(x))=x\quad\forall x\in\mathbb{R},\]
+        \[\exp(\ln(t))=t\quad\forall t\in(0,\infty)\]
+        \item \(\ln\) is differentiable and monotone, with 
+        \[\ln^\prime(t)=\frac 1t\]
+        \item \(\ln(st)=\ln(s)+\ln(t)\) where \(s,t>0\).
+        \item \(\ln(x)\to\infty\) as \(x\to\infty\); and \(\ln(x)\to-\infty\) as \(x\to 0\).
+    \end{enumerate}
+    \label{thm:ln_property}
+\end{theorem}
+\begin{proof} \item[]
+    \begin{enumerate}
+        \item Trivial from construction (\(\ln\) is the inverse of \(\exp\)).
+        \item Inverse function theorem (Theorem \(\ref{thm:ift_diff}\)) gives that \(\ln\) is differentiable and 
+        \[\ln^\prime(t)=\frac{1}{\exp^\prime(\ln(t))}=\frac 1{\exp(\ln{t})}=\frac 1t\]
+        for all \(t>0\).
+        \item Because \(e\) is an isomorphism, so is its inverse.
+    \end{enumerate}
+\end{proof}
+Now define for \(\alpha\in\mathbb{R}\) and \(x>0\),
+\[\Gamma_\alpha(x)=\exp(\alpha\ln(x))\]
+\begin{theorem}
+    Suppose \(x,y>0\) and \(\alpha,\beta\in\mathbb{R}\). Then 
+    \begin{enumerate}
+        \item \(\Gamma_\alpha(x,y)=\Gamma_\alpha(x)\Gamma_\alpha(y)\).
+        \item \(\Gamma_{\alpha+\beta}(x)=\Gamma_\alpha(x)\Gamma_\beta(x)\).
+        \item \(\Gamma_\alpha(\Gamma_\beta(x))=\Gamma_{\alpha\beta}(x)\).
+        \item \(\Gamma_1(x)=x\), \(\Gamma_0(x)=1\).
+    \end{enumerate}
+    \label{thm:power_property}
+\end{theorem}
+\begin{proof} \item[]
+    \begin{enumerate}
+        \item \(
+            \Gamma_\alpha(xy)=\exp(\alpha\ln(xy))=\exp(\alpha\ln(x)+\alpha\ln(y))=\exp(\alpha\ln(x))\exp(\alpha\ln(y))=\Gamma_\alpha(x)\Gamma_\alpha(y)
+        \).
+        \item \(\Gamma_{\alpha+\beta}(x)=\exp((\alpha+\beta)\ln(x))=\exp(\alpha\ln(x)+\beta\ln(x))\\=\exp(\alpha\ln(x))\exp(\beta(\ln(x)))=\Gamma_\alpha(x)\Gamma_\beta(x)\).
+        \item \(\Gamma_\alpha(\Gamma_\beta(x))=\exp(\alpha\ln(\exp(\beta\ln(x))))=\exp(\alpha\beta\ln(x))=\Gamma_{\alpha\beta}(x)\).
+        \item \(\Gamma_1(x)=\exp(\ln(x))=x\), \(\Gamma_0(x)=\exp(0)=1\).
+    \end{enumerate}
+\end{proof}
+Now suppose \(p,q\in\mathbb{Z}\), \(p,q\geq 1\). Then,
+\[\Gamma_p(x)=\Gamma_{1+1+\cdots+1}(x)=\Gamma_1(x)\Gamma_1(x)\cdots\Gamma_1(x)=x^p\]
+and 
+\[\Gamma_p(x)\Gamma_{-p}(x)=\Gamma_0(x)=1\Rightarrow\Gamma_{-p}(x)=\frac 1{x^p}\]
+Further,
+\[\left(\Gamma_{1/q}(x)\right)^q=\Gamma_{1/q}(x)\cdots\Gamma_{1/q}(x)=\Gamma_{1/q+\cdots+1/q}(x)=\Gamma_{1}(x)=x\]
+gives \(\Gamma_{1/q}(x)=x^{1/q}\). Finally,
+\[\Gamma_{p/q}(x)=\Gamma_{\underbrace{1/q+\cdots+1/q}_{p\text{  times}}}(x)=\left(\Gamma_{1/q}(x)\right)^p=(x^1/q)^p=x^{p/q}\].
+Thus \(\Gamma_\alpha(x)\) agrees with \(x^\alpha\) for \(x\in\mathbb{Q}\) as previously defined. Hence we can extend the definition of \(x^\alpha\) into \(x\in\mathbb{R}\) and write 
+\[x^\alpha=\Gamma_\alpha(x)\]
+for \(\alpha\in\mathbb{R}\), \(x\in(0,\infty)\). We also introduce \emph{Euler's number}
+\[e=\exp(1)=\sum_{n=1}^{\infty}\frac 1{n!}\]
+and write \(\exp\) as a power:
+\[\exp(x)=\exp(x\ln e)=\Gamma_x(e)=e^x\]
+Now we can generalise as follows.
+\[(x^\alpha)^\prime=(e^{\alpha\ln x})^\prime=\frac\alpha xe^{\alpha\ln x}=\alpha x^{\alpha-1}\]
+for all \(x>0\), \(\alpha\in\mathbb{R}\). Meanwhile, for \(f(x)=a^x\) (\(a>0\), \(x\in\mathbb{R}\)),
+\[f^\prime(x)=(e^{x\ln a})^\prime=e^{x\ln a}\ln a=a^x\ln a\]
+In particular, \(f^\prime(x)>0\) for \(a>1\) and \(f^\prime(x)<0\) for \(a<1\).
+\begin{lemma}
+    For any \(r>0\) we have
+    \begin{enumerate}
+        \item \(x^re^{-x}\to 0\) as \(x\to\infty\).
+        \item \(x^{-r}\ln x\to 0\) as \(x\to\infty\).
+        \item \(x^r\ln x\to 0\) as \(x\to 0+\).
+    \end{enumerate}
+\end{lemma}
+\begin{proof}\item[] 
+    \begin{enumerate}
+        \item For \(x>0\),
+        \[e^x=1+x+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}+\cdots>\frac{x^n}{n!}\]
+        for any \(n\in\mathbb{N}\). Pick \(n\) such that \(n-r\geq 1\). Then,
+        \[0\leq\frac{x^r}{e^x}\leq\frac{n!}{x^{n-r}}\leq\frac{n!}{x}\]
+        so \(x^re^-x\to 0\) as \(x\to\infty\).
+        \item Pick \(m\) such that \(m\geq 2/r\). For \(x>1\),
+        \[0\leq\frac{x^{1/r}}{e^x}\leq\frac{m!}{x^{m-1/r}}\leq\frac{m!}{x^{1/r}}\]
+        Let \(x=\ln y\) and write 
+        \[0\leq\frac{(\ln y)^{1/r}}{r}\leq\frac{m!}{(\ln y)^{1/r}}\]
+        giving 
+        \[0\leq\frac{\ln y}{y^r}\leq\frac{(m!)^r}{\ln y}\]
+        But \(\ln y\to\infty\) as \(y\to\infty\); thus \(\ln y/y^r\to 0\).
+        \item Set \(z=1/y\) where \(y\) is from above. We have 
+        \[0\leq-z^r\ln z\leq\frac{(m!)^r}{-\ln z}\]
+        Since \(\ln z\to-\infty\) as \(z\to 0+\), \(z^r\ln z\to 0\).
+    \end{enumerate}
+\end{proof}
+\subsubsection{Trigonometric functions}
+\begin{definition}
+    (\emph{Trigonometric Functions}) We define 
+    \[\cos z=1-\frac{z^2}{2!}+\frac{z^4}{4!}-\cdots=\sum_{k=0}^{\infty}\frac{(-1)^kz^{2k}}{(2k)!}\]
+    \[\sin z=z-\frac{z^3}{3!}+\frac{z^5}{5!}-\cdots=\sum_{k=0}^{\infty}\frac{(-1)^kz^{2k+1}}{(2k+1)!}\]
+\end{definition}
+We can check that, like the exponential function, both series have infinite radius of convergence by ratio test. Hence, 
+\[\cos^\prime z=-\sin z\text{  and  }\sin^\prime z=\cos z\]
+by Theorem \ref{thm:taylor_diff}.
+Also observe that 
+\begin{align*}
+    e^{iz}&=\lim_{N\to\infty}\left(\sum_{k=0}^{2N+1}\frac{(iz)^k}{k!}\right) \\
+    &=\lim_{N\to\infty}\left(\sum_{k=0}^N\frac{(iz)^{2k}}{(2k)!}+\sum_{k=0}^N\frac{(iz)^{2k+1}}{(2k+1)!}\right) \\
+    &=\lim_{N\to\infty}\left(\sum_{k=0}^N(-1)^k\frac{z^{2k}}{(2k)!}\right)+i\sum_{k=0}^N(-1)^k\frac{z^{2k+1}}{(2k+1)!} \\
+    &=\cos z+i\sin z
+\end{align*}
+Similarly, \(e^{-iz}=\cos z-i\sin z\). Hence,
+\[\cos z=\frac 12(e^{iz}+e^{-iz})\]
+and 
+\[\sin z=\frac 1{2i}(e^{iz}-e^{-iz})\]
+These formulae give many trigonometric identities, e.g. \(\cos z=\cos(-z)\), \(\sin(z)=-\sin(-z)\), \(\cos(0)=1\), \(\sin(0)=0\) etc. Employing \(e^{a+b}=e^{a}e^b\), we also find 
+\[\sin(z+w)=\sin z\sin w+\cos z\sin w\]
+and 
+\[\cos(z+w)=\cos z\cos w-\sin z\sin w\]
+for all \(z,w\in\mathbb{C}\). Furthermore, set \(w=-z\) to deduce 
+\[\cos^2+\sin^2=\cos(0)=1\tag{\(\asterisk\)}\]
+Now, if \(x\in\mathbb{R}\) then \(\sin x,\cos x\in\mathbb{R}\) and (\(\asterisk\)) implies \(|\cos x|,|\sin x|\leq 1\). N.b. this need not be true away from real axis, e.g. if \(y\in\mathbb{R}\),
+\[\cos iy=\frac 12(e^{-y}+e^y)\to\infty\]
+as \(y\to\pm\infty\).
+\subsubsection{Periodicity of trigonometric functions}
+\begin{proposition}
+    There is a smallest positive number \(\omega\) (where \(\sqrt{2}<\omega/2<\sqrt{3}\)) such that 
+    \[\cos\frac{\omega}{2}=0\]
+\end{proposition}
+\begin{proof}
+    Suppose \(0\leq x\leq 2\).
+    \[\sin x=\left(x-\frac{x^3}{3!}\right)+\left(\frac{x^5}{5!}-\frac{x^7}{7!}\right)+\cdots+\frac{x^{2n-1}}{(2n-1)!}\left(1-\frac{x^2}{2n(2n+1)}\right)+\cdots\]
+    Since each term in parenthesis are positive, \(\sin x\geq 0\), and if \(0<x\leq 2\), \(\sin x>0\). So \(\cos^\prime x=-\sin x<0\) for \(0<x<2\). Hence \(\cos x\) is strictly decreasing in this interval, hence it has at most one root in \([0,2]\). To complete the proof we show \(\cos\sqrt{2}>0>\cos\sqrt{3}\), then intermediate valuable theorem implies a root exists in \([\sqrt{2},\sqrt{3}]\). But 
+    \[\cos\sqrt{2}=1-\underbrace{\frac{(\sqrt{2})^2}{2!}}_{=0}+\underbrace{\frac{(\sqrt{2})^4}{4!}-\frac{(\sqrt{2})^6}{6!}}_{>0}+\cdots+\underbrace{\frac{(\sqrt{2})^{2n}}{(2n)!}\left(1-\frac{2}{(2n+1)(2n+2)}\right)}_{>0}+\cdots\]
+    so \(\cos\sqrt{2}>0\), and 
+    \[\cos\sqrt{3}=\underbrace{1-\frac{(\sqrt{3})^2}{2!}+\frac{(\sqrt{3})^4}{4!}}_{-1/8}-\left(\underbrace{\frac{(\sqrt{3})^6}{6!}-\frac{(\sqrt{3})^8}{8!}}_{>0}\right)-\cdots-\frac{(\sqrt{3})^{2n}}{(2n)!}\left(\underbrace{1-\frac{3}{(2n+1)(2n+2)}}_{>0}\right)-\cdots\]
+    implies \(\cos{\sqrt{3}}\), completing the proof.
+\end{proof}
+\begin{corollary}
+    \(\sin\omega/2\)=1.
+\end{corollary}
+\begin{proof}
+    From 
+    \[\sin^2\frac\omega 2+\cos^2\frac\omega 2=1\]
+    we have \(\sin^2\omega/2=1\Rightarrow\sin\omega/2=\pm 1\). But \(\omega/2\in(0,2)\) so \(\sin\omega/2>0\). Therefore \(\sin\omega/2=1\).
+\end{proof}
+Since we established some properties, we now define \(\pi=\omega\). Periodic properties of the \newline trigonometric functions follows.
+\begin{theorem} \item[]
+    \begin{enumerate}
+        \item \(\sin(z+\pi/2)=\cos z\); \space \(\cos(z+\pi/2)=-\sin z\).
+        \item \(\sin(z+\pi)=-\sin z\); \space \(\cos(z+\pi)=-\cos z\).
+        \item \(\sin(z+2\pi)=\sin z\); \space \(\cos(z+2\pi)=\cos z\).
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    (1) Follows from addition formulae plus \(\cos(\pi/2)=0\), \(\sin(\pi/2)=1\). (2) and (3) follow by iterating.
+\end{proof}
+It follows that 
+\begin{align*}
+    e^{iz+2\pi i}&=\cos(z+2\pi)+i\sin(z+2\pi)=\cos z+i\sin z=e^{iz}
+\end{align*}
+and hence \(e^\omega\) is periodic with period \(2\pi i\). Also 
+\[e^{i\pi}=\cos\pi+i\sin\pi=-\cos 0+i(-\sin 0)=-1\]
+giving the \emph{Euler's identity}:
+\[e^{i\pi}+1=0\]
+\subsubsection{Trigonometric functions and geometry}
+Given \(\mathbf{x},\mathbf{y}\in\mathbb{R}^2\), define \(\mathbf{x}\cdot\mathbf{y}\) as usual. We set \(\|\mathbf{x}\|=\sqrt{\mathbf{x}\cdot\mathbf{x}}\). Cauchy-Schwarz shows that 
+\[|\mathbf{x}\cdot\mathbf{y}|\leq\|\mathbf{x}\|\|\mathbf{y}\|\]
+Hence for \(\mathbf{x}\neq 0\), \(\mathbf{y}\neq 0\),
+\[-1\leq\frac{\mathbf{x}\cdot\mathbf{y}}{\|\mathbf{x}\|\|\mathbf{y}\|}\leq 1\]
+Thus we can define the angle between \(\mathbf{x}\) and \(\mathbf{y}\) as the unique \(\theta\in[0,\pi]\) with 
+\[\cos\theta=\frac{\mathbf{x}\cdot\mathbf{y}}{\|\mathbf{x}\|\|\mathbf{y}\|}\]
+\subsubsection{Hyperbolic functions}
+\begin{definition}
+    (\emph{Hyperbolic Functions}) Define 
+    \[\cosh z=\frac 12(e^z+e^{-z})\]
+    \[\sinh z=\frac 12(e^z-e^{-z})\]
+    where \(z\in\mathbb{C}\).
+\end{definition}
+It follows that 
+\[\cosh z=\cos(iz)\text{  and }\sinh z=-i\sin(iz)\]
+Also,
+\[\cosh^\prime z=\sinh z,\quad\sinh^\prime z=\cosh z\]
+and 
+\[\cosh^2z-\sinh^2 z=1\]
+\section{Integration}
+\subsection{Riemann Integral}
+Informally, we define 
+    \[\int_a^bf(x)dx\]
+    as the (signed) area under the graph of \(f(x)\).
+To find the area, we approximate graph from above and below by rectangles. If \(f\) is `nice', estimates from above and below will be close for a suitably fine dissection of \([a,b]\). We assume \(f:[a,b]\to\mathbb{R}\) is bounded, i.e. \(\exists K\) such that \(|f(x)|\leq K\) for all \(x\in[a,b]\).
+\begin{definition}
+    A \emph{dissection} \(\mathcal{D}\) of \([a,b]\) is a finite subset of \([a,b]\) containing the end points \(a\), \(b\). We write 
+    \[\mathcal{D}=\{x_0,x_1,\ldots,x_n\}\]
+    with 
+    \[a=x_0<x_1<\cdots<x_n=b\]
+\end{definition}
+Associated to a dissection are the \emph{upper} and \emph{lower sums}, given by 
+\[U(f,\mathcal{D})=\sum_{j=1}^{n}(x_j-x_{j-1})\sup_{x\in[x_{j-1},x_j]}f(x)\]
+and 
+\[L(f,\mathcal{D})=\sum_{j=1}^{n}(x_j-x_{j-1})\inf_{x\in[x_{j-1},x_j]}f(x)\]
+respectively. Clearly, for any dissection, \(L(f,\mathcal{D})\leq U(f,\mathcal{D})\).
+\begin{lemma}
+    Suppose \(\mathcal{D}^\prime\),\(\mathcal{D}\) are dissections with \(\mathcal{D}^\prime\supseteq\mathcal{D}\). Then,
+    \[L(f,\mathcal{D})\leq L(f,\mathcal{D}^\prime)\leq U(f,\mathcal{D}^\prime)\leq U(f,\mathcal{D})\]
+    We say \(\mathcal{D}^\prime\) is a refinement of \(\mathcal{D}\).
+    \label{lemma:refine}
+\end{lemma}
+\begin{proof}
+    Let \(\mathcal{D}=\{x_0,\ldots,x_n\}\) with \(x_0<x_1<\cdots<x_n\). First, consider the case where \(\mathcal{D}^\prime=\mathcal{D}\cup\{y\}\). Then, \(y\in(x_{r-1},x_r)\) for some \(r\). Clearly,
+    \[\sup_{[x_{r-1},y]}f(x)\leq\sup_{[x_{r-1},x_r]}f(x)\]
+    and 
+    \[\sup_{[y,x_r]}f(x)\leq\sup_{[x_{r-1},x_r]}f(x)\]
+    Combining these,
+    \begin{align*}
+        (y-x_{r-1})\sup_{[x_{r-1},y]}f(x)+(x_r-y)\sup_{[y,x_r]}f(x)&\leq (y-x_{r-1})\sup_{[x_{r-1},x_r]}f(x)+(x_r-y)\sup_{[x_{r-1},x_r]}f(x) \\
+        &=(x_r-x_{r-1})\sup_{[x_{r-1},x_r]}f(x)
+    \end{align*}
+    Hence \(U(f,\mathcal{D}^\prime)\leq U(f,\mathcal{D})\). Similarly, 
+    \[\inf_{[x_{r-1},y]}f,\;\inf_{[y,x_r]}f\geq\inf_{[x_{r-1},x_r]}f\]
+    and \(L(f,\mathcal{D}^\prime)\geq U(f,\mathcal{D})\). Now if \(\mathcal{D}^\prime\) has more extra points, we add them one at a time and use the result recursively.
+\end{proof}
+\begin{lemma}
+    Suppose \(\mathcal{D}_1\) and \(\mathcal{D}_2\) are two dissections. Then,
+    \[L(f,\mathcal{D}_1)\leq U(f,\mathcal{D}_2)\]
+    \label{lemma:ulsum_rel}
+\end{lemma}
+\begin{proof}
+    Since \(\mathcal{D}_1\subseteq\mathcal{D}_1\cup\mathcal{D}_2\) and  \(\mathcal{D}_2\subseteq\mathcal{D}_1\cup\mathcal{D}_2\), we have, from Lemma \ref{lemma:refine}, 
+    \[L(f,\mathcal{D}_1)\leq L(f,\mathcal{D}_1\cup\mathcal{D}_2)\leq U(f,\mathcal{D}_1\cup\mathcal{D}_2)\leq U(f,\mathcal{D}_2)\]
+\end{proof}
+Note that if \(\mathcal{D}_0=\{a,b\}\),
+\[L(f,\mathcal{D}_0)=(b-a)\inf_{[a,b]}f\geq-(b-a)K\]
+and 
+\[U(f,\mathcal{D}_0)=(b-a)\sup_{[a,b]}f\leq(b-a)K\]
+Since \(\mathcal{D}_0\subseteq\mathcal{D}\) for any \(\mathcal{D}\), we deduce 
+\[\{U(f,\mathcal{D})\:|\:\mathcal{D}\text{  dissections}\}\]
+and 
+\[\{L(f,\mathcal{D})\:|\:\mathcal{D}\text{  dissections}\}\]
+
+are bounded above by \((b-a)K\), and below by \(-(b-a)K\); and both sets are non-empty. We can define the \emph{upper} and \emph{lower integra}l now.
+\begin{definition}
+    The \emph{upper integral} of \(f\) is 
+    \[I^\asterisk(f)=\overline{\int_a^b}f(x)dx=\inf_{\mathcal{D}}U(f,\mathcal{D})\]
+    and the \emph{lower integral} of \(f\) is 
+    \[I_\asterisk(f)=\underline{\int_a^b}f(x)dx=\sup_{\mathcal{D}}L(f,\mathcal{D})\]
+\end{definition}
+Also notice that from Lemma \ref{lemma:ulsum_rel}, 
+\[L(f,\mathcal{D}_1)\leq U(f,\mathcal{D}_2)\Rightarrow L(f,\mathcal{D}_1)\leq\inf_{\mathcal{D}_2}U(f,\mathcal{D}_2)\Rightarrow\sup_{\mathcal{D}_1}L(f,\mathcal{D}_1)\leq\inf_{\mathcal{D}_2}U(f,\mathcal{D}_2)\Rightarrow I_\asterisk(f)\leq I^\asterisk(f)\]
+Hence,
+\[(b-a)\inf_{[a,b]}f(x)\leq I_\asterisk(f)\leq I^\asterisk(f)\leq(b-a)\sup_{[a,b]}f(x)\]
+Now we formally define the integral as follows.
+\begin{definition}
+    A bounded function \(f:[a,b]\to\mathbb{R}\) is \emph{Riemann integrable} (integrable) if 
+    \[I^\asterisk(f)=I_\asterisk(f)\]
+    Then we define 
+    \[\int_a^bf(x)dx=I^\asterisk(f)=I_\asterisk(f)=\int_a^bf\]
+\end{definition}
+\begin{example}
+    Consider function \(f:[0,1]\to\mathbb{R}\), \(x\mapsto x\). Let 
+    \[\mathcal{D}_k=\left\{0,\frac 1k,\ldots,\frac{k-1}k,1\right\}\]
+    (uniform dissection). Then,
+    \[U(f,\mathcal{D}_k)=\sum_{j=1}^{k}\left(\frac jk-\frac{(j-1)}{k}\right)\sup_{\left[\frac{j-1}{k},\frac jk\right]}x=\sum_{j=1}^{k}\frac 1k\frac jk=\frac 1{k^2}\frac 12k(k+1)=\frac 12+\frac 1{2k}\]
+    Similarly,
+    \[L(f,\mathcal{D}_k)=\frac 12-\frac 1{2k}\]
+    Therefore,
+    \[I^\asterisk(f)=\inf_{\mathcal{D}}U(f,\mathcal{D})\leq\inf_{\mathcal{D}_k}U(f,\mathcal{D}_k)=\frac 12\]
+    and 
+    \[I_\asterisk(f)=\sup{\mathcal{D}}L(f,\mathcal{D})\geq\sup_{\mathcal{D}_k}L(f,\mathcal{D}_k)=\frac 12\]
+    But \(I_\asterisk(f)\leq I^\asterisk(f)\) so \(I_\asterisk(f)= I^\asterisk(f)=1/2\). Thus \(f\) is integrable and 
+    \[\int_0^1xdx=\frac 12\]
+\end{example}
+\begin{example}
+    Consider \(f:[0,1]\to\mathbb{R}\), 
+    \[x\mapsto\begin{cases}
+        1 & x\in\mathbb{Q} \\
+        0 & x\notin\mathbb{Q}
+    \end{cases}\]
+    This time, \(f\) is not Riemann integrable. For any dissection \(\mathcal{D}\),
+    \[U(f,\mathcal{D})=\sum_{j=1}^{n}(x_j-x_{j-1})\sup_{[x_{j-1},x_j]}f=\sum_{j=1}^{n}(x_j-x_{j-1})=1\]
+    and
+    \[L(f,\mathcal{D})=\sum_{j=1}^{n}(x_j-x_{j-1})\inf_{[x_{j-1},x_j]}f=0\]
+    Thus, \(I_\asterisk(f)\neq I^\asterisk(f)\) and \(f\) is not Riemann integrable.
+\end{example}
+\begin{theorem}
+    (\emph{Cauchy Criterion for Integrability}) A bounded function \(f:[a,b]\to\mathbb{R}\) is integrable if and only if for all \(\epsilon>0\) there exists a dissection \(\mathcal{D}\) with 
+    \[U(f,\mathcal{D})-L(f,\mathcal{D})<\epsilon\]
+    \label{thm:cauchy_criterion_integral}
+\end{theorem}
+\begin{proof}
+    For any dissection, we have 
+    \[0\leq I^\asterisk(f)- I_\asterisk(f)\leq  U(f,\mathcal{D})-L(f,\mathcal{D})<\epsilon\]
+    If the criterion holds, then 
+    \[0\leq I^\asterisk(f)- I_\asterisk(f)<\epsilon\]
+    for all \(\epsilon>0\). So \(I^\asterisk(f)=I_\asterisk(f)\) and \(f\) is integrable.
+
+    Conversely, suppose \(f\) is integrable and fix \(\epsilon>0\). It follows from definition of supremum and infimum that there exist \(\mathcal{D}_1\), \(\mathcal{D}_2\) with 
+    \[U(f,\mathcal{D}_1)\leq I^\asterisk(f)+\epsilon/2\]
+    and 
+    \[L(f,\mathcal{D}_2)\geq I_\asterisk(f)-\epsilon/2\]
+    Let \(\mathcal{D}=\mathcal{D}_1\cup\mathcal{D}_2\). Then,
+    \[U(f,\mathcal{D})\leq U(f,\mathcal{D}_1),\]
+    \[L(f,\mathcal{D})\geq L(f,\mathcal{D}_2)\]
+    and we can find
+    \begin{align*}
+        0\leq U(f,\mathcal{D})-L(f,\mathcal{D})&\leq U(f,\mathcal{D}_1)-L(f,\mathcal{D}_2) \\
+        &\leq I^\asterisk(f)+\epsilon/2-I_\asterisk(f)+\epsilon/2=\epsilon
+    \end{align*}
+\end{proof}
+This criterion (Theorem \ref{thm:cauchy_criterion_integral}) can be used to show monotone functions and continuous functions are integrable.
+
+Observe that if \(f:[a,b]\to\mathbb{R}\) is monotone, it is bounded by \(f(a)\) and \(f(b)\).
+\begin{theorem}
+    Suppose \(f:[a,b]\to\mathbb{R}\) is monotone. Then \(f\) is integrable.
+    \label{thm:int_monotone}
+\end{theorem}
+\begin{proof}
+    Suppose \(f\) is increasing. Then \(\sup_{[x_{j-1},x_j]}f=f(x_j)\) and \(\inf_{[x_{j-1},x_j]}f=f(x_{j-1})\). Thus for any dissection \(\mathcal{D}\), 
+    \[U(f,\mathcal{D})-L(f,\mathcal{D})=\sum_{j=1}^{n}(x_j-x_{j-1})[f(x_j)-f(x_{j-1})]\]
+    Now choose a uniform dissection into \(n\) pieces, i.e. 
+    \[\mathcal{D}_n=\left\{a,a+\frac{(b-a)}{n}+a+\frac{2(b-a)}{n},\ldots,a+\frac{n-1}{n}(b-a),b\right\}\]
+    Then,
+    \begin{align*}
+        U(f,\mathcal{D}_n)-L(f,\mathcal{D}_n)&=\sum_{j=1}^{n}\frac{(b-a)}{n}\left[f\left(a+\frac{j(b-a)}{b}\right)-f\left(a+\frac{(j-1)}{n}(b-a)\right)\right]\\&=\frac{(b-a)}{n}(f(b)-f(a))        
+    \end{align*}
+    Taking \(n\) sufficiently large, for any \(\epsilon>0\), we can find \(\mathcal{D}=\mathcal{D}_n\) such that 
+    \[U(f,\mathcal{D})-L(f,\mathcal{D})<\epsilon\]
+    Hence \(f\) is integrable by Theorem \ref{thm:cauchy_criterion_integral}.
+\end{proof}
+If \(f:[a,b]\to\mathbb{R}\) is continuous, then \(f\) is bounded by the extreme value theorem (Theorem \ref{thm:evt}).
+\begin{theorem}
+    Suppose \(f:[a,b]\to\mathbb{R}\) is continuous. Then \(f\) is integrable.
+    \label{thm:int_cont}
+\end{theorem}
+\begin{proof}
+    We prove the contrapositive, i.e. if \(f\) is not integrable, then \(f\) is not continuous. Suppose \(f\) is not integrable; then by Theorem \ref{thm:cauchy_criterion_integral}, there exists \(\epsilon_0>0\) such that, for all dissections \(\mathcal{D}\),
+    \[U(f,\mathcal{D})-L(f,\mathcal{D})>\epsilon_0\]
+    Since
+    \[U(f,\mathcal{D})-L(f,\mathcal{D})=\sum_{j=1}^{n}(x_j-x_{j-1})[f(x_j)-f(x_{j-1})]\]
+    it follows that for any dissection there is a \(j\) with 
+    \[\sup_{[x_{j-1},x_j]}f-\inf_{[x_{j-1},x_j]}f>\frac{\epsilon_0}{b-a}\]
+    otherwise
+    \[U(f,\mathcal{D})-L(f,\mathcal{D})\leq\sum_{j=1}^{n}(x_j-x_{j-1})\frac{\epsilon_0}{b-a}=\epsilon_0\]
+    In particular, we can find \(y,z\in[x_{j-1},x_j]\) with 
+    \[f(y)-f(z)>\frac{\epsilon_0}{b-a}\]
+    Now let \(\mathcal{D}_n\) be the uniform dissection into \(n\) equal intervals:
+    \[\mathcal{D}_n=\left\{a,a+\frac{(b-a)}{n}+a+\frac{2(b-a)}{n},\ldots,a+\frac{n-1}{n}(b-a),b\right\}\]
+    Applying the argument above to \(\mathcal{D}_n\), there must exist \(y_n\), \(z_n\) in the same subinterval so that \(|y_n-z_n|<(b-a)/n\), with 
+    \[f(y_n)-f(z_n)>\frac{\epsilon_0}{b-a}\]
+    \((y_n)\) is bounded by construction, so by Bolzano-Weierstrass theorem we can take a convergent subsequence \(y_{n_k}\to\eta\) for some \(\eta\in[a,b]\). Moreover, since
+    \[|y_{n_k}-z_{n_k}|<\frac{b-a}{n_k}\leq\frac{b-a}{k}\]
+    we have \(z_{n_k}\to\eta\) also. But 
+    \[f(y_{n_k})-f(z_{n_k})>\frac{\epsilon_0}{b-a}>0\]
+    implies \(f(y_{n_k})\) and \(f(z_{n_k})\) cannot both converges to the same limit. So \(f\) is not continuous at \(\eta\) (Theorem \ref{thm:contd}).
+\end{proof}
+However, a function not being continuous nor monotone does not suggest that function is not integrable. Between monotone and continuous functions, we have a large class of integrable functions, e.g. \emph{Thomae's function}.\footnote{Moreover, this function is continuous at each irrational, and discontinuous at each rational.}
+% \begin{example}
+%     (\emph{Thomae's Function}) Consider \(f:[0,1]\to\mathbb{R}\),
+%     \[f(x)=\begin{cases}
+%         1/q & x=p/q \text{ where \(p,q\) are coprime integers;}\\
+%         0 & \text{ otherwise.} 
+%     \end{cases}\]
+%     We claim \(f\) is integrable. Note that for any dissection \(\mathcal{D}\), \(L(f,\mathcal{D})=0\). It is enough to show that for any \(\epsilon>0\) we can find a \(U(f,\mathcal{D})<\epsilon\). Pick \(N\in\mathbb{N}\) such that \(1/N<\epsilon/2\). Now consider 
+%     \[P=\{x\in[0,1]\:|\:f(x)\geq 1/N\}=\left\{\left.\frac pq\:\right|\:0\leq q\leq N,1\leq p\leq q\right\}\]
+%     \(P\) is a finite set:
+% \end{example}
+\subsection{Elementary Properties of the Integral}
+Before establishing various properties of the integral, we first give some properties of infimum and supremum.
+\begin{lemma}
+    Suppose \(I=[a,b]\) and \(f,g:I\to\mathbb{R}\) are bounded. Then,
+    \begin{enumerate}
+        \item If \(f(x)\leq g(x)\) for all \(x\in I\), 
+        \[\sup_If\leq\sup_Ig\text{  and  }\inf_If\leq\inf_Ig\]
+        \item \(\sup_I(-f)=-\inf_If\).
+        \item If \(\lambda>0\), then \[\sup_I(\lambda f)=\lambda\sup_If\text{  and  }\inf_I(\lambda f)=\lambda\inf_If\]
+        \item \[\sup_I(f+g)\leq\sup_If+\sup_Ig\]
+        \[\inf_I(f+g)\geq\inf_If+\inf_Ig\]
+        \item \(\sup_I|f|-\inf_I|f|\leq\sup_If-\inf_If\).
+        \item \(\sup_If^2-\inf_If^2\leq 2\sup_I|f|(\sup_If-\inf_If)\).
+    \end{enumerate}
+    \label{lemma:supinf_property}
+\end{lemma}
+\begin{proof}
+    We will only prove (4)-(6).
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        \item We have \(f(x)\leq\sup_If\), \(g(x)\leq\sup_Ig\) for all \(x\in I\). Hence 
+        \[f(x)+g(x)\leq\sup_If+\sup_Ig\quad\forall x\in I\]
+        and 
+        \[\sup_I(f+g)\leq\sup_If+\sup_Ig\]
+        Proof is similar for \(\inf\).
+        \item \begin{itemize}
+            \item If \(f(x)\geq 0\) for all \(x\), then \(|f|=f\) and 
+            \[\sup_I|f|-\inf_I|f|=\sup_If-\inf_If\]
+            \item If \(f(x)\leq 0\) for all \(x\), then \(|f|=-f\) and 
+            \[\sup_I|f|-\inf_I|f|=\sup_I(-f)-\inf_I(-f)=-\inf_If+\sup_If\]
+            by (2).
+            \item If \(\inf_If<0<\sup_If\), then 
+            \begin{align*}
+                \sup_I|f|-\inf_I|f|&=\sup_I|f|=\max\{\sup_If,\sup_I(-f)\} \\
+                &\leq\sup_If+\sup_I(-f) \\
+                &=\sup_If-\inf_If 
+            \end{align*}
+        \end{itemize}
+        \item From \[f(x)^2-f(y)^2=(f(x)+f(y))(f(x)-f(y))\leq 2\sup_I|f|(\sup_If-\inf_If)\]
+        we take supremum over \(x\) and \(y\) for the result.
+    \end{enumerate}
+\end{proof}
+\begin{corollary}
+    For any dissection \(\mathcal{D}\) of \([a,b]\), and bounded functions \(f,g:[a,b]\to\mathbb{R}\),
+    \begin{enumerate}
+        \item If \(f(x)\leq g(x)\) for all \(x\in[a,b]\), 
+        \[U(f,\mathcal{D})\leq U(g,\mathcal{D})\text{  and  }L(f,\mathcal{D})\leq L(g,\mathcal{D})\]
+        \item \(L(-f,\mathcal{D})=-U(f,\mathcal{D})\).
+        \item If \(\lambda>0\),
+        \[U(\lambda f,\mathcal{D})=\lambda U(f,\mathcal{D})\text{  and  }L(\lambda f,\mathcal{D})=\lambda L(f,\mathcal{D})\]
+        \item \[U(f+g,\mathcal{D})\leq U(f,\mathcal{D})+U(g,\mathcal{D})\]
+        \[L(f+g,\mathcal{D})\leq L(f,\mathcal{D})+L(g,\mathcal{D})\]
+        \item \(U(|f|,\mathcal{D})-L(|f|,\mathcal{D})\leq U(f,\mathcal{D})-L(f,\mathcal{D})\).
+        \item \(U(f^2,\mathcal{D})-L(f^2,\mathcal{D})\leq 2\sup_{[a,b]}|f|(U(f,\mathcal{D})-L(f,\mathcal{D}))\).
+    \end{enumerate}
+    \label{coro:uplowsum_property}
+\end{corollary}
+\begin{proof}
+    Recall the definition of upper/lower sum and results follow from Lemma \ref{lemma:supinf_property}. For (6) we additionally need that 
+    \[\sup_{[x_{j-1},x_j]}|f|\leq\sup_{[a,b]}|f|\]
+\end{proof}
+\begin{theorem}
+    Let \(f\), \(g\) be bounded and integrable on \([a,b]\). Then,
+    \begin{enumerate}
+        \item If \(f(x)\leq g(x)\) for all \(x\in[a,b]\),
+        \[\int_a^bf(x)dx\leq\int_a^bg(x)dx\]
+        \item If \(\lambda\in\mathbb{R}\), \(\lambda f\) is integrable, and 
+        \[\int_a^b\lambda f(x)dx=\lambda\int_a^bf(x)dx\]
+        \item \(f+g\) is integrable, and 
+        \[\int_a^b(f+g)(x)dx=\int_a^bf(x)dx+\int_a^bg(x)dx\]
+        \item \(|f|\) is integrable, and 
+        \[\left|\int_a^bf(x)dx\right|\leq\int_a^b|f(x)|dx\]
+        \item The product \(fg\) is integrable.
+    \end{enumerate}
+    \label{thm:integral_property}
+\end{theorem}
+\begin{proof} \item[]
+    \begin{enumerate}
+        \item For any dissection \(\mathcal{D}\), we have 
+        \[L(f,\mathcal{D})\leq L(g,\mathcal{D})\leq I_\asterisk(g)\]
+        Hence \(I_\asterisk(f)\leq I_\asterisk(g)\). But \(f\), \(g\) integrable, so 
+        \[\int_a^bf(x)dx\leq\int_a^bg(x)dx\]
+        \item First consider \(\lambda>0\). Since \(f\) is integrable, \(\forall\epsilon>0\), \(\exists\mathcal{D}\) such that 
+        \[U(f,\mathcal{D})\leq\int_a^bf(x)dx+\epsilon,\quad L(f,\mathcal{D})\geq\int_a^bf(x)dx-\epsilon\]
+        Then, by Corollary \ref{coro:uplowsum_property} (3), 
+        \begin{align*}
+            \lambda\int_a^bf(x)dx-\lambda\epsilon&\leq\lambda L(f,\mathcal{D})=L(\lambda f,\mathcal{D})\leq I_\asterisk(\lambda f) \\
+            &\leq I^\asterisk(\lambda f)\leq U(\lambda f,\mathcal{D})=\lambda U(f,\mathcal{D})\leq\lambda\int_a^b f(x)dx+\lambda\epsilon
+        \end{align*}
+        But \(\epsilon\) is arbitrary so
+        \[I_\asterisk(\lambda f)=I^\asterisk(\lambda f)=\lambda\int_a^bf(x)dx\]
+        
+        Now consider \(\lambda=-1\), \(\mathcal{D}\) as above. Then,
+        \[\int_a^bf(x)dx-\epsilon\leq L(f,\mathcal{D})=-U(-f,\mathcal{D})\]
+        and 
+        \[\int_a^bf(x)dx+\epsilon\geq U(f,\mathcal{D})=-L(-f,\mathcal{D})\]
+        Therefore 
+        \[-\int_a^bf(x)dx-\epsilon\leq L(-f,\mathcal{D})\leq I_\asterisk(-f)\leq I^\asterisk(-f)\leq U(-f,\mathcal{D})\leq-\int_a^bf(x)dx+\epsilon\]
+        and 
+        \[I_\asterisk(-f)=I^\asterisk(-f)=-\int_a^bf(x)dx\]
+        since \(\epsilon\) arbitrary. And we can combine the two results above to get desired for all \(\lambda\in\mathbb{R}\).
+        \item Since \(f,g\) integrable, \(\forall\epsilon>0\) there exist \(\mathcal{D}_1,\mathcal{D}_2\) such that
+        \[\int_a^bf(x)dx-\epsilon\leq L(f,\mathcal{D}_1)\leq U(f,\mathcal{D}_1)\leq\int_a^bf(x)dx+\epsilon\]
+        \[\int_a^bg(x)dx-\epsilon\leq L(g,\mathcal{D}_2)\leq U(g,\mathcal{D}_2)\leq\int_a^bg(x)dx+\epsilon\]
+        Now let \(\mathcal{D}=\mathcal{D}_1\cup\mathcal{D}_2\). Then, by Corollary \ref{coro:uplowsum_property} (4),
+        \begin{align*}
+            \int_a^bf(x)dx+\int_a^bg(x)dx-2\epsilon&\leq L(f,\mathcal{D}_1)+L(g,\mathcal{D}_2) \\
+            &\leq L(f,\mathcal{D})+L(g,\mathcal{D}) \\
+            &\leq L(f+g,\mathcal{D}) 
+        \end{align*}
+        Similarly,
+        \begin{align*}
+            \int_a^bf(x)dx+\int_a^bg(x)dx+2\epsilon&\geq U(f,\mathcal{D}_1)+U(g,\mathcal{D}_2) \\
+            &\geq U(f,\mathcal{D})+U(g,\mathcal{D}) \\
+            &\geq U(f+g,\mathcal{D}) 
+        \end{align*}
+        Combining two, we obtain 
+        \[\int_a^bf(x)dx+\int_a^bg(x)dx-2\epsilon\leq I_\asterisk(f+g)\leq I^\asterisk(f+g)\leq\int_a^bf(x)dx+\int_a^bg(x)dx+2\epsilon\]
+        Since \(\epsilon\) arbitrary, \(f+g\) is integrable and 
+        \[\int_a^bf(x)dx+\int_a^bg(x)dx=\int_a^b(f+g)(x)dx\]
+        \item By Theorem \ref{thm:cauchy_criterion_integral} and Corollary \ref{coro:uplowsum_property} (5), \(\forall\epsilon>0\) \(\exists\mathcal{D}\) such that 
+        \[\epsilon>U(f,\mathcal{D})-L(f,\mathcal{D})\geq U(|f|,\mathcal{D})-L(|f|,\mathcal{D})\]
+        We immediately see that \(|f|\) is integrable by Theorem \ref{thm:cauchy_criterion_integral}. Also, 
+        \[-|f(x)|\leq f(x)\leq|f(x)|\quad\forall x\]
+        so by (1),
+        \[-\int_a^b|f(x)|dx\leq\int_a^bf(x)dx\leq\int_a^b|f(x)|dx\]
+        \item Noting
+        \[fg=\frac 14\left[(f+g)^2-(f-g)^2\right]\tag{\(\dagger\)}\]
+        it is sufficient to show \(f^2\) is integrable. Suppose \(|f(x)|\leq K\) \(\forall x\in[a,b]\). Then given \(\epsilon>0\), there exists \(\mathcal{D}\) such that 
+        \[U(f,\mathcal{D})-L(f,\mathcal{D})<\frac{\epsilon}{2K}\]
+        By Corollary \ref{coro:uplowsum_property} (6),
+        \[U(f^2,\mathcal{D})-L(f^2,\mathcal{D})\leq 2\sup_{[a,b]}|f|(U(f,\mathcal{D})-L(f,\mathcal{D}))<\epsilon\]
+        Hence \(f^2\) is integrable, and consequently \(fg\) is integrable by (\(\dagger\)).
+    \end{enumerate}
+\end{proof}
+\begin{theorem}
+    (\emph{Additivity of the Integral}) Suppose \(f:[a,b]\to\mathbb{R}\) and let \(c\in(a,b)\). Then \(f\) is integrable if and only if \(\left. f\right|_{[a,c]}\) and \(\left. f\right|_{[c,b]}\) are integrable, and 
+    \[\int_a^bf(x)dx=\int_a^cf(x)dx+\int_c^bf(x)dx\]
+    \label{thm:integral_add}
+\end{theorem}
+\begin{proof}
+    First, suppose \(f:[a,b]\to\mathbb{R}\) is integrable. Let \(\epsilon>0\). By Theorem \ref{thm:cauchy_criterion_integral}, \(\exists\mathcal{D}\), a dissection of \([a,b]\), such that 
+    \[U(f,\mathcal{D})-L(f,\mathcal{D})<\epsilon\]
+    By considering \(\mathcal{D}\cup\{c\}\) if necessary, we can assume \(\mathcal{D}=\{x_0,\ldots,x_n\}\) and \(x_l=c\) for some \(l\). Let \(\mathcal{D}_L=\{x_0,\ldots,x_l\}\) and \(\mathcal{D}_R=\{x_l,\ldots,x_n\}\), which are dissections of \([a,c]\) and \([c,b]\) respectively. Then, from
+    \[L(f,\mathcal{D})=L(\left. f\right|_{[a,c]},\mathcal{D}_L)+L(\left. f\right|_{[c,b]},\mathcal{D}_R)\]
+    \[U(f,\mathcal{D})=U(\left. f\right|_{[a,c]},\mathcal{D}_L)+U(\left. f\right|_{[c,b]},\mathcal{D}_R)\]
+    we have 
+    \[\left[U(\left. f\right|_{[a,c]},\mathcal{D}_R)-L(\left. f\right|_{[a,c]},\mathcal{D}_R)\right]+\left[U(\left. f\right|_{[c,b]},\mathcal{D}_R)-L(\left. f\right|_{[c,b]},\mathcal{D}_R)\right]<\epsilon\]
+    Both terms in square brackets are non-negative, so 
+    \[U(\left. f\right|_{[a,c]},\mathcal{D}_R)-L(\left. f\right|_{[a,c]},\mathcal{D}_R)<\epsilon\]
+    and 
+    \[U(\left. f\right|_{[c,b]},\mathcal{D}_R)-L(\left. f\right|_{[c,b]},\mathcal{D}_R)<\epsilon\]
+    Therefore \(\left. f\right|_{[a,c]}\) and \(\left. f\right|_{[c,b]}\) are integrable.
+
+    Conversely, suppose \(\left. f\right|_{[a,c]}\) and \(\left. f\right|_{[c,b]}\) are integrable. Theorem \ref{thm:cauchy_criterion_integral} says that \(\exists\mathcal{D}_L,\mathcal{D}_R\) such that 
+    \[U(\left. f\right|_{[a,c]},\mathcal{D}_R)-L(\left. f\right|_{[a,c]},\mathcal{D}_R)<\epsilon\]
+    \[U(\left. f\right|_{[c,b]},\mathcal{D}_R)-L(\left. f\right|_{[c,b]},\mathcal{D}_R)<\epsilon\]
+    But if we let \(\mathcal{D}=\mathcal{D}_L\cup\mathcal{D}_R\), we have 
+    \[U(f,\mathcal{D})-L(f,\mathcal{D})<2\epsilon\]
+    Hence \(f\) is integrable.
+
+    Finally, we deduce that 
+    \[\int_a^bf(x)dx\geq L(f,\mathcal{D})=L(\left. f\right|_{[a,c]},\mathcal{D}_L)+L(\left. f\right|_{[c,b]},\mathcal{D}_R)\geq\int_a^cf(x)dx-\epsilon+\int_c^bf(x)dx-\epsilon\]
+    Similarly,
+    \[\int_a^bf(x)dx\leq U(f,\mathcal{D})=U(\left. f\right|_{[a,c]},\mathcal{D}_L)+U(\left. f\right|_{[c,b]},\mathcal{D}_R)\leq\int_a^cf(x)dx+\epsilon+\int_c^bf(x)dx+\epsilon\]
+    Therefore,
+    \[\left|\int_a^bf(x)dx-\int_a^cf(x)dx-\int_c^bf(x)dx\right|\leq 2\epsilon\]
+    for arbitrary \(\epsilon\), completing the proof.
+\end{proof}
+Finally, we introduce a convention that if \(a>b\), 
+\[\int_a^bf(x)dx=-\int_b^af(x)dx\]
+and if \(a=b\)
+\[\int_a^af=0\]
+With this convention, it follows that if \(|f|\leq K\), 
+\[\left|\int_a^bf(x)dx\right|\leq K|b-a|\]
+\subsection{Piecewise Continuous Functions}
+\begin{definition}
+    A bounded function \(f:[a,b]\to\mathbb{R}\) is \emph{piecewise continuous} if ther exists a dissection \(\mathcal{D}\) of \([a,b]\) such that for each \(i=1,2,\ldots,n\), if we define \(f_i:(x_{i-1},x_i)\to\mathbb{R}\), \(x\mapsto f(x)\), then \(f_i\) is continuous and has a limit as \(x\to x_{i-1}\) and \(x\to x_{i}\). I.e. the function \(\bar{f}_i:[x_{i-1},x_i]\to\mathbb{R}\) given by 
+    \[\bar{f}_i(x)=\begin{cases}
+        \lim_{x\to x_{i-1}}f_i(x) & x=x_{i-1} \\
+        f_i(x) & x\in(x_{i-1},x_i) \\
+        \lim_{x\to x_i} f_i(x) & x=x_{i+1}
+    \end{cases}\] 
+    is continuous (hence integrable).
+    \label{def:piecewise_cont}
+\end{definition}
+Consequently, from the observation obove, together with Theorem \ref{thm:integral_add}, piecewise continuous function is integrable. Furthermore,\footnote{Left as an exercise.} if \(f:[a,b]\to\mathbb{R}\) is integrable, and \(g:[a,b]\to\mathbb{R}\) is bounded, with \(g(x)=f(x)\) \(\forall x\in[a,b]\backslash\{y_1,\ldots,y_N\}\), then \(g\) is integrable and 
+\[\int_a^bf(x)dx=\int_a^bg(x)dx\]
+\subsection{The Fundamental Theorem of Calculus} 
+Suppose \(f:[a,b]\to\mathbb{R}\) is integrable (hence bounded). Let 
+\[F(x)=\int_a^xf(t)dt\]
+for \(x\in[a,b]\).
+\begin{theorem}
+    \(F\) is continuous.
+\end{theorem}
+\begin{proof}
+    Suppose \(|f|\leq K\) and assume \(x,x+h\in[a,b]\). Then 
+    \[F(x+h)-F(x)=\int_x^{x+h}f(t)dt\]
+    gives 
+    \[|F(x+h)-F(x)|=\left|\int_x^{x+h}f(t)dt\right|\leq K|h|\to 0\]
+    as \(h\to 0\). Therefore, \(\lim_{h\to 0}(F(x+h)-F(x))=0\Rightarrow\lim_{h\to 0}F(x+h)=F(x)\) and \(F\) is continuous.
+\end{proof}
+\begin{theorem}
+    (\emph{Fundamental Theorem of Calculus I}, FTC 1) If in addition \(f\) is continuous at \(x\), then \(F\) is differentiable at \(x\), and 
+    \[F^\prime(x)=f(x)\]
+    \label{thm:ftc1}
+\end{theorem}
+\begin{proof}
+    We need to estimate 
+    \[\left|\frac{F(x+h)-F(x)}{h}-f(x)\right|=\left|\frac 1h\int_x^{x+h}f(t)dt-f(x)\right|=\frac 1{|h|}\left|\int_x^{x+h}(f(t)-f(x))dt\right|\]
+    Now, given \(\epsilon>0\) \(\exists\delta>0\) such that 
+    \[|t-x|<\delta\Rightarrow|f(t)-f(x)|<\epsilon\]
+    since \(f\) is continuous. Suppose \(|h|<\delta\). Then \(|f(t)-f(x)|<\epsilon\) for all \(t\) between \(x\) and \(x+h\). Therefore, 
+    \[\left|\frac{F(x+h)-F(x)}{h}-f(x)\right|\leq\frac 1{|h|}\epsilon|h|=\epsilon\]
+    i.e.
+    \[\lim_{h\to 0}\frac{F(x+h)-F(x)}{h}=f(x)\]
+\end{proof}
+Note that for Theorem \ref{thm:ftc1} to hold, the condition \(f\) is continuous is necessary. For instance, consider 
+\[f(x)=\begin{cases}
+    -1 & x\in[-1,0] \\
+    1 & x\in (0,1]
+\end{cases}\]
+Although \(f\) is montone and thus integrable, 
+\[F(x)=\begin{cases}
+    -x-1 & x\leq 0 \\
+    x-1 & x\geq 0
+\end{cases}\]
+i.e. \(F(x)=-1+|x|\) is not differentiable at \(x=0\).
+\begin{corollary}
+    (\emph{Integration is Inverse of Differentiation}) If \(f=g^\prime\) is continuous on \([a,b]\), then 
+    \[F(x)=\int_a^xf(t)dt=g(x)-g(a)\]
+    \label{coro:intdiffrel}
+\end{corollary}
+\begin{proof}
+    \(F-g\) has zero derivative on \([a,b]\) by Theorem \ref{thm:ftc1}, and \(F(a)=0\). Hence \((F-g)(a)=-g(a)\). So by Corollary \ref{coro:inc}, 
+    \[(F-g)(x)=-g(a)\quad\forall x\]
+    and \(F(x)=g(x)-g(a)\).
+\end{proof}
+Note that all continuous functions have an \emph{indefinite integral}, or \emph{anti-derivative}:
+\[\int f(x)dx=\int_a^xf(t)dt\]
+where \(a\) arbitrary.
+
+\begin{theorem}
+    (\emph{Fundamental Theorem of Calculus II}, FTC 2)
+    Suppose that \(f:[a,b]\to\mathbb{R}\) is continuous on \([a,b]\), differentiable on \((a,b)\) and that \(f^\prime\) is integrable. Then
+    \[\int_a^bf^\prime(x)dx=f(b)-f(a)\]
+    \label{thm:ftc2}
+\end{theorem}
+N.b. Theorem \ref{thm:ftc2} is stronger than Corollary \ref{coro:intdiffrel} since it does not require \(f^\prime\) from Theorem \ref{thm:ftc2} to be continuous.
+\begin{proof}
+    Let \(\mathcal{D}\) be any dissection of \([a,b]\). Applying the mean value theorem (Theorem \ref{thm:mvt}) to \(f\) on \([x_{j-1},x_j]\), \(\exists\xi_j\in(x_{j-1},x_j)\) such that 
+    \[f^\prime(\xi_j)(x_j-x_{j-1})=f(x_j)-f(x_{j-1})\]
+    This gives
+    \[\sum_{j=1}^{n}f^\prime(\xi_j)(x_j-x_{j-1})=f(b)-f(a)\]
+    But 
+    \[\sum_{j=1}^{n}(x_j-x_{j-1})\inf_{[x_{j-1},x_j]}f^\prime\leq\sum_{j=1}^{n}(x_j-x_{j-1})f^\prime(\xi_j)\leq \sum_{j=1}^{n}(x_j-x_{j-1})\sup_{[x_{j-1},x_j]}f^\prime\]
+    So
+    \[L(f^\prime,\mathcal{D})\leq f(b)-f(a)\leq U(f^\prime,\mathcal{D})\Rightarrow I_\asterisk(f^\prime)\leq f(b)-f(a)\leq I^\asterisk(f^\prime)\]
+    But because \(f^\prime\) is integrable,
+    \[I_\asterisk(f^\prime)=I^\asterisk(f^\prime)=\int_a^bf^\prime(x)dx=f(b)-f(a)\]
+\end{proof}
+Following are the important corollarys of fundamental theorem of calculus.
+\begin{corollary}
+    (\emph{Integration by Parts}) Suppose \(f^\prime\) and \(g^\prime\) exist and are continuous on \([a,b]\). Then
+    \[\int_a^bf^\prime(x)g(x)dx=f(b)g(b)-f(a)g(a)-\int_a^bf(x)g^\prime(x)dx\]
+\end{corollary}
+\begin{proof}
+    By the product rule and Corollary \ref{coro:intdiffrel}, 
+    \begin{align*}
+        \int_a^bf^\prime(x)g(x)dx&=\int_a^b((fg)^\prime(x)-f(x)g^\prime(x))dx=\int_a^b(fg)^\prime(x)dx-\int_a^bf(x)g^\prime(x)dx \\
+        &=f(b)g(b)-f(a)g(a)-\int_a^bf(x)g^\prime(x)dx
+    \end{align*}
+\end{proof}
+\begin{corollary}
+    (\emph{Integration by Substitution}) Let \(g:[\alpha,\beta]\to[a,b]\) with \(g(\alpha)=a\), \(g(\beta)=b\) and suppose \(g^\prime\) exists and is continuous on \([\alpha,\beta]\). Let \(f:[a,b]\to\mathbb{R}\) be continuous. Then 
+    \[\int_a^bf(x)dx=\int_\alpha^\beta f(g(t))g^\prime(t)dt\]
+\end{corollary}
+\begin{proof}
+    Set \(F(x)=\int_a^xf(t)dt\) as before. Let \(h(t)=F(g(t))\) which is well defined for \(t\in[\alpha,\beta]\) as \(g\) takes value in \([a,b]\). Then,
+    \begin{align*}
+        \int_\alpha^\beta f(g(t))g^\prime(t)dt&=\int_\alpha^\beta F^\prime(g(t))g^\prime(t)dt \\
+        &=\int_\alpha^\beta h^\prime(t)dt \\
+        &=h(\beta)-h(\alpha) \\
+        &=F(g(\beta))-F(g(\alpha)) \\
+        &=F(b)-F(a)=\int_a^bf(t)dt
+    \end{align*}
+\end{proof}
+\begin{theorem}
+    (\emph{Taylor's Theorem with Integral Remainder})
+    Suppose \(f\) and its first \(n\) derivatives exist, and are continuous for \(x\in[0,h]\). Then,
+    \[f(h)=f(0)+hf^\prime(0)+\cdots+\frac{h^{n-1}f^{(n-1)}(0)}{(n-1)!}+R_n\]
+    where 
+    \[R_n=\frac{h^n}{(n-1)!}\int_0^1(1-t)^{n-1}f^{(n)}(th)dt\]
+    \label{thm:taylor_integral}
+\end{theorem}
+\begin{proof}
+    By Theorem \ref{thm:ftc2},
+    \begin{align*}
+        f(h)&=f(0)+\int_0^hf^\prime(u)du \\
+        &=f(0)-\left[(h-u)f^\prime(u)\right]_0^h+\int_0^h(h-u)f^\pprime(u)du \\
+        &=f(0)+hf^\prime(0)+\int_0^h\left(-\frac d{du}\frac{(h-u)^2}{2}\right)f^\pprime(u)du
+    \end{align*}
+    Keep integrating by parts to get 
+    \[f(h)=f(0)+hf^\prime(0)+\cdots+\frac{h^{n-1}f^{(n-1)}(0)}{(n-1)!}+\underbrace{\int_0^h\frac{(h-u)^{n-1}}{(n-1)!}f^{(n)}(u)du}_{R_n}\]
+    Substitution \(u=th\) gives the desired
+    \[R_n=\frac{h^n}{(n-1)!}\int_0^1(1-t)^{n-1}f^{(n)}(th)dt\] 
+\end{proof}
+\begin{remark}
+    Note we assume \(f^{(n)}\) is continuous but in previous versions of the Taylor's theorem we just assumed \(f^{(n)}\) exists. If we make this additional assumption, we can recover Cauchy and Lagrange form of remainder.
+\end{remark}
+\begin{theorem}
+    Suppose \(f,g:[a,b]\to\mathbb{R}\) are continuous and \(g(x)\neq 0\) for all \(x\in(a,b)\). Then \(\exists c\in(a,b)\) such that 
+    \[\int_a^bf(x)g(x)dx=f(c)\int_a^bg(x)dx\]
+    \label{thm:mvt_integral}
+\end{theorem}
+N.b. if \(g(x)=1\), we get \(\int_a^bf(x)dx=f(c)(b-a)\).
+\begin{proof}
+    Apply Cauchy's mean value theorem (Theorem \ref{thm:mvt_cauchy}) to
+    \[F(x)=\int_a^x(fg)(x)dx\text{  and  }G(x)=\int_a^xg(x)dx\]
+    to deduce that there exists \(c\in(a,b)\) such that 
+    \[(F(b)-F(a))G^\prime(c)=F^\prime(c)(G(b)-G(a))\Rightarrow\left(\int_a^b(fg)(x)dx\right)g(c)=f(c)g(c)\int_a^bg(x)dx\]
+    \(g(c)\neq 0\) so we can cancel out \(g(c)\) to obtain the desired result.
+\end{proof}
+Now consider 
+\[R_n=\frac{h^n}{(n-1)!}\int_0^1(1-t)^{n-1}f^{(n)}(th)dt\] 
+To obtain the Cauchy remainder, apply Theorem \ref{thm:mvt_integral} with \(\tilde{g}=1\) and \(\tilde{f}(t)=(1-t)^{n-1}f^{(n)}(th)\) to get \(\exists\theta\in(0,1)\) such that 
+\[\int_0^1\tilde{f}(t)dt=\tilde{f}(\theta)\Rightarrow R_n=\frac{h^n}{(n-1)!}(1-\theta)^{n-1}f^{(n)}(\theta h)\]
+Alternatively, split integrands as 
+\[\underbrace{\left((1-t)^{n-1}\right)}_{\tilde{g}}\underbrace{\left(f^{(n)}(th)\right)}_{\tilde{f}}\] to find
+\[\int_0^1(1-t)^{n-1}f^{(n)}(th)dt=f^{(n)}(\theta h)\int_0^1(1-t)^{n-1}dt\]
+for some \(\theta\in(0,1)\), by theorem \ref{thm:mvt_integral}. But \(\int_0^1(1-t)^{n-1}dt=1/n\), so we obtain the Lagrange remainder
+\[R_n=\frac{h^n}{n!}f^{(n)}(\theta h)\]
+
+Finally, we will point out that it is necessary to include the assumption that \(f^\prime\) is integrable in the hypotheses of Theorem \ref{thm:ftc2}. For example, consider \(f:[-1,1]\to\mathbb{R}\), given by 
+\[f(x)=\begin{cases}
+    |x|^{3/2}\sin\frac 1x & x\neq 0 \\
+    0 & x=0
+\end{cases}\]
+satisfies that \(f\) is continuous on \([-1,1]\), differentiable on \((-1,1)\), but \(f^\prime\) is unbounded hence not integrable.
+\subsection{Improper Integrals}
+The theory of integration we have developed so far applies to bounded functions defined on bounded intervals. For a full treatment for functions whose domain or image is unbounded, we have to wait for the Lebesgue integral.\footnote{See Probability and Measure, Part II.} Note that content of this subsection, Riemann integral, is a partial resolution.
+\subsubsection{Integrals on an infinite domain}
+Suppose \(f:[a,\infty)\to\mathbb{R}\) is integrable on each interval \([a,R]\) (\(R>a\)) and 
+\[\int_a^Rf(x)dx\to l\]
+as \(R\to\infty\). Then we say 
+\(\int_a^\infty f(x)dx\)
+exists, or converges, and 
+\[\int_a^\infty f(x)dx=l\] 
+Otherwise, if \(\int_a^Rf(x)dx\) has no limit, we say \(\int_a^\infty f(x)dx\) \emph{diverges}. A similar definition applies to \(\int_{-\infty}^{a}f(x)dx\) for \(f:(-\infty,a]\to\mathbb{R}\). 
+
+Furthermore, if \(\int_{-\infty}^a f(x)dx=l_1\) and \(\int_a^\infty f(x)dx=l_2\) we say \(\int_{-\infty}^\infty f(x)dx\) exists, and 
+\[\int_{-\infty}^\infty f(x)dx=\int_{-\infty}^a f(x)dx+\int_a^\infty f(x)dx\]
+independent of \(a\).\footnote{This needs check.} Be careful that this is not the same as 
+\[\int_{-R}^Rf(x)dx\]
+converging. For instance, \(\int_{-R}^Rxdx=0\) but \(\int_0^\infty xdx\) does not converge.
+\subsubsection{Integrands with an isolated singularity}
+Suppose \(f:(b,c]\to\mathbb{R}\) is integrable on each \([b+\delta,c]\) for \(0<\delta<c-b\). Then if 
+\[\int_{b+\delta}^cf(x)dx\to l\]
+as \(\delta\to 0\), we say \(\int_b^cf(x)dx\) exists or converges and equals \(l\); and it is similarly defined for \(f:[a,b)\to\mathbb{R}\) integrable on \([a,b-\delta]\) (\(0<\delta<b-a\)).
+
+If \(f:[a,c]\backslash\{b\}\to\mathbb{R}\) and 
+\[\int_a^bf(x)dx,\quad\int_b^cf(x)dx\]
+exist, we say \(\int_a^cf(x)dx\) exists, and 
+\[\int_a^cf(x)dx=\int_a^bf(x)dx+\int_b^cf(x)dx\]
+\subsubsection{Properties and examples of improper integral}
+For example,
+\[\int_1^\infty\frac{dx}{x^k}\] converges if and only if \(k>1\), and 
+\[\int_0^1\frac{dx}{x^k}\] converges if and only if \(k<1\), since (\(k\neq 1\))
+\[\int_0^R\frac{dx}{x^k}=\left[\frac{x^{1-k}}{1-k}\right]_1^R=\frac{R^{1-k}-1}{1-k}\]
+\begin{itemize}
+    \item converges as \(R\to\infty\) if \(1-k<0\), not if \(1-k>0\);
+    \item converges as \(R\to 0\) if \(1-k>0\), not if \(1-k<0\);
+\end{itemize}
+and because if \(k=1\),
+\[\int_1^R\frac{dx}{x}=\left[\ln x\right]_1^R=\ln R\]
+does not converge as \(R\to\infty\) or \(R\to 0\).
+\begin{lemma}
+    Suppose \(f,g:[a,\infty)\to\mathbb{R}\) are integrable on each \([a,R]\), \(R>a\). If \(0\leq f(x)\leq g(x)\) for all \(x\geq a\), then 
+    \[\int_a^\infty g(x)dx\text{  converges }\Rightarrow\int_a^\infty f(x)dx\text{  converges }\]
+\end{lemma}
+\begin{proof}
+    Note that 
+    \[R\mapsto\int_a^Rf(x)dx\]
+    is increasing as \(f(x)\geq 0\), and 
+    \[\int_a^Rf(x)dx\leq\int_a^Rg(x)dx\leq\int_a^\infty g(x)dx\]
+    Hence \(R\mapsto\int_a^Rf(x)dx\) is increasing and bounded above. Let 
+    \[l=\sup_{R\geq a}\int_a^Rf(x)dx\]
+    and claim 
+    \[l=\lim_{R\to\infty}\int_a^Rf(x)dx\]
+    To see this, let \(\epsilon>0\). Then from definition of supremum, \(\exists R_0\) such that 
+    \[\int_a^{R_0}f(x)dx\geq l-\epsilon\]
+    So if \(R\geq R_0\),
+    \[l-\epsilon\leq\int_a^{R_0}f(x)dx\leq\int_a^Rf(x)dx\leq l\]
+\end{proof}
+\begin{example}
+    Consider 
+    \[\int_0^\infty e^{-x^2/2}dx\]
+    For \(x>1\), \(e^{-x^2/2}\leq e^{-x/2}\), and
+    \[\int_1^Re^{-x/2}dx=2(e^{-1/2}-e^{-R/2})\to 2e^{-1/2}\]
+    as \(R\to\infty\).
+    Hence \(\int_1^\infty e^{-x^2/2}dx\) converges, and therefore 
+\[\int_0^\infty e^{-x^2/2}dx\] converges because from
+\[\int_0^Re^{-x^2/2}dx=\int_0^1e^{-x^2/2}dx+\int_1^Re^{-x^2/2}dx\]
+left hand side converges as \(R\to\infty\) if and only if \(\int_1^Re^{-x^2/2}dx\) does.
+\end{example}
+However, be careful that, unlike the situation with series,
+\[\int_0^\infty f(x)dx\text{  converges }\nRightarrow f(x)\to 0\text{ as }x\to\infty\]
+\subsubsection{Integral test}
+\begin{theorem}
+    (\emph{Integral Test}) Suppose \(f:[1,\infty)\to\mathbb{R}\) is positive and decreasing. Then,
+    \begin{enumerate}
+        \item the integral \(\int_1^\infty f(x)dx\) converges if and only if the sum \(\sum_{n=1}^\infty f(n)\) converges.
+        \item as \(n\to\infty\),
+        \[\sum_{r=1}^{n}f(r)-\int_1^nf(x)dx\to l\]
+        for some \(l\) with \(0\leq l\leq f(1)\).
+    \end{enumerate}
+    \label{thm:integral_test}
+\end{theorem}
+Note that (2) of Theorem \ref{thm:integral_test} implies (1) of that. Also \(f\) decreasing from the hypotheses of that implies \(f\) integrable on \([1,R]\) (\(R>1\)) by Theorem \ref{thm:int_monotone}.
+\begin{proof} If \(n-1\leq x\leq n\),
+        \[f(n-1)\geq f(x)\geq f(n)\Rightarrow f(n-1)\geq\int_{n-1}^nf(x)dx\geq f(n)\]
+        Adding, we have 
+        \[\sum_{r=1}^{n-1}f(r)\geq\int_1^nf(x)dx\geq\sum_{r=2}^{n}f(r)\] From here, claim (1) is clear since \(\int_1^Rf(x)dx\) is monotonically increasing, as is \(\sum_{r=1}^nf(r)\).
+
+        Let 
+        \[\phi(n)=\sum_{r=1}^{n}f(r)-\int_1^nf(x)dx\]
+        Then,
+        \[\phi(n)-\phi(n-1)=f(n)-\int_{n-1}^nf(x)dx\leq 0\]
+        and 
+        \[\phi(n)=f(n)+\sum_{r=1}^{n-1}f(r)-\int_1^nf(x)dx\geq f(n)\geq 0\]
+        So \(\phi(n)\) is decreasing and bounded below. Hence, from monotone convergence theorem, \(\phi(n)\to l\) with \(0\leq l\leq\phi(1)=f(1)\).
+\end{proof}
+\begin{example} \item[]
+    \begin{enumerate}
+        \item \(\sum_{n=1}^\infty 1/n^k\) converges if \(k>1\). We saw \(\int_1^\infty(dx/x^k)\) converges if \(k>1\). So integral test gives result.
+        \item Consider 
+        \[\sum_{n=2}^{\infty}\frac{1}{n\ln n}\]
+        Let \(f(x)=1/x\ln x\) for \(x\geq 2\). Then,
+        \[\int_2^R\frac{dx}{x\ln x}=\left[\ln(\ln x)\right]_2^R=\ln(\ln R)-\ln(\ln 2)\to\infty\]
+        as \(R\to \infty\), and the corresponding sum diverges by integral test.
+    \end{enumerate}
+\end{example}
+\begin{corollary}
+    (\emph{Euler-Mascheroni Constant}) As \(n\to\infty\),
+    \[1+\frac 12+\frac 13+\cdots+\frac 1n-\ln n\to\gamma\]
+    with \(0\leq\gamma\leq 1\).\footnote{Question: is \(\gamma\) irrational?}
+\end{corollary}
+\begin{proof}
+    Set \(f(x)=1/x\) in Theorem \ref{thm:integral_test} (2).
+\end{proof}
+\subsection{Lebesgue's Criterion for Riemann Integrability}
+\begin{theorem}
+    (\emph{Lebesgue's Criterion}) If \(f:[a,b]\to\mathbb{R}\) is bounded, then \(f\) is Riemann integral if and only if 
+    \[\{x\:|\:f\text{  discontinuous at  }x\}\]
+    has \emph{measure zero}.
+    \label{thm:lebesgue_criterion}
+\end{theorem}
+\begin{definition}
+    For an interval \(I\), let \(|I|\) denote its length. A subset \(A\subset\mathbb{R}\) has \emph{measure zero} if \(\forall \epsilon>0\) there exists a countable collection of intervals \(I_j\) such that 
+    \[A\subset\bigcup_{j=1}^\infty I_j\text{  and  }\sum_{j=1}^{\infty}|I_j|<\epsilon\]
+    i.e. ``can cover \(A\) with countable numbers of infinitesimal intervals.''
+    \label{def:measure_zero}
+\end{definition}
+\begin{lemma} \item 
+    \begin{enumerate}
+        \item If \(B\) has measure zero and \(A\subset B\), then \(A\) has measure zero.
+        \item If \(A_k\) has measure zero for each \(k\in\mathbb{N}\), then \(\bigcup_{k\in\mathbb{N}}A_k\) has measure zero.
+    \end{enumerate}
+\end{lemma}
+\begin{proof} \item[]
+    \begin{enumerate}
+        \item Obvious from definition.
+        \item Fix \(\epsilon>0\). For each \(k\), pick \(I_j^k\) (\(j=1,2,\ldots\)) such that 
+        \[A_k\subset\bigcup_{j=1}^\infty I_j^k\text{  and  }\sum_{j=1}^{\infty}|I_j^k|<\epsilon 2^{-k}\]
+        Then consider \(\{I_j^h\}_{j,h=1}^\infty\). 
+    \end{enumerate}
+\end{proof}
+\textcolor{red}{\textbf{Will return}}.
+\newpage
+\section{Example Sheets}
+\subsection{Sheet 1}
 \end{document}

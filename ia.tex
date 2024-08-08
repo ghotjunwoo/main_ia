@@ -39,9 +39,269 @@ These are what I studied during the 2024 long vacation for transfer into part IB
 \noindent\hrulefill\hspace{0.2cm} \floweroneleft\floweroneright \hspace{0.2cm} \hrulefill
 \chapter{Numbers and Sets}
 \chapterauthor{Lecture given by 
-Professor Julia Wolf, Michaelmas Term 2023.
+Professor Julia Wolf, Michaelmas Term 2023.\footnote{Subsection about sequences and series are ommited since they are also thoroughly covered in the \textsc{Analysis I} course.}\footnote{Although I recommend listening lectures covering those parts to check if there are any distinctions.}
 }
-\section{Elementary Number Theory}
+\section{Sets, Functions, and Relations}
+As they contain concepts that we have not yet formally defined, one may want to revisit the examples on this section after studying them in detail later.
+\subsection{Sets}
+A \emph{set} is a collection of mathematical objects, e.g. 
+\[\mathbb{R},\mathbb{N},\{1,5,9\},(-2,3]\]
+The order of elements in the set is immaterial, and elements are counted only once. For instance, \(\{1,7,3\}=\{1,3,7\}\) and \(\{3,4,4,8\}=\{3,4,8\}\). We write \(x\in\mathbb{A}\) if \(x\) is an element of the set \(A\), and \(x\notin A\) if not. Two sets are equal if they have the same elements. That is, \(A=B\) if and only if for all \(x\),
+\[x\in A\Leftrightarrow x\in B\]
+In particular, there is only one empty set \(\emptyset\).
+
+A set \(B\) is a \emph{subset} of \(A\), written \(B\subseteq A\), if every element of \(B\) is an element of \(A\). \(B\) is said to be a \emph{proper subset} of \(A\) if \(B\subseteq A\) and \(B\neq A\), and we write \(B\subset A\).\footnote{Some authors may write both \(\subset\) and \(\subseteq\) for subset, and only \(\subsetneq\) for proper subset.} Note that if \(A=B\), then
+\[A\subseteq B\text{ and  }B\subseteq A\]
+
+If \(A\) is a set and \(P\) is a property of (some) elements of \(A\), we can write
+\[\{x\in A\::\:P(x)\}\]
+or 
+\[\{x\in A\:|\:P(x)\}\]
+for the subset of \(A\) comprising those elements for which \(P(x)\) holds. If \(A\) and \(B\) are sets, then their \emph{union}, \(A\cup B\), is 
+\[A\cup B=\{x:x\in A\text{  or  }x\in B\}\]
+Their \emph{intersection}, \(A\cap B\), is defined to be 
+\[A\cap B=\{x\::\:x\in A\text{  and  }x\in B\}\]
+and we say \(A\) and \(B\) are disjoint if \(A\cap B=\emptyset\). Note that we can view intersection as a special case of subset selection:
+\[A\cap B=\{x\in A\::\:x\in B\}\]
+Similarly, have \emph{set differences}
+\[A\backslash B=\{x\in A\::\:x\notin B\}\]
+Note that \(\cup\) and \(\cap\) are \emph{commutative} and \emph{associative}, i.e. 
+\[A\cup B=B\cup A,\quad A\cap B=B\cap A\]
+and 
+\[A\cup(B\cup C)=(A\cup B)\cup C,\quad A\cap(B\cap C)=(A\cap B)\cap C\]
+Also, \(\cup\) is \emph{distributive} over \(\cap\), i.e. 
+\[A\cup(B\cap C)=(A\cup B)\cap(A\cup C)\]
+and \(\cap\) is distributive over \(\cup\) too, i.e.
+\[A\cap(B\cup C)=(A\cap B)\cup(A\cap C)\]
+Let's prove the last statement. If \(x\in A\cap(B\cup C)\), then \(x\in A\) and \(x\in B\cup C\), so \(x\in A\) and (\(x\in B\) or \(x\in C\)). If \(x\in B\), then \(x\in A\cap B\), and if \(x\in C\), then \(x\in A\cap C\). In any case, \(x\in (A\cap B)\cup(A\cap C)\). Conversely, if \(x\in (A\cap B)\cup(A\cap C)\), then \(x\in A\cap B\) or \(x\in A\cap C\). Either cases, \(x\in A\) and \(x\in B\cup C\). Hence \(x\in A\cap(B\cup C)\). This implies that 
+\[A\cap(B\cup C)=(A\cap B)\cup(A\cap C)\]
+
+Given an index set \(I\) and a collection of sets \(A_i\) indexed by \(i\in I\), we write 
+\[\bigcap_{i\in I}A_i=\{x\::\:x\in A_i\quad\forall i\in I\}\]
+and 
+\[\bigcup_{i\in I}A_i=\{x\::\:x\in A_i\text{ for some  }i\in I\}\]
+
+Given sets \(A\) and \(B\), we can form their \emph{cartesian product}
+\[A\times B=\{(a,b)\::\:a\in A\text{  and  }b\in B\}\]
+which is the set of \emph{ordered pairs} \((a,b)\) with \(a\in A\), \(b\in B\). N.b. we can define \((a,b)=\{\{a,b\},a\}\); and also we can extend the definition to ordered triples \((a,b,c)\) and so on.
+
+For any set \(X\), we can form the \emph{power set} \(\mathcal{P}(X)\) consisting of all subsets of \(X\), i.e. 
+\[\mathcal{P}(X)=\{Y\::\:Y\subseteq X\}\]
+For example, if \(X=\{1,2\}\), \(\mathcal{P}(X)=\{\emptyset,\{1\},\{2\},\{1,2\}\}\).
+
+Finally, observe that we cannot form a set such that 
+\[\{x\::\:P(x)\}\]
+for some property \(P\). Suppose
+\[X=\{x\::\:\text{\(x\) is a set and \(x\notin x\)}\}\]
+were a set. Then \(X\in X\) implies \(X\notin X\), which is a contradiction. On the other hand, \(X\notin X\) implies \(X\in X\). This is known as \emph{Russell's paradox}. Similarly, there is no `universal' set \(Y\), meaning a set \(Y\) such that \(\forall x\), \(x\in Y\). Otherewise, we could form \(X\) above by subset selection:
+\[X=\{x\in Y\::\:x\notin x\}\]
+\subsection{Functions}
+Given sets \(A\) and \(B\), a function \(f\) from \(A\) to \(B\) is a \emph{rule} that assigns to every \(x\in A\) a unique element \(f(x)\in B\). More formally, a \emph{function} from \(A\) to \(B\) is a subset
+\[f\subseteq A\times B\]
+such that for all \(x\in A\), there is a unique \(y\in B\) such that \((x,y)\in f\). If \(f\) is a function from \(A\) to \(B\), we write 
+\[f:A\to B\]
+If \((x,y)\in f\), we can write 
+\[f(x)=y\]
+or 
+\[x\mapsto y\]
+
+We say \(f:A\to B\) is \emph{injective} if \(\forall a,a^\prime\in A\), \[a\neq a^\prime\Rightarrow f(a)\neq f(a^\prime)\]
+Equivalently, \(f\) is injective if \(f(a)=f(a^\prime)\Rightarrow a=a^\prime\). We say \(f\) is \emph{surjective} if \(\forall b\in B\), \(\exists a\in A\) such that \(f(a)=b\). If \(f\) is both injective and surjective, we say \(f\) is \emph{bijective}.
+
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item \(f:\mathbb{R}\to\mathbb{R}\), \(x\mapsto x^2\) is a function.
+        \item \(f:\mathbb{R}\to\mathbb{R}\), \(x\mapsto 1/x\) is not a function.
+        \item \(f:\mathbb{R}\to\mathbb{R}\), \(x\mapsto\pm\sqrt{|x|}\) is not a function.
+        \item \(f:\mathbb{R}\to\mathbb{R}\), 
+        \[x\mapsto\begin{cases}
+            1 & x\in\mathbb{Q} \\
+            0 & x\notin\mathbb{Q}
+        \end{cases}\]
+        is a function.
+        \item \(f:A\to B\) given by following
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \foreach[count=\i] \lseti/\lsetmi in {A/{1,2,3,4,5},B/{1,2,3,4}} {
+                    \begin{scope}[local bounding box=\lseti, x=2cm, y=0.5cm]
+                    \foreach[count=\j] \lj in \lsetmi {
+                        \node[minimum width=1em,anchor=base,text height=1.4ex,text
+                        depth=0.25ex] (n-\j-\lseti) 
+                        at (\i,-\j) {\lj};
+                    }
+                    \end{scope}
+                    \node[ellipse, draw, fit=(\lseti), 
+                    label={[name=l-\lseti]above:$\lseti$}] {};
+                }
+                \draw[->] (n-1-A) -- (n-1-B);
+                \draw[->] (n-2-A) -- (n-3-B);
+                \draw[->] (n-3-A) -- (n-1-B);
+                \draw[->] (n-4-A) -- (n-3-B);
+                \draw[->] (n-5-A) -- (n-4-B);
+
+                \draw[->] (l-A) -- node[above]{$f$}(l-B);
+            \end{tikzpicture}
+        \end{figure}
+        is a function, but it is neither injective nor surjective.
+        \item \(f:A\to B\) given by following
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \foreach[count=\i] \lseti/\lsetmi in {A/{1,2,3},B/{1,2,3}} {
+                    \begin{scope}[local bounding box=\lseti, x=2cm, y=0.5cm]
+                    \foreach[count=\j] \lj in \lsetmi {
+                        \node[minimum width=1em,anchor=base,text height=1.4ex,text
+                        depth=0.25ex] (n-\j-\lseti) 
+                        at (\i,-\j) {\lj};
+                    }
+                    \end{scope}
+                    \node[ellipse, draw, fit=(\lseti), 
+                    label={[name=l-\lseti]above:$\lseti$}] {};
+                }
+                \draw[->] (n-1-A) -- (n-1-B);
+                \draw[->] (n-2-A) -- (n-3-B);
+                \draw[->] (n-3-A) -- (n-2-B);
+
+                \draw[->] (l-A) -- node[above]{$f$}(l-B);
+            \end{tikzpicture}
+        \end{figure}
+        is a bijection.
+        \item \(f:A\to B\) given by following
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \foreach[count=\i] \lseti/\lsetmi in {A/{1,2,3},B/{1,2,3,4}} {
+                    \begin{scope}[local bounding box=\lseti, x=2cm, y=0.5cm]
+                    \foreach[count=\j] \lj in \lsetmi {
+                        \node[minimum width=1em,anchor=base,text height=1.4ex,text
+                        depth=0.25ex] (n-\j-\lseti) 
+                        at (\i,-\j) {\lj};
+                    }
+                    \end{scope}
+                    \node[ellipse, draw, fit=(\lseti), 
+                    label={[name=l-\lseti]above:$\lseti$}] {};
+                }
+                \draw[->] (n-1-A) -- (n-1-B);
+                \draw[->] (n-2-A) -- (n-4-B);
+                \draw[->] (n-3-A) -- (n-2-B);
+
+                \draw[->] (l-A) -- node[above]{$f$}(l-B);
+            \end{tikzpicture}
+        \end{figure}
+        is a injection, but not surjective.
+        \item \(f:A\to B\) given by following
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \foreach[count=\i] \lseti/\lsetmi in {A/{1,2,3,4},B/{1,2,3}} {
+                    \begin{scope}[local bounding box=\lseti, x=2cm, y=0.5cm]
+                    \foreach[count=\j] \lj in \lsetmi {
+                        \node[minimum width=1em,anchor=base,text height=1.4ex,text
+                        depth=0.25ex] (n-\j-\lseti) 
+                        at (\i,-\j) {\lj};
+                    }
+                    \end{scope}
+                    \node[ellipse, draw, fit=(\lseti), 
+                    label={[name=l-\lseti]above:$\lseti$}] {};
+                }
+                \draw[->] (n-1-A) -- (n-3-B);
+                \draw[->] (n-2-A) -- (n-3-B);
+                \draw[->] (n-3-A) -- (n-1-B);
+                \draw[->] (n-4-A) -- (n-2-B);
+
+                \draw[->] (l-A) -- node[above]{$f$}(l-B);
+            \end{tikzpicture}
+        \end{figure}
+        is a surjection, but not injective.
+    \end{enumerate}
+\end{example}
+
+Given \(f:A\to B\), we say \(A\) is the \emph{domain} of \(f\) and \(B\) is its \emph{codomain} (or \emph{range}). The \emph{image} of \(f\) is the set 
+\[\text{im}(f)=f(A)=\{f(a)\::\:a\in A\}=\{b\in B\::\:f(a)=b\text{  for some  }a\in A\}\]
+For example, image of a function \(f:\mathbb{R}\to\mathbb{R}\), \(x\mapsto x^2\) is 
+\[\text{im}(f)=\{y\in\mathbb{R}\::\:y\geq 0\}\]
+Note that we must specify the domain and codomain of a function when specifying it. Observe that \(f\) is surjective if and only if \(f(A)=B\). In particular, if \(|B|>|A|\), then there can be no surjective function from \(A\) to \(B\). Also, there is no injection from \(A\) to \(B\) if \(|A|>|B|\).
+
+For finite sets, if \(f:A\to A\), then \(\text{\(f\) is injective}\Leftrightarrow\text{\(f\) is surjective}\); and there is no bijection from \(A\) to any subset of \(A\). N.b. they might not hold for infinite sets, e.g. \(f:\mathbb{N}\to\mathbb{N}\), \(x\mapsto x+1\) is injective but not surjective, \(g:\mathbb{N}\to\mathbb{N}\) 
+\[x\mapsto\begin{cases}
+    x-1 & x\neq 1 \\
+    1 & x=1
+\end{cases}\]
+is surjective but not injective, and \(h:\mathbb{N}\to\mathbb{N}\backslash\{1\}\), \(x\mapsto x+1\) is a bijection from \(\mathbb{N}\) to a proper subset.
+\begin{example} \item[]
+    \begin{enumerate}
+        \item For any set \(X\), we say \(\text{id}_X:X\to X\), \(x\mapsto x\) is the \emph{identity function} on \(X\).
+        \item Given a set \(X\) and \(A\subseteq X\), we have the \emph{indicator function} or \emph{characteristic function} of \(A\), \(1_A:X\to\{0,1\}\),
+        \[x\mapsto\begin{cases}
+            1 & \text{if }x\in A \\
+            0 & \text{if }x\notin A
+        \end{cases}\]
+        \item A sequence of reals \(x_1,x_2,\ldots\) is a function \(\mathbb{N}\to\mathbb{R}\), \(n\mapsto x_n\).
+        \item The operation \(+\) on \(\mathbb{N}\) is a function \(\mathbb{N}\times\mathbb{N}\to\mathbb{N}\), \((a,b)\mapsto a+b\).
+        \item A set \(X\) has size \(n\) if and only if there is a bijection
+        \[ \{1,2,\ldots,n\}\to X=\{a_1,a_2,\ldots,a_n\},\quad i\mapsto a_i\]
+    \end{enumerate}
+\end{example}
+
+Given \(f:A\to B\) and \(g:B\to C\), the \emph{composition}
+\[g\circ f:A\to C\]
+is defined by 
+\[a\mapsto g(f(a))\]
+In general, \(\circ\) is not commutative. However, \(\circ\) is associative, i.e. given \(f:A\to B\), \(g:B\to C\), \(h:C\to D\), we have 
+\[h\circ(g\circ f)=(h\circ g)\circ f\]
+Indeed, for every \(x\in A\),
+\[(h\circ(g\circ f))(x)=h((g\circ f)(x))=h(g(f(x)))\]
+and 
+\[((h\circ g)\circ f)(x)=h\circ g(f(x))=h(g(f(x)))\]
+We may therefore drop the brackets and write \(h\circ g\circ f\) without ambiguity. We say \(f:A\to B\) is \emph{invertible} if there exists \(g:B\to A\) such that \(g\circ f=\text{id}_A\) and \(f\circ g=\text{id}_B\), and we write \(g=f^{-1}\). 
+\begin{proposition}
+    \(f\) is invertible if and only if it is bijective.
+\end{proposition}
+\begin{proof}
+    Given \(f:A\to B\), suppose there is a map \(g:B\to A\) such that \(g\circ f=\text{id}_A\). Then for \(a,a^\prime\in A\) such that \(f(a)=f(a^\prime)\), \(g(f(a))=g(f(a^\prime))\) so \(a=a^\prime\). Thus \(f\) must be injective. Conversely, if \(f\) is injective, we can find \(g\) such that \(g\circ f=\text{id}_A\) if \(b\in f(A)\). If \(b\in f(A)\), We let \(g(b)=a\) where \(a\) is the unique element of \(A\) with \(f(a)=b\); otherwise, we may choose \(g(b)\) freely.
+
+    Meanwhile, for a map \(g:B\to A\) such that \(f\circ g=\text{id}_B\) to exist, we need \(f(g(B))=B\), hence \(f\) must be surjective. Conversely, if \(f\) is surjective, we can find \(g:B\to A\) with \(f\circ g=\text{id}_B\): for each \(b\in B\), pick some \(a\in A\) with \(f(a)=b\) and put \(g(b)=a\).
+\end{proof}
+N.b. given \(f:A\to B\) and \(U\subseteq B\), we might use notation 
+\[f^{-1}(U)=\{a\in A\::\:f(a)\in U\}\]
+to denote the \emph{preimage} of \(U\), even when \(f\) does not have an inverse.
+\subsection{Relations}
+A \emph{relation} on a set \(X\) is a subset 
+\[R\subseteq X\times X\]
+and we write 
+\[aRb\]
+for \((a,b)\in R\) to denote that \(a\) is related to \(b\). For example, ``\(aRb\) if \(a|b\)'' is a relation on \(\mathbb{N}\). There are three properties a relation might have are of special interest:
+\begin{itemize}
+    \item \(R\) is \emph{reflective} if \(\forall x\in X\), \(xRx\).
+    \item \(R\) is \emph{symmetric} if \(\forall x,y\in X\), \(xRy\Rightarrow yRx\).
+    \item \(R\) is \emph{transitive} if \(\forall x,y,z\in X\), \(xRy\text{  and  }yRz\Rightarrow xRz\).
+\end{itemize}
+A relation \(R\) is an \emph{equivalence relation} if it is reflective, symmetric, and transitive; and we can write \(a\sim b\) for \(aRb\) if \(R\) is an equivalence relation. For example, ``\(a\sim b\) if \(a\equiv b\mod 5\)'' is a equivalence relation on \(\mathbb{Z}\). This equivalence relation partitions \(\mathbb{Z}\) into pieces consisting of related elements,\footnote{Elements in each set are related.} namely
+\[\{x\in\mathbb{Z}\::\:x\equiv 0\mod 5\},\{x\in\mathbb{Z}\::\:x\equiv 1\mod 5\},\ldots,\{x\in\mathbb{Z}\::\:x\equiv 4\mod 5\}\] 
+Given a set \(X\), a \emph{partition} of \(X\) is a collection of pairwise disjoint subsets, i.e. \emph{parts}, whose union is \(X\). If \(\sim\) is an equivalent relation on \(\mathbb{X}\), then the \emph{equivalence class} of \(x\in X\) is denoted by 
+\[[x]=\{y\in X\::\:y\sim x\}\]
+E.g. for the equivalence relation above,
+\[[12]=\{y:y\equiv 2\mod 5\}\]
+\begin{theorem}
+    Let \(\sim\) be any equivalence relation on \(X\). Then the equivalence classes form a partition of \(X\).
+\end{theorem}
+\begin{proof}
+    Since \(\sim\) is reflective, we have \(x\in[x]\) for all \(x\in X\). Thus 
+    \[\bigcup_{x\in X}[x]=X\]
+    It remains to show that \(\forall x,y\in X\), either \([x]\cap[y]=\emptyset\), or \([x]=[y]\). Suppose \([x]\cap[y]\neq\emptyset\), and let \(z\in[x]\cap[y]\). Then \(z\sim x\), so by symmetry, \(x\sim z\). This with \(z\sim y\), we have \(x\sim y\) by transitivity. Let now \(w\in[y]\), so \(y\sim w\). Since \(x\sim y\), by transtivity, \(x\sim w\). Thus, \(w\in [x]\). Hence if \([x]\cap[y]\neq\emptyset\), then \([y]\subseteq[x]\). Similarly, \([x]\subseteq[y]\). \newline So \([x]=[y]\).
+\end{proof}
+Conversely, given any partition of \(X\), there is an equivalence relation \(R\) whose equivalence classes are precisely the parts of the partition: just define \(aRb\) if \(a\) and \(b\) lie in the same part. 
+
+Given an equivalence relation \(R\) on a set \(X\), the \emph{quotient of \(X\) by \(R\)} is 
+\[X/R=\{[x]:x\in X\}\]
+The map \(q:X\to X/R\), \(x\mapsto [x]\) is the \emph{quotient map} or \emph{projection map}.
+\begin{example}
+    On \(\mathbb{Z}\times\mathbb{N}\), define \((a,b)R(c,d)\) if \(ad=bc\), where it turns out that \(R\) is an equivalence relation. E.g. one of the equivalence classes will be 
+    \[[(1,2)]=\{(1,2),(2,4),(3,6),\ldots\}\]
+    Observe that we may regard \((\mathbb{Z}\times\mathbb{N})/R\) as a copy of \(\mathbb{Q}\), by identifying \([(a,b)]\) with \(a/b\in\mathbb{Q}\). The quotient map is \(q:\mathbb{Z}\times\mathbb{N}\to(\mathbb{Z}\times\mathbb{N})/R\), \((a,b)\mapsto a/b\).
+\end{example}
+\section{Numbers and Counting}
 \subsection{Natural Number}
 Intuitively speaking, the natural numbers consists of
 \[1,1+1,1+1+1,\ldots\]
@@ -87,6 +347,7 @@ Clearly, \(\text{SPI}\Rightarrow\text{WPI}\). To see that \(\text{WPI}\Rightarro
 \[Q(n)=\text{``\(P(m)\) holds \(\forall m\leq n\)''}\]
 \begin{theorem}
     (\emph{Well-Ordering Principle} (WOP)) If \(P(n)\) holds for some \(n\in\mathbb{N}\), then there is a least \(n\in\mathbb{N}\) such that \(P(n)\) holds. ``\emph{Every non-empty subset of \(\mathbb{N}\) has a minimal element}.''
+    \label{thm:wop}
 \end{theorem}
 \begin{theorem}
     SPI is equivalent to WOP.
@@ -125,6 +386,88 @@ where \(b,d>0\) if \(ad<bc\). All the previous rules apply to rational numbers, 
 \end{enumerate}
 Finally, note that
 \[\mathbb{N}\subseteq\mathbb{Z}\subseteq\mathbb{Q}\]
+\subsection{Finite and Infinite Sets}
+\subsubsection{Binomial coefficients}
+We write 
+\[\mathbb{N}_0=\mathbb{N}\cup\{0\}=\{0,1,2,3,\ldots\}\]
+to include \(0\) in the natural number set. Given \(n\in\mathbb{N}_0\), we say a set \(A\) has \emph{size} \(n\) if we can write 
+\[A=\{a_1,a_2,\ldots,a_n\}\] 
+with the elements \(a_i\) distinct.
+For example, \(\{1,3,7\}\) has size \(3\), \(\emptyset\) has size \(0\). We say \(A\) is \emph{finite} if \(\exists n\in\mathbb{N}_0\) such that \(A\) has size \(n\), and \(A\) is \emph{infinite} otherwise.
+\begin{proposition}
+    A set of size \(n\) has exactly \(2^n\) subsets.
+    \label{prop:subset_size}
+\end{proposition}
+\begin{proof}
+    (\emph{Method 1}) We may assume that our set is \(\{1,2,\ldots,n\}\). To specify a subset \(S\) of \(\{1,2,\ldots,n\}\), we must specify if \(1\in S\) or \(1\notin S\), then \(2\in S\) or \(2\notin S\), and so on. Hence the number of choices for \(S\) is 
+    \[2\cdot 2\cdot 2\cdots 2=2^n\]
+\end{proof}
+\begin{proof}
+    (\emph{Method 2}) We prove by induction on \(n\). Clearly true for \(n=0\). Given \(n>0\), and \(T\subseteq\{1,2,\ldots,n-1\}\), how many \(S\subseteq\{1,2,\ldots,n\}\) are there such that 
+    \[S\cap\{1,2,\ldots,n-1\}=T\]
+    There are exactly 2, namely \(T\) and \(T\cup\{n\}\). Hence the number of subsets of \(\{1,2,\ldots,n\}\) is \(2(2^{n-1})=2^n\) by the induction hypothesis.
+\end{proof}
+If a set \(A\) has size \(n\), we write 
+\[|A|=n\]
+or \(\# A=n\). So Proposition \ref{prop:subset_size} states that
+\[|A|=n\Rightarrow|\mathcal{P}(A)|=2^n\]
+
+Given \(n\in\mathbb{N}_0\) and \(0\leq k\leq n\), we write \(\binom nk\) for the number of subsets of an \(n\)-element set that are of size \(k\). That is,
+\[\binom nk=|\{S\subseteq\{1,2,\ldots,n\}\::\:|S|=k\}|\]
+\(\binom nk\) is called a \emph{binomial coefficient}. For example, the subsets of size 2 of \(\{1,2,3,4\}\) are precisely \(\{1,2\},\{1,3\},\{1,4\},\{2,3\},\{2,4\},\{3,4\}\) so \(\binom 42=6\). Note that by definition \(\binom n0=\binom nn=1\), \(\binom n1=n\) (for \(n>0\)), and 
+\[\binom n0+\binom n1+\binom n2+\cdots+\binom n{n-1}+\binom nn=2^n\]
+Also, we have 
+\[\binom nk=\binom n{n-k}\]
+for all \(n\in\mathbb{N}_0\), \(0\leq k\leq n\).
+Moreover,
+\[\binom nk=\binom{n-1}{k-1}\binom {n-1}k\]
+for all \(n\in\mathbb{N}\), \(1\leq k\leq n-1\). N.b. we can use this property to obtain the \emph{Pascal's triangle}.
+\begin{proposition}
+    We have 
+    \[\binom nk=\frac{n(n-1)\cdots(n-k+1)}{k(k-1)\cdots 1}=\frac{n!}{(n-k)!k!}\]
+\end{proposition}
+\begin{proof}
+    Given a set of size \(n\), there are \(n(n-1)\cdots(n-k+1)\) ways to pick \(k\) elements, in order, one by one. But each subset of size \(k\) is picked in \(k(k-1)\cdots 1\) ways by this method. Hence the number of subsets of size \(k\) in \(\{1,2,\ldots,n\}\) is 
+    \[\frac{n(n-1)\cdots(n-k+1)}{k(k-1)\cdots 1}\]
+\end{proof}
+Note that the formula tells us, for example, that 
+\[\binom n2=\frac{n(n-1)}{2}\sim\frac{n^2}2\]
+and 
+\[\binom n3=\frac{n(n-1)(n-2)}{3!}\sim\frac{n^3}{6}\]
+for large \(n\).
+\begin{theorem} (\emph{Binomial Theorem})
+    For all \(a,b\in\mathbb{R}\), \(n\in\mathbb{N}\),
+    \[(a+b)^n=\binom n0a^n+\binom n1a^{n-1}b+\binom n2a^{n-2}b^2+\cdots+\binom n{n-1}ab^{n-1}+\binom nnb^n\]
+\end{theorem}
+\begin{proof}
+    When we expand 
+    \[(a+b)^n=(a+b)(a+b)\cdots(a+b)\]
+    we obtain terms of the form \(a^{n-k}b^k\), \(0\leq k\leq n\), and the number of terms of the form \(a^{n-k}b^k\) is \(\binom nk\) as we must specify \(k\) brackets from which to pick \(b\). Hence
+    \[(a+b)^n=\sum_{k=0}^{n}\binom nka^{n-k}b^k\]
+\end{proof}
+\subsubsection{Sizes of sets}
+\begin{theorem}
+    (\emph{Inclusion-Exclusion Principle}) Let \(S_1,S_2,\ldots,S_n\) be finite sets. Then 
+    \[|S_1\cup S_2\cup\cdots\cup S_n|=\sum_{|A|=1}|S_A|-\sum_{|A|=2}|S_A|+\cdots+(-1)^{n+1}\sum_{|A|=n}|S_A|\]
+    where \(S_A=\bigcap_{i\in A}S_i\) and \(\sum_{|A|=k}\) is taken over all \(A\subseteq\{1,2,\ldots,n\}\) of size \(k\). Equivalently, 
+    \[\left|\bigcup_{i=1}^nS_i\right|=\sum_{r=1}^{n}(-1)^{r+1}\sum_{|A|=r}\left|\bigcap_{i\in A}S_i\right|\]
+\end{theorem}
+Let \(x\in S_1\cup S_2\cdots\cup S_n\), say \(x\in S_i\) for \(k\) of the \(S_i\). We want \(x\) to be counted exactly once in the right hand side. Indeed,
+\[\hash\{A\::\:|A|=1\text{  with  }x\in S_A\}=k\]
+\[\hash\{A\::\:|A|=1\text{  with  }x\in S_A\}=\binom k2\]
+and in general,
+\[\hash\{A\::\:|A|=1\text{  with  }x\in S_A\}=\begin{cases}
+    \binom kr & r\leq k \\
+    0 & r>k
+\end{cases}\]
+Thus the number of times \(x\) is counted on the right hand side is 
+\begin{align*}
+    k-\binom k2+\binom k3-\cdots+(-1)^{k+1}\binom kk &=1-\left(1-k+\binom k2-\binom k3+\cdots+(-1)^k\binom kk\right) \\
+    &=(1+(-1))^k+1=1
+\end{align*}
+for \(k\geq 1\) by the binomial theorem.
+\section{Elementary Number Theory}
+
 \subsection{Primes}
 \begin{definition}
     A natural number \(n\geq 2\) is \emph{prime} if its only factors are \(\pm 1\) and \(\pm n\). If \(n\geq 2\) is not prime, then it is \emph{composite}.
@@ -298,6 +641,7 @@ does. Let's formalise this.
 \end{remark}
 \begin{theorem}
     (\emph{Fundamental Theorem of Arithmetic}) Every natural number \(n\geq 2\) is expressible as a product primes, uniquely up to reordering.
+    \label{thm:fta}
 \end{theorem}
 \begin{proof}
     Existence of factorisation follows from Proposition \ref{prop:prod_prime}. We can show uniqueness by induction. Clearly it is unique for \(n=2\). Given \(n\geq 2\), suppose 
@@ -481,10 +825,478 @@ Next, let's take a look at behavior of a power of an integer modulo \(p\).
 \begin{proof}
     Let 
     \[U=\{x\in\mathbb{Z}\:|\:0<x<m,\gcd(x,m)=1\}\]
+    be the \(\varphi(m)\) numbers that are coprime to \(m\). Label them \(u_1,u_2,\ldots,u_{\varphi(m)}\). Then \(au_1,au_2,\ldots,au_\varphi(m)\) are all distinct and invertible modulo \(m\) (since \(a\) is a unit), and hence they are \(u_1,u_2,\ldots,u_{\varphi(m)}\) in some order. It follows that 
+    \[au_1\cdot au_2\cdots au_{\varphi(m)}\equiv u_1u_2\cdots u_{\varphi(m)}\mod m\]
+    i.e. 
+    \[a^{\varphi(m)}z\equiv z\mod m\]
+    where \(z=u_1u_2\cdots u_{\varphi(m)}\) is a product of unit modulo \(m\), whence itself a unit. Thus we may cancel it to obtain the theorem.
 \end{proof}
+\begin{lemma}
+    Let \(p\) be prime. Then
+    \[x^2\equiv 1\mod p\equiv x\equiv 1\text{  or  } -1\mod p\]
+    \label{lemma:square_modp}
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        x^2\equiv 1\mod p &\Leftrightarrow x^2-1\equiv 0\mod p \\
+        &\Leftrightarrow (x+1)(x-1)\equiv 0\mod p
+    \end{align*}
+    But by Proposition \ref{prop:prime_div}, \(x+1\equiv 0\mod p\) or \(x-1\equiv 0\mod p\). Therefore, \(x\equiv -1\text{  or  }1\mod p\).
+\end{proof}
+More generally, a non-zero polynomial of degree \(k\) over \(\mathbb{Z}_p\) has at most \(k\) roots in \(\mathbb{Z}_p\).
+\begin{theorem}
+    (\emph{Wilson's Theorem}) Let \(p\) be prime. Then \((p-1)!\equiv -1\mod p\).
+    \label{thm:wilson}
+\end{theorem}
+\begin{proof}
+    It is true for \(p=2\). Now assume \(p>2\). Note that the units modulo \(p\) comes in pairs whose product is \(1\), together with some elements that are self-inverse, i.e. elements \(x\) such that \(x^2\equiv 1\mod p\). By Lemma \ref{lemma:square_modp}, the elements that are self-inverse are \(1\) and \(-1\), so the remaining \(p-3\) units of \(\mathbb{Z}_p\) come in inverse pairs. Hence \((p-1)!\) is the product of \((p-3)/2\) pairs of inverses together with \(1\) and \(-1\), giving \((p-1)!\equiv -1\mod p\).
+\end{proof}
+\begin{proposition}
+    Let \(p\) be an odd prime. Then \(-1\) is a square modulo \(p\), i.e. \(\exists x\in\mathbb{Z}\) such that \(x^2\equiv -1\mod p\), if and only if \(p\equiv 1\mod 4\).
+\end{proposition}
+\begin{proof}
+    Suppose \(p\equiv 1\mod 4\). By Wilson's theorem, 
+    \begin{align*}
+        -1\equiv (p-1)! &\equiv 1\cdot 2\cdot\cdots\left(\frac{p-1}{2}\right)\left(\frac{p+1}{2}\right)\cdots(p-3)(p-2)(p-1) \\
+        &\equiv 1\cdot 2\cdot\cdots\left(\frac{p-1}{2}\right)\left(-\frac{p-1}{2}\right)\cdots(-3)(-2)(-1) \\
+        &=(-1)^{(p-1)/2}\left(\left(\frac{p-1}2\right)!\right)^2\mod p 
+    \end{align*}
+    But if \(p=4k+1\) for some \(k\in\mathbb{Z}\), then 
+    \[-1\equiv(-1)^{2k}\left(\left(\frac{p-1}2\right)!\right)^2\mod p\]
+    so \(-1\) is a square modulo \(p\).
+
+    Suppose, on the other hand, that \(p\equiv -1\mod 4\), i.e. \(p=4k+3\) for some \(k\in\mathbb{Z}\). If \(-1\) were a square modulo \(p\), i.e. if there were \(z\in\mathbb{Z}\) such that \(z^2\equiv -1\mod p\), then by Fermat's little theorem, 
+    \[1\equiv z^{p-1}\equiv z^{4k+2}\equiv z^{2(2k+1)}\equiv (-1)^{2k+1}\equiv -1\mod p\]
+    which is a contradiction.
+\end{proof}
+\begin{remark}
+    When \(p\equiv 1\mod 4\), Wilson's theorem tells us a solution to \[x^2\equiv -1\mod p\]
+    For example, when \(p=29=4\cdot 7+1\), \(x=(2\cdot 7)!\) works.
+\end{remark}
+\subsection{Public Key Cryptography}
+In this subsection, we look into an example of practical application of the number theory, \emph{public key cryptography}. Let us agree to write message as sequences of numbers. To send the message as encrypted form in such a way that only the reciever can decrypt them easily, we use the RSA (Rivest, Shamir, Adleman) scheme. To apply the RSA scheme, reciever do as follows.
+\begin{itemize}
+    \item Think of two large primes \(p,q\).
+    \item Let \(n=pq\), and pick an \emph{encoding exponent} \(e\), coprime to \(\varphi(n)=(p-1)(q-1)\).
+    \item Publish the pair \((n,e)\), \emph{encryption scheme} to public.
+\end{itemize}
+Now, to send an encrypted message,
+\begin{itemize}
+    \item Sender chops the message into pieces/numbers \(M<n\);
+    \item and send \(M^e\mod n\), computed quickly by repeated squaring \(\mod n\).
+\end{itemize}
+Then, to decrypt it,
+\begin{itemize}
+    \item Reciever work out the \emph{decoding exponent} \(d\), such that \(ed\equiv 1\mod \varphi(n)\);
+    \item and compute
+    \[(M^e)^d=M^{k\varphi(n)+1}\equiv M\mod n\]
+    (consider both cases \(M\equiv 0\mod p\) and \(M\nequiv 0\mod p\)).
+\end{itemize}
+Note that in order to decrypt in this way, we require \(n\) and \(d\), or \(n\), \(e\) and \(\varphi(n)\). Finding \(\varphi(n)\) is as difficult as finding the prime factors of \(n\), which is believed to be computationally hard.
+\section{The Real Numbers}
+\subsection{Real Numbers}
+We have seen \(\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\). Now it is time to extend the boundaries of numbers once again.
+\begin{proposition}
+    There is no rational \(x\) with \(x^2=2\).
+\end{proposition}
+\begin{proof} (\emph{Method 1}) 
+    Suppose \(x^2=2\). Note we may assume \(x>0\) since \((-x)^2=x^2\). If \(x\) is rational, then \(x=a/b\) for some \(a,b\in\mathbb{N}\). Thus \(a^2/b^2=2\), or \[a^2=2b^2\]
+    But the exponent of \(2\) in the prime factorisation of \(a^2\) is even while the exponent of \(2\) in the prime factorisation of \(2b^2\) is odd, contradicting the Fundamental Theorem of Arithmetic. Thus \(x\notin\mathbb{Q}\).
+\end{proof}
+N.b. the same proof shows that if \(\exists x\in\mathbb{Q}\) with \(x^2=n\) for some \(n\in\mathbb{N}\), then \(n\) must be a square.
+\begin{proof}
+    (\emph{Method 2}) Suppose \(x^2=2\) for some \(x=a/b\) with \(a,b\in\mathbb{N}\). Then for any \(c,d\in\mathbb{Z}\), \(cx+d\) is of the form \(e/b\) for some \(e\in\mathbb{Z}\). Thus if \(cx+d>0\), then 
+    \[cx+d\geq\frac 1b\]
+    But \(0<x-1<1\) as \(1<x<2\) so if \(n\) is sufficiently large, 
+    \[0<(x-1)^n<\frac 1b\] 
+    But for any \(n\in\mathbb{N}\), \((x-1)^n\) is of the form \(cx+d\) for some \(c,d\in\mathbb{Z}\), since \(x^2=2\); and this is a contradiction.
+\end{proof}
+So one may say \(\mathbb{Q}\) has a gap. For example, consider set \(A=\{x\:|\:x\in\mathbb{Q},x^2<2\}\). \(2\) is an upper bound for the set \(A\) but so is \(1.5\), \(1.42\), etc. We observe that in \(\mathbb{Q}\), there is no \emph{least upper bound}. Then, what will be the set without any gaps? 
+
+The \emph{real numbers}, written \(\mathbb{R}\), is a set with elements \(0\) and \(1\) (\(0\neq 1\)), equipped with operations \(+\) and \(\cdot\), and an ordering \(<\) satisfying the following.
+\begin{enumerate}
+    \item \(+\) is commutative and associative with identity \(0\), and every \(x\) has an inverse under \(+\).
+    \item \(\cdot\) is commutative and associative with identity \(1\), and every \(x\neq 0\) has an inverse under \(\cdot\).
+    \item \(\cdot\) is distributive over addition, i.e. \(\forall a,b,c\),
+    \[a(b+c)=ab+ac\]
+    \item For all \(a,b\), exactly one of \(a<b\) or \(a=b\) or \(a>b\) holds, and \(\forall a,b,c\),
+    \[a<b\text{  and  }a<c\Rightarrow a<c\]
+    \item \(\forall a,b,c\),
+    \[a<b\Rightarrow a+c<b+c\]
+    and 
+    \[a<b\Rightarrow ac<bc\:\text{  if \(c>0\)}\]
+    \item Given any set \(S\) of reals that is non-empty and bounded above, \(S\) has a \emph{least upper bound} (Theorem \ref{thm:luba}). 
+\end{enumerate}
+We say that a set \(S\) is \emph{bounded above} if \(\exists x\in\mathbb{R}\) such that \(x\geq y\) for all \(y\in S\). Such an \(x\) is an upper bound for \(S\). For the definition of least upper bound (supremum), see Definition \ref{def:sup}. 
+\begin{remark} \item[]
+    \begin{enumerate}
+        \item From (1)-(5), we can check, for example, \(0<1\). If not, then \(1<0\) so 
+        \[0=1-1<0-1=-1\]
+        and hence
+        \[0=0(-1)<(-1)(-1)=1\]
+        which is a contradiction.
+        \item We may consider \(\mathbb{Q}\) as contained in \(\mathbb{R}\), by identifying \(a/b\in\mathbb{Q}\) with \(ab^{-1}\in\mathbb{R}\), where \(b^{-1}\) is the multiplicative inverse of \(b\).
+        \item \(\mathbb{Q}\) does not satisfy (6) as e.g. the set of \(x\) such that \(x^2<2\) does not have a supremum.  
+        \item In (6), the conditions non-empty and bounded above are crucial: if \(S\) is empty, then every \(x\in\mathbb{R}\) is an upper bound for \(S\), so there is no least upper bound. If \(S\) is not bounded above, then it has no upper bound, and certainly no least upper bound.
+        \item It is possible to construct \(\mathbb{R}\) out of \(\mathbb{Q}\) and check that (1)-(6) hold, but it takes effort.
+        \item A structure obeying rules (1)-(3) is called a \emph{field}. For example, \(\mathbb{R},\mathbb{Q},\mathbb{Z}_p\) with \(p\) prime are all fields, but \(\mathbb{Z}\) is not.
+    \end{enumerate}
+\end{remark}
+\begin{example}
+    Consider \[S=\{x\in\mathbb{R}\::\:0\leq x\leq 1\}=[0,1]\]
+    Is \(2\) an upper bound for \(S\)? -- yes, since \(\forall x\in S\), \(x\leq 2\). \\ 
+    Is \(3/4\) an upper bound for \(S\)? -- no, since \(7/8\in S\) but \(7/8>3/4\). \\
+    The least upper bound of \(S\) is \(1\) because \(1\) is an upper bound and every other upper bound is equal or greater than \(1\). Hence \(\sup(S)=1\).
+\end{example}
+\begin{example}
+    Consider 
+    \[S=\{x\in\mathbb{R}\::\:0<x<1\}=(0,1)\]
+    Is \(2\) an upper bound for \(S\)? -- yes, since \(\forall x\in S\), \(x\leq 2\). \\ 
+    Is \(3/4\) an upper bound for \(S\)? -- no, since \(7/8\in S\) but \(7/8>3/4\). \\
+    We still have \(\sup(S)=1\) because \(1\) is an upper bound, and there is no upper bound \(c\) such that \(c<1\); indeed, \(c\) is certainly greater than \(0\) so if \(c<1\), then \(0<c<1\), so 
+    \[\frac{c+1}{2}\in S\]
+    with \((c+1)/2>c\).
+\end{example}
+\begin{proposition}
+    (\emph{Axiom of Archimedes})
+    \(\mathbb{N}\) is not bounded above in \(\mathbb{R}\).
+    \label{prop:axiom_archimedes}
+\end{proposition}
+\begin{proof}
+    Suppose on the contrary that \(\mathbb{N}\) is bounded above. Let \(c=\sup\mathbb{N}\).
+    By definition, \(c-1\) is not an upper bound for \(\mathbb{N}\), so \(\exists n\in\mathbb{N}\) such that \(n>c-1\). But then \(n+1\in\mathbb{N}\) with \(n+1>c\), contradicting the fact that \(c\) was an upper bound for \(\mathbb{N}\).
+\end{proof}
+\begin{corollary}
+    For any \(t\in\mathbb{R}\) with \(t>0\), there exists \(n\in\mathbb{N}\) with \(1/n<t\).
+    \label{coro:1/n}
+\end{corollary}
+\begin{proof}
+    Given \(t>0\), by Proposition \ref{prop:axiom_archimedes}, \(\exists n\in\mathbb{N}\) such that \(n>1/t\). Hence \(1/n<t\).
+\end{proof}
+A set \(S\) is said to be \emph{bounded below} if \(\exists x\) such that \(x\leq y\) for all \(y\in S\). Such an \(x\) is called a lower bound for \(S\). If \(S\) is non-empty and bounded below, then \(-S=\{-y\::\:y\in S\}\) is non-empty and bounded above, so it has a least upper bound, say \(c\). Hence \(-c\) is the greatest lower bound, i.e. \emph{infimum} for \(S\) and we write \(\inf(S)\). Corollarly \ref{coro:1/n} immediately implies that 
+\[\inf(\{1/n\::\:n\in\mathbb{N}\})=0\]
+\begin{example}
+    Consider 
+    \[S=\{0,1/2,2/3,3/4,\ldots\}=\{1-1/n\::\:n\in\mathbb{N}\}\]
+    Clearly, \(1\) is an upper bound. Suppose \(c<1\) is an upper bound for \(S\). Then 
+    \[1-\frac 1n\leq c\quad\forall n\in\mathbb{N}\]
+    so \(0<1-c\leq 1/n\) for all \(n\in\mathbb{N}\), contradicting Corollary \ref{coro:1/n}. Thus \(\sup(S)=1\).
+\end{example}
+\begin{theorem}
+    There exists \(x\in\mathbb{R}\) with \(x^2=2\).
+\end{theorem}
+\begin{proof}
+    Let 
+    \[S=\{x\in\mathbb{R}\::\:x^2<2\}\]
+    Note that \(S\) is non-empty since e.g. \(1\in S\). It is also bounded above, e.g. by \(2\). Hence we may let \(\sup(S)=c\). Observe that \(1<c<2\). We claim that \(c^2=2\). First, suppose \(c^2<2\). For \(0<t<1\),
+    \begin{align*}
+        (c+t)^2=c^2+2ct+t^2<c^2+4t+t=c^2+5t\leq 2
+    \end{align*}
+    for sufficiently small \(t\), e.g. \(t\leq (2-c^2)/5\). But this contradicts the assumption that \(c\) was an upper bound for \(S\). Now suppose \(c^2>2\). For \(0<t<1\) we have
+    \[(c-t)^2=c^2-2ct+t^2>c^2-4t+0\geq 2\]
+    for sufficiently small \(t\), e.g. \(t\leq(c^2-2)/4\). This contradicts the assumption that \(c\) is the least upper bound for \(S\). Hence \(c^2=2\) by construction of real numbers.
+\end{proof}
+N.b. the same proof shows that \(\sqrt[n]{x}\) exists \(\forall n\in\mathbb{N}\), \(\forall x\in\mathbb{R}\), \(n>0\).
+
+A real that is not rational is called \emph{irrational}. For example, \(\sqrt{2},\sqrt{3},\sqrt{4}\) are all irrational. Also, observe that \(2+3\sqrt{5}\) is irrational, since if \(2+3\sqrt{5}=a/b\) with \(a,b\in\mathbb{N}\), then 
+\[\sqrt{5}=\frac{a-2b}{3b}\in\mathbb{Q}\]
+The rationals are \emph{dense} in \(\mathbb{R}\), in a sense that \(\forall a<b\in\mathbb{R}\), \(\exists c\in\mathbb{Q}\) with \(a<c<b\). To show the assetion above, assume that \(a\geq 0\). By Corollary \ref{coro:1/n}, \(\exists n\in N\) with \(1/n<b-a\). Let 
+\[T=\{k\in\mathbb{N}\::\:k/n\geq b\}\]
+By the Axiom of Archimedes, \(\exists N\in\mathbb{N}\) such that \(N>b\). Hence \(Nn\in\mathbb{T}\), so \(T\neq\emptyset\). By the well-ordering principle (Theorem \ref{thm:wop}), \(T\) has a least element \(m\). Let's set \(c=(m-1)/n\). Since \(m-1\notin T\), \(c<b\). If \(c\leq a\), then 
+\[\frac mn=c+\frac 1n<a+(b-a)=b\]
+which is a contradiction. Therefore, \(a<c<b\). Similarly, the irrationals are also dense in \(\mathbb{R}\), i.e. \(\forall a<b\in\mathbb{R}\), \(\exists c\in\mathbb{R}\backslash\mathbb{Q}\) with \(a<c<b\). For example, this can be constructed by taking a rational \(c\) with \(a\sqrt{2}<c<b\sqrt{2}\) and then
+\[a<\frac{c}{\sqrt{2}}<b\]
+% \subsection{Sequences}
+% A \emph{sequence} is an enumerated collection of objects in which repetitions are allowed and order matters. We write 
+% \[a_1,a_2,a_3,\ldots\]
+% or \((a_n)_1^\infty\) or \((a_n)\).
+\subsection{Decimal Expansions}
+We assume basic knowledge of sequences and series. Let \((d_n)\) be a sequence with \(d_n\in\{0,1,\ldots,9\}\). Then 
+\[\sum_{n=1}^{\infty}\frac{d_n}{10^n}\]
+converges to some limit \(x\), where \(0\leq x\leq 1\), because (by Theorem \ref{mct}) the partial sums are increasing and bounded by 
+\[\sum_{n=1}^{\infty}\frac{9}{10^n}=1\]
+We say that 
+\[0.d_1d_2d_3\ldots\]
+is the \emph{decimal expansion} of \(x\). To show that any \(x\in[0,1)\) has a decimal expansion, pick \(d_1\in\mathbb{Z}\) maximal such that 
+\[\frac {d_1}{10}\leq x<1\]
+Then \(0\leq d_1\leq 9\) because \(0\leq x<1\), and 
+\[0\leq x-\frac{d_1}{10}<\frac 1{10}\]
+because \(d_1\) maximal. Now pick \(d_2\in\mathbb{Z}\) maximal such that 
+\[\frac{d_2}{100}\leq x-\frac{d_1}{10}\]
+Then \(0\leq d_2\leq 9\) because 
+\[0\leq x-\frac{d_1}{10}<\frac 1{10}\]
+and 
+\[0\leq x-\frac{d_1}{10}-\frac{d_2}{100}<\frac 1{100}\]
+because \(d_2\) maximal. Inductively, pick \(d_n\in\mathbb{Z}\) maximal such that 
+\[\frac{d_n}{10^n}\leq x-\sum_{j=1}^{n-1}\frac{d_j}{10^j}\]
+so 
+\[0\leq x-\sum_{j=1}^{n}\frac{d_j}{10^j}<\frac{1}{10^n}\]
+Since \(1/10^n\to 0\) as \(n\to\infty\), \(x-\sum_{j=1}^{n}({d_j}/{10^j})\to 0\), i.e. 
+\[x=\sum_{j=1}^{\infty}\frac{d_j}{10^j}=0.d_1d_2d_3\ldots\]
+\begin{remark} \item[]
+    \begin{enumerate}
+        \item Decimal expansions need not be unique, e.g. \(0.47999\ldots=0.4800\ldots\).
+        \item A decimal expansion is \emph{periodic} if, aster a finite number of items, it repeats in blocks, of length \(k\) say. I.e. \(\exists l,k\) such that \(d_{n+k}=d_n\) for all \(n>l\).
+    \end{enumerate}
+\end{remark}
+\subsection{Complex Numbers}
+Observe that some polynomials have no real roots, e.g. \(x^2+1\). We will try and define \(x\) with \(x^2+1=0\) into existence.
+
+The \emph{complex numbers}, written \(\mathbb{C}\), consist of \(\mathbb{R}^2\) (the set of all ordered pairs \((a,b)\) with \(a,b\in\mathbb{R}\)) together with operations \(+\) and \(\cdot\) defined by 
+\[(a,b)+(c,d)=(a+c,b+d)\]
+\[(a,b)\cdot(c,d)=(ac-bd,ad+bc)\]
+We can view \(\mathbb{R}\) as contained in \(\mathbb{C}\) by identifying \(a\in\mathbb{R}\) with \((a,0)\in\mathbb{C}\). Note that 
+\[(a,0)+(b,0)=(a+b,0)\]
+and
+\[(a,0)\cdot(b,0)=(ab,0)\]
+Now let \(i=(0,1)\), with \(i^2=(-1,0)\), corresponding to \(-1\in\mathbb{R}\). Then, for every \(z\in\mathbb{C}\), we can write 
+\[z=(a,b)=a(1,0)+b(0,1)=a+bi\]
+for some \(a,b\in\mathbb{R}\).
+\begin{remark} \item[]
+    \begin{enumerate}
+        \item \(\mathbb{C}\) is a field, i.e. it obeys (1)-(3) from the definition of \(\mathbb{R}\), including that for some \(z\in\mathbb{C}\) (\(z\neq 0\)), \(\exists w\) such that \(zw=1\). Indeed, given \(z=a+bi\), since 
+        \[(a+bi)(a-bi)=a^2+b^2\]
+        we have
+        \[(a+bi)\frac{a-bi}{a^2+b^2}=1\]
+        \item Every non-zero polynomial (even allowing complex coefficients) has a root in \(\mathbb{C}\). This is known as the \emph{Fundamental Theorem of Algebra}.
+    \end{enumerate}
+\end{remark}
+\section{Countability}
+We introduce the concept countability to obtain a deeper understanding of sizes of sets -- in particular, infinite sets. We say a set \(X\) is \emph{countable} if \(X\) is finite or there is a bijection \(X\to\mathbb{N}\). That is, \(X\) is countable if and only if we can list the elements of \(X\) as \(x_1,x_2,\ldots\).
+\begin{example} \item[]
+    \begin{enumerate}
+        \item Any finite set is countable.
+        \item \(\mathbb{N}\) is countable. 
+        \item \(\mathbb{Z}\) is countable, as we may list the elements of \(\mathbb{Z}\) as \(0,1,-1,2,-2,\ldots\), i.e.
+        \[x_n=\begin{cases}
+            n/2 & 2|n \\
+            -(n-1)/2 & 2\nmid n
+        \end{cases}\]
+    \end{enumerate}
+\end{example}
+\begin{lemma}
+    Any subset of \(\mathbb{N}\) is countable.
+    \label{lemma:n_count}
+\end{lemma}
+\begin{proof}
+    If \(S\subseteq\mathbb{N}\) is non-empty, by well-ordering principle, there is a least element \(s_1\in S\). If \(S\backslash\{s_1\}\neq\emptyset\), by well-ordering principle, there is a least element \(s_2\in S\backslash\{s_1\}\). And if \(S\backslash\{s_1,s_2\}\neq\emptyset\), we can repeat the process. If at some point this process ends, then 
+    \[S=\{s_1,s_2,\ldots,s_m\}\]
+    is finite. If it goes on forever, then the map
+    \[g:\mathbb{N}\to S,\quad n\mapsto s_n\]
+    is well-defined, and is injective. It is also surjective because if \(k\in S\), then \(k\in\mathbb{N}\), and there are less than \(k\) elements of \(S\) less than \(k\), so \(k=s_n\) for some \(n\leq k\).
+\end{proof}
+Note that the idea used in the proof of Lemma \ref{lemma:n_count} may not work for other sets. For example, in \(\mathbb{R}\), let 
+\[S=\{1/2,2/3,3/4,\ldots\}\cup\{1\}\]
+then \(S\) is countable as we can list it as 
+\[1,1/2,2/3,3/4,\ldots\]
+but if we had tried to list the elements in increasing order, then \(1\) would not be on the list.
+\begin{theorem}
+    The following statements are equivalent:
+    \begin{enumerate}
+        \item \(X\) is countable;
+        \item there is an injection \(X\to\mathbb{N}\);
+        \item \(X=\emptyset\) or there is surjection \(\mathbb{N}\to X\).
+    \end{enumerate}
+    \label{thm:countable_equiv}
+\end{theorem}
+\begin{proof} 
+    ((1)\(\Rightarrow\)(2)) If \(X\) finite, it obviously injects into \(\mathbb{N}\). Otherwise, if \(X\) infinite, \(X\) bijects with \(\mathbb{N}\), and it injects into \(\mathbb{N}\). \newline 
+    ((2)\(\Rightarrow\)(1)) If there is an injection \(f:X\to\mathbb{N}\), then \(f\) is a bijection between \(X\) and \(S=f(X)\). If \(S\) is finite, then so is \(X\). If \(S\) is infinite, then by Lemma \ref{lemma:n_count}, there is a bjiection \(g:S\to\mathbb{N}\), and thus 
+    \[X\xrightarrow{f}S=f(X)\xrightarrow{g}\mathbb{N}\]
+    is a bijection. \newline 
+    ((3)\(\Rightarrow\)(2)) Suppose that \(X\neq\emptyset\) and there is a surjection \(f:\mathbb{N}\to X\). Now define \(g\) by 
+    \[g(a)=\min f^{-1}(\{a\})\]
+    which exists by well-ordering principle. But by construction, \(g\) is injective. Hence (3) implies (2). \newline 
+    Finally, it is clear that (1) implies (3). Therefore, three statements are equivalent.
+\end{proof}
+\begin{corollary}
+    Any subset of a countable set is countable.
+\end{corollary}
+\begin{proof}
+    If \(Y\subseteq X\) and \(X\) is countable, then take the injection \(X\to\mathbb{N}\) restricted to \(Y\).
+\end{proof}
+We may thus view ``countable'' as saying that a set is ``at most as big as \(\mathbb{N}\)''.\footnote{Review definition if confused.}
+\begin{theorem}
+    \(\mathbb{N}\times\mathbb{N}\) is countable.
+\end{theorem}
+\begin{proof}
+    (\emph{Method 1}) Define \(a_1=(1,1)\), and \(a_n\) inductively, given \(a_{n-1}=(p,q)\), by writing 
+    \[a_n=\begin{cases}
+        (p-1,q+1) & p\neq 1 \\
+        (p+q,1) & p=1
+    \end{cases}\]
+    This list includes every point \((x,y)\in\mathbb{N}\times\mathbb{N}\), hence there exists a bijection \(\mathbb{N}\times\mathbb{N}\to\mathbb{N}\).
+\end{proof}
+\begin{proof}
+    (\emph{Method 2}) Define \(f:\mathbb{N}\times\mathbb{N}\to\mathbb{N}\), \((x,y)\mapsto 2^x3^y\). Then \(f\) is injective by the fundamental theorem of arithmetic (Theorem \ref{thm:fta}). Thus \(\mathbb{N}\times\mathbb{N}\) is countable by Theorem \ref{thm:countable_equiv}.
+\end{proof}
+\begin{corollary}
+    \(\mathbb{Z}\times\mathbb{Z}\) is countable.
+\end{corollary}
+\begin{proof}
+    Since \(\mathbb{Z}\) is countable, there is an injection \(f:\mathbb{Z}\to\mathbb{N}\), and since \(\mathbb{N}\times\mathbb{N}\) is countable, there is an injection \(g:\mathbb{N}\times\mathbb{N}\to\mathbb{N}\). Hence we have an injection 
+    \[\mathbb{Z}\times\mathbb{Z}\xrightarrow{(f,f)}\mathbb{N}\times\mathbb{N}\xrightarrow{g}\mathbb{N}\] 
+\end{proof}
+By induction, we further can tell that \(\mathbb{Z}^k\) is countable for any \(k\in\mathbb{N}\).
+\begin{theorem}
+    A countable union of countable sets is countable.
+    \label{thm:union_countable}
+\end{theorem}
+\begin{proof}
+    (\emph{Method 1}) May assume that our countable sets are indexed by \(\mathbb{N}\), so given countable sets \(A_1,A_2,\ldots\), we wish to show 
+    \[\bigcup_{n\in\mathbb{N}}A_n\]
+    is countable. For each \(i\in\mathbb{N}\), since \(A_i\) is countable, we may list its elements as \(a_1^{(i)},a_2^{(i)},\ldots\). Define
+    \[f:\bigcup_{n\in\mathbb{N}}A_n\to\mathbb{N},\quad x\mapsto 2^i3^j\]
+    where \(x=a_j^{(i)}\) for the least \(i\) such that \(x\in A_i\). hen \(f\) is injective by the fundamental theorem of arithmetic (Theorem \ref{thm:fta}).
+\end{proof}
+\begin{proof}
+    (\emph{Method 2}) Let \(I\) be a countable index set, and for each \(i\in I\), \(A_i\) is a countable set. Since \(I\) is countable, there is an injection \(f:I\to\mathbb{N}\), and for each \(i\in I\), since \(A_i\) is countable, there is an injection \(g_i:A_i\to\mathbb{N}\). We construct an injection 
+    \[h:\bigcup_{i\in{I}}A_i\to\mathbb{N}\times\mathbb{N}\]
+    as follows: for each \(x\in\bigcup_{i\in{I}}A_i\), pick 
+    \[m_x=\min\{j\in\mathbb{N}\::\:x\in A_i,f(i)=j\}\]
+    which exists by well-ordering principle. Let \(i_x\in I\) be such that \(f(i_x)=m_x\) (\(i_x\) is unique because \(f\) is injective). Then 
+    \[h(x)=(m_x,g_{i_x}(x))\]
+    defines an injection.
+\end{proof}
+\begin{example}
+    \[\mathbb{Q}=\bigcup_{n\in\mathbb{N}}\frac 1n\mathbb{Z}=\bigcup_{n\in\mathbb{N}}\left\{\frac mn\::\:m\in\mathbb{Z}\right\}\]
+    so \(\mathbb{Q}\) is a countable union of countable sets, hence countable.
+\end{example}
+\begin{theorem}
+    The set \(\mathbb{A}\) of algebraic numbers is countable.
+    \label{thm:algebraic_countable}
+\end{theorem}
+\begin{proof}
+    It suffices to show that the set of all polynomials with integer coefficients is countable, as then \(\mathbb{A}\) is a countable union of finite sets, so by Theorem \ref{thm:union_countable}, is countable. In fact, it suffices to show that for each \(d\in\mathbb{N}\), the set \(P_d\) of all integer polynomials of degree \(d\) is countable, again by Theorem \ref{thm:union_countable}. But the map \(P_d\to\mathbb{Z}^{d+1}\),
+    \[p(x)=a_dx^d+a_{d-1}x^{d-1}+\cdots+a_1x+a_0\mapsto (a_d,a_{d-1},\ldots,a_1,a_0)\]
+    is an injection, so since \(\mathbb{Z}^{d+1}\) is countable, \(P_d\) is.
+\end{proof}
+But certainly, not all sets are countable.
+\begin{theorem}
+    \(\mathbb{R}\) is uncountable.
+\end{theorem}
+\begin{proof} (\emph{Diagonal argument}, Cantor)
+    If \(\mathbb{R}\) were countable, we would be able to list all the reals as \(r_1,r_2,r_3,\ldots\). Write each \(r_n\) in decimal form in some way:
+    \[r_1=n_1.d_{11}d_{12}d_{13}d_{14}\ldots\]
+    \[r_2=n_2.d_{21}d_{22}d_{23}d_{24}\ldots\]
+    \[r_3=n_3.d_{31}d_{32}d_{33}d_{34}\ldots\]
+    \[\vdots\]
+    Now define
+\[r=0.d_1d_2d_3\ldots\]
+by 
+\[d_n=\begin{cases}
+    1 & d_{nn}\neq 1 \\
+    2 & d_{nn}=1
+\end{cases}\]
+Note that \(r\) has only one decimal expansion, and is not on the list, since \(\forall n\in\mathbb{N}\), \(r\neq r_n\). This contradicts the assumption that \(\mathbb{R}\) is countable.
+\end{proof}
+N.b. it in fact shows that the interval \((0,1)\) is uncountable.
+\begin{corollary}
+    There are uncountably many transcendental numbers.
+\end{corollary}
+\begin{proof}
+    If \(\mathbb{R}\backslash\mathbb{A}\) were countable, then since \(\mathbb{A}\) is countable by Theorem \ref{thm:algebraic_countable}, \(\mathbb{R}=(\mathbb{R}\backslash\mathbb{A})\cup\mathbb{A}\) would also be countable, leading to contradiction.
+\end{proof}
+\begin{theorem}
+    \(\mathcal{P}(\mathbb{N})\) is uncountable.
+    \label{thm:uncountable_powern}
+\end{theorem}
+\begin{proof}
+    (\emph{Method 1}) If \(\mathcal{P}(\mathbb{N})\) were countable, we could just list it as \(S_1,S_2,\ldots\). Let 
+    \[S=\{n\in\mathbb{N}\::\:n\notin S_n\}\]
+    Then \(S\) is not on our list since \(\forall n\in\mathbb{N}\), \(S\neq S_n\) (as \(S\) and \(S_n\) differ in the element \(n\)). This is a contradiction, and thus \(\mathcal{P}(\mathbb{N})\) is uncountable.
+\end{proof}
+Note that the proof above is similar as the diagonal argument by Cantor.
+\begin{proof}
+    (\emph{Method 2}) Note that there is an injection from \((0,1)\) into \(\mathcal{P}(\mathbb{N})\): write \(x\in(0,1)\) in binary 
+    \[0.x_1x_2x_3\ldots\]
+    with \(x_i\in\{0,1\}\), and set \(f(x)=\{n\in N\::\:x_n=1\}\). Then, \(f\) is an injection.
+\end{proof}
+\begin{theorem}
+    For any set \(X\), there is no bijection between \(X\) and its power set \(\mathcal{P}(X)\).
+\end{theorem}
+\begin{proof}
+    Given any \(f:X\to\mathcal{P}(X)\), we shall show it is not a surjection. Let
+    \[S=\{x\in X\::\:x\notin f(x)\}\]
+    Then \(S\) does not belong to the image of \(f\), since \(\forall x\in X\), \(S\) and \(f(x)\) differ in the element \(x\). Thus \(S\neq f(x)\) for any \(x\in X\).
+\end{proof}
+\begin{remark} \item[]
+    \begin{enumerate}
+        \item This is reminiscent of Russell's paradox.
+        \item In fact, it gives another proof that there is no universal set. Suppose we had such a universal set \(V\), then we would have \(\mathcal{V}\subseteq V\), in which case there would certainly be a surjection from \(V\) to \(\mathcal{P}(V)\).
+    \end{enumerate}
+\end{remark}
+\begin{example}
+    Let \(\{A_i\::\:i\in I\}\) be a family of open pairwise disjoint intervals of \(\mathbb{R}\). Such family is countable. 
+
+    Each interval \(A_i\) contains a rational and \(\mathbb{Q}\) is countable, so since the intervals are disjoint, we have an injection from \(I\) into \(\mathbb{Q}\).
+\end{example}
+
+To summerise, to show that a set \(X\) is countable, we 
+\begin{enumerate}
+    \item list its elements;
+    \item inject it into \(\mathbb{N}\);
+    \item use the fact that a countable union of countable sets is countable;
+    \item if the set is in or near \(\mathbb{R}\), consider \(\mathbb{Q}\).
+\end{enumerate}
+To show that \(X\) is uncountable,
+\begin{enumerate}
+    \item run a diagonal argument on \(X\);
+    \item inject some uncountable set into \(X\).
+\end{enumerate}
+Intuitively, we think of ``\(A\) bijects with \(B\)'' as saying that ``\(A\) and \(B\) are of the same size'', ``\(A\) injects into \(B\)'' as saying that ``\(A\) is at most as big as \(B\)'', and ``\(A\) surjects onto \(B\)'' as saying that ``\(A\) is at least as big as \(B\)'' (for \(B\neq\emptyset\)). However, for these interpretations to make sense, we need that if ``\(A\) is at most as big as \(B\)'', then ``\(B\) is at least as big as \(A\)'', and conversely.
+\begin{lemma}
+    Given non-empty sets \(A\) and \(B\), 
+    \[\exists\text{  injection  }f:A\to B\Leftrightarrow\exists\text{  surjection  }g:B\to A\]
+\end{lemma}
+\begin{proof}
+    Suppose \(f:A\to B\) is injective. Fix \(a_0\in A\). Define \(g:B\to A\) by 
+    \[b\mapsto \begin{cases}
+        \text{unique  }a\in A\text{  such that  }f(a)=b & \text{ if it exists} \\
+        a_0&\text{ otherwise}
+    \end{cases}\]
+    Then \(g\) is surjective. Conversely, suppose \(g:B\to A\) is surjective. Let \(f:A\to B\),
+    \[a\mapsto\text{some  }b\in B\text{  such that  }g(b)=a\]
+    Then \(f\) is injective.
+\end{proof}
+We also need that if ``\(A\) is at most as big as \(B\)'' and ``\(B\) is at most as big as \(A\)'', then ``\(A\) and \(B\) have the same size''.
+\begin{theorem}
+    (\emph{Schröder-Bernstein Theorem}) If \(f:A\to B\) and \(g:B\to A\) are injections, then there exists bijection \(h:A\to B\). 
+\end{theorem}
+\begin{proof}
+    For \(a\in A\), write \(g^{-1}(a)\) for the \(b\in B\) (if it exists) such that \(g(b)=a\). Similarly for \(B\), write \(f^{-1}(b)\) for the \(a\in A\) (if it exists) such that \(f(a)=b\). We call \(g^{-1}(a),f^{-1}(g^{-1}(a)),g^{-1}(f^{-1}(g^{-1}(a))),\ldots\) the \emph{ancestor sequence} of \(a\in A\) (might terminate). Similarly, define the ancestor sequence of \(b\in B\). Let 
+    \begin{align*}
+        A_0=\{a\in A\::\:\text{ancestor sequence of \(a\) stops at an even time, i.e. the last point is in \(A\)}\}        
+    \end{align*}
+    \begin{align*}
+        A_1=\{a\in A\::\:\text{ancestor sequence of \(a\) stops at an odd time, i.e. the last point is in \(B\)}\}        
+    \end{align*}
+    and
+    \begin{align*}
+        A_\infty=\{a\in A\::\:\text{ancestor sequence of \(a\) does not stop}\}        
+    \end{align*}
+    Similarly, define \(B_0,B_1,B_\infty\). Note that \(f\) bijects \(A_0\) bijects \(A_0\) with \(B_1\) (observing that every \(b\in B_1\) has at least one ancestor, so is \(f(a)\) for some \(a\in A_0\)), and similarly, \(g\) bijects \(B_0\) with \(A_1\). And \(f\) (or \(g\)) bijects \(A_\infty\) with \(B_\infty\). Then the function \(h:A\to B\),
+    \[a\mapsto\begin{cases}
+        f(a) & a\in A_0 \\
+        g^{-1}(a) & a\in A_1 \\
+        f(a) & a\in A_\infty
+    \end{cases}\]
+is a bijection.
+\end{proof}
+\begin{example}
+    Is there a bijection from \([0,1]\) to \([0,1]\cup[2,3]\)? Observe that we have an injection 
+    \[f:[0,1]\to[0,1]\cup[2,3],\quad x\mapsto x\]
+    and an injection \[g:[0,1]\cup[2,3]\to[0,1],\quad x\mapsto x/3\]
+    So by the Schröder-Bernstein theorem, ther is a bijection between \([0,1]\) and \([0,1]\cup[2,3]\).
+\end{example}
+It would be nice to be able to say that for any two sets \(A\) and \(B\), either \(A\) injects into \(B\) or \(B\) injects into \(A\). This is true, but proof is beyond the scope of this course.\footnote{See Part II Logic and Set Theory.}
 \chapter{Groups}
-\chapterauthor{Lecture by Professor Claude Warnick. 
+\chapterauthor{Lecture by Professor Henry Wilton. 
     Michaelmas term 2023.}
+\section{Introduction}
+\begin{definition}
+    A \emph{binary operation}
+\end{definition}
 \chapter{Analysis I}
 \chapterauthor{Lecture by Professor Claude Warnick. 
     Lent term 2024.}
@@ -506,10 +1318,10 @@ If \(a_n\leq a_{n+1}\;\forall n\) we say \((a_n)\) is \emph{increasing}; and \em
 \end{theorem}
 In other words, monotone convergence theorem says if \(a_n\in\mathbb{R}\) (\(n\geq 1\)), \(A\in\mathbb{R}\) with
 \[a_1\geq a_2\geq a_3\geq\cdots\text{  and  }a_n\geq A\quad\forall n\]
-there exists \(a\in\mathbb{R}\) such that \(a_n\to a\) as \(n\to\infty\). Equivalently, decreasing sequence bounded below has a limit. Theorem \ref{mct} is also equivalent with Theorem \ref{luba}
+there exists \(a\in\mathbb{R}\) such that \(a_n\to a\) as \(n\to\infty\). Equivalently, decreasing sequence bounded below has a limit. Theorem \ref{mct} is also equivalent with Theorem \ref{thm:luba}
 \begin{theorem}
     (\emph{Least Upper Bound Axiom}) Every non-empty set bounded above has a \emph{supremum}.
-    \label{luba}
+    \label{thm:luba}
 \end{theorem}
 \begin{definition}
     (Supremum) If \(S\subset\mathbb{R}\),\(S\neq\emptyset\) we say that
@@ -1093,7 +1905,7 @@ Note that limit of functions behave similarly to limits of sequences.
 \begin{proof}
     Let 
     \[S=\{x\in[a,b]\:|\:f(x)<\eta\}\]
-    Clearly \(S\) is not empty as \(a\in S\). \(S\) is bounded above by \(b\). So \(S\) has a supremum, \(c\) (Theorem \ref{luba}). We claim \(f(c)=\eta\). From the definition of a supremum (Definition \ref{def:sup}), for each \(n\in\mathrm{N}\) there exists \(x_n\in S\) with 
+    Clearly \(S\) is not empty as \(a\in S\). \(S\) is bounded above by \(b\). So \(S\) has a supremum, \(c\) (Theorem \ref{thm:luba}). We claim \(f(c)=\eta\). From the definition of a supremum (Definition \ref{def:sup}), for each \(n\in\mathrm{N}\) there exists \(x_n\in S\) with 
     \[c-\frac 1n\leq x_n\leq c\]
     Hence \(x_n\to c\). But \(f\) is continuous so \(f(x_n)\to f(c)\) and 
     \[f(x_n)<\eta\Rightarrow f(c)\leq\eta\]
@@ -1520,7 +2332,7 @@ where the series converges absolutely.
     for some \(\theta\in(0,1)\). But \((1-\theta)/(1+\theta x)<1\) for all \(x\in(-1,1)\) as \(1+\theta x=1-\theta +\theta(x+1)\geq 1-\theta\). Hence 
     \[|R_n|\leq r|x|\left|\binom{r-1}{n-1}x^{n-1}\right|(1+\theta x)^{r-1}\]
     Moreover, \((1+\theta x)^{r-1}\leq\max\{(1-|x|)^{r-1},(1+|x|)^{r-1}\}\), and 
-    \[|R_n|\leq r|x|\max\{(1-|x|)^{r-1},(1+|x|)^{r-1}\}\left|\binom{r-1}{n-1}x^{n-1}\right|=K_{r,x}\left|\binom{r-1}{n-1}x^{n-1}\right|\to 0\] as \(n\to\infty\) since \(K_{r,x}\) is independent of \(n\). Therefore \(R_n\to 0\) as \(n\to\infty\) for \(x\) fixed in \(-1,1\).
+    \[|R_n|\leq r|x|\max\{(1-|x|)^{r-1},(1+|x|)^{r-1}\}\left|\binom{r-1}{n-1}x^{n-1}\right|=K_{r,x}\left|\binom{r-1}{n-1}x^{n-1}\right|\to 0\] as \(n\to\infty\) since \(K_{r,x}\) is independent of \(n\). Therefore \(R_n\to 0\) as \(n\to\infty\) for \(x\) fixed in \((-1,1)\).
 \end{proof}
 % \subsection{Complex Differentiability}
 % We defined differentiability for functions 
@@ -2559,4 +3371,266 @@ Note that (2) of Theorem \ref{thm:integral_test} implies (1) of that. Also \(f\)
 \newpage
 \section{Example Sheets}
 \subsection{Sheet 1}
+\begin{enumerate}[{1.}]
+    \item Straightforward.
+    \item Converges for \(a_1=0,1\), diverges for \(a_1=2\).
+
+    \item \(a_1>b_1>0\) by construction. Let \(a_n>b_n>0\). Then 
+    \[a_{n+1}>b_{n+1}\Leftrightarrow\frac{a_n+b_n}{2}>\frac{a_nb_n}{a_n+b_n}\Leftrightarrow(a_n+b_n)^2>2a_nb_n\Leftrightarrow a_n^2+b_n^2>0\]
+    Thus \(a_{n+1}>b_{n+1}\). Now since 
+    \[b_{n+1}=\frac{2a_nb_n}{a_n+b_n}>b_n\Leftrightarrow a_n>b_n\]
+    we have \(b_{n+1}>0\). Therefore, by induction, \(a_n>b_n>0\) for all \(n\geq 1\). Finally, we also have 
+    \[a_n>a_{n+1}=\frac{a_n+b_n}{2}\Leftrightarrow a_n>b_n\]
+    Combining all, \(a_n\geq a_{n+1}\geq b_{n+1}\geq b_n\).
+
+    Now we find the common limit. \((a_n)\) is decreasing and bounded by \(b_1\), so \(a_n\to a\) by monotone convergence theorem. Similarly \(b_n\to b\). Then, limit on both sides of \(a_{n+1}=(a_n+b_n)/2\) gives 
+    \[a=\frac{a+b}2\]
+    i.e. \(a=b\) -- the limit is common. Also note that 
+    \[a_{n+1}b_{n+1}=a_nb_n=a_1b_1\]
+    Therefore, \(\lim_{n\to\infty}a_n=\lim_{n\to\infty}b_n=\sqrt{a_1b_1}\).
+    \item \(a_n\) is not converging, hence it is not Cauchy, and there exists \(\epsilon>0\) such that \(|a_n-a_m|\geq\epsilon\) for any \(n,m\). Without loss of generality, let \(a_1-a_2=\epsilon\). Now suppose 
+    \[A=\{a_i\:|\:a_i\geq a_1\}\]
+    \[B=\{a_i\:|\:a_i\leq a_2\}\]
+    We may order members of set \(A\) to construct a increasing subsequence \((a_{n_j})\), which is bounded above. Thus, by monotone convergence theorem, \(a_{n_j}\to a<\infty\). Similarly, we reorder members of \(B\) to construct a decreasing subsequence \(a_{m_j}\) with \(a_{m_j}\to b\). But \(a\neq b\) since \(a\geq a_1>a_2\geq b\).
+    \item Converges, converges for \(|z|<5\), converges absolutely, converges for \(|z|<1\). Boundaries are not checked.
+    \item Integral test.
+    \item We calculate as follows.
+    \begin{align*}
+        s_{2n}=1-\frac 12+\frac 13-\frac 14+\frac 15-\frac 16+\cdots&=\overbrace{\left(1+\frac 12+\frac 13+\cdots\right)}^{2n}-2\overbrace{\left(\frac 12+\frac 14+\frac 16+\cdots\right)}^{n} \\
+        &=h_{2n}-h_n
+    \end{align*}
+    Meanwhile,
+    \begin{align*}
+        t_{3n}&=\overbrace{\frac 11+\frac 13+\cdots+\frac 1{4n-1}}^{2n}-\overbrace{\frac 12-\frac 14-\cdots-\frac 1{2n}}^{n} \\
+        &=h_{4n}-\left(\frac 12+\frac 14+\cdots+\frac 1{4n}\right)-\left(\frac 12-\frac 14-\cdots-\frac 1{2n}\right) \\
+        &=h_{4n}-\frac 12h_{2n}-\frac 12{h_n}=s_{4n}+\frac 12s_{2n}
+    \end{align*}
+    By alternating series test, \(s_n\) converges to a finite value, say \(s\). Then, \(t_{3n}=s_{4n}+s_{2n}/2\to 3s/2\) so \(t_n\to 3s/2\) as \(n\to\infty\).
+    \item Firstly, \(a_n>0\) for all \(n\) since 
+    \[a_n=\frac 1{\sqrt{n}}+\frac{(-1)^{n-1}}{n}\geq\frac{1}{\sqrt{n}}-\frac 1n>0\]
+    for \(n\geq 2\) and \(a_1=2>0\). Also, clearly \(\lim_{n\to\infty}a_n=0\) since both \(1/\sqrt{n}\to 0\) and \(1/n\to 0\) as \(n\to\infty\). Now consider 
+    \[\sum_{n=1}^{\infty}(-1)^{n-1}a_n=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{\sqrt{n}}+\sum_{n=1}^{\infty}\frac 1n\]
+    The first sum converges by alternating series test, but second sum diverges; \newline hence, \(\sum_{n=1}^{\infty}(-1)^{n-1}a_n\) also diverges.
+    \item (\emph{Dirichlet's test}) Simplify to obtain 
+    \begin{align*}
+        S_nb_n-S_{m-1}b_m+\sum_{j=m}^{n-1}S_jb_j-\sum_{j=m}^{n-1}S_jb_{j+1}&=\sum_{j=m}^nS_jb_j-\sum_{j=m-1}^{n-1}S_jb_{j+1} \\
+        &=\sum_{j=m}^nS_jb_j-\sum_{j=m}^nS_{j-1}b_j \\
+        &=\sum_{j=m}^n(S_j-S_{j-1})b_j=\sum_{j=m}^na_jb_j
+    \end{align*}
+    Now since \(S_n\) is a bounded sequence, i.e. \(|S_n|\leq K\), for each term
+    \[\left|S_j(b_j-b_{j-1})\right|\leq K(b_j-b_{j-1})\]
+    But series 
+    \[\sum_{j=1}^{n-1}K(b_j-b_{j-1})=K(b_1-b_n)\to Kb_1\]
+    as \(n\to\infty\) so series \(\sum_{j=1}^{n-1}S_j(b_j-b_{j+1})\) absolutely converges, and hence converges. Also, because \(b_n\to 0\) and \(S_n\) is bounded, \[S_nb_n,S_{n-1}b_n\to 0\] as \(n\to\infty\). Therefore, \(\sum_{j=1}^\infty a_jb_j\) converges.
+
+    Alternating series test can be easily obtained by setting \(a_n=(-1)^n\).
+
+    Now consider \(\sum_{n=1}^\infty\cos n/n\). Let \(a_n=\cos n\) and \(b_n=1/n\). To apply the Dirichlet's test, we need to show \(\sum\cos n\) is bounded. Let \(S_n=\sum_{n=1}^{\infty}\cos n\) and \(S_0=0\). Then,
+    \begin{align*}
+        S_n\sin 1&=\cos 1\sin 1+\cos 2\sin 1+\cdots+\cos n\sin 1 \\
+        &=-\frac 12(\sin 2-\sin 0+\sin 3-\sin 1+\cdots+\sin(n+1)-\sin (n-1)) \\
+        &=\frac{\sin 1-\sin(n+1)}{2}
+    \end{align*}
+    gives 
+    \[S_n=\frac{\sin 1-\sin(n+1)}{2\sin 1}\]
+    which is bounded. Thus by Dirichlet's test,  \(\sum_{n=1}^\infty\cos n/n\) converges.
+    \item Q10.
+    \item Note that 
+    \[\frac{1}{1-z}-\frac{z}{1-z^2}=\frac{1+z-z}{1-z^2}=\frac{1}{1-z^2}\]
+    One can find out that by telescoping sums, 
+    \[\sum_{j=1}^n\frac{z^{2^{j-1}}}{1-z^{2^j}}=\frac{1}{1-z}-\frac{1}{1-z^{2^n}}\]
+    Then, if \(|z|<1\), \(z^{2^n}\to 0\) as \(n\to\infty\) so the series converges to 
+    \[\frac 1{1-z}-1=\frac{z}{1-z}\]
+    If \(|z|>1\), \(z^{2^n}\to\infty\) as \(n\to\infty\) so series simply converges to \(1/1-z\). Finally, if \(|z|=1\), 
+    \[\left|\frac{z^{2^{j-1}}}{1-z^{2^j}}\right|=\frac 1{|1-z^{2^j}|}>\frac 12\]
+    so 
+    \[\sum_{j=1}^n\frac{z^{2^{j-1}}}{1-z^{2^j}}>\frac 12n\]
+    diverges as \(n\to\infty\).
+    \item Consider sequence \((a_n)\), \(a_n\in\mathbb{R}\). We can easily construct monotonic subsequence \((a_{n_j})\) by choosing \(n_1=1\), and then \(n_i\) as the least greatest \(j\) such that \(a_j\geq a_{n_{i-1}}\), \(j\geq n_{i-1}\) inductively.
+    
+    Now assume the sequence is bounded. The subsequence we found above, \((a_{n_j})\) will also be bounded and by the monotone convergence theorem, \((a_{n_j})\) will converge. Thus we proved the Bolzano-Weierstrass theorem.
+    \item Since \((x_n)\) converges, it is bounded. Now sequence \((|x_n|)\). Because it is bounded, we can rearrange terms to make \((|x_n|)\) decreasing. Then, by alternating series test, \(\sum (-1)^n|x_n|\) converges. \(\epsilon_n\) will follow based on the original signs of \(x_n\).
+    \item No. It is impossible.
+\end{enumerate}
+\subsection{Sheet 2}
+\begin{enumerate}[{1.}]
+    \item If \(x\notin\mathbb{Q}\), take sequence \(x_n\in\mathbb{Q}\). Then \(x_n\to x\) but \[f(x_n)=x_n\to x\neq 1-x=f(x)\] so \(f\) is discontinuous. If \(x\in\mathbb{Q}\), take sequence \(x_n\notin\mathbb{Q}\). Then \(x_n\to x\). Now \[f(x_n)=1-x_n\to 1-x\neq x=f(x)\] for all \(x\) that is not \(1/2\). Therefore, \(f\) is discontinuous for all \(x\in\mathbb{R}\), \(x\neq 1/2\). However, for \(x=1/2\), \(f\) is indeed continuous. Hence the required set will be \(\{1/2\}\).
+    \item We say \(f(x)\to\infty\) as \(x\to\infty\) if for given \(M>0\), there exists \(\delta(M)>0\) such that 
+    \[\forall x\in\mathbb{R}, x>\delta\Rightarrow f(x)>M\]
+    Now let's solve the second part of the question. \newline 
+    (\(\Rightarrow\)) Suppose \(f\to\infty\) as \(x\to\infty\), and \(x_n\) is a sequence with \(x_n\to\infty\). Let \(M>0\). Then \(\exists\delta>0\) such that 
+    \[\forall x\in\mathbb{R},x>\delta\Rightarrow f(x)>M\]
+    But since \(x_n\to\infty\), there exists \(N\) such that 
+    \[n\geq N\Rightarrow x_n>\delta\Rightarrow f(x_n)>M\]
+    Therefore, \(f(x_n)\to\infty\). \newline 
+    (\(\Leftarrow\)) Suppose \(f\) is not continuous at \(a\). Then, \(\exists M>0\) such that for all \(\delta>0\), \(\exists x\in\mathbb{R}\) with \(x>\delta\) and \(f(x)\leq M\). Now consider 
+    \[\delta=1,2,\ldots,n,\ldots\]
+    for \(x_1,x_2,\ldots,x_n,\ldots\) respectively. Then, \(x_n>n\) and \(f(x_n)\leq M\). Then \(x_n\to\infty\) as \(n\to\infty\) but \(f(x_n)\nrightarrow\infty\), which is a contradiction. Hence \(f\to\infty\) as \(x\to\infty\).
+    \item No. For example, consider 
+    \[f(x)=0\text{  for all }x\in\mathbb{R}\]
+    \[g(x)=\begin{cases}
+        1 & x\neq 0 \\
+        0 & x=0
+    \end{cases}\]
+    Then \(\lim_{x\to 0}f(x)=0\) and \(\lim_{x\to 0}g(x)=1\). However, 
+    \[\lim_{x\to 0}g(f(x))=0\]
+    instead of expected \(1\). Note that \(g\) is not continuous at \(x=0\).
+    \item We only need to check if \(h_n\) is continuous at a point \(a\in[0,1]\) such that \(f_i(a)=f_j(a)\), and \(f_i(x)-f_j(x)\) decreasing at \(a\) (without loss of generality) for some \(i,j\in\{1,2,\ldots,n\}\). Then,
+    \[\lim_{x\to a-}h_n(x)=\lim_{x\to a-}f_i(x)=f_i(a)\]
+    \[\lim_{x\to a+}h_n(x)=\lim_{x\to a+}f_j(x)=f_j(a)\]
+    But \(f_i(a)=f_j(a)\) so the limit exists and \(\lim_{x\to a}h_n(x)=f_i(a)=f_j(a)\). Hence \(h_n\) is continuous at \(a\), and consequently at any \(x\in[0,1]\).
+    \item Let \(g(x)=f(x)-x\), which is also continuous at \([0,1]\). If \(g(0)=0\), \(f(0)=0\), done. Now if \(g(0)>0\), consider \(g(1)\). If \(g(1)=0\), done. Otherwise, we have \(g(1)<0\). Then, by intermediate value theorem, there exists \(c\in(0,1)\) such that 
+    \[g(c)=f(c)-c=0\Leftrightarrow f(c)=c\]
+    However, a continuous bijection \(h:(0,1)\to(0,1)\) need not to have a fixed point. E.g. consider \(h(x)=x^2\). With such idea, we may construct a bijection of \([0,1]\) with no fixed point:
+    \[x\mapsto \begin{cases}
+        1 & x=0 \\
+        x^2 & 0<x<1 \\
+        0 & x=1
+    \end{cases}\]
+    \item We assume the familiar features of \(\sin\) and \(\cos\). For instance, \(f(x)\) is periodic with period \(2\pi\). Thus we only consider \(f(x):[0,2\pi]\to[0,2]\). Since \(f\) continuous, there exists \(y\in[0,2\pi]\) such that \(f(y)\leq f(x)\) for all \(x\in[0,2\pi]\), by the extreme value theorem. Now we only need to show that \(f(y)\neq 0\), or furthermore, \(f(x)>0\) \(\forall x\in[0,2\pi]\). Note that \(f(x)=0\) if and only if \(\sin^2x=0\) and \(\sin^2(x+\cos^7x)=0\). Suppose there is a point \(c\in[0,2\pi]\) with \(f(x)=0\). Then, we have
+    \[c=n\pi,\quad c+\cos^7c=m\pi\]
+    for some \(n,m\in\mathbb{Z}\). Simplification gives
+    \[(-1)^m=\cos^7(m\pi)=(n-m)\pi\]
+    which is a contradiction. Thus \(f(x)>0\) for all \(x\in[0,2\pi]\).
+    \item Q7.
+    \item Let \(f:\mathbb{R}\to\mathbb{R}\), \(f(x)=2x^5+3x^4+2x+16\). Differentiate to find 
+    \[f^\prime(x)=10x^4+12x^3+2\]
+    and 
+    \[f^\pprime(x)=40x^3+36x^2=4x^2(10x+9)\]
+    Since \(f^\pprime(x)<0\) for \(x<-9/10\), we know that \(f^\prime\) is strictly decreasing at \([-2,-1]\). Furthermore, because \(f^\prime(-1)=0\), \(f^\prime(x)> 0\) for \(x\in[-2,-1)\), and \(f\) is strictly increasing at \([-2,-1)\). 
+    
+    Now, since \(f(-2)=-4<0\) and \(f(-1)=15>0\), there exists \(c\in(-2,-1)\) such that \(f(c)=0\) (by intermediate value theorem); and such point is unique since \(f\) is strictly increasing at \((-2,-1)\). 
+
+    Moreover, there is no root for \(x\leq -2\) since \(f(-2)<0\) and \(f^\prime(x)\) is strictly decreasing for \(x\leq -2\). Similarly, there is no root for \(x\geq 0\) since \(f(x)\geq f(0)=16>0\).
+
+    We only need to check for \((-1,0)\). In this interval, 
+    \[f(x)>2x+3x^4+2x+16=3x^4+4x+16>3x^4+12>12\]
+    so there is no root.
+    \item (2) (4) is true (see lecture note). (1) is also true. However, (3) is false, e.g. consider \(f(x)=x^3\) at \(x=0\).
+    \item Note that \(f(0)<\infty\) since \(f\) is differentiable for all \(x\). By the mean value theorem, there exists \(c\in(0,x)\) such that 
+    \[\frac{f(x)-f(0)}{x}=f^\prime(c)\]
+    Taking limits of both sides,
+    \[\lim_{x\to\infty}\frac{f(x)-f(0)}{x}=\lim_{x\to\infty}f^\prime(c)=l\]
+    and
+    \[\lim_{x\to\infty}\frac{f(x)}{x}=l+\lim_{x\to\infty}\frac{f(0)}{x}=l\]
+    However, converse is not necessarily true, e.g. consider \(f(x)=\sin x\).
+    \item If \(x\neq 0\), simple calculation gives 
+    \[f^\prime(x)=1+4x\sin\frac 1x-2\cos\frac 1x\]
+    If \(x=0\),
+    \[f^\prime(0)=\lim_{x\to 0}\frac{f(x)-f(0)}{x}=\lim_{x\to 0}\left(1+2x\sin\frac 1x\right)=1\]
+    since \(h\to 0\) but \(|\sin(1/h)|\leq 1\). Now consider an arbitrary interval \([-\delta,\delta]\). Let \(x=2/(2n+1)\pi\) with \(n\in\mathbb{N}\), \(x<\delta\). Then,
+    \[f(x)=x-2x^2<0\]
+    since \(x<1/2\). Therefore, because \(f(x)<f(0)=0\) while \(x>0\), f(x) is not increasing in the interval \([-\delta,\delta]\). Since \(\delta\) was arbitrary, we are done.
+\end{enumerate}
+\subsection{Sheet 3}
+\begin{enumerate}[{1.}]
+    \item Put \(y=x+h\) where \(h\neq 0\). Then,
+    \[\left|\frac{f(x+h)-f(x)}{h}\right|\leq|h|\]
+    Since it holds for all \(h\),
+    \[\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}=0\]
+    Thus \(f\) is constant.
+    \item Note that \(-1\leq\sin(1/x)\leq 1\). With this fact, claim that \(f_\alpha\) is bounded if and only if \(0\leq\alpha\leq 1\). One may easily proof this.
+
+    Meanwhile, It is clear that \(f_\alpha\) is continuous at all points except \(x=0\). We only need to check for \(x=0\): \(f_\alpha\) is continuous if and only if \(\alpha>0\) and differentiable if and only if \(\alpha>1\). These give the table as follows.
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{0.8\textwidth}{Xccccccccc}
+            \toprule
+            \(\alpha=\) & \(-1/2\) & \(0\) & \(1/2\) & \(1\) & \(3/2\) & \(2\) & \(5/2\) & \(3\) & \(7/2\) \\
+            \midrule
+            \(f_\alpha\) bounded & \xmark & \checkmark & \checkmark & \checkmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
+            \(f_\alpha\) cont. & \xmark & \xmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+            \(f_\alpha\) diffable & \xmark & \xmark & \xmark & \xmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+            \midrule
+            \(f_\alpha^\prime\) bounded & - & - & - & - & \xmark & \checkmark & \xmark & \xmark & \xmark \\
+            \(f_\alpha^\prime\) cont. & - & - & - & - & \xmark & \xmark & \checkmark & \checkmark & \checkmark \\
+            \(f_\alpha^\prime\) diffable & - & - & - & - & \xmark & \xmark & \xmark & \xmark & \checkmark \\
+            \bottomrule 
+        \end{tabularx}
+    \end{table}
+\item \(\log(1+x)\) is continuous on \([0,a/n]\) and differentiable on \((0,a/n)\). Hence, by mean value theorem, there exists \(c\in(0,a/n)\) such that 
+\[\frac{\ln(1+a/n)}{a/n}=\frac 1{1+c}\]
+Rearrange to find 
+\[\ln\left(\left(1+\frac an\right)^n\right)=\frac a{1+c}\]
+Since \(\ln\) is inverse of \(\exp\), 
+\[\left(1+\frac an\right)^n=e^{a/(1+c)}\to e^a\]
+as \(n\to\infty\) (Note that both limits exist).
+\item Let \(1/n=m\). Then
+\[\lim_{n\to\infty}n(a^{1/n}-1)=\lim_{m\to 0}\frac{a^m-1}{m}=\lim_{m\to 0}\frac{e^{m\ln a}-1}{m\ln a}\ln a=\ln a\]
+\item \(f_{3/2}\) and \(f_2\) from Question 2 shows the argument is false at \(x=0\). Note that \(\lim_{h\to 0}f^\prime(c+\theta h)\) may not exist. 
+\item It is clearly differentiable for \(x\neq 0\). For \(x=0\), we can tell that \(f\) is infinitely differentiable since \(x^re^{-x}\to 0\) as \(x\to\infty\) for any \(r>0\). Taylor's theorem states that 
+\[f(x)=\frac{x^n}{n!}f^{(n)}(\theta x)\]
+However, 
+\[f(x)\neq\sum_{i=}^{\infty}\frac{x^i}{i!}f^{(i)}(0)=0\]
+Taylor series, since 
+\[R_n(x)=\frac{x^n}{n!}f^{(n)}(\theta x)\neq 0\]
+as \(n\to\infty\).
+\item \(3/2\), \(2^{1/3}\), \(1/e\), \(1\).
+\item By Cauchy's mean value theorem,
+\[\frac{f(x)}{g(x)}=\frac{f(x)-f(a)}{g(x)-g(a)}=\frac{f^\prime(c)}{g^\prime(c)}\]
+for some \(c\in(a,x)\). Hence 
+\[\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f^\prime(c)}{g^\prime(c)}=l\]
+Put \(g(x)=x-a\). Then,
+\[\lim_{x\to a}\frac{f(x)-f(a)}{x-a}=\lim_{x\to a}f^\prime(x)=l\]
+So \(f\) is also differentiable at \(a\) (with limit \(l\)).
+
+Meanwhile, consider \(g(x)=x\),
+\[f(x)=\begin{cases}
+    x^2\sin\frac 1x & x\neq 0 \\
+    0 & x=0
+\end{cases}\]
+and \(a=0\). Then 
+\[f^\prime(x)=2x\sin\frac 1x-\cos\frac 1x\]
+and \(g^\prime(x)=1\). We have 
+\[\lim_{x\to 0}\frac{f(x)}{g(x)}=\lim_{x\to 0}x\sin\frac 1x=0\]
+but \(\lim_{x\to 0}f^\prime(x)/g^\prime(x)\) is not defined.
+
+For the final part, let \(f(x)=x-(n+1)x^{n+1}+nx^{n+2}\), and \(g(x)=(1-x)^2\). Then \(f^\prime(x)=1-(n+1)^2x^n+n(n+2)x^{n+1}\), \(g^\prime(x)=2x-2\). Thus the limit will be 
+\[\frac{n(n+1)}{2}\]
+\item We have \(\tan^\prime x=\sec^2 x\) for \(x\in(-\pi/2,\pi/2)\). Now consider \(\tan x:[-a,a]\to [-c,c]\) for some \(0<a<\pi/2\), with \(c=\tan a\). Then by inverse function theorem, \(\tan^{-1}\) is differentiable on \((-c,c)\) with 
+\[(\tan^{-1}x)^\prime=\frac {1}{1+x^2}\]
+Moreover, since \(c\to\infty\) as \(a\to \pi/2\), it is differentiable for \(x\in\mathbb{R}\).
+
+By ratio test, we can check the power series 
+\[g(x)=\sum_{n=0}^{\infty}\frac{(-1)^nx^{2n+1}}{2n+1}\]
+has a radius of convergence of \(1\). Hence \(g\) is differentiable for \(|x|<1\) and 
+\[g^\prime(x)=\sum_{n=0}^{\infty}(-1)^nx^{2n}=\frac{1}{1+x^2}=(\tan^{-1}x)^\prime\]
+Integrate both sides to obtain that \(\tan^{-1}=g(x)\) (\(g(0)=\tan 0\)).
+\item Clearly,
+\[p_n=(1+a_1)\cdots(1+a_n)=1+(a_1+\cdots+a_n)+(\cdots)\geq s_n\]
+Now since \(\ln\) is increasing,
+\begin{align*}
+    p_n\leq e^{s_n}&\Leftrightarrow \ln p_n\leq s_n \\
+    &\Leftrightarrow \ln(1+a_1)+\cdots+\ln(1+a_n)\leq a_1+\cdots+a_n
+\end{align*}
+Claim that \(\ln(1+x)\leq x\) for \(x\geq 0\). Let \(f(x)=\ln(1+x)-x\). But  
+\[f^\prime(x)=1-\frac{1}{1+x}=\frac x{1+x}\geq\]
+and \(f(0)=0\). So  \(\ln(1+x)\leq x\) for \(x\geq 0\). Thus 
+\[\ln(1+a_j)\leq a_j\]
+for all \(j=1,2,\ldots,n\) and 
+\[s_n\leq p_n\leq e^{s_n}\]
+
+First suppose \(p_n\to p\) as \(n\to\infty\). Then, \(s_n\) is bounded by \(p\) and it is increasing (\(a_n\geq 0\)). Therefore it converges. 
+
+Suppose \(s_n\to s\) as \(n\to\infty\). Then, \(p_n\) is bounded by \(e^s\) and it is increasing (\((1+a_n)\geq 1\)). Therefore it converges. Thus \(\prod_{n=1}^\infty(1+a_n)\) converges if and only if \(\sum_{n=1}^{\infty}a_n\) converges.
+
+Let \(a_n=1/(n^2-1)\). Then,
+\[s_n=\sum_{j=2}^{n}a_n=\sum_{j=2}^{n}\frac 12\left(\frac 1{j-1}-\frac 1{j+1}\right)=\frac 34-\frac 12\left(\frac 1n+\frac 1{n+1}\right)\to \frac 34\]
+Thus by above, \(p_n\) converges. Now,
+\begin{align*}
+    \ln p_n&=\sum_{j=2}^{n}\ln(1+a_n)=\sum_{j=2}^{n}\ln\left(\frac{j^2}{j^2-1}\right)=\sum_{j=2}^{n}\left[\ln(j^2)-\ln(j^2-1)\right] \\
+    &=\sum_{j=2}^{n}\left[2\ln j-\ln(j-1)-\ln(j+1)\right] \\
+    &=\sum_{j=2}^{n}\left[(\ln j-\ln(j-1))-(\ln(j+1)-\ln j)\right] \\
+    &=\ln 2+\ln\frac n{n+1}\to \ln 2
+\end{align*}
+as \(n\to\infty\). Thus \(p_n\to 2\) as \(n\to\infty\).
+\item Q11.
+\item (\emph{Theorem of Darboux}) Let \(d=(a+b)/2\). For \(a\leq x\leq d\), define \(\alpha(x)=a\) and \(\beta(x)=2x-a\), and for \(d\leq x\leq b\), define \(\alpha(x)=2x-b\) and \(\beta(x)=b\). Then for \(x\in(a,b)\), we have \(a\leq\alpha<\beta\leq b\). Now, define 
+\[g(x)=\frac{(f\circ\beta)(x)-(f\circ\alpha)(x)}{\beta(x)-\alpha(x)}\]
+with \(a<x<b\). Furthermore, \(g(x)\to f^\prime(a)\) as \(x\to a\) and \(g(x)\to f^\prime(b)\) as \(x\to b\). Hence, by the intermediate value theorem, there exists \(m\in(a,b)\) such that \(g(m)=y\). Then, by the mean value theorem, there exists \(c\in(\alpha(m),\beta(m))\) such that 
+\[f^\prime(c)=g(m)=y\]
+\item We consider 
+\[f(x)=\exp\left(\frac{1}{(x-a)(x-b)}\right)\]
+(See Rudin.)
+\end{enumerate}
 \end{document}

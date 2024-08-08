@@ -1,25 +1,29 @@
 % \usepackage{amsmath, amssymb, mathrsfs}
 \usepackage{kpfonts}
 \usepackage{fourier-orns}
+\usepackage{anyfontsize}
 \usepackage[T1]{fontenc}
 \usepackage{amsfonts, amsthm, mathabx}
+\usepackage{pifont}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{adjustbox}
+\usepackage{adjustbox, microtype}
 \usepackage{empheq}
 \usepackage{tikz, pgf}
+\usepackage{float}
 \usepackage{pgfplots}
 \usepackage{dynkin-diagrams}
 \usepackage{tabularx, makecell}
 \usepackage{lipsum}
 % \usepackage[top=1.2in, inner=1.2in, outer=0.8in, bottom=1in]{geometry}
-\usepackage[top=1.2in, inner=1.2in, outer=1.2in, bottom=1in]{geometry}
+\usepackage[margin=1.6in]{geometry}
 
 \usepackage{kotex}
 \usepackage{fancyhdr, titlesec, caption, xcolor}
+\usepackage{enumerate}
 \usepackage[Sonny]{fncychap}
 \usepackage[super]{nth}
-
+ 
 \usepackage[bb=boondox]{mathalfa}
 \usepackage[hidelinks]{hyperref}
 
@@ -32,6 +36,7 @@
 
 \pgfplotsset{compat=1.15}
 \usetikzlibrary{shapes, arrows}
+\usetikzlibrary{shapes.geometric,fit}
 \usepackage{titling}
 \DeclareFontFamily{OT1}{pzc}{}
 \DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
@@ -72,6 +77,7 @@
   \par\nobreak\vspace*{35pt}}
   \@afterheading%
 }
+\newcommand{\xmark}{\ding{55}}%
 \newcommand{\subsubmark}{{\text{\(\Asterisk\)}}}
 \newcommand{\lorentzm}{{\begin{pmatrix}
   \gamma & -\gamma\beta & 0 \\

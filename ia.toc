@@ -1,45 +1,62 @@
-\contentsline {chapter}{\numberline {1}Numbers and Sets}{4}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Elementary Number Theory}{4}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Natural Number}{4}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Integer}{5}{subsection.1.1.2}%
-\contentsline {subsection}{\numberline {1.1.3}Rational Number}{6}{subsection.1.1.3}%
-\contentsline {subsection}{\numberline {1.1.4}Primes}{6}{subsection.1.1.4}%
-\contentsline {subsection}{\numberline {1.1.5}Modular Arithmetic}{11}{subsection.1.1.5}%
-\contentsline {subsubsection}{Solution of congruences}{11}{subsubsection*.3}%
-\contentsline {subsubsection}{Simultaneous congruences}{12}{subsubsection*.4}%
-\contentsline {chapter}{\numberline {2}Groups}{14}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Analysis I}{15}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Limits and Convergence}{15}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Sequences}{15}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Series and Convergence Tests}{19}{subsection.3.1.2}%
-\contentsline {subsubsection}{Series with non-negative terms}{21}{subsubsection*.5}%
-\contentsline {subsubsection}{Alternating series}{23}{subsubsection*.6}%
-\contentsline {subsubsection}{Absolute and conditional convergence}{24}{subsubsection*.7}%
-\contentsline {section}{\numberline {3.2}Continuity}{25}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Continuity of a Function}{25}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Limit of a Function}{27}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Inverse Function Theorem}{30}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Differentiability}{30}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Differentiation of Sums and Products}{31}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}The Mean Value Theorem}{33}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Higher Derivatives and Taylor's Theorem}{36}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Power Series}{39}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}The Standard Functions}{43}{subsection.3.4.1}%
-\contentsline {subsubsection}{Exponentials and logarithms}{43}{subsubsection*.9}%
-\contentsline {subsubsection}{Trigonometric functions}{47}{subsubsection*.10}%
-\contentsline {subsubsection}{Periodicity of trigonometric functions}{47}{subsubsection*.12}%
-\contentsline {subsubsection}{Trigonometric functions and geometry}{48}{subsubsection*.13}%
-\contentsline {subsubsection}{Hyperbolic functions}{49}{subsubsection*.14}%
-\contentsline {section}{\numberline {3.5}Integration}{49}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Riemann Integral}{49}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Elementary Properties of the Integral}{54}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}Piecewise Continuous Functions}{58}{subsection.3.5.3}%
-\contentsline {subsection}{\numberline {3.5.4}The Fundamental Theorem of Calculus}{59}{subsection.3.5.4}%
-\contentsline {subsection}{\numberline {3.5.5}Improper Integrals}{63}{subsection.3.5.5}%
-\contentsline {subsubsection}{Integrals on an infinite domain}{63}{subsubsection*.16}%
-\contentsline {subsubsection}{Integrands with an isolated singularity}{63}{subsubsection*.17}%
-\contentsline {subsubsection}{Properties and examples of improper integral}{63}{subsubsection*.18}%
-\contentsline {subsubsection}{Integral test}{65}{subsubsection*.19}%
-\contentsline {subsection}{\numberline {3.5.6}Lebesgue's Criterion for Riemann Integrability}{66}{subsection.3.5.6}%
-\contentsline {section}{\numberline {3.6}Example Sheets}{67}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Sheet 1}{67}{subsection.3.6.1}%
+\contentsline {chapter}{\numberline {1}Numbers and Sets}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Sets, Functions, and Relations}{5}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Sets}{5}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Functions}{7}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Relations}{10}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Numbers and Counting}{11}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Natural Number}{11}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Integer}{13}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Rational Number}{13}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Finite and Infinite Sets}{14}{subsection.1.2.4}%
+\contentsline {subsubsection}{Binomial coefficients}{14}{subsubsection*.7}%
+\contentsline {subsubsection}{Sizes of sets}{16}{subsubsection*.8}%
+\contentsline {section}{\numberline {1.3}Elementary Number Theory}{16}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Primes}{16}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Modular Arithmetic}{21}{subsection.1.3.2}%
+\contentsline {subsubsection}{Solution of congruences}{22}{subsubsection*.9}%
+\contentsline {subsubsection}{Simultaneous congruences}{23}{subsubsection*.10}%
+\contentsline {subsection}{\numberline {1.3.3}Public Key Cryptography}{26}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}The Real Numbers}{27}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Real Numbers}{27}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Decimal Expansions}{30}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Complex Numbers}{31}{subsection.1.4.3}%
+\contentsline {section}{\numberline {1.5}Countability}{32}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Groups}{38}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{38}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Analysis I}{39}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Limits and Convergence}{39}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Sequences}{39}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Series and Convergence Tests}{44}{subsection.3.1.2}%
+\contentsline {subsubsection}{Series with non-negative terms}{46}{subsubsection*.11}%
+\contentsline {subsubsection}{Alternating series}{48}{subsubsection*.12}%
+\contentsline {subsubsection}{Absolute and conditional convergence}{49}{subsubsection*.13}%
+\contentsline {section}{\numberline {3.2}Continuity}{50}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Continuity of a Function}{50}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Limit of a Function}{53}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Inverse Function Theorem}{56}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Differentiability}{57}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Differentiation of Sums and Products}{58}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}The Mean Value Theorem}{61}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Higher Derivatives and Taylor's Theorem}{64}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Power Series}{68}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}The Standard Functions}{72}{subsection.3.4.1}%
+\contentsline {subsubsection}{Exponentials and logarithms}{72}{subsubsection*.15}%
+\contentsline {subsubsection}{Trigonometric functions}{76}{subsubsection*.16}%
+\contentsline {subsubsection}{Periodicity of trigonometric functions}{77}{subsubsection*.18}%
+\contentsline {subsubsection}{Trigonometric functions and geometry}{78}{subsubsection*.19}%
+\contentsline {subsubsection}{Hyperbolic functions}{78}{subsubsection*.20}%
+\contentsline {section}{\numberline {3.5}Integration}{79}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Riemann Integral}{79}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Elementary Properties of the Integral}{84}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Piecewise Continuous Functions}{89}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}The Fundamental Theorem of Calculus}{89}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Improper Integrals}{94}{subsection.3.5.5}%
+\contentsline {subsubsection}{Integrals on an infinite domain}{94}{subsubsection*.22}%
+\contentsline {subsubsection}{Integrands with an isolated singularity}{95}{subsubsection*.23}%
+\contentsline {subsubsection}{Properties and examples of improper integral}{95}{subsubsection*.24}%
+\contentsline {subsubsection}{Integral test}{97}{subsubsection*.25}%
+\contentsline {subsection}{\numberline {3.5.6}Lebesgue's Criterion for Riemann Integrability}{98}{subsection.3.5.6}%
+\contentsline {section}{\numberline {3.6}Example Sheets}{99}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Sheet 1}{99}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Sheet 2}{102}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Sheet 3}{104}{subsection.3.6.3}%

@@ -1039,6 +1039,117 @@ Since \(1/10^n\to 0\) as \(n\to\infty\), \(x-\sum_{j=1}^{n}({d_j}/{10^j})\to 0\)
         \item A decimal expansion is \emph{periodic} if, aster a finite number of items, it repeats in blocks, of length \(k\) say. I.e. \(\exists l,k\) such that \(d_{n+k}=d_n\) for all \(n>l\).
     \end{enumerate}
 \end{remark}
+We can tell that a periodic decimal is rational, e.g. if 
+\[x=0.7836147147147\ldots\]
+then 
+\begin{align*}
+    10^4x-7836=0.147147\ldots
+    =147\sum_{j=1}^\infty\frac 1{10^{3j}}
+    =147\frac 1{10^3}\frac 1{1-1/10^3}  
+\end{align*}
+so \(x\in\mathbb{Q}\). Conversely, if \(x\in\mathbb{Q}\), then it has a periodic decimal expansion. To see this, we write 
+\[x=\frac p{2^a5^bq}\]
+where \(a,b,p,q\in\mathbb{Z}\), \(a,b,q\geq 0\), \(\gcd(q,10)=1\). Then, 
+\[10^{\max\{a,b\}}x=\frac tq=n+\frac cq\]
+where \(n,c\in\mathbb{Z}\), \(0\leq c<q\). By Fermat-Euler's theorem (Theorem \ref{thm:euler}), since \(\gcd(q,10)=1\), 
+\[10^{\varphi(q)}\equiv 1\mod q\]
+or \(10^{\varphi(q)}-1=kq\) for some \(k\in\mathbb{N}\). Hence 
+\[\frac cq=\frac {kc}{kq}=\frac {kc}{10^{\varphi(q)}-1}=kc\sum_{j=1}^{\infty}\frac 1{(10^{\varphi(q)})^j}\]
+Since \(0\leq kc<kq\), we can write \(kc\) as a \(\varphi(q)\)-digit number \(d_1d_2\ldots d_{\varphi(q)}\). Then 
+\[\frac cq=0.d_1d_2\ldots d_{\varphi(q)}d_1d_2\ldots d_{\varphi(q)}\]
+and so \(x\) is periodic.
+\subsection{Algebraic and Transcendental Numbers}
+\subsubsection{Euler's Number}
+We define the \emph{Euler's number}
+\[e=1+\frac 1{1!}+\frac 1{2!}+\frac 1{3!}+\cdots\]
+Note that this series convergences by monotone convergence theorem, since it is increasing and bounded above by 
+\[1+1+\frac 12+\frac 14+\cdots=3\]
+If we define \(0!=1\), then 
+\[e=\sum_{j=0}^{\infty}\frac 1{j!}\]
+\begin{proposition}
+    \(e\) is irrational.
+\end{proposition}
+\begin{proof}
+    Suppose \(e\) were rational, say \(e=p/q\) where \(p,q\in\mathbb{N}\) and \(q>1\) (since \(2<e<3\)). Then \(q!e\in\mathbb{N}\). But 
+    \begin{align*}
+        q!e&=q!+\frac{q!}{1!}+\frac{q!}{2!}+\cdots+\frac{q!}{q!}+\frac{q!}{(q+1)!}+\frac{q!}{(q+2)!}+\cdots \\
+        &=N+x
+    \end{align*}
+    for some \(N\in\mathbb{N}\), where 
+    \begin{align*}
+        x&=\sum_{j=q+1}^{\infty}\frac{q!}{j!}=\sum_{j=1}^{\infty}\frac{q!}{(q+j)!} \\
+        &=\frac{1}{q+1}+\frac{q+1}{q+2}+\frac{1}{(q+1)(q+2)(q+3)}+\cdots    
+    \end{align*}
+    and in general,
+    \[\frac{q!}{(q+j)!}\leq\frac 1{(q+1)^j}\]
+    so 
+    \[x\leq\frac 1{q+1}+\frac 1{(q+1)^2}+\frac 1{(q+1)^3}+\cdots=\frac 1q<1\]
+    as \(q\geq 2\). Hence \(0<x<1\), contradicting the fact that \(q!e\in\mathbb{N}\). Thus \(e\) is irrational.
+\end{proof}
+\subsubsection{Algebraic and transcendental numbers}
+We say a real number is \emph{algebraic} if it is a root of a (non-zero) polynomial with integer coefficients (or rational coefficients).
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item Every rational number is algebraic: \(x=p/q\Rightarrow qx-p=0\).
+        \item \(\sqrt{2}\) is algebraic: it satisfies \(x^2-2=0\).
+    \end{enumerate}
+\end{example}
+A real number is \emph{transcendental} if it is not algebraic.
+\begin{theorem}
+    (Liouville, 1851) The number 
+    \[L=\sum_{n=1}^{\infty}\frac 1{10^{n!}}\]
+    is transcendental.
+    \label{thm:trans_liouville}
+\end{theorem}
+\begin{proof}
+    To prove the theorem, we first need two sublemmas about polynomials.
+\begin{lemma}
+    For any polynomial \(p\), there exists a constant \(K\) such that 
+    \[|p(x)-q(x)|\leq K|x-y|\]
+    for all \(0\leq x,y\leq 1\).
+    \label{sub:a_liouville}
+\end{lemma}
+\begin{proof}
+    Suppose \(p(x)=a_dx^d+a_{d-1}x^{d-1}+\cdots+a_1x+a_0\).
+    Then
+    \begin{align*}
+        p(x)-p(y)&=a_d(x^d-y^d)+a_{d-1}(x^{d-1}-y^{d-1})+\cdots+a_1(x-y) \\
+        &=(x-y)\left[a_d(x^{d-1}+x^{d-2}y+\cdots+y^{d-1})+\cdots+a_1\right]
+    \end{align*}
+    so clearly,
+    \[|p(x)-p(y)|\leq|x-y|\left[(|a_d|+|a_{d-1}|+\cdots+|a_1|)d\right]\]
+\end{proof}
+\begin{lemma}
+    A non-zero polynomial of degree \(d\) has at most \(d\) roots.
+    \label{sub:b_liouville}
+\end{lemma}
+\begin{proof}
+    Given a polynomial \(p\) of degree \(d\), we may assume by induction that it holds for all polynomials of degree less than \(d\), and that \(p\) has a root \(r\) (otherwise we are done). We may write \(p(x)=(x-r)q(x)\) for some polynomial \(q\) of degree \(d-1\). So each root of \(p\) is either \(r\), or a root of \(q\). But by the induction hypothesis, \(q\) has at most \(d-1\) roots.
+\end{proof}
+    Now we are ready.
+    Write
+    \[L_n=\sum_{k=1}^{n}\frac{1}{10^k}\]
+    so \(L_n\to L\) as \(n\to\infty\). Suppose there is a polynomial \(p\) of which \(L\) is a root. By Lemma \ref{sub:a_liouville}, there exists \(K\) such that \(|p(x)-p(y)|\leq K|x-y|\) for all \(0\leq x,y\leq 1\).
+
+    Suppose \(p\) has a degree \(d\), i.e. \(p(x)=a_dx^d+a_{d-1}x^{d-1}+\cdots+a_1x+a_0\) with \(a_i\in\mathbb{Z}\), \(a_d\neq 0\). Notice that \(L_n=s/10^{n!}\) for some \(s\in\mathbb{N}\), so
+    \[p(L_n)=\frac{t}{10^{dn!}}\]
+    for some \(t\in\mathbb{Z}\). By Lemma \ref{sub:b_liouville}, for sufficiently large \(n\), \(L_n\) is not a root of \(p\). Hence \(|p(L_n)|\geq 1/10^{dn!}\), i.e. 
+    \[|p(L_n)-p(L)|\geq\frac{1}{10^{dn!}}\]
+    Therefore, 
+    \[\frac{1}{10^{dn!}}\leq|p(L_n)-p(L)|\leq K|L_n-L|\leq K\frac{2}{10^{(n+1)!}}\]
+    Since 
+    \[|L-L_n|=\sum_{k=n+1}^{\infty}\frac 1{10^{k!}}\leq\frac{2}{10^{(n+1)!}}\]
+    But \(1/10^{dn!}\leq 2K/10^{(n+1)!}\) is a contradiction for sufficiently large \(n\).
+\end{proof}
+\begin{remark} \item[]
+    \begin{enumerate}
+        \item The same proof shows that any real number \(x\) such that \(\forall x\in\mathbb{N}\), there exists rational \(p/q\) such that 
+        \[0<\left|x-\frac pq\right|<\frac 1{q^n}\]
+        is transcendental, i.e. ``\(x\) is transcendental if it has a very good rational approximation.''
+        \item Such \(x\) are known as \emph{Liouville numbers}.
+        \item This proof does not show that \(e\) is transcendental, but in fact it is.
+    \end{enumerate}
+\end{remark}
 \subsection{Complex Numbers}
 Observe that some polynomials have no real roots, e.g. \(x^2+1\). We will try and define \(x\) with \(x^2+1=0\) into existence.
 
@@ -1293,10 +1404,427 @@ It would be nice to be able to say that for any two sets \(A\) and \(B\), either
 \chapter{Groups}
 \chapterauthor{Lecture by Professor Henry Wilton. 
     Michaelmas term 2023.}
-\section{Introduction}
+\section{Groups}
+\subsection{Introduction}
 \begin{definition}
-    A \emph{binary operation}
+    A \emph{binary operation} on a set \(X\) is a map \[\cdot:X\times X\to X,\;(x,y)\mapsto x\cdot y\]
 \end{definition}
+\begin{definition}
+    A \emph{group} is a triple \((G,\cdot,e)\) where \(G\) is a set, \(e\in G\), \(\cdot\) is a binary operation, satisfying four axioms: for all \(g_1,g_2,g_3\in G\), 
+    \begin{itemize}
+        \item Closure: \(g_1\cdot g_2\in G\).
+        \item Associativity: \((g_3\cdot g_2)\cdot g_1=g_3\cdot (g_2\cdot g_1)\).
+        \item Identity: \(\exists e\in G\quad\text{s.t.}\quad g\cdot e=g\quad\forall g\in G\).
+        \item Inverse: For each \(a\in G\), \(\exists b\in G\quad\text{s.t.}\quad a\cdot b=e\).
+      \end{itemize}
+\end{definition}
+We sometimes write only \(G\) for a group, if the operation and the identity element is clear enough.
+\begin{example}
+    The symmetries of an equilateral triangle form a group.
+\end{example}
+\begin{example}
+    \((\mathbb{Z},+,0)\) forms a group.
+\end{example}
+\begin{proposition}
+    Let \((G,\cdot,e)\) be a group and \(a,b,b^\prime,e\in G\). Then,
+    \begin{enumerate}
+        \item if \(a\cdot b=e\) then \(b\cdot a=e\);
+        \item \(e\cdot a=a\);
+        \item if \(a\cdot b=e=a\cdot b^\prime\), then \(b=b^\prime\);
+        \item If \(a\cdot e^\prime=a\), \(e^\prime=e\).
+    \end{enumerate}
+    \label{prop:elem_group}
+\end{proposition}
+\begin{proof} \item[] 
+    \begin{enumerate}
+        \item \(b=b\cdot e=b\cdot(a\cdot b)=(b\cdot a)\cdot b\). But there exists \(c\) such that \(b\cdot c=e\). Hence 
+        \[e=b\cdot c=((b\cdot a)\cdot b)\cdot c=(b\cdot a)\cdot(b\cdot c)=(b\cdot a)\cdot e=b\cdot a\]
+        \item There exists \(b\in G\) such that \(a\cdot b=e\). Hence 
+        \[e\cdot a=(a\cdot b)\cdot a=a\cdot(b\cdot a)=a\cdot e=a\]
+        by identity.
+        \item There exists \(c\in G\) such that \(b\cdot c=c\cdot b=e\). Then,
+        \[b^\prime=e\cdot b^\prime=(b\cdot a)\cdot b^\prime=b\cdot(a\cdot b^\prime)=b\cdot e=b\]
+        \item By inverse and part (1), there exists \(b\in G\) such that \(b\cdot a=e\). We are given \(a=a\cdot e^\prime\). Multiply on the left by \(b\) to obtain
+        \[e=b\cdot a=b\cdot(a\cdot e^\prime)=(b\cdot a)\cdot e^\prime=e\cdot e^\prime=e^\prime\]
+    \end{enumerate}
+\end{proof}
+Part (3) of Proposition \ref{prop:elem_group} says that inverses are unique. Therefore, if \(a\cdot b=e\), then we can write \(b=a^{-1}\); and by part (1), \(a\cdot a^\prime=e=a^{-1}\cdot a\). Hence \((a^{-1})^{-1}=a\). It now makes sense to write, for any \(g\in G\), \(g^0=e\), \(g^1=g\), \(g^2=g\cdot g\), \ldots, \(g^n=g^{n-1}\cdot g\) for any \(n\in\mathbb{N}\), and \(g^n=(g^{-1})^{-n}\) for \(n=-1,-2,\ldots\).
+\begin{example}
+    For any \(g\in G\), \(m,n\in\mathbb{Z}\), \(g^m\cdot g^n=g^{m+n}\) and \((g^m)^n=g^{mn}\).
+\end{example}
+\begin{remark}
+    Recall that \(a\cdot b\) is not necessarily \(b\cdot a\) in a group. Also, it is not necessarily true that \((a\cdot b)^{-1}=a^{-1}b^{-1}\). However, 
+    \[(a\cdot b)\cdot(b^{-1}\cdot a^{-1})=(a\cdot(b\cdot b^{-1}))\cdot a^{-1}=(a\cdot e)\cdot a^{-1}=a\cdot a^{-1}=e\]
+    and \((a\cdot b)^{-1}=b^{-1}\cdot a^{-1}\).
+\end{remark}
+\begin{definition}
+    If \(G\) is a group, and furthermore, \(a\cdot b=b\cdot a\) for all \(a,b\in G\), then \(G\) is called \emph{abelian}.\footnote{You may capitalise.} 
+\end{definition}
+For example, if \(G=\{e\}\) and \(e\cdot e=e\), \((G,\cdot,e)\) is called the \emph{trivial group}. Moreover,
+\begin{enumerate}
+    \item \((\mathbb{Z},+,0)\), \((\mathbb{Q},+,0)\), \((\mathbb{R},+,0)\), \((\mathbb{C},+,0)\) are all abelian groups;
+    \item \((\mathbb{N},+,0)\) is not a group;
+    \item \((\mathbb{Q},\times,1)\) is not a group but \((\mathbb{Q}\backslash\{0\},\times,1)\) is. Likewise, \((\mathbb{R}\backslash\{0\},\times,1)\), \((\mathbb{C}\backslash\{0\},\times,1)\) are also groups.
+\end{enumerate}
+\begin{definition}
+    The \emph{order} of a group \((G,\cdot,e)\) is the number of elements of \(G\), denoted by \(|G|\). If \(|G|<\infty\), then \((G,\cdot,e)\) is finite.
+\end{definition}
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item For any \(n\in\mathbb{N}_{\geq 0}\), let 
+        \[C_n=\{z\in\mathbb{C}\:|\:z^n=1\}\]
+        Then \((C_n,\times,1)\) is an abelian group of order \(n\).
+        \item Let \(\mathbb{Z}_n=\{0,1,\ldots,n-1\}\). For \(a,b\in\mathbb{Z}_n\), let \(a+_n b\) be the remainder when \(a+b\) is divided by \(n\). Then \((\mathbb{Z}_n,+_n,0)\) is an abelian group of order \(n\).
+    \end{enumerate}
+\end{example}
+\subsubsection{Matrix groups}
+There are lot more types of groups. For example, let \(\mathrm{GL}_2(\mathbb{R})\) be the set of \(2\times 2\) matrices 
+\[A=\begin{pmatrix}
+    a & b \\ c & d
+\end{pmatrix}\]
+with \(a,b,c,d\in\mathbb{R}\) and \(A\) invertible, i.e. there is \(B\) such that 
+\[AB=\begin{pmatrix}
+    1 & 0 \\ 0 & 1
+\end{pmatrix}=\mathbb{1}=1\]
+Now, \((\mathrm{GL}_2(\mathbb{R}),\cdot,1)\) is a group. It is infinite because it contains 
+\[\begin{pmatrix}
+    1 & t \\ 0 & 1
+\end{pmatrix}\in\mathrm{GL}_2(\mathbb{R})\]
+for all \(t\in\mathbb{R}\) and non-abelian, e.g. 
+\[\begin{pmatrix}
+    0 & 1 \\ 1 & 0
+\end{pmatrix}\begin{pmatrix}
+    1 & 1 \\ 0 & 1
+\end{pmatrix}\neq\begin{pmatrix}
+    1 & 1 \\ 0 & 1
+\end{pmatrix}\begin{pmatrix}
+    0 & 1 \\ 1 & 0
+\end{pmatrix}\]
+Matrix groups will be revisted later when we are talking physics.
+\subsubsection{Symmetric groups}
+Let \(X\) be a set.
+\begin{definition}
+    \(\mathrm{Sym}(X)\) is defined to be a set of bijections \(X\to X\).
+\end{definition}
+\begin{lemma}
+    (\emph{Composition is associative}) Consider maps of sets 
+    \[W\xrightarrow{f}X\xrightarrow{g}Y\xrightarrow{h}Z\]
+    Then 
+    \[(h\circ g)\circ f=h\circ(g\circ f)\]
+    \label{lemma:comp_assoc_group}
+\end{lemma}
+\begin{proof}
+    Let \(w\in W\). Then 
+    \[(h\circ g)\circ f(w)=(h\circ g)(f(w))=h(g(f(w)))=h((g\circ f)(w))=h\circ(g\circ f)(w)\]
+\end{proof}
+\begin{proposition}
+    For any set \(X\), \((\mathrm{Sym}(X),\circ,\mathrm{id}_X)\) is a group.
+\end{proposition}
+\begin{proof}
+    Associativity follows from Lemma \ref{lemma:comp_assoc_group}. The identity map \(\mathrm{id}_X:X\to X\), \(x\mapsto x\) clearly produces an identity element for the group. Finally, inverse exists by definition.
+\end{proof}
+We are especially interesed in the case when \(X\) is finite.
+\begin{definition}
+    If \(X=\{1,2,\ldots,n\}\), we write \(S_n=\mathrm{Sym}(X)\).
+\end{definition}
+N.b. \(|S_n|=n!\).
+\subsection{Subgroups}
+\begin{definition}
+    Let \((G,\cdot_G,e_G)\) and \((H,\cdot_H,e_H)\) be groups. If (1) \(H\subseteq G\), (2) \(e_H=e_G\), and (3) \(a\cdot_H b=a\cdot_G b\) for all \(a,b\in H\), then \(H\) is a \emph{subgroup} of \(G\) and we write
+    \[H\leq G\]
+\end{definition}
+\begin{proposition}
+    (\emph{Subgroup Criterion}) Let \(G\) be a group and \(H\subseteq G\) is a non-empty subset. If \(a\cdot b^{-1}\in H\) for all \(a,b\in H\), then \(H\leq G\).
+    \begin{proof}
+        Since \(H\) is non-empty, there is \(x\in H\). Therefore 
+        \[e_G=x\cdot x^{-1}\in H\]
+        For any \(a\in H\), \(a^{-1}=e_G\cdot_Ga^{-1}\in H\). Finally, for any \(a,b\in H\), \(b^{-1}\in H\) by above, so 
+        \[a\cdot_G b=a\cdot_G(b^{-1})^{-1}\in H\]
+        Now, if we set \(e_H=e_G\) and \(\cdot_H\) as the restriction of \(\cdot_G\) to \(H\), then \(H\leq G\).
+    \end{proof}
+\end{proposition}
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item Every group \(G\) is a subgroup of itself.
+        \item For any group \(G\), \(1_G=\{e_G\}\) is called the \emph{trivial subgroup}. Other subgroups are called \emph{proper}.
+        \item \(\mathbb{Z}\leq\mathbb{Q}\leq\mathbb{R}\leq\mathbb{C}\).
+        \item If \(H_i\leq G\) (for some sets of \(i\)s), then 
+        \[H=\bigcap_iH_i\leq G\]
+        \item For any subset of \(X\subseteq G\), define 
+        \[\langle X\rangle=\bigcap_{X\subseteq H\leq G}H\leq G\]
+        This is the subgroup generated by \(X\). If \(\langle X\rangle=G\), then we say that \(X\) generates \(G\).
+    \end{enumerate}
+\end{example}
+\begin{proposition}
+    The subgroups of \(\mathbb{Z}\) are exactly the subsets 
+    \[n\mathbb{Z}=\{nk\in\mathbb{Z}\:|\:k\in\mathbb{Z}\}\]
+    for all \(n=0,1,2,\ldots\)
+\end{proposition}
+\begin{proof}
+    First, note that each \(n\mathbb{Z}\) really is a subgroup of \(\mathbb{Z}\): if \(a=nk, b=nl\in n\mathbb{Z}\),
+    \[a+(-b)=a-b=nk-nl=n(k-l)\in n\mathbb{Z}\]
+    so the result follows by the subgroup criterion.
+
+    Now suppose that \(H\subseteq\mathbb{Z}\). If \(H=\{0\}\), then \(H=0\mathbb{Z}\) and we are done. If \(\{H\}\neq\{0\}\), then we may choose \(n\in H\backslash\{0\}\) to be the smallest positive element of \(H\).\footnote{Well-ordering principle.} Since \(H\) is closed under taking inverses, \(-n\in H\). Moreover, since \(H\) is closed under addition, \(n+n=2n\in H\), \(n+2n=3n\in H\),\(\ldots\),\(nk\in H\) for all \(k\geq 1\). Similarly \(-n-n=-2n\in H\) etc. So \(n\mathbb{Z}\in H\). We want to show that \(n\mathbb{Z}=H\). Suppose \(n\mathbb{Z}\neq H\). Then there is \(x\in n\mathbb{Z}\backslash n\mathbb{Z}\). Dividing \(x\) by \(n\) and take remainders to find \(x=nq+r\) for some \(q\in\mathbb{Z}\) and \(0<r<n\) (\(r\neq 0\) since \(x\notin n\mathbb{Z}\)). But now 
+    \[r=x-nq\in H\]
+    which is a contradiction to the definition of \(n\).
+\end{proof}
+\subsection{Isometry}
+Let \(\mathbb{C}\) be a complex plane, equipped with the notion of distance: \(|z-w|\) for some \(z,w\in\mathbb{C}\). 
+\begin{definition}
+    For any subsets \(X\subseteq\mathbb{C}\), an \emph{isometry} of \(X\) is a bijection \(f:X\to X\) that preserves distance, i.e.
+    \[|f(x)-f(y)|=|x-y|\]
+    for all \(x,y\in X\).
+\end{definition}
+\begin{proposition}
+    Let \(X\subseteq\mathbb{C}\). The sets of isometries of \(X\),
+    \[\isom(X)=\{f\::\:X\to X\text{  is a bijection and \(f\) is an isometry}\}\]
+    is a subgroup of \(\mathrm{Sym}(X)\).
+\end{proposition}
+\begin{proof}
+    Since \(\id_X\in\isom(X)\), it is non-empty. By the subgroup criterion, it suffices to check that \(f\cdot g^{-1}\in\isom(X)\) where \(f,g\in\isom(X)\). Let \(x,y\in X\). Then,
+    \begin{align*}
+        |(f\circ g^{-1})(x)-(f\circ g^{-1})(y)|&=|g^{-1}(x)-g^{-1}(y)| \\
+        &=|g\circ g^{-1}(x)-g\circ g^{-1}(y)| \\
+        &=|x-y|
+    \end{align*}
+\end{proof}
+\begin{definition}
+    Let \(X_n\subseteq\mathbb{C}\) be the \(n\)-gon with vertices 
+    \[X_n=\{e^{2\pi ik/n}\:|\:k=0,1,\ldots,n-1\}\]
+    Then, we define the \emph{\(n\)\textsuperscript{th} dihedral group} as 
+    \[D_{2n}=\isom(X_n)\]
+\end{definition}
+\begin{example}
+    \(D_6\) is the isometry group of the equilateral triangle.
+\end{example}
+\begin{theorem}
+    Order of \(n\)\textsuperscript{th} diherdral group, \(|D_{2n}|\), is \(2n\) and 
+    \[D_{2n}=\{e,r,\ldots,r^{n-1},s,rs,\ldots,r^{n-1}s\}\]
+    where \(r\) and \(s\) are bijections \(r,s:X_n\to X_n\) such that 
+    \[r(z)=e^{2\pi i/n}z\]
+    i.e. \emph{rotation}, and 
+    \[s(z)=\bar{z}\]
+    i.e. \emph{reflection}.
+\end{theorem}
+\begin{proof}
+    We first need some geometric facts.
+    \begin{lemma}
+        (\emph{Kite lemma}) Let \(x_1,x_2,y_1,y_2\in\mathbb{C}\). If \(|y_1-x_1|=|y_2-x_1|\) and \(|y_1-x_2|=|y_2-x_2|\), then \(x_2-x_1\) is perpendicular to \(y_2-y_1\).
+        \label{sub:kite_dihedral}
+    \end{lemma}
+    \begin{lemma}
+        (\emph{Three Point lemma}) Let \(X\subseteq\mathbb{C}\), \(f\in\isom(X)\). If there are \(x_1,x_2,x_3\) in \(X\), not colinear, such that \(f(x_1)=x_1,f(x_2)=x_2, f(x_3)=x_3\), then \(f=\id_X\).
+    \end{lemma}
+    \begin{proof}
+        We will only prove the three point lemma here. Suppose there is some \(y\in X\) such that \(f(y)\neq y\). Then since \(f\) is a isometry, 
+        \[|f(y)-x_i|=|f(y)-f(x_i)|=|y-x_i|\]
+        where \(i=1,2,3\). Now let \(y_1=y\), \(y_2=f(y)\). Then, by the Lemma \ref{sub:kite_dihedral}, 
+        \[x_2-x_1\perp f(y)-y\]
+        Similarly, \(x_3-x_1\perp f(y)-y\). Hence \(x_1,x_2,x_3\) are colinear, which is a contradiction. 
+    \end{proof}
+    Returning to the original proof, we check that \(r,s\in D_{2n}\). Indeed, for any \(x,y\in\mathbb{C}\), 
+    \begin{align*}
+        |r(x)-r(y)|&=|e^{2\pi i/n}x-e^{2\pi i/n}y|=|e^{2\pi i/n}(x-y)|=|e^{2\pi i/n}||x-y| \\
+        &=|x-y|
+    \end{align*} 
+    so \(r\) is an isometry; and \(r(e^{2\pi ik/n})=e^{2\pi i(k+1)/n}\) so \(r\) preserves \(X_n\). Similarly, for any \(x,y\in\mathbb{C}\),
+    \[s(x)-s(y)=|\bar{x}-\bar{y}|=|\overline{(x-y)}|=|x-y|\]
+    so again, \(s\) is isometry; and \(s(e^{2\pi ik/n})=e^{-2\pi i/n}=e^{2\pi i(n-k)/n}\) so \(s\) also preserves \(X_n\). Therefore, \(r,s\in D_{2n}\). Consequently, we find out that 
+    \[\{e,r,\ldots,r^{n-1},s,sr,\ldots,sr^{n-1}\}\subseteq D_{2n}\]
+    To see that this is all of the elements of \(D_{2n}\), let \(f\in D_{2n}\), and consider its effects on \(x=1\), \(y=e^{2\pi i/n}\), \(z=e^{-2\pi i/n}\). Since \(f\in D_{2n}\), it sends vertices to verticies, so 
+    \[f(x)=e^{2\pi ik/n}\]
+    for some \(k=0,1,\ldots,n-1\). Hence, 
+    \[r^k\circ f(x)=r^{-k}(e^{2\pi ik/n})=1=x\]
+    Now since \(r^{-k}\circ f\in D_{2n}\), \(r^{-k}\circ f(y)\in\{y,z\}\) and \(r^{-k}\circ f(z)\in\{y,z\}\) from isometry. There are two cases:
+    \begin{enumerate}
+        \item \(r^{-k}\circ f(y)=y\) and \(r^{-k}\circ f(z)=z\);
+        \item \(r^{-k}\circ f(y)=z\) and \(r^{-k}\circ f(z)=y\).
+    \end{enumerate}
+    In case (1), \(r^{-k}\circ f\) fixes \(x,y,z\). Thus \(r^{-1}\circ f=\id_X\) by the three point lemma. Hence \(f=r^k\). In case (2), \(r^{-k}\circ f(x)=x=s(x)\), \(r^{-k}\circ f(y)=z=s(y)\), \(r^{-k}\circ f(z)=y=s(z)\). So \(s^{-1}\circ r^{-k}\circ f\) fixes \(x,y,z\) and again by the three point lemma, \(f=r^ks\).
+
+    Finally, to show that \(|D_{2n}|=2n\), we need to check that all elements on the lists are distinct. First, if \(0\leq k,l< n\) such that \(r^k=r^l\), then 
+    \[e^{2\pi ik/n}=r^k(1)=r^l(1)=e^{2\pi il/n}\Rightarrow r=l\]
+    If \(r^k=s\), then \(e^{2\pi ik/n}=r^k(1)=s(1)=1\) so \(s=r^0=e\), which is a contradiction; hence, \(s\neq r^k\) for any \(k\). If \(r^k=r^ls\), then \(s=r^{k-l}\), which is a contradiction. Lastly, if \(0\leq k,l<n\) such that \(r^ks=r^ls\), then by multiplying \(s^{-1}\), \(r^k=r^l\Rightarrow k=l\) as above.
+\end{proof}
+To multiply elements of \(D_{2n}\) with ease, we use the \emph{dihedral relation}, stated below.
+\begin{lemma}
+    (\emph{Dihedral Relation}) For \(r,s\in D_{2n}\) as above, \(sr=r^{-1}s\).
+\end{lemma}
+\begin{proof}
+    We that \(sr\) and \(rs^{-1}\) do the same thing to \(\{x,y,z\}\) as above. (Incomplete)
+\end{proof}
+Using the dihedral relation, algebra becomes easy in \(D_{2n}\). For instance, \(r^kr^l=r^{k+l}\), \(r^k(r^ls)=r^{k+l}s\), \((r^ks)r^l=r^{k-l}s\), and \(r^ksr^ls=r^{k-l}ss=r^{k-l}\).
+\subsection{Homomorphisms}
+\subsubsection{Homomorphisms and isomorphisms}
+\begin{definition}
+    A map between group \(\phi:G\to H\) is called a \emph{homomorphism} if \[\phi(g\cdot g^\prime)=\phi(g)\cdot\phi(g^\prime)\] for all \(g,g^\prime\in G\), i.e. it preserves group operation.
+\end{definition}
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item For any group \(G\), \(H\), the map \(\phi:G\to H\), \(g\mapsto e_G\) is the \emph{trivial homomorphism}.
+        \item If \(H\leq G\), then the map \(i_H:H\to G\), \(h\mapsto h\) is the \emph{inclusion homomorphism}.
+        \item Recall \(C_n=\{z\in\mathbb{C}\:|\:z^n=1\}\). If \(n|m\), \(\phi:C_m\to C_n\), \(z\mapsto z^{m/n}\) is a homomorphism.
+    \end{enumerate}
+\end{example}
+\begin{lemma}
+    If \(\phi:G\to H\) is a homomorphism, then 
+    \begin{enumerate}
+        \item \(\phi(e_G)=e_H\);
+        \item \(\phi(g^{-1})=\phi(g)^{-1}\) for all \(g\in G\).
+    \end{enumerate}
+\end{lemma}
+\begin{proof} \item[] 
+    \begin{enumerate}
+        \item Calculation gives 
+        \begin{align*}
+            e_H&=\phi(e_G)^{-1}\cdot\phi(e_G)=\phi(e_G)^{-1}\cdot\phi(e_G\cdot e_G)=\phi(e_G)^{-1}\cdot(\phi(e_G)\cdot\phi(e_G)) \\
+            &=(\phi(e_G)^{-1}\cdot\phi(e_G))\cdot\phi(e_G) =e_H\cdot\phi(e_G)=\phi(e_G)
+        \end{align*}
+        \item \(\phi(g)\cdot\phi(g^{-1})=\phi(g\cdot g^{-1})=\phi(e_G)=e_H\) by (1). Hence \(\phi(g^{-1})=\phi(g)^{-1}\) by definition.
+    \end{enumerate}
+\end{proof}
+\begin{definition}
+    If a homomorphism \(\phi:G\to H\) is also a bijection, we say that \(\phi\) is an \emph{isomorphism}, and write 
+    \[G\cong H\]
+    i.e. \(G\) is isomorphic to \(H\).
+\end{definition}
+For example, consider two groups \(C_n\) and \(\mathbb{Z}_n\). Then \(\phi_n:\mathbb{Z}_n\to C_n\), \(k\mapsto e^{2\pi ik/n}\) is a bijection. Furthermore, \(k+l=pn+(k+_nl)\) for some \(p\in\mathbb{Z}\), and 
+\begin{align*}
+    \phi(k+_nl)&=e^{2\pi i(k+_nl)/n}=e^{2\pi i(pn)/n}e^{2\pi i(k+_nl)/n} \\
+    &=e^{2\pi i(pn+k+_nl)/n} \\
+    &=e^{2\pi i(k+l)/n}=e^{2\pi i(k)/n}e^{2\pi i(l)/n}=\phi(k)\phi(l)
+\end{align*}
+Thus \(\mathbb{Z_n}\cong{C_n}\)
+\begin{lemma} \item[]
+    \begin{enumerate}
+        \item If \(\phi:G\to H\) is a homomorphism, so is \(\phi^{-1}\).
+        \item If \(G\xrightarrow{\phi}H\xrightarrow{\psi}K\) are both Homomorphisms, then so is \(\psi\circ\phi\).
+        \item \(\cong\) is an equivalence relations.\footnote{Recall Numbers and Sets.}
+    \end{enumerate}
+\end{lemma}
+\begin{definition}
+    Let \(\phi:G\to H\) be a homomorphism. 
+    \begin{enumerate}
+        \item The \emph{image} of \(\phi\) is 
+        \[\image(\phi)=\{h\in H\:|\:h=\phi(g)\text{  for some \(g\in G\)}\}\]
+        \item The \emph{kernel} of \(\phi\) is 
+        \[\ker(\phi)=\{g\in G\:|\:\phi(g)=e\}\]
+    \end{enumerate}
+\end{definition}
+\begin{proposition}
+    If \(\phi:G\to H\) is a homomorphism, then (1) \(\image\phi\leq H\) and (2) \(\ker\phi\leq G\).
+\end{proposition}
+\begin{proof} \item[] 
+    \begin{enumerate}
+        \item \(e_H=\phi(e_G)\in\image\phi\) so \(\image\phi\) is non-empty. Also, for \(h_1=\phi(g_1),h_2=\phi(g_2)\in\image\phi\), \(h_1h_2^{-1}=\phi(g_1)\phi(g_2)^{-1}=\phi(g_1g_2^{-1})\in\image(\phi)\). So \(\image\phi\leq H\) by the subgroup criterion.
+        \item \(e_H=\phi(e_G)\Rightarrow e_G\in\ker\phi\) so it is non-empty. Also, for \(g_1,g_2\in\ker\phi\), \(\phi(g_1g_2^{-1})=e_H\cdot e_H^{-1}=e_H\) so \(g_1g_2^{-1}\in\ker\phi\). Hence \(\ker\phi\leq G\) by the subgroup criterion.
+    \end{enumerate}
+\end{proof}
+\begin{remark} Let \(\phi:G\to H\) be a homomorphism.
+    \begin{enumerate}
+        \item \(\phi\) is surjective if and only if \(\image\phi=H\).
+        \item \(\phi\) is injective if and only if \(\ker\phi\) is the trivial subgroup, i.e. \(\ker\phi=1_G\leq G\). Indeed, if \(\phi\) is injective, then \(\ker\phi=\phi^{-1}(\{e_H\})\) has equal or less than one element. But \(e_G\in\ker\phi\) so \(\ker\phi=\{e_G\}=1_G\).
+        
+        Conversely, suppose \(\ker\phi=1_G\). If \(\phi(g_1)=\phi(g_2)\), then 
+        \[\phi(g_1g_2^{-1})=\phi(g_1)\phi(g_2)^{-1}=e_H\Rightarrow g_1g_2^{-1}\in\ker\phi=\{e_G\}\]
+        so \(g_1g_2^{-1}=e_G\Rightarrow g_1=g_2\). Thus \(\phi\) is injective.
+        \item Therefore, \(\phi:G\to H\) is an isomorphism if and only if \(\image\phi=H\) and \(\ker\phi=1_G\).
+    \end{enumerate}
+\end{remark}
+\subsubsection{Cyclic groups}
+\begin{definition}
+    A group \(G\) is \emph{cyclic} if there is \(g\in G\) such that 
+    \[G=\{g^k\:|\:k\in\mathbb{Z}\}\]
+    where such element \(g\) is called the \emph{generator} of \(G\).
+\end{definition}
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item \(C_n\cong\mathbb{Z}_n\) are cyclic.
+        \item \(\mathbb{Z}\) is cyclic, with generator \(1\).
+    \end{enumerate}
+\end{example}
+\begin{theorem}
+    If \(G\) is cyclic, then either \(G\cong C_n\) for some \(n\), or \(G\cong\mathbb{Z}\).
+    \label{thm:cyclic_isomor}
+\end{theorem}
+\begin{proof}
+    Let \(G\) be a cyclic group, with generator \(g\). Let 
+    \[S=\{k\in\mathbb{N}\:|\:g^k=e\}\]
+    and let\footnote{\(\infty\) is merely a symbol here.}
+    \[n=\begin{cases}
+        \min S & S\neq\emptyset \\
+        \infty & S=\emptyset
+    \end{cases}\]
+    If \(n=\infty\), define \(\phi:\mathbb{Z}\to G\) by \(k\mapsto g^k\). We need to show that \(\phi\) is an isomorphism. Since 
+    \[\phi(k+l)=g^{k+l}=g^kg^l=\phi(g)\phi(k)\]
+    \(\phi\) is a homomorphism. Also, it is surjective because it is cyclic. To prove that injectivity, suppose \(\ker\phi\neq\{0\}\), and let \(0\neq k\in\ker\phi\). Since \(\ker\phi\leq\mathbb{Z}\), we may replace \(k\) by \(-k\) if necessary, and assume \(k>0\).\footnote{They are both in \(\ker\phi\).} But now \(k\in S\), so \(S\) is non-empty, which is a contradiction. Thus \(\ker\phi\) is trivial, so \(\phi\) is bijective, and \(\mathbb{Z}\cong G\).
+
+    If \(n<\infty\), define \(\phi:\mathbb{Z}_n\to G\), \(k\mapsto g^k\). It is easy to check \(\phi\) is a homomorphism. To prove surjectivity, consider \(g^k\in G\) for some \(k\in\mathbb{Z}\). Using the division algorithm, write \(k=nq+r\) for some \(r\in\mathbb{Z}_n\), \(q\in\mathbb{Z}\). So 
+    \[g^k=(g^n)^qg^r=g^r=\phi(r)\]
+    as required. To prove injectivity, suppose that \(\phi(k)=e\). Since \(n\) was minimal such that \(\phi(n)=e\), and \(0\leq k<n\), it follows that \(k=0\). So \(\ker\phi=\{0\}=1_{\mathbb{Z}_n}\). Thus \(\phi\) is injective, hence an isomorphism, and \(G\cong\mathbb{Z}_n\cong C_n\).
+\end{proof}
+Because of Theorem \ref{thm:cyclic_isomor}, we will write \(C_n\) for any cyclic group of order \(n\), and also \(C_\infty=\mathbb{Z}\).
+\begin{definition}
+    For any group \(G\) and element \(g\in G\), let
+    \[\langle g\rangle=\{g^k\:|\:k\in\mathbb{Z}\}\leq G\]
+\end{definition}
+Note that \(\langle g\rangle\) is cyclic, so \(\langle g\rangle\cong C_n\) for some \(n\in\mathbb{N}\cup\{\infty\}\). This number \(n\) is called the \emph{order} of \(g\), denoted \(o(g)\). N.b. this is different with the order of the group itself, \(|G|\). 
+\section{Group Actions}
+\begin{definition}
+    An \emph{action} of a group \(G\) on a set \(X\) is a map 
+    \[G\times X\to X,\quad (g,x)\mapsto gx\text{  or  }g(x)\]
+    (\(g\in G\) and \(x\in X\)) such that 
+    \begin{enumerate}
+        \item \(ex=x\) for all \(x\in X\);
+        \item \((g\cdot h)x=g(hx)\) for all \(g,h\in G\), \(x\in X\).
+    \end{enumerate}
+\end{definition}
+We write \(G\acts X\) to indicate that \(G\) acts on \(X\).
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item For any group \(G\) and set \(X\), \(gx=x\) for all \(g\in G\), \(x\in X\) define the \emph{trivial action}.
+        \item The symmetric group \(\sym(X)\) acts on \(X\) via \(fx=f(x)\).
+        \item For any \(X\subseteq\mathbb{C}\), \(\isom(X)\leq\sym(X)\) acts on \(X\).
+        \item In particular, \(D_{2n}\) acts on the regular \(n\)-gon \(X_n\). 
+        \item Every group \(G\) acts on itself, i.e. \(X=G\), via \(g\in G\), \(\gamma\in G=X\), \(g\gamma=g\cdot\gamma\). This is called the \emph{regular action}.
+    \end{enumerate}
+\end{example}
+\begin{theorem}
+    An action of a group \(G\) on a set \(X\) is the same as the homomorphism \(\phi:G\to\sym(X)\).
+    \label{thm:action_homom}
+\end{theorem}
+\begin{proof}
+    Suppose \(G\acts X\). Gor any \(g\in G\), consider \(t_g:X\to X\), \(x\mapsto gx\). Now
+    \[t_{g^{-1}}(t_g(x))=t_{g^{-1}}(gx)=g^{-1}(gx)=(g^{-1}\cdot g)(x)=ex=x\]
+    So \(t_{g^{-1}}=(t_g)^{-1}\). Hence \(t_g\) is a bijection. Therefore, we may define \(\phi:G\to\sym(X)\), \(g\mapsto tg\). We need to check that \(\phi\) is a homomorphism. For any \(g,h\in G\), \(x\in X\), 
+    \[(t_g\circ t_h)(x)=t_g(hx)=g(hx)=(gh)(x)=t_{gh}(x)\]
+    so \(t_g\circ t_h=t_{gh}\). Thus \(\phi(g)\phi(h)=t_g\circ t_h=t_{gh}=\phi(gh)\) and \(\phi\) is a homomorphism.
+
+    Conversely, given a homomorphism \(\phi:G\to\sym(X)\), we may define an action \(G\acts X\) as follows: \(gx=\phi(g)(x)\). Let's check that this is an action:
+    \begin{enumerate}
+        \item \(ex=\phi(e)(x)=\id_X(x)=x\) 
+        \item \((gh)x=\phi(gh)(x)=(\phi(g)\circ\phi(h))(x)=\phi(g)(\phi(h)(x))=\phi(g)(hx)=g(hx)\)
+    \end{enumerate}
+\end{proof}
+\begin{theorem}
+    (\emph{Cayley's Theorem}) Every group \(G\) is isomorphic to a subgroup of some symmetric group \(\sym(X)\). Furthermore, if \(|G|<\infty\), \(X\) can be taken to be finite.
+\end{theorem}
+\begin{proof}
+    Let \(X=G\). Consider the regular action \(G\acts X\). By Theorem \ref{thm:action_homom}, this gives a homomorphism \(\phi:G\to\sym(X)\). Let \(H=\image\phi\). Since we proved that \(H\leq\sym(X)\), we may think of \(\phi\) as a surjective homomorphism \(\phi:G\to H\). Now claim \(\ker\phi=\{e\}\), indeed,
+    \[g\in\ker\phi\Leftrightarrow\phi(g)=\id_G\Leftrightarrow g\gamma=\gamma,\;\forall\gamma\in G\Rightarrow ge=e\Rightarrow g=e\]
+    Hence \(\phi\) is an isomorphism, as required. Moreover, since \(G=X\), if \(|G|<\infty\), then \(X\) is certainly also finite.
+\end{proof}
+\begin{definition}
+    Let \(G\acts X\) and \(x\in X\).
+    \begin{enumerate}
+        \item The \emph{orbit} of \(x\) is the set 
+        \[Gx=\{y\in X\:|\:y=gx\text{  for some \(g\in G\)}\}\]
+        \item The \emph{stabliser} of \(x\) is the set
+        \[\stab_G(x)=\{g\in G\:|\:gx=x\}\]
+    \end{enumerate}
+\end{definition}
+If \(Gx=X\) for all \(x\in X\), the action is \emph{transitive}. If every element \(g\in G\) apart from \(e\) has \(x\in X\) such that \(gx\neq x\), then \(G\acts X\) is called \emph{faithful}. Note that \(G\acts X\) is faithful if and only if the associated homomorphism \(G\to\sym(X)\) is injective.
 \chapter{Analysis I}
 \chapterauthor{Lecture by Professor Claude Warnick. 
     Lent term 2024.}
@@ -3364,10 +3892,36 @@ Note that (2) of Theorem \ref{thm:integral_test} implies (1) of that. Also \(f\)
         \item Obvious from definition.
         \item Fix \(\epsilon>0\). For each \(k\), pick \(I_j^k\) (\(j=1,2,\ldots\)) such that 
         \[A_k\subset\bigcup_{j=1}^\infty I_j^k\text{  and  }\sum_{j=1}^{\infty}|I_j^k|<\epsilon 2^{-k}\]
-        Then consider \(\{I_j^h\}_{j,h=1}^\infty\). 
+        Then consider \(\{I_j^k\}_{j,h=1}^\infty\). We have 
+        \[\bigcup_{k\in\mathbb{N}}A_k\subset\bigcup_{j,k=1}^\infty I_k^j\]
+        and 
+        \[\sum_{k=1}^{\infty}\sum_{j=1}^\infty|I_j^k|<\sum_{k=1}^{\infty}\epsilon 2^{-k}=\epsilon\]
     \end{enumerate}
 \end{proof}
-\textcolor{red}{\textbf{Will return}}.
+Since \(\{x\}\) is clearly measure zero, this implies countable sets have measure zero.
+\subsubsection{Oscillation of function}
+For an interval \(I\), define the \emph{oscillation} of a bounded function \(f\) defined on \(I\) as 
+\[\omega_f(I)=\sup_I f-\inf_If\geq 0\]
+We have that if \(I^\prime\subset I\), then \(\omega_f(I^\prime)\leq\omega_f(I)\). Now define 
+\[\omega_f(x)=\lim_{\epsilon\to 0}\omega_f((x-\epsilon,x+\epsilon))\]
+\begin{lemma}
+    \(f\) is continuous at \(x\) if and only if \(\omega_f(x)=0\).
+\end{lemma}
+\subsubsection{Proof of necessity of Lebesgue's criterion}
+Note that 
+\begin{align*}
+    D&=\{x\in[a,b]\:|\:\text{\(f\) discontinuous at \(x\)}\}
+    =\{x\::\:\omega_f(x)>0\}
+\end{align*}
+If \(N(\alpha)=\{x\::\:\omega_f(x)\geq\alpha\}\), then 
+\[D=\bigcup_{k=1}^\infty N(1/k)\]
+It is sufficient to show that \(N(\alpha)\) has measure zero, for \(f:[a,b]\to\mathbb{R}\) integrable function. Fix \(\epsilon>0\), then there exists a dissection \(\mathcal{D}\) such that 
+\[U(f,\mathcal{D})-L(f,\mathcal{D})=\sum_{j=1}^{n}(x_j-x_{j-1})\omega_f([x_{j-1},x_j])<\alpha\epsilon/2\]
+from Cauchy criterion for integrability. Let 
+\[F=\{j\::\:(x_{j-1},x_j)\cap N(\alpha)\neq\emptyset\}\]
+Then for each \(j\in F\), \(\omega_f([x_{j-1},x_j])\geq\alpha\). This implies 
+\[\alpha\sum_{j\in F}(x_j-x_{j-1})\leq\sum_{j\in F}\omega_f([x_{j-1},x_j])(x_j-x_{j-1})<\epsilon\alpha/2\Rightarrow\sum_{j\in F}(x_j-x_{j-1})<\epsilon/2\]
+These cover \(N(\alpha)\), except for possibly \(\{x_0,\ldots,x_n\}\) which can be covered by a finite number of intervals of total length \(\epsilon/2\). Therefore, \(N(\alpha)\) has measure zero and consequently \(D\) has measure zero.
 \newpage
 \section{Example Sheets}
 \subsection{Sheet 1}

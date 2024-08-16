@@ -14,29 +14,29 @@
   \def\drop{0.1\textheight}
   \vspace*{\drop}
   \begin{center}
-  {\LARGE\textsc{Transcribed and edited by WOO}}\\[\drop]
+  {\LARGE\textsc{University of Cambridge}}\\[\drop]
   % University logo
   % {\LARGE \plogo}\\[\drop]
   \rule{\textwidth}{1pt}\par
   \vspace{0.5\baselineskip}
   {\huge\bfseries Part IA\\
-   \large Cambridge Mathematical Tripos}\\[0.5\baselineskip]
+   \large Mathematical Tripos}\\[0.5\baselineskip]
   \rule{\textwidth}{1pt}\par
   \vfill
   {\Large\textsc{Lee, Junwoo}}
   \vfill
   Trinity College, Cambridge
   \vfill
-  {\large 2024 Summer}
+  {\large Transcribed lecture notes from 23-24 academic year}
   \end{center}
   \endgroup
 \end{titlepage}
 % \setcounter{tocdepth}{1}
 \tableofcontents
-\chapter*{Preface}
-These are what I studied during the 2024 long vacation for transfer into part IB mathematical tripos. I guess nobody can tell if it was valuable, or if this was a right decision. Nevertheless, I do not want to study beam bending. Since it is more mathematics-oriented document, I will use the usual conventions, such as definition, lemma, etc.
+% \chapter*{Preface}
+% These are what I studied during the 2024 long vacation for transfer into part IB mathematical tripos. I guess nobody can tell if it was valuable, or if this was a right decision. Nevertheless, I do not want to study beam bending. Since it is more mathematics-oriented document, I will use the usual conventions, such as definition, lemma, etc.
 
-\noindent\hrulefill\hspace{0.2cm} \floweroneleft\floweroneright \hspace{0.2cm} \hrulefill
+% \noindent\hrulefill\hspace{0.2cm} \floweroneleft\floweroneright \hspace{0.2cm} \hrulefill
 \chapter{Numbers and Sets}
 \chapterauthor{Lecture given by 
 Professor Julia Wolf, Michaelmas Term 2023.\footnote{Subsection about sequences and series are ommited since they are also thoroughly covered in the \textsc{Analysis I} course.}\footnote{Although I recommend listening lectures covering those parts to check if there are any distinctions.}
@@ -1341,6 +1341,7 @@ Note that the proof above is similar as the diagonal argument by Cantor.
     Let \(\{A_i\::\:i\in I\}\) be a family of open pairwise disjoint intervals of \(\mathbb{R}\). Such family is countable. 
 
     Each interval \(A_i\) contains a rational and \(\mathbb{Q}\) is countable, so since the intervals are disjoint, we have an injection from \(I\) into \(\mathbb{Q}\).
+    \label{eg:disjoint_countable}
 \end{example}
 
 To summerise, to show that a set \(X\) is countable, we 
@@ -1652,7 +1653,7 @@ To multiply elements of \(D_{2n}\) with ease, we use the \emph{dihedral relation
     (\emph{Dihedral Relation}) For \(r,s\in D_{2n}\) as above, \(sr=r^{-1}s\).
 \end{lemma}
 \begin{proof}
-    We that \(sr\) and \(rs^{-1}\) do the same thing to \(\{x,y,z\}\) as above. (Incomplete)
+    We show that \(sr\) and \(rs^{-1}\) do the same thing to \(\{x,y,z\}\) as above. (\textbf{Incomplete})
 \end{proof}
 Using the dihedral relation, algebra becomes easy in \(D_{2n}\). For instance, \(r^kr^l=r^{k+l}\), \(r^k(r^ls)=r^{k+l}s\), \((r^ks)r^l=r^{k-l}s\), and \(r^ksr^ls=r^{k-l}ss=r^{k-l}\).
 \subsection{Homomorphisms}
@@ -1769,8 +1770,9 @@ Because of Theorem \ref{thm:cyclic_isomor}, we will write \(C_n\) for any cyclic
     For any group \(G\) and element \(g\in G\), let
     \[\langle g\rangle=\{g^k\:|\:k\in\mathbb{Z}\}\leq G\]
 \end{definition}
-Note that \(\langle g\rangle\) is cyclic, so \(\langle g\rangle\cong C_n\) for some \(n\in\mathbb{N}\cup\{\infty\}\). This number \(n\) is called the \emph{order} of \(g\), denoted \(o(g)\). N.b. this is different with the order of the group itself, \(|G|\). 
+Note that \(\langle g\rangle\) is cyclic, so \(\langle g\rangle\cong C_n\) for some \(n\in\mathbb{N}\cup\{\infty\}\). This number \(n\) is called the \emph{order} of \(g\), denoted \(o(g)\). Also, from the proof of Theorem \ref{thm:cyclic_isomor}, we have \(g^{o(g)}=e\). N.b. this is different with the order of the group itself, \(|G|\). 
 \section{Group Actions}
+\subsection{Actions}
 \begin{definition}
     An \emph{action} of a group \(G\) on a set \(X\) is a map 
     \[G\times X\to X,\quad (g,x)\mapsto gx\text{  or  }g(x)\]
@@ -1820,11 +1822,147 @@ We write \(G\acts X\) to indicate that \(G\) acts on \(X\).
     \begin{enumerate}
         \item The \emph{orbit} of \(x\) is the set 
         \[Gx=\{y\in X\:|\:y=gx\text{  for some \(g\in G\)}\}\]
-        \item The \emph{stabliser} of \(x\) is the set
+        \item The \emph{stabiliser} of \(x\) is the set
         \[\stab_G(x)=\{g\in G\:|\:gx=x\}\]
     \end{enumerate}
 \end{definition}
 If \(Gx=X\) for all \(x\in X\), the action is \emph{transitive}. If every element \(g\in G\) apart from \(e\) has \(x\in X\) such that \(gx\neq x\), then \(G\acts X\) is called \emph{faithful}. Note that \(G\acts X\) is faithful if and only if the associated homomorphism \(G\to\sym(X)\) is injective.
+\begin{proposition}
+    Suppose \(G\acts X\).
+    \begin{enumerate}
+        \item \(\stab_G(x)\leq G\) for any \(x\in X\).
+        \item The orbits \(\{Gy\:|\:y\in X\}\) form a \emph{partition} of \(X\), i.e. every element is in exatly one orbit.
+    \end{enumerate}
+\end{proposition}
+\begin{proof} \item[] 
+    \begin{enumerate}
+        \item Let's check the subgroup criterion. Clearly, \(e\in\stab_G(x)\). If \(g,h\in\stab_G(x)\),
+        \[(gh^{-1})(x)=(gh^{-1})(hx)=((gh^{-1})h)x=(g(h^{-1}h))x=gx=x\]
+        So \(gh^{-1}\in\stab_G(x)\) and \(\stab_G(x)\leq G\) as claimed. 
+        \item First, note that \(x=ex\in Gx\). So every \(x\in X\) is in at least one orbit. Suppose \(x\in Gy\cap Gz\). Then there are two elements \(g,h\in G\) such that \(gy=x=hz\). We claim that \(Gy\subseteq Gz\). To prove this, take an arbitrary element \(ky\in Gy\) for some \(k\in G\). Since \(gy=hz\),
+        \[y=ey=(g^{-1}g)y=g^{-1}(gy)=g^{-1}(hz)=(g^{-1}h)z\]
+        So \(ky=k((g^{-1}h)z)=(k(g^{-1}h))z\in Gz\). Hence, \(Gy\subseteq Gz\). Similarly, \(Gz\subseteq Gy\), and thus we obtain \(Gy=Gz\). Therefore, \(Gy=Gz\) if \(x\in Gy\) and \(x\in Gz\). 
+    \end{enumerate}
+\end{proof}
+\begin{example}
+    By definition, \(D_{2n}\acts X_n\). Let \(x\) be a vertex. Then, \(\stab_{D_{2n}}(x)=\{e,s\}\) so \(|\stab_{D_{2n}}(x)|=2\), \(|D_{2n}x|=n\), and \(|D_{2n}|=2n\).
+    \label{eg:dihedral_stab}
+\end{example}
+\subsection{Cosets}
+Recall that \(G\) acts on itself by the regular action \(G\acts G\). For any subgroup \(H\leq G\), we can restrict the action to \(H\) to get an action \(H\acts G\), \(h\gamma=h\cdot\gamma\) for \(h\in H\), \(\gamma\in G\).
+\begin{definition}
+    Let \(H\leq G\) and \(\gamma\in G\). We form a \emph{right coset} of \(H\) in \(G\) as 
+    \[H\gamma=\{g\in G\:|\:g=h\cdot\gamma\text{  for some }h\in H\}\]
+\end{definition}
+The sets of right cosets of \(H\) in \(G\) is denoted \(H\backslash G\). The number of right cosets \(|H\backslash G|\) is called the \emph{index} of \(H\) in \(G\), and is also denoted by \(|G:H|\). Moreover, note that \(H\gamma\) is the orbit of \(\gamma\) under the regular action of \(H\) on \(G\). 
+\begin{lemma}
+    For any \(H\leq G\), the right coset partitions \(G\).
+\end{lemma}
+\begin{proof}
+    Right cosets are orbits, and orbits partition.
+\end{proof}
+\begin{theorem}
+    (\emph{Lagrange's Theorem}) Let \(H\leq G\). If \(|G|<\infty\), then 
+    \[|G|=|H||G:H|\]
+    \label{thm:lagrange_group}
+\end{theorem}
+\begin{proof}
+    First, note that each coset \(H\gamma\) is in bijection with \(H\):
+    \[H\to H\gamma,\quad h\mapsto h\gamma\]
+    \[H\gamma\to H,\quad h\gamma\mapsto (h\gamma)\gamma^{-1}=h\]
+    Therefore, \(|H\gamma|=|H|\) for all \(\gamma\in G\). Since right cosets partition \(G\) into \(|G:H|\) subsets of size \(|H|\), the result follows.
+\end{proof}
+\begin{corollary}
+    If \(|G|<\infty\) and \(g\in G\), then \(o(g)\big||G|\). 
+    \label{coro:order_division}
+\end{corollary}
+\begin{proof}
+    \(o(g)=|\langle g\rangle|=|G|/|G:\langle g\rangle|\) by Lagrange's theorem.
+\end{proof}
+\begin{corollary}
+    If \(|G|<\infty\) and \(g\in G\), \(g^{|G|}=e\).
+    \label{coro:group_power_e}
+\end{corollary}
+\begin{proof}
+    By Corollarly \ref{coro:order_division},
+    \[g^{|G|}=g^{o(g)|G:\langle g\rangle|}=(g^{o(g)})^{|G:\langle g\rangle|}=e^{|G:\langle g\rangle|}=e\]
+\end{proof}
+\begin{corollary}
+    If \(|G|\) is a prime, then \(G\) is cyclic, i.e. \(G\cong C_p\), and any \(g\neq e\) generates. 
+\end{corollary}
+\begin{proof}
+    Choose any \(g\neq e\) in \(G\). Then, by Corollarly \ref{coro:order_division}, \(o(g)\big||G|=p\). So either \(o(g)=1\) or \(o(g)=p\). But \(g\neq e\), so \(o(g)\neq 1\), and 
+    \[|\langle g\rangle|=o(g)=p=|G|\]
+    Hence, \(\langle g\rangle =G\), and \(G\) is indeed cyclic.
+\end{proof}
+\begin{example}
+Lagrange's theorem can be also applied to number theory. Recall from Numbers and Sets that \(x\in\mathbb{Z}_n\) has a multiplicative inverse modulo \(n\) if and only if \(\gcd(x,n)=1\). Hence, we define 
+\[\mathbb{Z}_n^\times=\{x\in\mathbb{Z}_n\:|\:\gcd(x,n)=1\}\]
+which is a group, with operation \(\times_n\), denoting multiplication modulo \(n\) on \(\mathbb{Z}_n\). Now we give a different proof for the Fermat-Euler theorem as follows.
+\begin{proof}
+    By dividing modulo \(n\), we may assume \(x\in\mathbb{Z}_n\). Now, by Corollarly \ref{coro:group_power_e},
+    \[x^{\varphi(n)}=x^{|\mathbb{Z}_n^\times|}=1\]
+    That is, \(x^{\varphi(n)}\equiv 1\mod n\).
+\end{proof}
+\end{example}
+\begin{definition}
+    Let \(H\leq G\) and \(\gamma\in G\). The subset 
+    \[\gamma H=\{g\in G\:|\:g=\gamma\cdot h\text{  for some \(h\in H\)}\}\]
+    is called the \emph{left coset} of \(H\) in \(G\).
+\end{definition}
+The notation \(G/H\) denotes the set of all left cosets of \(H\) in \(G\).
+\begin{lemma}
+    If \(H\leq G\), the sets of left cosets 
+    \[G/H=\{\gamma H\:|\:\gamma\in G\}\]
+    partitions \(G\).
+\end{lemma}
+\begin{proof}
+    Since \(g\in gH\), we need to show that each \(g\in G\) is at most one \(\gamma H\). First, note that \(g\in\gamma H\Leftrightarrow g=\gamma h\Leftrightarrow g^{-1}=h^{-1}\gamma^{-1}\Leftrightarrow g^{-1}=h^\prime\gamma^{-1}\Leftrightarrow g^{-1}\in H\gamma^{-1}\) for some \(h,h^\prime\in H\). Therefore, since right cosets partition,
+    \[g\in\gamma H\cap\gamma^\prime H\Rightarrow g^{-1}\in H\gamma^{-1}\cap H(\gamma^\prime)^{-1}\Rightarrow H\gamma^{-1}=H(\gamma^\prime)^{-1}\Rightarrow \gamma H=\gamma^\prime H\]
+\end{proof}
+In facts, there exists an action \(H\acts G\) which can show that left coset is an orbit.
+\begin{lemma}
+    If \(|G|<\infty\) and \(H\leq G\), \(|G/H|=|H\backslash G|=|G:H|\).
+\end{lemma}
+\begin{theorem}
+    (\emph{Orbit-Stabiliser Theorem}) Suppose \(G\acts X\) and \(x\in X\). The assignment \[g\stab_G(x)\mapsto gx\] defines a well-defined bijection \(G/\stab_G(x)\to Gx\).
+    \label{thm:orbit_stab}
+\end{theorem}
+\begin{proof}
+    For brevity, write \(S=\stab_G(x)\), and \(\Phi(gS)=gx\). We first check that \(\Phi\) is well defined. Suppose \(g_1S=g_2S\). Because \(g_1\in g_1S=g_2S\), there is \(s\in S\) such that \(g_1=g_2s\). Now\footnote{Check if each operation is group operation or group action.}
+    \begin{align*}
+        \Phi(g_1S)&=g_1x=(g_2s)x=g_2(sx) \\
+        &=g_2x=\Phi(g_2S)
+    \end{align*}
+    Hence \(\Phi\) is well-defined.
+
+    Clearly, \(\Phi\) is surjective since for any \(gx\in Gx\), \(\Phi(gS)=gx\).
+
+    Finally, to prove that \(\Phi\) is injective, suppose \(\Phi(g_1S)=\Phi(g_2S)\). This implies 
+    \[g_1x=g_2x\Leftrightarrow (g_2^{-1}g_1)x=x\Leftrightarrow s=g_2^{-1}g_1\in S\]
+    Thus \(g_1=(g_2\cdot g_2^{-1})\cdot g_1=g_2\cdot(g_2^{-1}g_1)=g_2s\in g_2S\).
+    Because cosets partition, \(g_1S=g_2S\) as required.
+\end{proof}
+\begin{corollary}
+    For finite group \(G\), if \(G\acts X\) and \(x\in X\), then \(|G|=|Gx||\stab_G(x)|\).
+    \label{coro:orbit_stab}
+\end{corollary}
+\begin{proof}
+    By Theorem \ref{thm:lagrange_group} and Theorem \ref{thm:orbit_stab}, 
+    \[|Gx|=|G/\stab_G(x)|=|G|/|\stab_G(x)|\]
+\end{proof}
+\begin{example}
+    \(D_{2n}\acts X_n\). Let \(v\in X_n\) be a vertex. Then, \(|D_{2n}v|=\text{number of verticies}\\=n\), and \(|\stab_{D_{2n}}(v)|=2\). So \(|D_{2n}|=2n\) by Corollarly \ref{coro:orbit_stab} (recall Example \ref{eg:dihedral_stab}).
+\end{example}
+\begin{example}
+    Let \(T\) a regular tetrahedron. Let \(G\leq\isom(T)\) be the group of rotational symmetries. Let \(v\in T\) be a vertex. Then, size of the orbit \(|Gv|=4\), and \(|\stab_G(v)|=3\). So by Corollarly \ref{coro:orbit_stab}, \(|G|=12\). 
+\end{example}
+\begin{example}
+    Let \(G\) be a group of rotational isometries of a cube, \(C\). Let \(v\in C\) be a vertex. Then, \(|Gv|=8\) and \(|\stab_G(v)|=3\). So \(|G|=24\).
+\end{example}
+\begin{theorem}
+    (\emph{Cauchy's Theorem}) If \(|G|<\infty\), \(p\) prime such that \(p\big||G|\), then there is a \(g\in G\) such that \(o(g)=p\).
+\end{theorem}
 \chapter{Analysis I}
 \chapterauthor{Lecture by Professor Claude Warnick. 
     Lent term 2024.}
@@ -4187,4 +4325,157 @@ with \(a<x<b\). Furthermore, \(g(x)\to f^\prime(a)\) as \(x\to a\) and \(g(x)\to
 \[f(x)=\exp\left(\frac{1}{(x-a)(x-b)}\right)\]
 (See Rudin.)
 \end{enumerate}
+\subsection{Sheet 4}
+\begin{enumerate}[{1.}]
+    \item Let \(f:[0,a]\to[0,a^2]\), \(x\mapsto x^2\). Consider a dissection 
+    \[\mathcal{D}_k=\left\{0,\frac ak,\frac {2a}k,\ldots,\frac{ak}k\right\}\]
+    Then,
+    \[U(f,\mathcal{D}_k)=\sum_{j=1}^{k}\frac ak\frac{j^2a^2}{k^2}=\frac{a^3}{k^3}\sum_{j=1}^{k}j^2=\frac{a^3(k+1)(2k+1)}{6k^2}\]
+    and 
+    \[I^\asterisk=\inf_\mathcal{D}U(f,\mathcal{D})\leq\inf_kU(f,\mathcal{D}_k)=\frac {a^3}3\]
+    Similarly,
+    \[L(f,\mathcal{D}_k)=\frac{a^3(k-1)(2k-1)}{6k^2}\]
+    and 
+    \[I_\asterisk=\sup_\mathcal{D}L(f,\mathcal{D})\geq\sup_kL(f,\mathcal{D}_k)=\frac {a^3}3\]
+    But since \(I^\asterisk\geq I_\asterisk\),
+    \[I^\asterisk=I_\asterisk=\int_0^ax^2dx=\frac{a^3}{3}\]
+    \item Claim that such integral exists. Given \(\epsilon>0\), consider two intervals \([0,\delta]\) and \([\delta,1]\) where \(\delta=\epsilon/4\). Since \(f(x)=\sin(1/x)\) continuous on \([\delta,1]\), there exists a dissection \(\mathcal{D}_2\) such that \(U(f,\mathcal{D}_2)-L(f,\mathcal{D}_1)\leq\epsilon/2\) by the Cauchy criterion for integrability. For interval \([0,\delta]\), consider dissection \(\mathcal{D}_1=\{0,\delta\}\). Then, \(U(f,\mathcal{D}_1)\leq\delta\) and \(L(f,\mathcal{D}_1)\geq-\delta\). Hence 
+    \[U(f,\mathcal{D}_1)-L(f,\mathcal{D}_1)\leq 2\delta=\epsilon/2\]
+    Thus if we let \(\mathcal{D}=\mathcal{D}_1\cup\mathcal{D}_2\), we are done by the Cauchy criterion for integrability.
+    \item Consider 
+    \[f(x)=x^{-1/2}e^{-x}\]
+    This is unbounded since \(f(x)\to\infty\) as \(x\to 0+\). However, \(\int_0^\infty f(x)dx=\sqrt{\pi}<\infty\).
+    \item Consider 
+    \[f(x)=\begin{cases}
+        1 & x=0 \\
+        0 & \text{otherwise}
+    \end{cases}\]
+    \(f\) is integrable with \(\int_0^1f(x)dx=0\). For the next part, suppose there exists a function \(f(x)\) such that \(\int_0^1f(x)dx=0\), \(f(a)>0\) for some \(a\in[0,1]\), and \(f\) continuous. Since \(f\) continuous, there exists \(\delta>0\) such that 
+    \[|x-a|<\delta\Rightarrow|f(x)-f(a)|<\frac{f(a)}{2}\]
+    Now, we have 
+    \[\int_{a-\delta}^{a+\delta}f(x)dx\geq 2\delta \left(\frac{f(a)}{2}\right)=\delta f(a)>0\]
+    which is a contradiction. Hence \(f\) cannot be continuous.
+    \item Let \(D\) denote the set of discontinuities. For each \(x\in D\), the left and right limits differ since \(f\) monotonic, and thus the two limit values can be the endpoints of an interval \(I_x\). Now consider the set 
+    \[\{I_d\::\:d\in D\}\]
+    Because each interval is disjoint, contains a rational, and \(\mathbb{Q}\) is countable, there exists an injection from \(D\) to \(\mathbb{Q}\). Hence \(D\) is countable. (Recall Numbers and Sets.)
+
+    For the next part, we know 
+    \[\frac{f_n(x)}{2^n}\leq\frac 1{2^n}\]
+    for all \(n\in\mathbb{N}\) and \(x\in[0,1]\) but \(\sum_{n=1}^{\infty}(1/2^n)=1<\infty\). Hence \(f(x)\) converges for every \(x\in[0,1]\) by the comparison test. For given \(m\), \(f_m(y)\geq f_m(x)\) if \(y\geq x\). Hence it immediately follows that \(f\) is increasing, and thus \(f\) in integrable. Now consider 
+    \[f(x_m)=\sum_{n=1}^{\infty}2^{-n}f_n(x_m)\]
+    Since 
+    \[\lim_{x\to x_m-}f(x)=f(x_m)-\frac{f_m(x_m)}{2^m}\neq f(x_m)\]
+    \(f(x)\) is discontinuous at \(x_m\). 
+    \item By the mean value theorem, there exists \(c\in(0,x)\) such that 
+    \[\frac{f(x)}{x}=\frac{2c}{c^2-1}\]
+    Then,
+    \[|f(x)|=\left|\frac{2c}{c^2-1}x\right|\leq\frac{2}{1-c^2}x^2\leq\frac 83x^2\]
+    Meanwhile,
+    \begin{align*}
+        I_n=\int_{n-1/2}^{n+1/2}\ln xdx-\ln n&=\int_{n-1/2}^{n+1/2}\ln\frac xndx \\
+        &=\int_{n-1/2}^n\ln\frac xndx+\int_n^{n+1/2}\ln\frac xndx \\
+        &=\int_0^{1/2}\left(\ln\left(1-\frac tn\right)+\ln\left(1+\frac tn\right)\right)dt\\
+        &=\int_0^{1/2}f(t/n)dt
+    \end{align*}
+    So
+    \[|I_n|=\left|\int_0^{1/2}f(t/n)dt\right|\leq\int_0^{1/2}|f(t/n)|dt\leq\int_0^{1/2}\frac 83\frac{t^2}{n^2}dt=\frac{1}{9n^2}\]
+    Finally, calculate to find
+    \[\sum_{j=1}^{n}I_j=\sum_{j=1}^{n}\left(\int_{j-1/2}^{j+1/2}\ln xdx-\ln j\right)=\int_{1/2}^{n+1/2}\ln xdx-\sum_{j=1}^{n}\ln j=\ln\frac{(n+1/2)^{n+1/2}}{e^nn!}+\frac 12\ln 2\]
+    But since \(\sum|I_j|\) converges by comparison test, \(\sum I_j\), and consequently 
+    \[\frac{n!}{(n+1/2)^{n+1/2}e^{-n}}\]
+    converges. Moreover,
+    \[\left(\frac{n+1/2}{n}\right)^{n+1/2}\to\sqrt{e}<\infty\]
+    as \(n\to\infty\); so \(n!/n^{n+1/2}e^{-n}\to\ell\) as required.
+    \item (\emph{Wallis's Product \& Stirling's Formula}) Calculation gives 
+    \begin{align*}
+        I_n&=\int_0^{\pi/2}\cos^nxdx=\int_0^{\pi/2}\cos x\cos^{n-1}xdx \\
+        &=\left[\sin x\cos^{n-1}x\right]_0^{\pi/2}+(n-1)\int_0^{\pi/2}\cos^{n-2}x\sin^2xdx \\
+        &=(n-1)I_{n-2}-(n-1)I_n
+    \end{align*}
+    Hence \(nI_n=(n-1)I_{n-2}\). Furthermore, since \(0\leq\cos x\leq 1\) if \(x\in[0,\pi/2]\), \(\cos^{n+2}x\leq\cos^{n+1}x\leq\cos^n x\). Thus \(I_{2n+1}\leq I_{2n}\leq I_{2n-1}\). Divide by \(I_{2n+1}\) to obtain 
+    \[1\leq\frac{I_{2n}}{I_{2n+1}}\leq\frac{I_{2n-1}}{I_{2n+1}}=\frac{2n+1}{2n}\]
+    Now, since \(2n/2n+1\to 1\), 
+    \[1=\lim_{n\to\infty}\frac{I_{2n+1}}{I_{2n}}=\lim_{n\to\infty}\frac{2\cdot 2\cdot 4\cdot 4\cdots 2n\cdot 2n}{1\cdot 3\cdot 3\cdot 5\cdots(2n-1)\cdot(2n+1)}\frac{I_1}{I_0}\]
+    Therefore,
+    \[\frac{\pi}2=\lim_{n\to\infty}\frac{2^{4n}}{2n+1}{\binom{2n}n}^{-2}\]
+    (\(I_1=1,I_0=\pi/2\).) 
+    Recall from question six 
+    \[\ell=\lim_{n\to\infty}\frac{n!}{n^{n+1/2}e^{-n}}\]
+    Then, by manipulating limits,
+    \begin{align*}
+        \frac{\pi}2&=\lim_{n\to\infty}\frac{2^{4n}(n!)^4}{(2n+1)((2n)!)^2}=\lim_{n\to\infty}\frac{2^{4n}(\ell n^{n+1/2}e^{-n})^4}{(2n+1)(\ell(2n)^{2n+1/2}e^{-2n})^2} \\
+        &=\lim_{n\to\infty}\frac{2^{4n}\ell^2}{2n+1}\frac{n^{4n+2}}{2^{4n+1}n^{4n+1}}=\frac{\ell^2}{4}
+    \end{align*}
+    Hence we find \(\ell=\sqrt{2\pi}\).
+    \item They both converge.
+    \begin{enumerate}
+        \item For \(\int_1^\infty\sin^2(1/x)dx\), note that \(\sin x\leq x\) for \(0\leq x\). So \(\sin^2(1/x)\leq 1/x^2\) and 
+        \[\int_{1}^\infty\sin^2\frac 1xdx\leq\int_1^\infty\frac{dx}{x^2}=1\]
+        Thus it converges.
+        \item For \(\int_0^\infty x^pe^{-x^q}dx\), we may substitute \(x^q=t\) and consider \(\int_0^\infty x^pe^{-x}dx\) without loss of generality. Firstly, \(\int_0^1x^pe^{-x}\) clearly converges. Now, for \(\int_1^\infty x^pe^{-x}dx\), consider 
+        \[\lim_{x\to\infty}\frac{x^pe^{-x}}{1/x^2}=\lim_{x\to\infty}\left(\frac{x}{e^{x^{1/p+2}}}\right)^{p+2}=0\]
+        Thus \(x^p/e^x<1/x^2\) for sufficiently large \(x\). Therefore, since \(\int_1^\infty(dx/x^2)=1<\infty\), we are done.
+    \end{enumerate}
+    \item By definition,
+    \[\lim_{n\to\infty}\sum_{j=n+1}^{2n}\frac{1}{j/n}\frac 1n=\int_1^2\frac{dx}{x}=\ln 2\]
+    For the second part, consider 
+    \[I_n=\int_0^1\frac{x^n}{1+x}dx\]
+    Note that 
+    \[I_k+I_{k-1}=\int_0^1\frac{x^{k-1}(1+x)}{(1+x)}dx=\frac 1k\]
+    Hence the sum
+    \begin{align*}
+        \frac{1}{n+1}-\frac 1{n+2}+\cdots&=(I_n+I_{n+1})-(I_{n+1}+I_{n+2})+\cdots+(-1)^{n-1}(I_{2n-1}+I_{2n}) \\
+        &=I_n+(-1)^{n-1}I_{2n}\to 0
+    \end{align*}
+    \item Q10.
+    \item By the fundamental theorem of calculus,
+    \begin{align*}
+        g(x)&=x\int_0^1tf(t)dt-\int_0^xt(t)dt-x\int_x^1f(t)dt \\
+        g^\prime(x)&=\int_0^1tf(t)dt-\int_x^1f(t)dt \\
+        g^\pprime(x)&=f(x)
+    \end{align*}
+    \item Integration by parts gives 
+    \begin{align*}
+        I_n(\theta)&=\int_{-1}^1(1-x^2)^n\cos(\theta x)dx \\
+        &=\frac 1\theta\left[(1-x^2)^n\sin(\theta x)\right]_{-1}^1+\frac n\theta\int_{-1}^12x(1-x^2)^{n-1}\sin(\theta x)dx \\
+        &=\left[-\frac{2n}{\theta^2}\int_{-1}^1x(1-x^2)^{n-1}\cos(\theta x)\right]_{-1}^1 \\
+        &+\frac{2n}{\theta^2}\int_{-1}^{1}\left((1-x^2)^{n-1}+(n-1)x(-2x)(1-x^2)^{n-2}\right)\cos(\theta x)dx \\
+        &=\frac{2n}{\theta^2}((2n-1)I_{n-1}-2(n-1)I_{n-2})
+    \end{align*}
+    Note that \(\theta I_0(\theta)=2\sin\theta\) and \(\theta^3 I_1(\theta)=4\sin\theta-4\theta\cos\theta\). Suppose that 
+    \[\theta^{2n+1}I_n(\theta)=n!(P_n(\theta)\sin\theta+Q_n(\theta)\cos\theta)\]
+    for \(n=0,1,2,\ldots,k\) where \(P_n\) and \(Q_n\) are polynomials of degree at most \(n\) with integer coefficients. Then,
+    \begin{align*}
+        \theta^{2n+3}I_{n+1}&=\theta^{2n+1}(2n+2)(2n+1)I_n-\theta^{2n+1}(4n+4)nI_{n-1} \\
+        &=2(2n+1)(n+1)n!(P_n(\theta)\sin\theta+Q_n(\theta)\cos\theta)\\
+        &-4(n+1)n(n-1)!\theta^2(P_{n-1}(\theta)\sin\theta+Q_{n-1}(\theta)\cos\theta) \\
+        &=(n+1)!(((4n+2)P_n(\theta)-4\theta^2P_{n-1}(\theta))\sin\theta\\
+        &+((4n+2)Q_n(\theta)-4\theta^2Q_{n-1}(\theta))\cos\theta)
+    \end{align*}
+    Therefore, by induction,
+    \[\theta^{2n+1}I_n(\theta)=n!(P_n(\theta)\sin\theta+Q_n(\theta)\cos\theta)\]
+    for all \(n\in\mathbb{N}_{\geq 0}\) where \(P_n\) and \(Q_n\) are polynomials of degree at most \(n\) with integer coefficients.
+
+    Now, put \(\theta=\pi/2\) to find \(\left(\pi/2\right)^{2n+1}I_n(\pi/2)=n!P_n(\pi/2)\). Suppose \(\pi/2=p/q\) where \(p,q\in\mathbb{N}\). Then, since \(P_n\) is a polynomial of degree at most \(n\), 
+    \[N=p^{2n+1}P_n(\pi/2)=\frac{q^{n+1}}{n!}I_n(\pi/2)\]
+    where \(N\in\mathbb{N}\). But \(0<I_n(\pi/2)<2\) and \(q^{n+1}/n!\to 0\) as \(n\to\infty\). Hence, for sufficiently large \(n\),
+    \[0<N<1\] which is a contradiction. Therefore \(\pi\) is irrational.
+    \item Note that 
+    \begin{align*}
+        |g(x_j)-g(x_{j-1})|&=|(f_1(x_j)-f_1(x_{j-1}))-(f_2(x_j)-f_2(x_{j-1}))| \\
+        &\leq |f_1(x_j)-f_1(x_{j-1})|+|f_2(x_j)-f_2(x_{j-1})|
+    \end{align*}
+    But since \(f_i\) (\(i=1,2\)) is increasing,
+    \[\sum_{j=1}^n|f_i(x_j)-f_i(j-1)|=\sum_{j=1}^n(f_i(x_j)-f_i(j-1))=f_i(x_n)-f_i(x_0)\]
+    Hence 
+    \[S(\mathcal{D})=\sum_{j=1}^n|g(x_j)-g(x_{j-1})|\leq (f_1(x_n)+f_2(x_n))-(f_1(x_0)+f_2(x_0))=K\]
+
+    Now for given \(g(x)\), it is integrable since continuous. However, if we choose dissection 
+    \[\mathcal{D}_n=\left\{-1,-\frac 2\pi,-\frac 2{3\pi},\ldots,-\frac{2}{(2n+1)\pi},\frac 2{(2n+1)\pi},\ldots,\frac 2{3\pi},\frac 2\pi,1\right\}\]
+    with \(x_0=1,x_j=2/(2j+1)\pi,x_{n+1}=-1\),
+    \[\sum_{j=1}^{n-1}|g(x_{j+1})-g(x_{j})|=\sum_{j=1}^{n-1}\left|\frac{(-1)^{j+1}}{(j+1)\pi}-\frac{(-1)^j}{j\pi}\right|=\frac 1\pi\sum_{j=1}^{n-1}\left(\frac 1j+\frac 1{j+1}\right)\]
+    and 
+    \[S(\mathcal{D}_n)=2\frac 1\pi\sum_{j=1}^{n-1}\left(\frac 1j+\frac 1{j+1}\right)+\frac 4{(2n+1)\pi}+2\left(\sin 1-\frac 2\pi\right)\to\infty\]
+    So \(S\) is not bounded and therefore it is not the difference of two increasing functions.
+    \end{enumerate}
 \end{document}

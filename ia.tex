@@ -1402,6 +1402,35 @@ is a bijection.
     So by the Schröder-Bernstein theorem, ther is a bijection between \([0,1]\) and \([0,1]\cup[2,3]\).
 \end{example}
 It would be nice to be able to say that for any two sets \(A\) and \(B\), either \(A\) injects into \(B\) or \(B\) injects into \(A\). This is true, but proof is beyond the scope of this course.\footnote{See Part II Logic and Set Theory.}
+\newpage
+\section{Example Sheets}
+\subsection{Sheet 1}
+\begin{enumerate}[{1.}]
+    \item Impossible, since one is a multiple of \(3\) rather than \(3\) itself.
+    \item Note that the possible candidates are the quadrupoles of form \newline \((10n+1,10n+3,10n+7,10n+9)\). There are some examples: \((101,103,107,109)\), \((191,193,197,199)\), etc. However, it is currently unable to prove/disprove if there are infinitely many numbers of those quadrupoles -- positive result will imply the \emph{twin prime conjecture}.
+    \item With \(a_1=41\), \(n\)\textsuperscript{th} term will take the form 
+    \[a_n=a_1+\sum_{j=1}^{n-1}2j=a_1+n(n-1)=n^2-n+41\]
+    Then, \(a_{41}=41^2\) is clearly not a prime.
+    \item More generally, we claim that there exists a sequence of \(n\in\mathbb{N}\) consequtive natural numbers containing no primes. If we let \(x=(n+1)!+2\), then, for all \(0\leq j\leq n-1\),
+    \begin{align*}
+        x+j&=1\cdot 2\cdots j(j+1)(j+2)\cdots n(n+1)+2+j \\
+        &=(j+2)\left[1\cdot 2\cdots j(j+1)(j+3)\cdots n(n+1)+1\right]
+    \end{align*}
+    is clearly a composite number as required. Hence for \(n=100\),
+    \[101!+2,101!+3,\ldots,101!+101\]
+    are all not prime.
+    \item It can be translated as: ``For any natural number \(m\), there exists a natural number \(n\) such that \(n\) is greater than or equal to \(n\), and for all natural numbers \(a\) and \(b\), at least one of the following conditions holds: \(a\) is 1, \(b\) is 1, or the product of \(a\) and \(b\) is not equal to \(n\).'' This statement is true, as we can choose \(n\) to be a least prime that is greater than \(m\) (because there are infinitely many primes). Meanwhile, negation will give 
+    \[\exists m\forall n\exists a\exists b((n<m)\vee [(a\neq 1)\wedge(b\neq 1)\wedge(ab=n)])\]
+    \item Firstly, \(2^{19}+5^{40}\equiv 2^{19}+2^{40}\equiv(-1)+1\equiv 0\mod 3\). Secondly, for \(2^{91}-1\), if we let \(2^{13}=1\),
+    \[2^{91}-1=x^7-1=(x-1)(x^6+x^5+\cdots +1)\]
+    So \(2^{13}-1\big|2^{91}-1\).
+    \item \(3\) is a factor of \(n^2\), and this implies \(3^2|n^2\) and \(3|n\).
+    \item \(3^{3n+4}+7^{2n+1}=3^4(27)^n+7(49)^7\equiv 4\cdot 5^n-4\cdot 5^n\equiv 0\mod 11\).
+    \item Let \(p_1,p_2,\ldots,p_k\) all the primes of the form \(4n-1\). Now let \(N=4p_1p_2\cdots p_k-1\). By fundamental theorem of arithmetic, there exists a unique prime factorisation consisting of primes that are less than \(N\). Claim that at least one of the prime factor of \(N\) is of the form \(4n-1\). If all factors are of the form \(4n+1\), \(N\equiv 1\mod 4\), which is a contradiction. Hence at least one prime factor is of the form \(4n+1\). But \(p_i\nmid N\) for all \(i=1,\ldots,k\), leading to contradiction. Therefore, there are infinitely many primes of the form \(4n+1\). 
+
+    However, for the primes of the form \(4n+1\), the similar method will not work since all prime factors can be of the form \(4n-1\).
+    \item 
+\end{enumerate}
 \chapter{Groups}
 \chapterauthor{Lecture by Professor Henry Wilton. 
     Michaelmas term 2023.}
@@ -1833,6 +1862,7 @@ If \(Gx=X\) for all \(x\in X\), the action is \emph{transitive}. If every elemen
         \item \(\stab_G(x)\leq G\) for any \(x\in X\).
         \item The orbits \(\{Gy\:|\:y\in X\}\) form a \emph{partition} of \(X\), i.e. every element is in exatly one orbit.
     \end{enumerate}
+    \label{prop:stab_orbit_prop}
 \end{proposition}
 \begin{proof} \item[] 
     \begin{enumerate}
@@ -1963,6 +1993,103 @@ In facts, there exists an action \(H\acts G\) which can show that left coset is 
 \begin{theorem}
     (\emph{Cauchy's Theorem}) If \(|G|<\infty\), \(p\) prime such that \(p\big||G|\), then there is a \(g\in G\) such that \(o(g)=p\).
 \end{theorem}
+\begin{proof}
+    Consider the set \(X\) of \(p\)-tuples 
+    \[X=\{(g_1,g_2,\ldots,g_p)\:|\:g_i\in G\;\forall i\text{  and  }g_1g_2\cdots g_p=e\}\]
+    Define an action of \(C_p\cong\langle t\rangle\) on \(X\) as 
+    \[t^k(g_1,\ldots,g_p)=(g_{k+1},\ldots,g_p,g_1,\ldots,g_k)\]
+    It is easy to see that \(e\) acts trivially and that \(t^k(t^l(g_1,\ldots,g_p))=t^{k+l}(g_1,\ldots,g_p)\). Most importantly, we need to check that \(t^k(g_1,\ldots,g_p)\in X\). If we let \(a=g_1\cdots g_k\) and \(b=g_{k+1}\cdots g_p\), we have \(ab=e\) since \((g_1,\ldots,g_p)\in X\). Hence \(ba=e\) and \(t^k(g_1,\ldots,g_p)\in X\) as claimed. In conclusion, we have defined an action of \(C_p\) on \(X\). Next, compute the size of \(X\). Note that from \(g_1g_2\cdots g_p=e\), we have 
+    \[g_p=(g_1g_2\cdots g_{p-1})^{p-1}\]
+    Observe that we can arbitrarily choose \(g_1,g_2,\ldots,g_{p-1}\), \(g_p\) is automatically decided. So
+    \[|X|=\underbrace{|G||G|\cdots|G|}_{p-1}1=|G|^{p-1}\]
+    Furthermore, by Proposition \ref{prop:stab_orbit_prop} (2), \(C_p\) action partitions \(X\) into orbits:
+    \[X=C_px_1\cup C_px_2\cup\cdots\cup C_px_m\]
+    By orbit-stabiliser theorem (Corollarly \ref{coro:orbit_stab}), \(|C_px_j|\big||C_p|=p\). So \(|C_px_j|=1\) or \(|C_px_j|=p\) for each \(j\). Let \(l\) be the number of size \(1\). Then 
+    \[|X|=l+(m-l)p\]
+    But \(|X|=|G|^{p-1}=l+(m-l)p\). Since \(p\big||G|\) by hypothesis, we have \(p|l\). In particular, either \(l=0\) or \(l\geq p\). Meanwhile, note that \(|C_pX|=1\) means that if we let \(x=(g_1,\ldots,g_p)\), \(t^kx=x\) for all \(k\), implying \(x=(g,\ldots,g)\) for some \(g\). Because \(\underbrace{e\cdots e}_{p}=e\), \((e,\ldots,e)\in X\) provides an orbit of size 1. Therefore there are at least \(p\geq 2\) such orbits. So there is a \(g\neq e\) such that \((g,g,\ldots,g)\in X\), i.e. \(g^p=e\). This is our desired element of order \(p\).
+\end{proof}
+\subsection{Conjugations}
+\begin{definition}
+    Let \(G\) be a group, and \(g\in G\). For any \(h\in G\), the element \(hgh^{-1}\in G\) is called the \emph{conjugate} of \(g\) by \(h\).
+\end{definition}
+\begin{example}
+    If \(G\) is an abelian group, then, for any \(g,h\in G\), \(hgh^{-1}=ghh^{-1}=ge=g\); so the only conjugate of \(g\) is \(g\) itself.
+\end{example}
+\begin{example}
+    In \(D_{2n}\), consider \(g=s\), \(h=r\). Recall the dihedral relation
+    \[r^{-1}s=sr\Rightarrow r^2(r^{-1}s)r^{-1}=r^2(sr)r^{-1}\Rightarrow rsr^{-1}=r^2s\]
+    More generally, 
+    \begin{align*}
+        r^ksr^{-k}&=(r^{k-1}r)s(r^{-1}r^{1-k}) \\
+        &=r^{k-1}(rsr^{-1})r^{1-k} \\
+        &=r^{k-1}(r^2s)r^{1-k} \\
+        &=(r^{k-1}r^2)sr^{1-k} \\
+        &=r^2(r^{k-1}sr^{1-k})=\cdots=r^{2k}s
+    \end{align*}
+    Note that these are all reflections. Consider \(z_k=e^{2\pi ik/n}=r^k(z_0)\in X_n\). Then 
+    \[(r^{2k}s)(z_k)=(r^ksr^{-k})(z_k)=((r^ksr^{-k})r^k)(z_0)=r^ks(z_0)=r^k(z_0)=z_k\]
+    So \(r^{2k}s\) is the reflection in the line of symmetry through \(z_k\).
+\end{example}
+Notice that \(G\) can acts on itself by conjugation. \(G\acts G\), \(g(\gamma)=g\gamma g^{-1}\). This is not the same with the regular action.
+\begin{definition}
+    The orbit of \(\gamma\) under the conjugation action is called the \emph{conjugacy class} of \(\gamma\):
+    \[\ccl(\gamma)=\{g\gamma g^{-1}\:|\: g\in G\}\]
+\end{definition}
+\begin{definition}
+    The stabiliser of \(\gamma\) inder the conjugation action is called the \emph{centraliser} of \(\gamma\): 
+    \[C_G(\gamma)=\{g\in G\:|\:g\gamma g^{-1}=\gamma\}\]
+    Note that \(g\gamma g^{-1}=\gamma\Leftrightarrow g\gamma=\gamma g\).
+\end{definition}
+\begin{definition}
+    We define the \emph{centre} of \(G\) as 
+    \[Z(G)=\{h\in G\:|\: hg=gh\text{  for all  }g\in G\}=\bigcap_{g\in G}C_G(g)\]
+\end{definition}
+\section{The Möbius Group}
+The Möbius group is almost a group of bijections of \(\mathbb{C}\), but to make good sense of it, we need to add in one extra point.
+\begin{definition}
+    We define the \emph{Riemann Sphere} as \(\mathbb{C}_\infty=\mathbb{C}\cup\{\infty\}\).
+\end{definition}
+The reason we use the term `sphere' to denote a complex plane is because `stereographic projection' identifies the unit sphere with \(\mathbb{C}\), except the north pole, which is what we call \(\infty\).
+\begin{definition}
+    Let \(a,b,c,d\in\mathbb{C}\) such that \(ad-bc\neq 0\). If \(c\neq 0\), the corresponding \emph{Möbius transformation} \(\mu:\mathbb{C}_\infty\to\mathbb{C}_\infty\) is defined by 
+    \[z\mapsto\begin{cases}
+        \frac{az+b}{cz+d} & z\in\mathbb{C}\backslash\{-d/c\} \\
+        \infty & z=-d/c \\
+        a/c & z=\infty 
+    \end{cases}\]
+    If \(c=0\), then \(\mu\) is defined by 
+    \[z\mapsto\begin{cases}
+        \frac{az+b}{d} & z\in\mathbb{C} \\
+        \infty & z=\infty
+    \end{cases}\]
+    Moreover, we define a set 
+    \[\mathcal{M}=\{f:\mathbb{C}_\infty\to\mathbb{C}_\infty\:|\:f\text{  is a Möbius transformation}\}\]
+\end{definition}
+\begin{example}
+    If 
+    \[\mu_1(z)=\frac{a_1z+b_1}{c_1z+d_1},\quad\mu_2(z)=\frac{a_2z+b_2}{c_2z+d_2}\]
+    then 
+    \[\mu_1\circ\mu_2(z)=\frac{(a_1a_2+b_1b_2)z+(a_1b_2+b_1d_2)}{(c_1a_2+d_1c_2)z+(c_1b_2+d_1d_2)}\]
+    Cf. matrix multiplication.
+    \label{eg:mobius_mul}
+\end{example}
+\begin{theorem}
+    (\emph{Möbius Group}) \((\mathcal{M},\circ,\id)\) is a group.
+\end{theorem}
+\begin{proof}
+    By Example \ref{eg:mobius_mul} (nearly), a composition of Möbius transformation is again a Möbius transformation. Composition of function is associative, and \(\id:z\mapsto z\) is clearly an identity. Finally, if 
+    \[\mu(z)=\frac{az+b}{cz+d}\]
+    let 
+    \[\nu(z)=\frac{dz-b}{-cz+a}\]
+    Then, by Example \ref{eg:mobius_mul}, \(\mu\circ\nu(z)=z\) as required.
+\end{proof}
+Before going further, we formally define a concept that we already know about. 
+\begin{definition}
+    If \(f:X\to X\), any \(x\in X\) is a \emph{fixed point} if \(f(x)=x\).
+\end{definition}
+\begin{lemma}
+    (\emph{Three-point Lemma for \(\mathcal{M}\)}) If \(\mu\in\mathcal{M}\) has 3 different fixed points \(w_1,w_2,w_3\) in \(\mathbb{C}_\infty\), then \(\mu=\id_{\mathbb{C}_\infty}\).
+\end{lemma}
 \chapter{Analysis I}
 \chapterauthor{Lecture by Professor Claude Warnick. 
     Lent term 2024.}

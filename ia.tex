@@ -279,7 +279,7 @@ for \((a,b)\in R\) to denote that \(a\) is related to \(b\). For example, ``\(aR
 \end{itemize}
 A relation \(R\) is an \emph{equivalence relation} if it is reflective, symmetric, and transitive; and we can write \(a\sim b\) for \(aRb\) if \(R\) is an equivalence relation. For example, ``\(a\sim b\) if \(a\equiv b\mod 5\)'' is a equivalence relation on \(\mathbb{Z}\). This equivalence relation partitions \(\mathbb{Z}\) into pieces consisting of related elements,\footnote{Elements in each set are related.} namely
 \[\{x\in\mathbb{Z}\::\:x\equiv 0\mod 5\},\{x\in\mathbb{Z}\::\:x\equiv 1\mod 5\},\ldots,\{x\in\mathbb{Z}\::\:x\equiv 4\mod 5\}\] 
-Given a set \(X\), a \emph{partition} of \(X\) is a collection of pairwise disjoint subsets, i.e. \emph{parts}, whose union is \(X\). If \(\sim\) is an equivalent relation on \(\mathbb{X}\), then the \emph{equivalence class} of \(x\in X\) is denoted by 
+Given a set \(X\), a \emph{partition} of \(X\) is a collection of pairwise disjoint subsets, i.e. \emph{parts}, whose union is \(X\). If \(\sim\) is an equivalent relation on \(X\), then the \emph{equivalence class} of \(x\in X\) is denoted by 
 \[[x]=\{y\in X\::\:y\sim x\}\]
 E.g. for the equivalence relation above,
 \[[12]=\{y:y\equiv 2\mod 5\}\]
@@ -1429,7 +1429,199 @@ It would be nice to be able to say that for any two sets \(A\) and \(B\), either
     \item Let \(p_1,p_2,\ldots,p_k\) all the primes of the form \(4n-1\). Now let \(N=4p_1p_2\cdots p_k-1\). By fundamental theorem of arithmetic, there exists a unique prime factorisation consisting of primes that are less than \(N\). Claim that at least one of the prime factor of \(N\) is of the form \(4n-1\). If all factors are of the form \(4n+1\), \(N\equiv 1\mod 4\), which is a contradiction. Hence at least one prime factor is of the form \(4n+1\). But \(p_i\nmid N\) for all \(i=1,\ldots,k\), leading to contradiction. Therefore, there are infinitely many primes of the form \(4n+1\). 
 
     However, for the primes of the form \(4n+1\), the similar method will not work since all prime factors can be of the form \(4n-1\).
-    \item 
+    \item Let \(F_n=2^{2^n}+1\) and \(d=\gcd(F_n,F_m)\) where \(n>m\). Then \(d|F_m\) and \(d|F_n\). But
+    \[2^{2^n}-1=(2^{2^{n-1}}+1)(2^{2^{n-1}}-1)=F_{n-1}F_{n-2}\cdots F_1F_0\tag{\(\asterisk\)}\]
+    So \(d|F_nF_{n-1}\cdots F_0\) (\(\because m\leq n-1\)). Furthermore, \(F_{n}-F_{n-1}F_{n-2}\cdots F_{0}=2\), so \(d|2\). But since every term of \(F_n\) is odd, \(d=1\). Then, result follows from observing (\(\asterisk\)).
+    \item Step-by-step calculation gives
+    \begin{enumerate}
+        \item     \(2*n=1*(2*(n-1))=2*(n-1)+1\) and \(2*1=1*2=3\). Hence \(2*n=n+2\).
+        \item \(3*n=2*(3*(n-1))=(3*(n-1))+2\) and \(3*1=2*2=4\). Hence \(3*n=2n+2\).
+        \item \(4*n=3*(4*(n-1))=2(4*(n-1))+2\) and \(4*1=3*2=6\). Hence \(4*n=2^{n+2}+2\).
+    \end{enumerate}
+    Then, from the fact that \(5*1=4*2=14\),
+    \[5*5=2^{2^{2^{2^{16}}}}-2\]
+    \item \(a+b=100\), \(a,b\in\mathbb{N}\). \(ab\leq (a+b)^2/4=5050\). Equality when \(a=b=50\).
+    \item Yes; repeat of \(82644628100\) gives 
+    \[8264462810082644628100=90909090910^2\]
+    Note that \(10^{11}+1=11^2\cdot 23\cdot 4093\cdot 8779\).
+    \item Consider sequence \(n,n+1,\ldots,n+b-1\). At least one is multiple of \(b\), and at least two is multiple of \(a\). If one of multiple of \(a\) is also multiple of \(b\), then remaining one is not. Therefore, we can choose two distinct numbers whose product is a multiple of \(ab\).
+\end{enumerate}
+\subsection{Sheet 2}
+\begin{enumerate}[{1.}]
+    \item \(x=16,y=27\) by the Euclid's algorithm. Meanwhile, there is no integer solution for \(3381x+2646y=21\) since \(\gcd(3381,2646)=147>21\) (Bézout's theorem).
+    \item This need not be true. E.g. \((2,3)=(9,4)=1\) but \((18,12)=6\). However, it is true that \((a,b)(c,d)|(ac,bd)\). If we let \(g_1=(a,b),g_2=(c,d)\) and \(a=g_1a^\prime,b=g_1b^\prime,c=g_2c^\prime,d=g_2d^\prime\), \((ac,bd)=g_1g_2(a^\prime c^\prime,b^\prime d^\prime)\); and clearly \(g_1g_2|g_1g_2(a^\prime c^\prime,b^\prime d^\prime)\).
+    
+    Now suppose \((a,b)=(a,c)=1\). Then, by Bézout's theorem, \(ax+by=az+cw=1\) for some \(x,y,z,w\in\mathbb{Z}\). Hence,
+    \[(ax+by)(az+cw)=(axz+cxw+byz)a+yw(bc)=1\]
+    implies \((a,bc)=1\). Note that reverse direction also holds since 
+    \[ax+y(bc)=ax+(yb)c+ax+(yc)b=1\]
+    for some \(x,y\in\mathbb{Z}\) if \((a,bc)=1\).
+    \item First part is trivial since \(10^n\equiv 1\mod 9\). By Fermat-Euler theorem, we have \(2^{\varphi(9)}=2^6\equiv 1\mod 9\). Hence \(2^{29}\equiv 2^5\equiv 5\mod 9\), and thus \(4\) is missing.
+    \item Inductively, it can be found that \(F_n\) is even if \(n\) is multiple of 3, and \(F_n\) is multiple of 3 if \(n\) is multiple of 4. Hence, \(F_{2023}\) is odd and not a multiple of 3.
+    \item We employ Euclid's algorithm to find inverses.
+    \begin{enumerate}
+        \item There is an unique solution modulo 40 since \(\gcd(7,40)=1\). From \(17\cdot 7\equiv 1\mod 40\), \(x\equiv -11\mod 40\).
+        \item \(\gcd(12,54)=6\) so we solve \(2x\equiv 5\mod 9\). Therefore, \(x\equiv 7\mod 9\). 
+        \item Each congruence can be solved as \(z\equiv 12\mod 17\) and \(z\equiv 15\mod 19\). Then, since \(\gcd(17,19)=1\), by the chinese remainder theorem, the solution satisfying both congruences will be \(z\equiv 148\mod 323\).
+    \end{enumerate}
+    \item Sender sends \(M^2=35^7\equiv 75\mod 160\). With decoding exponent \(d=23\), reciever can obtain \(75^{23}=35\mod 160\), the original message.
+    \item (\emph{Divisor Sum}, Gauss) We simplify all the terms of fractions 
+    \[\frac 1n,\frac 2n,\ldots,\frac nn\]
+    and note denominator of each fraction, \(d\), will divide \(n\), and numerator of that will be coprime with \(d\). Hence, there are \(\varphi(d)\) fractions with denominator \(d\). Viz \(n=\sum_{d|n}\varphi(d)\).
+    \item By Fermat's little theorem, \(10^{22}\equiv 1\mod 23\). Hence
+    \[10^{881}-1\equiv 10(10^{22})^{40}-1\equiv 9\mod 23\]
+    \item By Fermat's little theorem, we have \(x^{p-1}\equiv 1\mod p\) and \(x^p\equiv x\mod p\). Multiplying these, \(x^{2p-1}\equiv x\mod p\). Put \(p=3k+2\) to find \(x^{6k+3}\equiv x\mod p\). This gives
+    \[x\equiv (x^3)^{2k+1}\equiv 1\mod p\]
+    Moreover,
+    \[y\equiv (y^3)^{2k+1}\equiv a^{2k+1}\mod p\]
+    \item Note that all prime divisors of \(n^2+1\) are of form \(4k+1\), since 
+    \[p|n^2+1\Leftrightarrow n^2\equiv -1\mod p\Rightarrow n^4\equiv 1\mod p\Rightarrow 4|p-1\Leftrightarrow p\equiv 1\mod 4\]
+    by Fermat's little theorem. Now, assume \(p_1,p_2,\ldots,p_k\) are all the primes of form \(4m+1\). Then, if we consider \(N=(2p_1p_2\cdots p_k)^2+1\), by fundamental theorem of arithmetic and the fact above, \(N\) will have a prime divisor of form \(4k+1\). But \(p_i\nmid N\) for all \(i=1,\ldots,k\), which is a contradiction. Hence there are infinitely many such primes. 
+    \item Last 5 digits of\(5^6,5^7,\ldots 5^{14}\) are 
+    \[03125,15625,78125,90625,53125,65625,28125,40625,30125\]
+    respectively. Notice that they are periodic with period 8. Hence, we want to find \(n=5^{5^{5^5}}\) modulo \(8\). But \(5^2\equiv 1\mod 8\) so \(n\equiv 5\mod 8\) and the 5\textsuperscript{th}-last digit will be \(0\) from \(03125\).
+    \item Observe Fibonacci sequence modulo \(29\) to find that they take values that are in 
+    \[S=\{0,1,2,3,5,8,13,21,26,28\}\]
+    However, with \((n^7)^4\equiv 1\mod 29\),  possible values of \(n^7\) modulo \(29\) are \\ \(\{0,1,12,17,28\}\), and \(\{9,10,11,22,27\}\) for \(n^7-77\). But \(\{9,10,11,22,27\}\cap S=\emptyset\). Hence it is impossible for \(n^7-77\) to be a Fibonacci number.
+\end{enumerate}
+\subsection{Sheet 3}
+\begin{enumerate}[{1.}]
+    \item Consider a set 
+    \[A=\{x\in\mathbb{R}\:|\:x^3<2\}\]
+    Since \(2^3=8>2\) and \(x^3>2^3>2\) if \(x>2\), \(A\) is bounded above. Thus by least upper bound axiom, there exists \(\sup(A)=a\). Observe that \(1<a<2\). We claim that \(a^3=2\). First, suppose \(a^3<2\). For \(0<t<1\) that is sufficiently small,
+    \begin{align*}
+        (a+t)^3&=a^3+3a^2t+3at^2+t^3 \\
+        &<a^3+6t+6t+t=a^3+13t\leq 2
+    \end{align*}
+    But this contradicts our assumption that \(a\) is an upper bound. Now suppose \(a^3>2\). Similarly, for sufficiently small \(0<t<1\), 
+    \begin{align*}
+        (a-t)^3&=a^3-3a^2t+3at^2-t^3 \\
+        &>a^3-6t-t=a^3-7t\geq 2
+    \end{align*}
+    and this contradicts our assumption that \(a\) is a least upper bound. Hence, \(a^3=2\) by definition of real numbers.
+
+    We claim that there is no \(x\in\mathbb{Q}\) such that \(x^3=2\). Suppose \(x\in\mathbb{Q}\). Let \(x=p/q\) where \(p,q\in\mathbb{N}\) and \(\gcd(p,q)=1\). Then, \(N=p^3=2q^3\). By the fundamental theorem of arithmetic, there exists a unique prime factorisation of \(N\). But the exponent of \(2\) of \(p^3\) is multiple of \(3\) while that of \(2q^3\) is \(1\) modulo \(3\), which is a contradiction. Hence we proved that \(a\) is irrational.
+    \item Let \(\sqrt{2}+\sqrt{3}=a\). Then, \(2\sqrt{6}=a^2-5\). Since \(2\sqrt{6}\) is a root of \(y^2-24=0\), put \(y=x^2-5\) to find 
+    \[(x^2-5)^2-24=x^4-10x^2+1=0\]
+    with \(a\) as a root. Thus \(\sqrt{2}+\sqrt{3}\) is algebraic.
+
+    Now suppose \(\sqrt{2}+\sqrt{3}=p/q\) where \(p,q\in\mathbb{N}\) and \(\gcd(p,q)=1\). Then 
+    \[5+2\sqrt{6}=\frac{p^2}{q^2},\quad\sqrt{6}=\frac{p^2-5q^2}{2q^2}\in\mathbb{Q}\]
+    which is a contradiction. Hence \(\sqrt{2}+\sqrt{3}\) is irrational.
+    \item Suppose that \(x=p/q\) where \(p,q\in\mathbb{Z},p\neq 0,\gcd(p,q)=1\). If we let 
+    \[P(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\]
+    and \(P(p/q)=0\), then,
+    \[0=q^nP(p/q)=p^n+q(a_{n-1}p^{n-1}+\cdots+a_0q^{n-1})\]
+    Hence \(q|p^n\) and consequently \(q|p\), implying \(|q|=1\). Therefore, \(p/q\in\mathbb{Z}\) as required. C.f. \emph{rational root test}.
+    \item See Analysis I Lemma \ref{fundlemma} (5).
+    \item This is not always true. For example, let \(x_n=\sum_{j=1}^n(1/j)\). Then \(x_n-x_{n-1}=1/n\to 0\) but \(x_n\) diverges.
+    \item \begin{enumerate}[{(i)}]
+        \item \(x_n\to 3\).
+        \item It clearly diverges.
+        \item Converges. We have 
+        \[x_n=\frac{n+1-n}{\sqrt{n+1}-\sqrt{n}}\to 0\]
+        \item Note that 
+        \[(n!)^2=(1\cdot n)(2\cdot(n-1))\cdots((n-1)\cdot 2)(n\cdot 1)\geq n^n\]
+        So \((n!)^{1/n}\geq\sqrt{n}\). But \(\sqrt{n}\to\infty\) as \(n\to\infty\) so \(x_n\) also diverges.
+    \end{enumerate}
+    \item \begin{enumerate}[{(i)}]
+        \item \(1/(1+n^2)<1/n^2\) so converges by comparison.
+        \item We have
+        \[\frac{n^n}{n!}\frac{(n+1)!}{(n+1)^{n+1}}=\frac{1}{\left(1+\frac 1n\right)^n}\to\frac 1e\]
+        Hence it converges by ratio test.
+        \item \(1/\sqrt{n(n+1)}>1/(\sqrt{2}n)\) so it diverges by comparison.
+    \end{enumerate}
+    \item We claim that \(x_n>x_{n+1}>0\). Since it is clear that \(x_{n+1}>0\) if \(x_n>0\), and \(x_1=1>0\), we have \(x_n>0\) for all \(n\) by induction. But 
+    \[x_n>x_{n+1}\Leftrightarrow x_n>\frac{x_n}{1+\sqrt{x_n}}\Leftrightarrow 1+\sqrt{x_n}>1\Leftrightarrow x_n>0\]
+    so \(x_n>x_{n+1}>0\) for all \(n\geq 1\) as required. Then, since \((x_n)\) is decreasing and bounded by \(0\), it converges by monotone convergence theorem. Now suppose \(x_n\to a\). Then 
+    \[a=\frac{a}{1+\sqrt{a}}\]
+    so \(a=0\).
+    \item Hmmm... it is trivial when it is rational (periodic). But what if not? I \emph{will} return.
+    \item Since \(x_n\to 0\), there exists \(N\) such that \(n\geq N\Rightarrow x_n<1\). Hence 
+    \[\sum_{n=1}^\infty x_n^2=\sum_{n=1}^{N-1}x_n^2+\sum_{N}^{\infty}x_n^2\geq\sum_{n=1}^{N-1}x_n^2+\sum_{N}^\infty x_n\]
+    and thus convergent by comparison test.
+
+    However, it is not quite true when \(x_n\) is not always positive. E.g. consider \(x_n=(-1)^n/\sqrt{n}\).
+    \item No. For example, we may choose \(a,b,c\in\mathbb{R}\) such that \(a+b+c=0\) and \(a^3+b^3+c^3>0\) (e.g. \(a=-1,b=-2,c=3\)). Then, let 
+    \[x_{3n}=\frac{a}{n^{1/3}},\quad x_{3n+1}=\frac{b}{n^{1/3}},\quad x_{3n+2}=\frac{c}{n^{1/3}}\]
+    Notice that \(\sum x_n\) converges but \(\sum x_n^3\) does not.
+    \item First, we claim that if \(z+1/z\in\mathbb{Q}\), then \(z^n+1/z^n\in\mathbb{Q}\). We prove the claim by induction. Suppose \(z^{k}+1/z^k\in\mathbb{Q}\) for \(k=1,\ldots,n-1\). Then, since 
+    \[z^n+\frac 1{z^n}=\left(1+\frac 1z\right)\left(z^{n-1}+\frac 1{z^n-1}\right)-\left(z^{n-2}+\frac 1{z^{n-2}}\right)\]
+    \(z^n+1/z^n\in\mathbb{Q}\) as required. Note that contrapositive states that if \(z^n+1/z^n\) is irrational, then \(z+1/z\) is also irrational. 
+    
+    Now let \(z=\sqrt[100]{\sqrt{3}+\sqrt{2}}\). It follows from the claim above that because 
+    \[z^{100}+\frac 1{z^{100}}=2\sqrt{3}\notin\mathbb{Q}\]
+    \(z+1/z\) is irrational.
+    \item It is convergent by the Dirichlet's test.
+\end{enumerate}
+\subsection{Sheet 4}
+\begin{enumerate}[{1.}]
+    \item \(\binom 40+\binom 42+\binom 44=8\). More generally, 
+    \[\binom n0+\binom n2+\cdots +\binom n{2\lfloor n/2\rfloor}=2^{n-1}\]
+    from the binomial theorem.
+    \item \begin{enumerate}[{(i)}]
+        \item This holds for \(n\geq k\). Suppose we choose \(k+1\) distinct numbers from \({1,2,\ldots n+1}\). If the largest number we choose is \(j+1\), the ways of choosing the numbers will be \(\binom jk\). Therefore, since the largest number we choose can be \(k,k+1,\ldots,n\),
+        \[\binom kk+\binom{k+1}k+\cdots+\binom nk=\binom{n+1}{k+1}\]
+        \item We choose \(n\) distinct numbers from \(S=\{1,2,\ldots,2n\}\). Suppose \(A=\{1,\ldots,n\}\) and \(B=\{n+1,\ldots,2n\}\). We may choose \(k\) items from set \(A\) and \(n-k\) items from set \(B\), and the total ways of doing this will be 
+        \[\binom nk\binom n{n-k}={\binom nk}^2\]
+        Since possible values of \(k\) are \(k=0,1,\ldots,n\),
+        \[{\binom n0}^2+\cdots+{\binom nn}^2=\binom{2n}n\]
+    \end{enumerate}
+    \item Let \(A,B\subseteq S\) and \(A^\mathsf{c}=S\backslash A\), \(B^\mathsf{c}=S\backslash B\). Then,
+    \begin{align*}
+        A\bigtriangleup B&=(A\backslash B)\cup(B\backslash A)=(A\cap B^\mathsf{c})\cup(B\cap A^\mathsf{c}) \\
+        &=(A\cup B)\cap (A\cup A^\mathsf{c})\cap (B\cup B^\mathsf{c})\cap (B^\mathsf{c}\cup A^\mathsf{c}) \\
+        &=(A\cup B)\cap S\cap S\cap (B^\mathsf{c}\cup A^\mathsf{c}) \\
+        &=(A\cup B)\cap(A^\mathsf{c}\cup B^\mathsf{c})
+    \end{align*}
+    Also,
+    \[(A\bigtriangleup B)^\mathsf{c}=\left((A\cap B^\mathsf{c})\cup(B\cap A^\mathsf{c})\right)^\mathsf{c}=(A^\mathsf{c}\cup B)\cap(A\cup B^\mathsf{c})\]
+    Hence,
+    \begin{align*}
+        (A\bigtriangleup B)\bigtriangleup C&=((A\bigtriangleup B)\cup C)\cap ((A\bigtriangleup B)^\mathsf{c}\cup C^\mathsf{c}) \\
+        &=(((A\cup B)\cap(A^\mathsf{c}\cup B^\mathsf{c}))\cup C)\cap (((A^\mathsf{c}\cup B)\cap(A\cup B^\mathsf{c}))\cup C^\mathsf{c}) \\
+        &=(A\cup B\cup C)\cap (A^\mathsf{c}\cup B^\mathsf{c}\cup C)\cap (A^\mathsf{c}\cup B\cup C^\mathsf{c})\cap (A\cup B^\mathsf{c}\cup C^\mathsf{c}) \\
+        &=A\bigtriangleup(B\bigtriangleup C)
+    \end{align*}
+    as required (n.b. \(\bigtriangleup\) is also commutative).
+    \item By the inclusion-exclusion principle,
+    \[\varphi(p_1p_2p_3)=p_1p_2p_3-p_1p_2-p_2p_3-p_3p_1+p_1+p_2+p_3-1\]
+    Put \(p_1=7,p_2=11,p_3=13\) to obtain \(\varphi(1001)=720\).
+    \item Yes. For example, consider \(A_n=[n,\infty)\). Then \(\bigcap_{i=1}^nA_i=A_n\neq\emptyset\). Now suppose \(A=\bigcap_{i=1}^\infty A_i\) is non-empty. If we let \(x\in A\), \(x\geq n\) for all \(n\in\mathbb{N}\), which is a contradiction. Hence \(A=\emptyset\).
+    \item \(g\) is injective if \(f\circ g\) is injective; and \(f\) is surjective if \(f\circ g\) is surjective.
+    \item Because there exists a bijection between \(\mathbb{R}\) and \((0,1)\), it is sufficent to show that there exists an injection \(f:(0,1)\times(0,1)\to (0,1)\). For \((x,y)\in (0,1)\times(0,1)\) where 
+    \[x=0.x_1x_2\cdots\text{  and  }y=0.y_1y_2\cdots\]
+    let
+    \[f(x)=0.x_1y_1x_2y_2\cdots\]
+    To make this well-defined, we avoid writing decimals that end with infinitely long tails of \(9\)s. Furthermore, suppose \(f(a,b)=f(c,d)\). This implies \(0.a_1b_1a_2b_2\cdots=0.c_1d_1c_2d_2\cdots\). Then \(a_i=c_i, b_i=d_i\) so \((a,b)=(c,d)\) and \(f\) is injective.
+    \item By construction, it is reflective and symmetric. However, it is not transitive. E.g. \(4R36\) and \(36R9\) but \(4\nmid 9\). Thus \(R\) is not an equivalence relation.
+    \item Without loss of generality, let \(n\) elements \(\{1,2,\ldots,n\}\). First, note that, for \(R\) to be transitive, it should contain \((1,1),(2,2),\ldots,(n,n)\). Now, for the upper bound, we consider whether \((x,y)\) is in \(R\) or not, with condition \(x>y\) (because \(R\) symmetric). Since there are \(n(n-1)/2\) such pairs, upper bound will be \(2^{n(n-1)/2}\). For the lower bound, there are \(2^{n-1}\) ways to choose elements that are not related with any other elements from \(\{2,3,\ldots,n\}\). This is a lower bound, since there will be at least one way, e.g. relating every pair, to relate the elements that are related with at least one another element.
+    
+    Meanwhile, clearly \(2^{n(n-1)/2}\) is not the strongest upper bound since we did not account for transitivity. Recall that equivalence class forms partition, and there is a equivalence relation for a given partition. Hence, number of equivalence relations is the same as the ways of partitioning a set, i.e. \emph{Bell numbers}. First few terms of Bell numbers are 
+    \[B_1=1,B_2=2,B_3=5,B_4=15,B_5=52\]
+    and there also exists a summation formula 
+    \[B_{n+1}=\sum_{k=0}^{n}\binom nkB_k\]
+    But there is no explicit formula to calculate it. However, we may give a rough estimate \(B_n\leq n^n\), since \(n^n\) is a number of maps \(\{1,2,\ldots,n\}\to\{1,2,\ldots,n\}\). \(n^n\) is a stronger upper bound than \(2^{n(n-1)/2}\), since 
+    \[\ln n\leq\frac{\ln 2}2n-\frac{\ln 2}2\]
+    (for sufficiently large \(n\)).
+    \item Each disc contains a point with rational coordinates, and so there exists an injection from family of discs \(D\to\mathbb{Q}\times\mathbb{Q}\). But \(\mathbb{Q}\times\mathbb{Q}\) is countable so such family is always countable.
+    
+    However, there exists an uncountable family of circles. Consider a family of all concentric circles, \(I\). If we write \(r(C)\in\mathbb{R}\) for radius of a circle \(C\in I\), there exists a bijection \(I\to\mathbb{R}_{>0}\), \(C\mapsto r(C)\). Hence \(I\) is uncountable.
+    \item It is countable. There is a bijection \(F\to\mathbb{N}\), 
+    \[\{a_1,\ldots,a_n\}\mapsto 2^{a_1}+\cdots 2^{a_n}\]
+    \item Suppose set of increasing functions are countable. Then, we may number them as \(f_1,f_2,f_3,\ldots\). Now define a new function recursively by \(f(1)=1\) and 
+    \[f(n+1)=f(n)+f_n(n+1)-f_n(n)+1\]
+    If \(f_n(n)= f(n)\), \(f(n+1)=f_n(n+1)+1\neq f_n(n+1)\). So \(f\neq f_n\) for all \(n\), which is a contradiction. Hence set of increasing functions is uncountable.
+
+    For decreasing functions, consider 
+    \[S_N=\{f:\mathbb{N}\to\mathbb{N}\:|\:f\text{  is decreasing and  }f(1)\leq N\}\]
+    and \(S=\bigcup_{N\in\mathbb{N}}S_N\). We claim that \(S_N\) is countable for all \(N\in\mathbb{N}\). We prove by induction. Because \(S_1=\{f\}\) where \(f(n)=1\quad\forall n\in\mathbb{N}\), it is clearly countable. Suppose \(S_N\) is countable. Note that a function in \(S_{N+1}\) is the constant function \(f(n)=N+1\) or it achieves some number \(m=f(n_0)<N+1\) after some point \(n_0\in\mathbb{N}\). After this point, the function can be considered as a function of \(S_N\) (by replacing \(N+1\) as \(N\)). Hence we may define a function in \(S_{N+1}\) by specifying \(n_0\) and a function in \(S_N\). Therefore, there is an injection from \(S_{N+1}\) to \(\mathbb{N}\times S_N\), which is countable since \(S_N\) is countable (we may map \(f(n)=N+1\mapsto (1,f(n)=N)\)).  Hence, \(S_{N+1}\) is countable, and thus \(S_N\) is countable for all \(N\in\mathbb{N}\). Therefore, \(S\) is countable since it is a countable union of countable sets.
+    \item \(S\) is always countable because there exists an injection \(S\mapsto\mathbb{N}\), \(A\mapsto\max(A)\).
+    
+    For next part, let's consider a collection of all infinite bit strings, \(B\), which is uncountable by diagonal argument. Then, consider a bijection \(\phi:B\to\mathcal{P}(N)\) that maps elements by concatenating \(1\) in front of the bit string and identifying initial segments as binary expansions of the set elements. For example, for finite bit string, 
+    \[00101\mapsto\{1,2,4,9,18,37\}\]
+    Note that all the associated integers are disjoint beyond the point at which two strings first differ. Hence, every intersection is finite and includes \(1\). So, we may define \(T=\image\phi\).
+    \item Since both \(\mathbb{Q}\) and \(\mathbb{Q}\backslash\{0\}\) are dense, they are order isomorphic (requires further explanation).
 \end{enumerate}
 \chapter{Groups}
 \chapterauthor{Lecture by Professor Henry Wilton. 
@@ -1532,9 +1724,9 @@ for all \(t\in\mathbb{R}\) and non-abelian, e.g.
 \end{pmatrix}\]
 Matrix groups will be revisted later when we are talking physics.
 \subsubsection{Symmetric groups}
-Let \(X\) be a set.
+Let \(X\) be a set. Then a \emph{permutation} of a set \(X\) is a bijection \(X\to X\). 
 \begin{definition}
-    \(\mathrm{Sym}(X)\) is defined to be a set of bijections \(X\to X\).
+    \(\sym(X)\) is defined to be a set of all permutations, i.e. bijections \(X\to X\).
 \end{definition}
 \begin{lemma}
     (\emph{Composition is associative}) Consider maps of sets 
@@ -1589,13 +1781,14 @@ N.b. \(|S_n|=n!\).
     The subgroups of \(\mathbb{Z}\) are exactly the subsets 
     \[n\mathbb{Z}=\{nk\in\mathbb{Z}\:|\:k\in\mathbb{Z}\}\]
     for all \(n=0,1,2,\ldots\)
+    \label{prop:nz_subgroup}
 \end{proposition}
 \begin{proof}
     First, note that each \(n\mathbb{Z}\) really is a subgroup of \(\mathbb{Z}\): if \(a=nk, b=nl\in n\mathbb{Z}\),
     \[a+(-b)=a-b=nk-nl=n(k-l)\in n\mathbb{Z}\]
     so the result follows by the subgroup criterion.
 
-    Now suppose that \(H\subseteq\mathbb{Z}\). If \(H=\{0\}\), then \(H=0\mathbb{Z}\) and we are done. If \(\{H\}\neq\{0\}\), then we may choose \(n\in H\backslash\{0\}\) to be the smallest positive element of \(H\).\footnote{Well-ordering principle.} Since \(H\) is closed under taking inverses, \(-n\in H\). Moreover, since \(H\) is closed under addition, \(n+n=2n\in H\), \(n+2n=3n\in H\),\(\ldots\),\(nk\in H\) for all \(k\geq 1\). Similarly \(-n-n=-2n\in H\) etc. So \(n\mathbb{Z}\in H\). We want to show that \(n\mathbb{Z}=H\). Suppose \(n\mathbb{Z}\neq H\). Then there is \(x\in n\mathbb{Z}\backslash n\mathbb{Z}\). Dividing \(x\) by \(n\) and take remainders to find \(x=nq+r\) for some \(q\in\mathbb{Z}\) and \(0<r<n\) (\(r\neq 0\) since \(x\notin n\mathbb{Z}\)). But now 
+    Now suppose that \(H\subseteq\mathbb{Z}\). If \(H=\{0\}\), then \(H=0\mathbb{Z}\) and we are done. If \(\{H\}\neq\{0\}\), then we may choose \(n\in H\backslash\{0\}\) to be the smallest positive element of \(H\).\footnote{Well-ordering principle.} Since \(H\) is closed under taking inverses, \(-n\in H\). Moreover, since \(H\) is closed under addition, \(n+n=2n\in H\), \(n+2n=3n\in H\),\(\ldots\),\(nk\in H\) for all \(k\geq 1\). Similarly \(-n-n=-2n\in H\) etc. So \(n\mathbb{Z}\in H\). We want to show that \(n\mathbb{Z}=H\). Suppose \(n\mathbb{Z}\neq H\). Then there is \(x\in H\backslash n\mathbb{Z}\). Dividing \(x\) by \(n\) and take remainders to find \(x=nq+r\) for some \(q\in\mathbb{Z}\) and \(0<r<n\) (\(r\neq 0\) since \(x\notin n\mathbb{Z}\)). But now 
     \[r=x-nq\in H\]
     which is a contradiction to the definition of \(n\).
 \end{proof}
@@ -1945,6 +2138,7 @@ The notation \(G/H\) denotes the set of all left cosets of \(H\) in \(G\).
     If \(H\leq G\), the sets of left cosets 
     \[G/H=\{\gamma H\:|\:\gamma\in G\}\]
     partitions \(G\).
+    \label{lemma:coset_partition}
 \end{lemma}
 \begin{proof}
     Since \(g\in gH\), we need to show that each \(g\in G\) is at most one \(\gamma H\). First, note that \(g\in\gamma H\Leftrightarrow g=\gamma h\Leftrightarrow g^{-1}=h^{-1}\gamma^{-1}\Leftrightarrow g^{-1}=h^\prime\gamma^{-1}\Leftrightarrow g^{-1}\in H\gamma^{-1}\) for some \(h,h^\prime\in H\). Therefore, since right cosets partition,
@@ -1992,6 +2186,7 @@ In facts, there exists an action \(H\acts G\) which can show that left coset is 
 \end{example}
 \begin{theorem}
     (\emph{Cauchy's Theorem}) If \(|G|<\infty\), \(p\) prime such that \(p\big||G|\), then there is a \(g\in G\) such that \(o(g)=p\).
+    \label{thm:group_cauchy}
 \end{theorem}
 \begin{proof}
     Consider the set \(X\) of \(p\)-tuples 
@@ -2045,6 +2240,7 @@ Notice that \(G\) can acts on itself by conjugation. \(G\acts G\), \(g(\gamma)=g
     \[Z(G)=\{h\in G\:|\: hg=gh\text{  for all  }g\in G\}=\bigcap_{g\in G}C_G(g)\]
 \end{definition}
 \section{The Möbius Group}
+\subsection{Möbius Transformation and Möbius Group}
 The Möbius group is almost a group of bijections of \(\mathbb{C}\), but to make good sense of it, we need to add in one extra point.
 \begin{definition}
     We define the \emph{Riemann Sphere} as \(\mathbb{C}_\infty=\mathbb{C}\cup\{\infty\}\).
@@ -2085,11 +2281,716 @@ The reason we use the term `sphere' to denote a complex plane is because `stereo
 \end{proof}
 Before going further, we formally define a concept that we already know about. 
 \begin{definition}
-    If \(f:X\to X\), any \(x\in X\) is a \emph{fixed point} if \(f(x)=x\).
+    If \(f:X\to X\), any \(x\in X\) is a \emph{fixed point} if \(f(x)=x\), and we may write \(\mathrm{Fix}(f)\) to denote the set containing fixed points.
 \end{definition}
 \begin{lemma}
     (\emph{Three-point Lemma for \(\mathcal{M}\)}) If \(\mu\in\mathcal{M}\) has 3 different fixed points \(w_1,w_2,w_3\) in \(\mathbb{C}_\infty\), then \(\mu=\id_{\mathbb{C}_\infty}\).
+    \label{lemma:3point_mobius}
 \end{lemma}
+\begin{proof}
+    Let \(\mu(z)=(az+b)/(cz+d)\). A fixed point \(w_i\) satisfies the equation 
+    \[w_i=\frac{aw_i+b}{cw_i+d}\]
+    If \(w_1=\infty\), then \(c=0\). So \(w_2,w_3\) satisfy \(w_i=(aw_i+b)/d\Leftrightarrow (a-d)w_i+b=0\). This is a linear equation in \(w_i\) with two roots, so \(a=d\) and \(b=0\). Thus \(\mu(z)=z\).
+
+    Now suppose \(w_i\neq\infty\) for \(i=1,2,3\). Again, 
+    \[w_i=\frac{aw_i+b}{cw_i+d}\Rightarrow cw_i^2+dw_i=aw_i+b\Rightarrow cw_i^2+(d-a)w_i-b=0\]
+    For this quadratic equation to have three roots, \(c=d-a=b=0\). Hence \(\mu(z)=z\) as required.
+\end{proof}
+\begin{example}
+    Every \(\mu\in\mathcal{M}\) has at least one fixed point in \(\mathbb{C}_\infty\).
+\end{example}
+\begin{example}
+    If \(\mu(z)=z+1\), \(\mathrm{Fix}(\mu)=\{\infty\}\). If \(\mu(z)=2z\), then \(\mathrm{Fix}(\mu)=\{0,\infty\}\).
+\end{example}
+\begin{lemma}
+    (\emph{Triple Transitivity}) For any triples of distinct points \(z_1,z_2,z_3\in\mathbb{C}_\infty\) and \(w_1,w_2,w_3\in\mathbb{C}_\infty\), there exists \(\mu\in\mathcal{M}\) such that \(\mu(z_i)=w_i\) for \(i=1,2,3\).
+    \label{lemma:triple_trans}
+\end{lemma}
+\begin{proof}
+    Let 
+    \[\alpha(z)=\frac{z-z_1}{z-z_3}\frac{z_2-z_3}{z_3-z_1},\quad\beta(z)=\frac{z-w_1}{z-w_3}\frac{w_2-w_3}{w_2-w_1}\]
+    Note that 
+    \[\alpha:\:\begin{aligned}
+        z_1&\mapsto 0 \\
+        z_2&\mapsto 1 \\
+        z_3&\mapsto\infty
+    \end{aligned},\qquad\beta:\:\begin{aligned}
+        w_1&\mapsto 0 \\
+        w_2&\mapsto 1 \\
+        w_3&\mapsto\infty
+    \end{aligned}\]
+    Now, since \(\alpha\) and \(\beta\) are Möbius transformations, \(\mu=\beta^{-1}\circ\alpha\) will work.
+\end{proof}
+\begin{remark}
+    The 3-point lemma implies that the \(\mu\) constructed is unique.\footnote{Suppose there exists another transformation.} We say the action of \(\mathcal{M}\) on \(\mathbb{C}_\infty\) is ``\emph{sharply triply transitive}.''
+\end{remark}
+\begin{definition}
+    Let \(z_1,z_2,z_3,z_4\in\mathbb{C}_\infty\) be distinct. Because \(\mathcal{M}\acts\mathbb{C}_\infty\) is sharply triply transitive, there is a unique \(\alpha\in\mathcal{M}\) such that \(\alpha(z_1)=0,\alpha(z_2)=1,\alpha(z_3)=\infty\), which is the same \(\alpha\) from proof of Lemma \ref{lemma:triple_trans}. Then, the \emph{cross-ratio} is defined as 
+    \[[z_1,z_2,z_3,z_4]=\alpha(z_4)=\frac{(z_4-z_1)(z_2-z_3)}{(z_4-z_3)(z_2-z_1)}\]
+\end{definition}
+\begin{proposition}
+    \(\mathcal{M}\) is generated by the set of elements of the following three forms:
+    \begin{enumerate}
+        \item \(\alpha_a:z\mapsto az\), \(a\neq 0\).
+        \item \(\beta_b:z\mapsto z+b\), \(b\in\mathbb{C}\).
+        \item \(\gamma:z\mapsto 1/z\).
+    \end{enumerate}
+    \label{prop:mobius_gen}
+\end{proposition}
+\begin{proof}
+    Let \(\mu\in\mathcal{M}\) be arbitrary. Let \(z_1=\mu(0),z_2=\mu(1),z_3=\mu(\infty)\). First, we construct \(\mu_1\) such that \(\mu_1(z_3)=\infty\): either \(z_3=\infty\) and \(\mu_1=\id\) or 
+    \[\mu_1(z)=\frac{1}{z+b}=\gamma\circ\beta_b(z)\]
+    where \(b=-z_3\). Let's write \(z_1^\prime=\mu_1(z_1)\) and \(z_2^\prime=\mu_1(z_2)\). Now let \(b^\prime=-z_1^\prime\) and \(\mu_2=\beta_{b^\prime}\). Then \(\mu_2(\infty)=\infty\) and \(\mu_2(z_1^\prime)=0\). So by construction, \(\mu_2\circ\mu_1(z_3)=\infty\), \(\mu_2\circ\mu_1(z_1)=0\), and \(z_2^\pprime=\mu_2\circ\mu_1(z_2)\neq 0,\infty\). Finally, let \(a=1/z_2^\pprime\) and \(\mu_3=\alpha_a\) to find 
+    \[\mu_3\circ\mu_2\circ\mu_1(z_1)=0\]
+    \[\mu_3\circ\mu_2\circ\mu_1(z_2)=1\]
+    \[\mu_3\circ\mu_2\circ\mu_1(z_3)=\infty\]
+    So \((\mu_3\mu_2\circ\mu_1)^{-1}=\mu_1^{-1}\circ\mu_2^{-1}\circ\mu_3^{-1}\) sends \(0\mapsto z_1\), \(1\mapsto z_2\), and \(\infty\mapsto z_3\). Thus \(\mu\) and \(\mu_1^{-1}\circ\mu_2^{-1}\circ\mu_3^{-1}\) agree on \(0,1,\infty\), and hence everywhere, by the 3-point lemma (Lemma \ref{lemma:3point_mobius}).
+\end{proof}
+\subsection{Circles}
+\begin{definition}
+    A \emph{circle} in \(\mathbb{C}_\infty\) is:
+    \begin{enumerate}
+        \item Either a Euclidean circle in \(\mathbb{C}\);
+        \item or \(l\cup\{\infty\}\) where \(l\subseteq\mathbb{C}\) is a Euclidean straight line.
+    \end{enumerate}
+\end{definition}
+Recall that Euclidean circles are defined by \(|z-c|=r\) where \(r>0\), \(c\in\mathbb{C}\), while Euclidean straight line can be written as \(|z-a|=|z-b|\) (\(a\neq b\), \(a,b\in\mathbb{C}\)).
+\begin{theorem}
+    If \(C\subseteq\mathbb{C}_\infty\) is a circle and \(\mu\in\mathcal{M}\), then \(\mu(C)\) is also a circle.
+\end{theorem}
+\begin{proof}
+    From Proposition \ref{prop:mobius_gen}, it is enough to check that \(\alpha_a,\beta_b,\gamma\) send \(C\) to a circle. Since it is clear for \(\alpha_a\) and \(\beta_b\), we will only prove for \(\gamma\). If \(C\) is an Euclidean circle with equation \(|z-c|=r\), then \(\gamma(c)\) has equation 
+    \[\left|\frac 1z-c\right|=r\Leftrightarrow\left|\frac 1z-c\right|^2=r^2\Leftrightarrow\left(\frac 1z-c\right)\left(\frac 1{\bar{z}}-\bar{c}\right)=r^2\]
+    and 
+    \[\frac 1{|z|^2}-\frac{c}{\bar{z}}-\frac{\bar{c}}{z}+|c|^2-r^2=0\Leftrightarrow(|c|^2-r^2)|z|^2-cz-\bar{c}\bar{z}+1=0\]
+    If \(|c|^2-r^2= 0\), this becomes 
+    \[cz+\bar{c}\bar{z}=1\Leftrightarrow\frac{z}{\bar{c}}+\frac{\bar{z}}{c}=\frac{1}{|c|^2}\Leftrightarrow |z|^2=|z|^2-\frac{z}{\bar{c}}-\frac{\bar{z}}{c}+\frac{1}{|c|^2}=\left|z-\frac 1c\right|^2\]
+    which is a straight line. If \(|c|^2-r^2\neq 0\), we divide by it and obtain 
+    \begin{align*}
+        &|z|^2-\frac{c}{(|c|^2-r^2)}z-\frac{\bar{c}}{(|c|^2-r^2)}\bar{z}+\frac{1}{(|c|^2-r^2)}=0 \\
+        \Leftrightarrow&\left|z-\frac{\bar{c}}{(|c|^2-r^2)}\right|^2=\frac{|c|^2}{(|c|^2-r^2)^2}-\frac{1}{(|c|^2-r^2)}=\frac{r^2}{(|c|^2-r^2)^2}
+    \end{align*}
+    which is a circle.
+
+    The case when \(C\) is an Euclidean line is similar, and left as an exercise.
+\end{proof}
+\begin{corollary}
+    Four points \(z_1,z_2,z_3,z_4\in\mathbb{C}_\infty\) are on a circle if and only if \[[z_1,z_2,z_3,z_4]\in\mathbb{R}\cup\{\infty\}\]
+\end{corollary}
+\begin{proof}
+    Recall that \([z_1,z_2,z_3,z_4]=\alpha(z_4)\) where \(\alpha(z_1)=0,\alpha(z_2)=1,\alpha(z_3)=\infty\).
+    Let \(C\subseteq\mathbb{C}_\infty\) a circle. If \(z_1,z_2,z_3,z_4\in C\), then \(0,1,\infty,\alpha(z_4)\in \alpha(C)\) a circle. Since the only line through \(0\) and \(1\) is \(\mathbb{R}\), we see that \(\alpha(z_4)\in\mathbb{R}\cup\{\infty\}\).
+    
+    Conversely, if \(0,1,\infty,\alpha(z_4)\in\mathbb{R}\cup\{\infty\}\), then \(z_1,z_2,z_3,z_4\in\alpha^{-1}(\mathbb{R}\cup\{\infty\})\), which is also a circle.
+\end{proof}
+\section{Small Finite Groups}
+We will try to systematically list small groups, according to their order. First, following three are clear by Theorem \ref{thm:group_cauchy} (Cauchy's theorem).
+\begin{itemize}
+    \item \(|G|=1\), \(G\cong 1\) (trivial group).
+    \item \(|G|=2\), \(G\cong C_2\).
+    \item \(|G|=3\), \(G\cong C_3\).
+\end{itemize}
+If \(|G|=4\), we have \(C_4\). To check if there is another example, we introduce the following.
+\begin{definition}
+    If \(G,H\) are group, the \emph{direct product} of \(G,H\) is 
+    \[G\times H=\{(g,h)\:|\:g\in g,h\in H\}\]
+    with operation \[(g_1,h_1)\cdot (g_2,h_2)=(g_1\cdot_Gg_2,h_1\cdot_H h_2)\]
+\end{definition}
+Note that \(e=(e_G,e_H)\) is an identity and \((g,h)^{-1}=(g^{-1},h^{-1})\). Note also that \(|G\times H|=|G||H|\).
+\begin{example}
+    The group \(K_4=V_4=C_2\times C_2\) is often called the \emph{Klein 4-group}. Note that, for \((a,b)\in C_2\times C_2\), 
+    \[(a,b)^2=(a^2,b^2)=(e,e)=e\]
+    So every element is of order 1 or 2. In particular, no element has order 4. So \(C_2\times C_2\not\cong C_4\).
+\end{example}
+\begin{theorem}
+    (\emph{Direct Product Theorem}) If \(H_1,H_2\leq G\) and 
+    \begin{enumerate}
+        \item \(H_1\cap H_2=\{e\}\),
+        \item \(h_1h_2=h_2h_1\) whenever \(h_1\in H_1\) and \(h_2\in H_2\),
+        \item for each \(g\in G\), there are \(h_1\in H_1,h_2\in H_2\) such that \(g=h_1h_2\),
+    \end{enumerate}
+    then, \(G\cong H_1\times H_2\).
+    \label{thm:dpt}
+\end{theorem}
+\begin{proof}
+    Define \(\Phi:H_1\times H_2\to G\), \((h_1,h_2)\mapsto h_1h_2\). We need to show that \(\Phi\) is an isomorphism. To show that \(\Phi\) is a homomorphism, 
+    \[\Phi(h_1,h_2)\Phi(h_1^\prime,h_2^\prime)=h_1h_2h_1^\prime h_2^\prime=h_1h_1^\prime h_2h_2^\prime=\Phi(h_1h_1^\prime,h_2h_2^\prime)=\Phi((h_1,h_2)(h_1^\prime,h_2^\prime))\]
+    by part (2) of hypotheses. Also, surjectivity is immediate from hypotheses (3). To prove injectivity, suppose \(h_1h_2=\Phi(h_1,h_2)=e\). But this implies 
+    \[H_1\ni h_1=h_2^{-1}\in H_2\Rightarrow h_1=h_2^{-1}\in H_1\cap H_2=\{e\}\Rightarrow (h_1,h_2)=(e,e)=e\]
+    by part (1). So \(\ker\Phi=e\) as required.
+\end{proof}
+\begin{lemma}
+    (\emph{Groups of order four}) If \(|G|=4\), then \(G\cong C_4\) or \(G\cong C_2\times C_2\).
+\end{lemma}
+\begin{proof}
+    By Lagrange's theorem, every non-trivial element has order of 2 or 4. If there is an element \(g\) of order 4, then \(G=\langle g\rangle\cong C_4\). Otherwise, let \(a\neq b\) be elments of order 2. Then, \(\langle a\rangle\cap\langle b\rangle=\{e\}\), \(G=\langle a\rangle\langle b\rangle\)\footnote{This notation is same with (3) from Theorem \ref{thm:dpt}}, and \(ab=ba\) (from Example Sheet 1). Hence by the direct product theorem, \(G\cong\langle a\rangle\times\langle b\rangle\cong C_2\times C_2\).
+\end{proof}
+Another application of the direct product theorem is to product of cyclic groups.
+\begin{theorem}
+    (\emph{Chinese Remainder Theorem}) If \(\gcd(m,n)=1\), then \(C_m\times C_n\cong C_{mn}\).
+    \label{thm:crt_group}
+\end{theorem}
+\begin{proof}
+    Let \(C_{mn}=\langle g\rangle\) and set \(H_1=\langle g^n\rangle\cong C_m\), \(H_2=\langle g^m\rangle\cong C_n\). We will check the hypotheses of the direct product theorem.
+    \begin{enumerate}
+        \item Note that \(g^k\in H_1\Leftrightarrow n|k\) and \(g^k\in H_2\Leftrightarrow m|k\); so 
+        \[g^k\in H_1\cap H_2\Leftrightarrow m|k\text{  and  }n|k\Leftrightarrow mn=\mathrm{lcm}(m,n)|k\Leftrightarrow g^k=e\text{  in }C_{mn}\]
+        Hence \(H_1\cap H_2=\{e\}\) as required.
+        \item Obvious because \(C_{mn}\) is abelian.
+        \item Let \(g^k\in C_{mn}\). Bézout's theorem (Corollarly \ref{coro:bezout}) implies that there are \(p,q\in \mathbb{Z}\) such that \(k=pm+qn\). Hence \(g^k=(g^m)^p(g^n)^q\) as required.
+    \end{enumerate}
+\end{proof}
+We continue our classification of groups of small order. If \(|G|=5\), \(G\cong C_5\) since \(5\) is prime. If \(|G|=6\), we classify as follows.
+\begin{lemma}
+    (\emph{Groups of order six}) If \(|G|=6\), then \(G\cong C_6\) or \(G\cong D_6\).
+\end{lemma}
+\begin{proof}
+    By Cauchy's theorem (Theorem \ref{thm:group_cauchy}), there are elements \(r,s\in G\) such that \(o(r)=3\) and \(o(s)=2\). Then \(|\langle r\rangle|=3=6/2\) so \(|G:\langle r\rangle|=2\) by the Lagrange's theorem (Theorem \ref{thm:lagrange_group}); and \(s\notin\langle r\rangle\). Therefore \(s\langle r\rangle\) and \(\langle r\rangle\) partition \(G\), and we may write 
+    \[s\langle r\rangle=G\backslash\langle r\rangle=\langle r\rangle s\]
+    Hence \(sr=r^is\) for some \(i=0,1,2\) and we can analyse each cases:
+    \begin{itemize}
+        \item \(i=0\); \(sr=r\Rightarrow r=e\), leading to contradiction.
+        \item \(i=1\); \(sr=rs\) so \(\langle r\rangle\) and \(\langle s \rangle\) commute, and by Theorem \ref{thm:dpt} and Theorem \ref{thm:crt_group}, 
+        \[G\cong\langle r\rangle\times\langle s\rangle\cong C_3\times C_2\cong C_6\]
+        \item \(i=2\); we have \(sr=r^2s=r^{-1}s\), which is the dihedral relation. Now we can list the elements
+        \[e,r,r^2,s,rs,r^2s\]
+        and dihedral relation implies that \(r^ir^j=r^{i+j}\), \(r^isr^j=r^{i-j}s\) etc. hold, so \(G\cong D_6\).
+    \end{itemize}
+\end{proof}
+\begin{remark}
+    \(S_3\) is non-abelian group of order 6, so \(S_3\cong D_6\).
+\end{remark}
+Continuing with our journey, \(C\cong C_7\) if \(|G|=7\) since \(7\) is prime. If \(|G|=8\), we may think of groups \(C_8,C_4\times C_2,C_2\times C_2\times C_2,D_8\), and the fact that they are all different. However, this is not all we have.
+\begin{example}
+    (\emph{The Quaternion Group}) Let 
+    \[Q_8=\{1,-1,i,-i,j,-j,k,-k\}\]
+    with multiplication such that 
+    \begin{itemize}
+        \item \(i^2=k^2=j^2=-1\),
+        \item \((-1)i=-i,(-1)j=-j,(-1)k=-k\),
+        \item  \(ij=k,jk=i,ki=j\),
+        \item \(ji=-k,kj=-i,ik=-j\),
+        \item \((-1)^2=1\).
+    \end{itemize}
+    Note that \(Q_8\) is non-abelian, so \(Q_8\not\cong C_8,C_4\times C_2,C_2\times C_2\times C_2\). Also, \(Q_8\) has only one element of order 2, so \(Q_8\not\cong D_8\).
+\end{example}
+\begin{lemma}
+    (\emph{Groups of order eight}) If \(|G|=8\), then \(G\cong C_8,C_4\times C_2,C_2\times C_2\times C_2,D_8,\text{ or }Q_8\).
+\end{lemma}
+\begin{proof}
+    By Lagrange's theorem, every element is of order 1,2,4, or 8. First,
+    \begin{itemize}
+        \item if there is an element of order 8, then \(G\cong C_8\);
+        \item if every element is of order 2, then \(G\) is abelian by the Example Sheet, and we may choose \(a,b\in G\backslash\{e\}\) such that \(a\neq b\). Then by the direct product theorem \(\langle a,b\rangle=\langle a\rangle\times\langle b\rangle\). Now let \(c\notin\langle a,b\rangle\)\footnote{Group generated by \(a\) and \(b\).}, and again by the direct product theorem, \(G\cong\langle a,b,c\rangle\cong\langle a\rangle\times\langle b\rangle\times\langle c\rangle\cong C_2\times C_2\times C_2\).
+    \end{itemize}
+    So for the remaining cases, we assume there is element \(a\in G\) such that \(o(a)=4\). Let \(b\in G\backslash\langle a\rangle\). Because \(|G:\langle a\rangle|=2\), \(b\langle a\rangle\) and \(\langle a\rangle\) partition \(G\) and \(b\langle a\rangle=G\backslash\langle a\rangle=\langle a\rangle b\). This means that \(ba=a^ib\) for some \(i=0,1,2,3\). If \(i=0\), \(ba=b\Rightarrow a=e\), which is a contradiction. If \(i=2\), \(ba=a^2b\Rightarrow bab^{-1}=a^2\). But \(o(a)=4\) and \(o(a^2)=2\), which is a contradiction by Example Sheet 2, Question 1. Let's take a look at remaining two cases:
+    \begin{itemize}
+        \item \(i=1\Rightarrow ba=ab\Rightarrow ba^j=a^jb\;\forall j\Rightarrow G\) abelian;
+        \item \(i=3\Rightarrow ba=a^3b=a^{-1}b\).
+    \end{itemize} 
+    Next, we think about \(b^2\). If \(b^2=ba^j\) for some \(j\), then \(b=a^j\in\langle a\rangle\), leading to contradiction. So \(b^2\in\langle a\rangle\Rightarrow b^2=a^j\) for some \(j=0,1,2,3\).
+    \begin{itemize}
+        \item \(j=0\), \(b^2=e\);
+        \item \(j=1\), \(b^2=a\Rightarrow o(b)=8\Rightarrow G\cong C_8\);
+        \item \(j=2\), \(b^2=a^2\);
+        \item \(j=3\), \(b^2=a^3\Rightarrow o(b)=8\Rightarrow G\cong C_8\).
+    \end{itemize}
+    Thus we have four combination of cases left to analyse.
+    \begin{itemize}
+        \item \(i=1,j=0\); \(G\) is abelian and \(\langle a\rangle\cap\langle b\rangle=\{e\}\Rightarrow G\cong\langle a\rangle\times\langle b\rangle\cong C_4\times C_2\) by direct product theorem.
+        \item \(i=1,j=2\); \(G\) is abelian and \(b^2=a^2\Rightarrow a^2b^{-2}=(ab^{-1})^2=e\). So \(o(ab^{-1})=2\), \(\langle a\rangle\cap\langle ab^{-1}\rangle=\{e\}\), giving \(G\cong\langle a\rangle\times\langle ab^{-1}\rangle\cong C_4\times C_2\) by the direct product theorem.
+        \item \(i=3,j=0\); We have \(o(a)=4\), \(o(b)=2\), and \(ba=a^{-1}b\). Setting \(r=a\) and \(s=b\), we have \(sr=r^{-1}s\) dihedral relation. We can list all the elements:
+        \[e,r,r^2,r^3,s,rs,r^2s,r^3s\]
+        and dihedral relation implies that \(r^isr^j=r^{i-j}s\) etc. So \(G\cong D_8\).
+        \item \(i=3,j=2\); \(o(a)=4\), \(b^2=a^2\), and \(ba=a^{-1}b\). If we set \(i=a\), \(j=b\), \(k=ab\), and \(-1=a^2=b^2\), we may think of the elements of the group
+        \[e,a,a^2,a^3,b,ab,a^2,a^3b\]
+        as 
+        \[1,i,-1,-i,j,k,-j,-k\]
+        and check that these all multiply as needed. Thus \(G\cong Q_8\).
+    \end{itemize}
+\end{proof}
+\section{Quotients}
+\subsection{Normal Subgroups}
+Let \(\phi:G\to H\) be a homomorphism. We saw earlier that 
+\[\ker\phi\leq G\]
+In fact, more is true.
+\begin{definition}
+    \(H\leq G\) is \emph{normal} if \(ghg^{-1}\in H\) for every \(h\in H,g\in G\). We write \(H\lhd G\) to denote normal subgroup.
+\end{definition}
+\begin{example} \item[]
+    \begin{enumerate}
+        \item \(1\lhd G\) and \(G\lhd G\) for all groups \(G\).
+        \item If \(G\) is abelian, then any \(H\leq G\) is normal.
+        \item \(\langle r\rangle\leq D_6\) since \(sr=r^2s\Rightarrow srs^{-1}=r^2\), \(sr^2=rs\Rightarrow sr^2s^{-1}=r\). So \(\langle r\rangle\lhd D_6\). But \(\langle s\rangle\) is not normal, because \(rsr^{-1}=sr^{-2}=sr\notin\langle s\rangle\).
+        \item Suppose \(\phi:G\to G^\prime\) is a homomorphism. If \(h\in\ker\phi\) and \(g\in G\), \\ then \(\phi(ghg^{-1})=\phi(g)\phi(h)\phi(g)^{-1}=\phi(g)\phi(g)^{-1}=e\). So \(ghg^{-1}\in\ker\phi\).  Therefore, \(\ker\phi\lhd G\).
+    \end{enumerate}
+\end{example}
+\begin{lemma}
+    If \(H\leq G\), then \(H\lhd G\) if and only if \(gH=Hg\) for all \(g\in G\),
+\end{lemma}
+\begin{proof}
+    Suppose \(H\lhd G\). For any \(h\in H\), \(h^\prime=ghg^{-1}\in H\) for all \(g\). Hence, 
+    \[gh=(ghg^{-1})g=h^\prime g\in Hg\]
+    So \(gH\subseteq Hg\). Likewise, \(g^{-1}H\subseteq Hg^{-1}\Rightarrow Hg=(g^{-1}H)^{-1}\subseteq (Hg^{-1})^{-1}=gH\).\footnote{See proof of Lemma \ref{lemma:coset_partition}.} Hence \(gH=Hg\).
+    
+    Conversely, suppose \(gH=Hg\). This means that for any \(h\in H\), \(gh\in Hg\). So \(gh=h^\prime g\) for some \(h^\prime\in H\). Therefore, \(ghg^{-1}=h^\prime\in H\) as required to show that \(H\lhd G\).
+\end{proof}
+\begin{theorem}
+    (\emph{Quotient Group}) If \(H\lhd G\), then the set of left cosets \(G/H\) is a group, with operation \[(g_1H)(g_2H)=(g_1g_2)H\]
+\end{theorem}
+\begin{proof}
+    We need to check that the operation is well defined. Suppose \(g_1H=g_1^\prime H\) and \(g_2H=g_2^\prime H\Leftrightarrow Hg_2=Hg_2^\prime\) (because \(H\lhd G\)). That is, there are \(h_1,h_2\in H\) such that \(g_1=g_1^\prime h_1\) and \(g_2=h_2g_2^\prime\). Therefore, \(g_1g_2=g_1^\prime(h_1h_2)g_2^\prime=g_1^\prime g_2^\prime h_3\) for some \(h_3\in H\)  (note \(Hg_2^\prime=g_2^\prime H\)). So \(g_1g_2\in g_1^\prime g_2^\prime H\), and because cosets partition, \(g_1g_2H=g_1^\prime g_2^\prime H\) as required.
+
+    Associativity follows from the fact that \(G\) is associative, and \(H\in G/H\) provides the identity. Meanwhile, since 
+    \[(gH)(g^{-1}H)=gg^{-1}H=eH=H\]
+    we have inverse \((g^{-1}H)=(gH)^{-1}\).
+\end{proof}
+\begin{definition}
+    If \(H\lhd G\), then \(G/H\) is called the \emph{quotient} of \(G\) by \(H\).
+\end{definition}
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item \(G/1\cong G\), \(G/G\cong 1\).
+        \item Since \(\mathbb{Z}\) is abelian, \(n\mathbb{Z}\lhd\mathbb{Z}\). So \(\mathbb{Z}/n\mathbb{Z}\) is generated by \(1+n\mathbb{Z}\), and \(\mathbb{Z}/n\mathbb{Z}\cong C_n\).\footnote{See Proposition \ref{prop:nz_subgroup}.}
+        \item If \(H\leq G\) and \(|G:H|=2\), then for any \(g\notin H\), \(gH=G/H=Hg\), and the remaining coset is \(H\). Hence \(H\lhd G\) and therefore \(G/H\) is a group of order \(2\), giving \(G/H\cong C_2\).
+        \item For instance, \(C_n=\langle r\rangle\lhd D_{2n}\) and \(D_{2n}/C_n\cong C_2\).
+        \item N.b. quotients are not subgroups.
+        \item Also note that \(C_4/C_2\cong C_2\) and \(K_4/C_2\cong C_2\) but \(K_4\not\cong C_4\).
+    \end{enumerate}
+\end{example}
+\begin{theorem}
+    (\emph{Isomorphism Theorem}) If \(\phi:G\to H\) is a homomorphism, then
+    \[G/\ker\phi\cong\image\phi\]
+    \label{thm:isom}
+\end{theorem}
+\begin{proof}
+    Since \(\ker\phi\lhd G\), the quotient \(G/\ker\phi\) is indeed a group. Define \(\bar\phi:G/\ker\phi\to\image\phi\), \(g\ker\phi\mapsto\phi(g)\). We need to show that \(\bar{\phi}\) is a well-defined isomorphism. Suppose \(g_1\ker\phi=g_2\ker\phi\). This means that \(g_1=g_2k\) for some \(k\in\ker\phi\). Then \[\bar\phi(g_1\ker\phi)=\phi(g_1)=\phi(g_2k)=\phi(g_2)\phi(k)=\phi(g_2)e=\phi(g_2)=\bar\phi(g_2\ker\phi)\]
+    Now, to prove that it is a homomorphism, let \(g_1,g_2\in G\). Then,
+    \begin{align*}
+        \bar\phi(g_1\ker\phi)\bar\phi(g_2\ker\phi)&=\phi(g_1)\phi(g_2)=\phi(g_1g_2)=\bar\phi((g_1g_2)\ker\phi)\\&=\bar\phi((g_1\ker\phi)(g_2\ker\phi))
+    \end{align*}
+    by definition of group multiplication.
+
+    For injectivity, suppose \(\bar\phi(g_1\ker\phi)=\bar\phi(g_2\ker\phi)\). Then \(\phi(g_1)=\phi(g_2)\). This implies \(g_2^{-1}g_1\in\ker\phi\), and \(g_1\ker\phi=g_2\ker\phi\) as required.
+
+    Clearly, \(\bar\phi\) is surjective since an element of \(\image\phi\) is of the form \(\phi(g)=\bar\phi(g\ker\phi)\), and \(\image\phi=\image\bar\phi\).
+\end{proof}
+\begin{example} \item[] 
+    \begin{enumerate}
+        \item Because \(\phi:\mathbb{Z}\to C_n\), \(k\mapsto e^{2\pi ik/n}\) is a homomorphism with \(\image\phi=C_n\), \(\ker\phi=n\mathbb{Z}\), \(\mathbb{Z}/n\mathbb{Z}\cong C_n\).
+        \item Similarly, \(\phi:\mathbb{R}\to C_\times=\mathbb{C}\backslash\{0\}\), \(t\mapsto e^{2\pi it}\) is a homomorphism with \(\image\phi=\{z\in\mathbb{C}\::\:|z|=1\}=S^1\), i.e. a one dimensional sphere, and \(\ker\phi=\mathbb{Z}\). Hence \(\mathbb{R}/\mathbb{Z}\cong S^1\).
+    \end{enumerate}
+\end{example}
+\begin{definition}
+    \(G\) is \emph{simple} if the only normal subgroups are \(1\) and \(G\). Thus, every homomorphism \(G\to H\) is either trivial or injective.
+\end{definition}
+\section{Permutations}
+Recall that a permutation of a set \(X\) is a bijection \(X\to X\) and that \(\sym(X)\) is the group of all such permutations. Also, if \(X=\{1,2,\ldots,n\}\), \(\sym(X)=S_n\). 
+\begin{example}
+    Let \(X=\{1,2,3\}\), \(S_3\).
+    \begin{figure}[H]
+        \centering
+        \minipage{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \foreach[count=\i] \lseti/\lsetmi in {A/{1,2,3},B/{1,2,3}} {
+                \begin{scope}[local bounding box=\lseti, x=2cm, y=0.5cm]
+                \foreach[count=\j] \lj in \lsetmi {
+                    \node[minimum width=1em,anchor=base,text height=1.4ex,text
+                    depth=0.25ex] (n-\j-\lseti) 
+                    at (\i,-\j) {\lj};
+                }
+                \end{scope}
+                % \node[ellipse, draw, fit=(\lseti), 
+                % label={[name=l-\lseti]above:$\lseti$}] {};
+            }
+            \draw[->] (n-1-A) -- (n-3-B);
+            \draw[->] (n-2-A) -- (n-1-B);
+            \draw[->] (n-3-A) -- (n-2-B);
+        \end{tikzpicture}
+        \caption*{\(\sigma\)}
+        \endminipage\hfill
+        \minipage{0.32\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \foreach[count=\i] \lseti/\lsetmi in {A/{1,2,3},B/{1,2,3}} {
+                \begin{scope}[local bounding box=\lseti, x=2cm, y=0.5cm]
+                \foreach[count=\j] \lj in \lsetmi {
+                    \node[minimum width=1em,anchor=base,text height=1.4ex,text
+                    depth=0.25ex] (n-\j-\lseti) 
+                    at (\i,-\j) {\lj};
+                }
+                \end{scope}
+                % \node[ellipse, draw, fit=(\lseti), 
+                % label={[name=l-\lseti]above:$\lseti$}] {};
+            }
+            \draw[->] (n-1-A) -- (n-2-B);
+            \draw[->] (n-2-A) -- (n-1-B);
+            \draw[->] (n-3-A) -- (n-3-B);
+        \end{tikzpicture}
+        \caption*{\(\tau\)}
+        \endminipage\hfill
+        \minipage{0.32\textwidth}%
+        \centering
+        \begin{tikzpicture}
+            \foreach[count=\i] \lseti/\lsetmi in {A/{1,2,3},B/{1,2,3}} {
+                \begin{scope}[local bounding box=\lseti, x=2cm, y=0.5cm]
+                \foreach[count=\j] \lj in \lsetmi {
+                    \node[minimum width=1em,anchor=base,text height=1.4ex,text
+                    depth=0.25ex] (n-\j-\lseti) 
+                    at (\i,-\j) {\lj};
+                }
+                \end{scope}
+                % \node[ellipse, draw, fit=(\lseti), 
+                % label={[name=l-\lseti]above:$\lseti$}] {};
+            }
+            \draw[->] (n-1-A) -- (n-1-B);
+            \draw[->] (n-2-A) -- (n-2-B);
+            \draw[->] (n-3-A) -- (n-2-B);
+        \end{tikzpicture}
+        \caption*{Not a permutation.}
+        \endminipage
+        \end{figure}
+        Notice that \(\sigma\) and \(\tau\) are permutations. The obvious way to compute the product is to list:
+        \[1\mapsto 3\mapsto 3\]
+        \[2\mapsto 1\mapsto 2\]
+        \[\underbrace{3\mapsto 2\mapsto 1}_{\tau\circ\sigma}\]
+\end{example}
+\begin{definition}
+    Any list of \(k\) different elements \(a_1,a_2,\ldots,a_k\in\{1,\ldots,n\}\) determines a \emph{\(k\)-cycle} \(\sigma=(a_1a_2\cdots a_k)\) as follows.
+    \[\sigma(b)=\begin{cases}
+        a_{j+1} & b=a_j,j<k \\
+        a_1 & b=a_k \\
+        b & \text{otherwise}
+    \end{cases}\]
+\end{definition}
+With cycles, we can easily calculate the product of permutations. 
+\begin{example}
+    Consider \(\sigma=(132)=(321)\), \(\tau=(12)\). Then 
+    \[\tau\sigma=(12)(132)=(13)(2)=(13)\]
+\end{example}
+\begin{example}
+    \((1432)(243)=(1423)\).
+\end{example}
+\begin{remark}
+    Note that \((a_1a_2\cdots a_k)=(a_2a_3\cdots a_ka_1)\). For example,
+    \[(123)=(231)=(312)\]
+\end{remark}
+\begin{definition}
+    Cycles \((a_1\cdots a_k)\) and \((b_1\cdots b_k)\) are \emph{disjoint} if \(a_i\neq b_j\) for all \(i,j\).
+\end{definition}
+For example, \((123),(45)\in S_5\) are disjoint. N.b. disjoint cycles commute.
+\begin{theorem}
+    Every \(\sigma\in S_n\) can be written as a product of disjoint cycles. This expression is unique up to:
+    \begin{enumerate}
+        \item Shifting the element of each cycle.
+        \item Permuting the cycles.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    The action of \(\langle\sigma\rangle\) on \(X=\{1,\ldots,n\}\) partition \(X\) into orbits:
+    \[\langle\sigma\rangle i_1\cup\langle\sigma\rangle i_2\cup\cdots\cup\langle\sigma\rangle i_k\]
+    Setting \(n_j=|\langle\sigma\rangle i_j|\) for \(1\leq j\leq k\), we see that 
+    \[\sigma=(i_1\:\sigma(i_1)\cdots\sigma^{n_1-1}(i_1))(i_2\cdots\sigma^{n_2-1}(i_2))\cdots(i_k\cdots\sigma^{n_k-1}(i_k))\]
+    which proves existence. (These are all disjoint because orbits partition.) For uniqueness, note that the only choices we made were (1) orbit representative \(i_j\), and (2) the order in which we wrote down the orbits. But changing (1) shifts the cycle, and changing (2) permutes the cycles.
+\end{proof}
+\begin{example}
+    \((12)(34)(56)(123456)=(1)(246)(3)(5)=(246)\)
+\end{example}
+\begin{definition}
+    If \(\sigma=(a_1^1\cdots a_{k_1}^1)\cdots(a_1^l\cdots a_{k_l}^l)\) are disjoint cycles, then \(\sigma\) is called a \emph{\((k_1,\ldots,k_l)-cycle\)}. The set of numbers \(\{k_1,\ldots,k_l\}\) is called the \emph{cycle type} of \(\sigma\).
+\end{definition}
+For example, \((12)(34)(56)\) is a \((2,2,2)\)-cycle. We usually omit singletons, so, e.g. \((12)(345)(6)\) is a \((2,3)\)-cycle.
+\begin{remark}
+    If \(\sigma=(a_1\cdots a_k)\) is a \(k\)-cycle, then \(o(\sigma)=k\). More generally, if \(\sigma\) is a \((k_1,\ldots,k_l)\)-cycle, then \(o(\sigma)=\text{lcm}\{k_1,\ldots,k_l\}\).
+\end{remark}
+\begin{definition}
+    A \(2\)-cycle is called a \emph{transposition}.
+\end{definition}
+\begin{theorem}
+    The set of transposition in \(S_n\) generates \(S_n\).
+\end{theorem}
+\begin{proof}
+   Note there is a copy of \(S_{n-1}\) sitting inside \(S_n\) as a subgroup: \(S_{n-1}\cong\stab_{S_n}(n)\). The proof is by induction on \(n\). 
+   
+   For base case \(n=2\), \(S_2=\{e,(1,2)\}\cong C_2\) and the result is obvious. Now suppose \(S_{n-1}\) is generated by transposition, and let \(\sigma\in S_n\). If \(\sigma(n)=n\), then \(\sigma\in\stab_{S_n}(n)\cong S_{n-1}\) so \(\sigma\) is a product of transpositions by the inductive hypothesis. If not, let \(\tau=(n\:\sigma(n))\). Then 
+    \[\tau\sigma(n)=\tau(\sigma(n))=n\]
+    So, as above, 
+    \[\tau\sigma\in\stab_{S_n}(n)\cong S_{n-1}\]
+    and \(\tau\sigma\) is a product of transpositions. Thus \(\sigma\) is also a product of transpositions.
+\end{proof}
+In fact, we can do slightly better. A transposition of the form \((i\:i+1)\) is for \(1\leq i<n\) is called \emph{adjacent}. Then, we have the following.
+\begin{lemma}
+    Any transposition is a product of odd numbers of adjacent transpositions.
+\end{lemma}
+\begin{proof}
+    Let \((ij)\) be a transposition with \(j>i\). We proceed by induction on \(j-i\).
+
+    In the base case, \(j=i+1\Rightarrow (ij)=(i\:i+1)\) is adjacent. Otherwise, if \(j>i+1\), then
+    \[(j-1\:j)(i\:j-1)(j-1\:j)=(ij)\]
+    and the result follows by induction.
+\end{proof}
+\begin{lemma}
+    If \(\tau_1,\ldots,\tau_k\) are all transpositions, and 
+    \[\sigma=\tau_1\cdots\tau_k=e\] then \(k\) is even.
+    \label{lemma:transpo_even}
+\end{lemma}
+\begin{proof}
+    First, note that we may assume that all the \(\tau_i\) are adjacent.\footnote{Parity is conserved.} Also, we call a pair \(\{i,j\}\subseteq\{1,\ldots,n\}\) an \emph{inversion} if \(i<j\) but \(\sigma(i)>\sigma(j)\). The lemma follows from the claim: 
+    \[k\equiv\hash\text{  inversions of  }\sigma\mod 2\]
+    We prove the claim by induction on \(k\). Base case is when \(k=0\), numbers of inversion \(0\). Now suppose 
+    \[\sigma=\tau_1\tau_2\cdots\tau_k=\tau\sigma^\prime\]
+    with \(\tau_1=\tau=(l\:l+1)\), \(\sigma^\prime=\tau_2\cdots\tau_k\).
+    How many pairs \(\{i,j\}\) (\(i<j\)) are inversions of \(\sigma^\prime\) but not \(\sigma\), or vice versa? There are 10 cases to analyse, depending on where \(l\) and \(l+1\) are, relative to \(\sigma^\prime(i)\), \(\sigma^\prime(j)\).
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{0.45\textwidth}{ccX}
+            \toprule
+            \(\sigma^\prime\) & \(\sigma\) & order \\
+            \midrule
+            \xmark & \xmark & \(l<l+1\leq\sigma^\prime(i)<\sigma^\prime(j)\) \\
+            \checkmark & \checkmark & \(l<l+1\leq\sigma^\prime(j)<\sigma^\prime(i)\) \\
+            \xmark & \xmark & \(\sigma^\prime(i)<\sigma^\prime(j)\leq l<l+1\) \\
+            \checkmark & \checkmark & \(\sigma^\prime(j)<\sigma^\prime(i)\leq l<l+1\) \\
+            \xmark & \xmark & \(\sigma^\prime(i)\leq l<l+1<\sigma^\prime(j)\) \\
+            \checkmark & \checkmark & \(\sigma^\prime(j)\leq l<l+1\leq\sigma^\prime(i)\) \\
+            \xmark & \xmark & \(\sigma^\prime(i)<l<l+1\leq\sigma^\prime(j)\) \\
+            \checkmark & \checkmark & \(\sigma^\prime(j)<l<l+1\leq\sigma^\prime(i)\) \\
+            \xmark & \checkmark & \(\sigma^\prime(i)=l<l+1=\sigma^\prime(j)\) \\
+            \checkmark & \xmark & \(\sigma^\prime(j)=l<l+1=\sigma^\prime(i)\) \\
+            \bottomrule 
+        \end{tabularx}
+    \end{table}
+    Since the final two cases correspond to the unique pair \(\{(\sigma^\prime)^{-1}(l),(\sigma^\prime)^{-1}(l+1)\}\), 
+    \[\hash\text{  inversions of  }\sigma=(\hash\text{  inversions of  }\sigma^\prime)\pm 1\]
+    proving the claim. Now, if \(\sigma=\tau_1\cdots\tau_k=2\), then \(\sigma\) has 0 inversions, so by the claim, \(k\equiv 0\mod 2\), i.e. \(k\) is even.
+\end{proof}
+\begin{theorem}
+    (\emph{Sign Homomorphism}) The map \[\sgn:S_n\to C_2=\{\pm 1\},\quad\tau_1\cdots\tau_k\mapsto (-1)^k\] is a well defined homomorphism.
+\end{theorem}
+\begin{proof}
+    To see that \(\sgn\) is well defined, suppose \(\tau_i,\tau_j^\prime\) are transpositions such that \(\tau_1\cdots\tau_k=\tau_1^\prime\cdots\tau_l^\prime\). Then,
+    \[\tau_k\tau_{k-1}\cdots\tau_1\tau_1^\prime\cdots\tau_l^\prime=e\]
+    But by Lemma \ref{lemma:transpo_even} above, \(k+l\) is a multiple of \(2\). Hence, \(k\equiv l\mod 2\Rightarrow (-1)^k=(-1)^l\).
+
+    Now, to see that \(\sgn\) is a homomorphism, note that 
+    \begin{align*}
+        \sgn(\tau_1\cdots\tau_k\tau_1^\prime\cdots\tau_l^\prime)&=(-1)^{k+l}=(-1)^k(-l)^l \\
+        &=\sgn(\tau_1\cdots\tau_k)\sgn(\tau_1^\prime\cdots\tau_l^\prime)
+    \end{align*}
+\end{proof}
+\begin{definition}
+    If \(\sgn(\sigma)=1\), then \(\sigma\) is \emph{even}; otherwise, \(\sigma\) is called \emph{odd}. The subgroup containing even permutations, i.e. 
+    \[A_n=\ker(\sgn)\lhd S_n\]
+    is called the \emph{alternating group} on \(n\) elements.
+\end{definition}
+\begin{example}
+    \(S_3=\{e,(123),(321),(12),(23),(31)\}\). We have \((123)=(12)(23)\) and \((321)=(23)(12)\). Therefore,
+    \[A_3=\{e,(123)(321)\}\cong C_3\]
+\end{example}
+\begin{remark}
+    The cycle type makes it easy to determine the sign of a permutation. Indeed, 
+    \[(a_1\cdots a_k)=(a_1a_k)(a_1a_{k-1})\cdots(a_1a_3)(a_1a_2)\]
+    so \((a_1\cdots a_k)\) is even if and only if \(k\) is odd. More generally, a \((k_1,\ldots,k_l)\)-cycle is even if and only if \(\hash\{k_i\text{  even}\}\) is even.
+\end{remark}
+\begin{example}
+    \((12)(34)\) is even but \((12)(34)(56)\) is odd.
+\end{example}
+Let's apply the facts to study conjugation in \(S_n\) and \(A_n\). We will start with \(S_n\).
+\begin{theorem}
+    Two permutations \(\sigma_1,\sigma_2\in S_n\) are conjugate if and only if their cycle types are the same.
+    \label{thm:permu_conj}
+\end{theorem}
+\begin{proof}
+    Suppose \[\sigma_1=(a_1^1\cdots a_{l_1}^1)\cdots(a_1^k\cdots a_{l_k}^k)\] is a product of disjoint cycles, so \[\sigma_1(a_j^i)=a_{j+_{l_i}1}^i\] Since the cycle types are same, \(\sigma_2\) will take the form \(\sigma_2=(b_1^1\cdots b_{l_1}^1)\cdots(b_1^k\cdots b_{l_k}^k)\). Now, note that \(\tau(a_j^i)=b_j^i\) defines a permutation of \(\{1,\ldots,n\}\). Let's compute 
+    \[\tau\sigma_1\tau^{-1}(b_j^i)=\tau\sigma_1(a_j^i)=\tau(a_{j+_{l_i}+1}^i)=b_{j+_{l_i}1}^i\]
+    Hence \(\tau\sigma_1\tau^{-1}=\sigma_2\). So \(\sigma_1\) and \(\sigma_2\) are indeed conjugate.
+
+    Conversely, suppose \(\sigma_2=\tau\sigma\tau^{-1}\). The above argument says that if \[\sigma_1=(a_1^1\cdots a_{l_1}^1)\cdots(a_1^k\cdots a_{l_k}^k)\] then 
+    \[\sigma_2=(b_1^1\cdots b_{l_1}^1)\cdots(b_1^k\cdots b_{l_k}^k)\]
+    where \(b_j^i=\tau(a_j^i)\). Therefore, \(\sigma_1\) and \(\sigma_2\) have the same cycle type.
+\end{proof}
+\begin{example}
+    \((12)(123)(12)=(213)\); and, more generally, 
+    \[\sigma(12\cdots l)\sigma^{-1}=\left(\sigma(1)\;\sigma(2)\cdots\sigma(l)\right)\]
+\end{example}
+We can use Theorem \ref{thm:permu_conj} to count conjugacy classes in \(S_n\).
+\begin{example}
+    \(|\ccl_{S_3}(12)|=\binom 32=3\), \(|\ccl_{S_3}(123)|=2\), and \(|\ccl_{S_3}((12)(34))|=3\).
+\end{example}
+Recall that orbit-stabiliser (Corollarly \ref{coro:orbit_stab}) tells us that 
+\[|C_{S_n}(\sigma)|=|S_n|/|\ccl_{S_n}(\sigma)|=n!/|\ccl_{S_n}(\sigma)|\]
+Hence we can also compute the sizes of centralisers.
+\begin{example} Consider \(S_4\).
+    \[|C_{S_4}((12)(34))|=\frac{|S_4|}{|\ccl_{S_4}((12)(34))|}=\frac{4!}{3}=8\]
+    Indeed, we can list 
+    \[C_{S_4}((12)(34))=\{e,(12),(34),(12)(34),(13)(24),(14)(23),(1423),(1324)\}\]
+\end{example}
+\begin{example}
+    We can list all the conjugacy classes in \(S_4\) as follows.
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{0.6\textwidth}{Xcc}
+            \toprule
+            Typical element \(\gamma\) & \(|\ccl_{S_4}(\gamma)|\) & \(|C_{S_4}(\gamma)|\) \\
+            \midrule
+            \(e\) & 1 & 24 \\
+            \((12)\) & 6 & 4 \\
+            \((12)(34)\) & 3 & 8 \\
+            \((123)\) & 8 & 3 \\
+            \((1234)\) & 6 & 4 \\
+            \bottomrule 
+        \end{tabularx}
+    \end{table}
+    and check \(|S_4|=24\) if wanted.
+\end{example}
+Now, let's turn to conjugacy classes in \(A_n\). Be careful, that conjugacy classes in \(S_n\) can split in \(A_n\). 
+\begin{example}
+    \((123),(321)\) are conjugate in \(S_3\). But \(A_3\cong C_3\) is abelian, so \((123)\) is not conjugate in \(A_3\) to \((321)\), because they are not equal.\footnote{There is no permutation \(\tau\) in \(A_n\) such that \(\tau(123)\tau^{-1}=(321)\).}
+\end{example}
+\begin{lemma}
+    Let \(\gamma\in A_n\subseteq S_n\).
+    \begin{enumerate}
+        \item If some odd element of \(S_n\) commutes with \(\gamma\), then \(\ccl_{A_n}(\gamma)=\ccl_{S_n}(\gamma)\).
+        \item If every element of \(S_n\) that commutes with \(\gamma\) is even, then \(\ccl_{S_n}(\gamma)\) splits into two:
+        \[\ccl_{S_n}(\gamma)=\ccl_{A_n}(\gamma)\cup\ccl_{A_n}(\tau\gamma\tau)\]
+        where \(\tau\) is any transposition.
+    \end{enumerate}
+\end{lemma}
+\begin{theorem}
+    \(A_5\) is simple.
+\end{theorem}
+\begin{proof}
+    Suppose \(N\lhd A_5\). We need to prove that \(N=1\) or \(N=A_5\). By Example Sheet 3 Q5, \(N\) is an union of conjugacy classes of \(A_5\). Since it has to contain \(e\), the possible orders of \(N\) are: 1, 22, 37, 48, 33, 45, 16, 28, 40, 13, 25, 60. By Lagrange's theorem, only acceptable values are 1 and 60, which correspond to trivial subgroup and \(A_5\) respectively. Hence, \(A_5\) is indeed simple. (Also note that \(A_5\) is the smallest example of a non-abelian simple group).
+\end{proof}
+\section{Matrix Groups}
+This section requires some knowledge from Vectors \& Matrices.
+\subsection{General Linear Group}
+Groups of matrices provide some of the most important and fascinating examples of (infinite) groups. To begin, let 
+\[M_n(\mathbb{F})=\{n\times n\text{  matrices with entries in  }\mathbb{F}\}\]
+where \(\mathbb{F}\) a field, e.g. \(\mathbb{R},\mathbb{C}\). Matrix multiplication is well known to be associative, and there is an identity \(I_n=I=\mathbb{1}=1\). However, not all matrices are invertible.
+\begin{definition}
+    A \emph{general linear group} \(\GL(n,\mathbb{F})\) is defined as a set of invertible \(n\times n\) matrices over \(\mathbb{F}\).\footnote{Composition of invertible matrices are invertible.}
+\end{definition}
+\begin{proposition}
+    \(\det:\GL(n,\mathbb{F})\to\mathbb{F}\backslash\{0\}\) is a surjective homomorphism.
+\end{proposition}
+\begin{proof}
+    We have \(\det AB=\det A\det B\). Also, if \(A\) invertible, it has non-zero determinant and \(\det A\in\mathbb{F}\backslash\{0\}\). Furthermore, to prove surjectivity, for any \(x\in\mathbb{F}\backslash\{0\}\), we take \(I\) and replace \(I_{11}\) with \(x\). Then the determinant of such matrix is \(x\).
+\end{proof}
+\begin{definition}
+    We define the \emph{special linar group} as the kernal of \(\det:\GL(n,\mathbb{F})\to\mathbb{F}\backslash\{0\}\):
+    \[\SL(n,\mathbb{F})=\ker(\det)=\{A\in\GL\:|\:\det A=1\}\]
+\end{definition}
+It follows that \(\SL(n,\mathbb{F})\lhd\GL(n,\mathbb{F})\). Also note that \(Q_8\leq\SL(2,\mathbb{C})\).
+\subsection{Change of Basis and Action}
+One may think of a natural action by matrix conjugation:
+\[\GL(n,\mathbb{R})\acts M_n(\mathbb{R}),\quad P(A)=PAP^{-1}\]
+where \(P\in\GL(n,\mathbb{R})\) and \(A\in M_n(\mathbb{R})\).
+\begin{proposition}
+    Let \(V\) be a \(n\)-dimensional vector space and \(\alpha:V\to V\) a linear map. If \(A\in M_n(\mathbb{R})\) represents \(\alpha\) in some basis, then the orbit 
+    \[\GL(n,\mathbb{R})A=\{PAP^{-1}\:|\:P\in\GL(n,\mathbb{R})\}\]
+    consists of all matrices that represent \(\alpha\) in any basis.
+\end{proposition}
+\begin{proof}
+    A basis \(\{\mathbf{v}_1,\ldots,\mathbf{v}_n\}\) for \(V\) defines an isomorphisms of vector spaces \(\phi:\mathbb{R}^n\to V\),
+    \[(\lambda_1,\ldots,\lambda_n)\mapsto\sum_{i=1}^n\lambda_i\mathbf{v}_i\]
+    The hypothesis that \(A\) represents \(\alpha\) in this basis means:
+    \[A=\phi^{-1}\circ\alpha\circ\phi\Rightarrow\alpha=\phi\circ A\circ\phi^{-1}\]
+    Likewise, another basis \(\{u_1,\ldots,u_n\}\) corresponds to an isomorphism \(\psi:\mathbb{R}^n\to V\) and \(B\in M_n(\mathbb{R})\) reprents \(\alpha\) in this basis if 
+    \[B=\psi^{-1}\circ\alpha\circ\psi=\psi^{-1}\circ(\phi\circ A\circ\phi^{-1})\circ\psi=(\psi^{-1}\circ\phi)\circ A\circ(\psi^{-1}\circ\phi)^{-1}\]
+    Thus, \(B=PAP^{-1}\) where \(P=\psi^{-1}\circ\phi\in\GL(n,\mathbb{R})\). We have shown that every matrix representing \(\alpha\) is in \(\GL(n,\mathbb{R})\). We still need to prove the reverse inclusion.
+
+    Conversely, suppose \(B+PAP^{-1}\). Then, setting \(\psi=\phi\circ P^{-1}\), it defines a basis 
+    \[\{\mathbf{u}_i=\psi(\mathbf{e}_i)\}\]
+    for \(V\) with \(\mathbf{e}_i\) as the standard \(i\)\textsuperscript{th}
+    basis vector of \(\mathbb{R}^n\). Then, \(B\) is the matrix for \(\alpha\) in this basis.
+\end{proof}
+\subsection{Möbius Transformation Revisited}
+Recall that multiplication in \(\mathcal{M}\) looked similar to multiplication of \(2\times 2\) matrices. This is explained by the next result.
+\begin{proposition}
+    Identitify 
+    \[\mathbb{C}_\times=\left\{\left.\begin{pmatrix}
+        \lambda & 0 \\ 0 & \lambda
+    \end{pmatrix}\in\GL(2,\mathbb{C})\:\right|\:\lambda\neq 0\right\}\]
+    Then \(\mathbb{C}_\times\lhd\GL(2,\mathbb{C})\) and \(\GL(2,\mathbb{C})/\mathbb{C}_\times\cong\mathcal{M}\).
+\end{proposition}
+\begin{proof}
+    Define \(\Phi:\GL(2,\mathbb{C})\to\mathcal{M}\), 
+    \[\begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix}\mapsto\left(z\mapsto\frac{az+b}{cz+d}\right)\]
+    By our computation of multiplication in \(\mathcal{M}\), we see that \(\Phi\) is a homomorphism, which is obviously surjective. A matrix 
+    \[\begin{pmatrix}
+        a & b \\ c & d
+    \end{pmatrix}\in\ker\Phi\]
+    if and only if it fixes \(0,1,\infty\), i.e. \(b=c\) and \(a+b=c+d\Rightarrow a=d\). So \(\ker\Phi=\mathbb{C}_\times\). The result follows from the isomorphism theorem (Theorem \ref{thm:isom}).
+\end{proof}
+\subsection{Orthogonal Groups}
+Let's write \(||\bullet ||\) for the usual Euclidean notation of distance on \(\mathbb{R}^n\):
+\[||\mathbf{u}-\mathbf{v}||=\sqrt{\sum_{i=1}^{n}(u_i-v_i)^2}\]
+\begin{definition}
+    The \(n\)-dimensional \emph{orthogonal group} is the subgroup of \(\GL(n,\mathbb{R})\) that preserves distance in \(\mathbb{R}^n\), i.e.
+    \[\text{O}(n)=\{A\in\GL(n,\mathbb{R})\::\:||A\mathbf{u}-A\mathbf{v}||=||\mathbf{u}-\mathbf{v}||,\quad\forall \mathbf{u,v}\in\mathbb{R}^n\}\]
+\end{definition}
+\begin{remark}
+    This is same as saying that \(||A\mathbf{x}=\mathbf{x}||\) for all \(\mathbf{x}\in\mathbb{R}^n\). In fact, the \emph{dot product}
+    \[\mathbf{u}\cdot\mathbf{v}=\sum_{i=1}^nu_iv_i\]
+    is often more convinient to work with the notion of distance.
+\end{remark}
+\begin{lemma}
+    (\emph{Polarisation Identity}) For \(\mathbf{u},\mathbf{v}\in\mathbb{R}^n\), 
+    \[2(\mathbf{u}\cdot\mathbf{v})=||\mathbf{u}||^2+||\mathbf{v}||^2-||\mathbf{u}-\mathbf{v}||^2\]
+\end{lemma}
+\begin{proof}
+    By definitions,
+    \[||\mathbf{u}-\mathbf{v}||^2=(\mathbf{u}-\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=||\mathbf{u}||^2-2(\mathbf{u}\cdot\mathbf{v})+||\mathbf{v}||^2\]
+\end{proof}
+Hence, we can characterise \(\mathrm{O}(n)\) using the dot product.
+\begin{lemma}
+    \[\mathrm{O}(n)=\{A\in\GL(n,\mathbb{R})\:|\:(A\mathbf{x})\cdot(A\mathbf{y})=\mathbf{x}\cdot\mathbf{y},\quad\forall\mathbf{x},\mathbf{y}\in\mathbb{R}^n\}\]
+\end{lemma}
+\begin{proof}
+    If \((A\mathbf{x})\cdot(A\mathbf{y})=\mathbf{x}\cdot\mathbf{y}\) for all \(\mathbf{x},\mathbf{y}\in\mathbb{R}^n\), then, for any \(\mathbf{u},\mathbf{v}\in\mathbb{R}^n\),
+    \[||A\mathbf{u}-A\mathbf{v}||^2=||A(\mathbf{u}-\mathbf{v})||^2=(A(\mathbf{u}-\mathbf{v}))\cdot(A(\mathbf{u}-\mathbf{v}))=(\mathbf{u}-\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=||\mathbf{u}-\mathbf{v}||^2\]
+    so \(A\in\mathrm{O}(n)\).
+
+    Conversely, if \(A\in\mathrm{O}(n)\), then for any \(\mathbf{x},\mathbf{y}\in\mathbb{R}^n\),
+    \begin{align*}
+        2(A\mathbf{x})\cdot(A\mathbf{y})&=||A\mathbf{x}||^2+||A\mathbf{y}||^2-||A\mathbf{x}-A\mathbf{y}||^2 \\
+        &=||A\mathbf{x}-A0||^2+||A\mathbf{y}-A0||^2-||A\mathbf{x}-A\mathbf{y}||^2 \\
+        &=||\mathbf{x}||^2+||\mathbf{y}||^2-||\mathbf{x}-\mathbf{y}||^2=2(\mathbf{x}\cdot\mathbf{y})
+    \end{align*}
+    using the polarisation identity.
+\end{proof}
+\begin{lemma}
+    Let \(A\in M_n(\mathbb{R})\). Then following are equivalent:
+    \begin{enumerate}
+        \item \(A\in\mathrm{O}(n)\);
+        \item The columns of \(A\) forms an orthonormal basis;
+        \item \(A^\intercal A=I\).
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    (1)\(\Rightarrow\)(2). Let \(\{\mathbf{e}_1,\ldots\mathbf{e}_n\}\) be the standard basis for \(\mathbb{R}^n\). The \(i\)\textsuperscript{th} column of \(A\) is \(A\mathbf{e}_i\). But 
+    \[(A\mathbf{e}_i)\cdot(A\mathbf{e}_j)=\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}\]
+    so the columns form an orthonormal basis.
+
+    (2)\(\Rightarrow\)(3). Since \((A\mathbf{e}_i)\cdot(A\mathbf{e}_j)=\mathbf{e}_i\cdot\mathbf{e}_j=\delta_{ij}\), \(\mathbf{u}\cdot\mathbf{v}=\mathbf{u}^\intercal\mathbf{v}\), this means that \(e_i^\intercal A^\intercal Ae_j=\delta_{ij}\). But \(\mathbf{e}_i^\intercal M\mathbf{e}_j\) is the \(ij\) entry of \(M\) for any matrix \(M\), so \(A^\intercal A=I\) as required.
+
+    (3)\(\Rightarrow\)(1). Suppose \(\mathbf{u},\mathbf{v}\in\mathbb{R}^n\). Then 
+    \[(A\mathbf{u})\cdot(A\mathbf{v})=(A\mathbf{u})^\intercal(A\mathbf{v})=\mathbf{u}^\intercal A^\intercal A\mathbf{v}=\mathbf{u}^\intercal\mathbf{v}=\mathbf{u}\cdot\mathbf{v}\]
+\end{proof}
+Recall that \(\det(A^\intercal)=\det A\). Therefore, if \(A\in\mathrm{O}(n)\), 
+\[1=\det I=\det(A^\intercal A)=\det(A^\intercal)\det A=(\det A)^2\]
+Hence \(\det A=\pm 1\). 
+\begin{definition}
+    We define the \emph{special orthogonal group} as 
+    \[\SO(n)=\mathrm{O}(n)\cap\SL(n,\mathbb{R})=\{A\in\mathrm{O}(n)\:|\:\det A=1\}\]
+\end{definition}
+Note that \(\SO(n)=\ker(\det:\mathrm{O}(n)\to\{\pm 1\})\) so 
+\[|\mathrm{O}(n):\SO(n)|=2\]
+by the isomorphism theorem.
 \chapter{Analysis I}
 \chapterauthor{Lecture by Professor Claude Warnick. 
     Lent term 2024.}

@@ -50,48 +50,52 @@
 \contentsline {section}{\numberline {2.5}Quotients}{70}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Normal Subgroups}{70}{subsection.2.5.1}%
 \contentsline {section}{\numberline {2.6}Permutations}{72}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Matrix Groups}{77}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}General Linear Group}{77}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Change of Basis and Action}{77}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}Möbius Transformation Revisited}{78}{subsection.2.7.3}%
-\contentsline {subsection}{\numberline {2.7.4}Orthogonal Groups}{79}{subsection.2.7.4}%
-\contentsline {chapter}{\numberline {3}Analysis I}{81}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Limits and Convergence}{81}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Sequences}{81}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Series and Convergence Tests}{86}{subsection.3.1.2}%
-\contentsline {subsubsection}{Series with non-negative terms}{88}{subsubsection*.20}%
-\contentsline {subsubsection}{Alternating series}{90}{subsubsection*.21}%
-\contentsline {subsubsection}{Absolute and conditional convergence}{91}{subsubsection*.22}%
-\contentsline {section}{\numberline {3.2}Continuity}{92}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Continuity of a Function}{92}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Limit of a Function}{95}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Inverse Function Theorem}{98}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Differentiability}{99}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Differentiation of Sums and Products}{100}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}The Mean Value Theorem}{103}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Higher Derivatives and Taylor's Theorem}{106}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Power Series}{110}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}The Standard Functions}{114}{subsection.3.4.1}%
-\contentsline {subsubsection}{Exponentials and logarithms}{114}{subsubsection*.24}%
-\contentsline {subsubsection}{Trigonometric functions}{118}{subsubsection*.25}%
-\contentsline {subsubsection}{Periodicity of trigonometric functions}{119}{subsubsection*.27}%
-\contentsline {subsubsection}{Trigonometric functions and geometry}{120}{subsubsection*.28}%
-\contentsline {subsubsection}{Hyperbolic functions}{120}{subsubsection*.29}%
-\contentsline {section}{\numberline {3.5}Integration}{121}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Riemann Integral}{121}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Elementary Properties of the Integral}{126}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}Piecewise Continuous Functions}{131}{subsection.3.5.3}%
-\contentsline {subsection}{\numberline {3.5.4}The Fundamental Theorem of Calculus}{131}{subsection.3.5.4}%
-\contentsline {subsection}{\numberline {3.5.5}Improper Integrals}{136}{subsection.3.5.5}%
-\contentsline {subsubsection}{Integrals on an infinite domain}{136}{subsubsection*.31}%
-\contentsline {subsubsection}{Integrands with an isolated singularity}{137}{subsubsection*.32}%
-\contentsline {subsubsection}{Properties and examples of improper integral}{137}{subsubsection*.33}%
-\contentsline {subsubsection}{Integral test}{139}{subsubsection*.34}%
-\contentsline {subsection}{\numberline {3.5.6}Lebesgue's Criterion for Riemann Integrability}{140}{subsection.3.5.6}%
-\contentsline {subsubsection}{Oscillation of function}{141}{subsubsection*.35}%
-\contentsline {subsubsection}{Proof of necessity of Lebesgue's criterion}{141}{subsubsection*.36}%
-\contentsline {section}{\numberline {3.6}Example Sheets}{142}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Sheet 1}{142}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Sheet 2}{145}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Sheet 3}{147}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Sheet 4}{151}{subsection.3.6.4}%
+\contentsline {section}{\numberline {2.7}Matrix Groups}{78}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}General Linear Group}{79}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Change of Basis and Action}{79}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Möbius Transformation Revisited}{80}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.4}Orthogonal Groups}{80}{subsection.2.7.4}%
+\contentsline {section}{\numberline {2.8}Platonic Solids}{84}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Example Sheets}{86}{section.2.9}%
+\contentsline {subsection}{\numberline {2.9.1}Sheet 1}{86}{subsection.2.9.1}%
+\contentsline {subsection}{\numberline {2.9.2}Sheet 2}{88}{subsection.2.9.2}%
+\contentsline {chapter}{\numberline {3}Analysis I}{91}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Limits and Convergence}{91}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Sequences}{91}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Series and Convergence Tests}{96}{subsection.3.1.2}%
+\contentsline {subsubsection}{Series with non-negative terms}{98}{subsubsection*.23}%
+\contentsline {subsubsection}{Alternating series}{100}{subsubsection*.24}%
+\contentsline {subsubsection}{Absolute and conditional convergence}{101}{subsubsection*.25}%
+\contentsline {section}{\numberline {3.2}Continuity}{102}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Continuity of a Function}{102}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Limit of a Function}{105}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Inverse Function Theorem}{108}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Differentiability}{109}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Differentiation of Sums and Products}{110}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}The Mean Value Theorem}{113}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Higher Derivatives and Taylor's Theorem}{116}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Power Series}{120}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}The Standard Functions}{124}{subsection.3.4.1}%
+\contentsline {subsubsection}{Exponentials and logarithms}{124}{subsubsection*.27}%
+\contentsline {subsubsection}{Trigonometric functions}{128}{subsubsection*.28}%
+\contentsline {subsubsection}{Periodicity of trigonometric functions}{129}{subsubsection*.30}%
+\contentsline {subsubsection}{Trigonometric functions and geometry}{130}{subsubsection*.31}%
+\contentsline {subsubsection}{Hyperbolic functions}{130}{subsubsection*.32}%
+\contentsline {section}{\numberline {3.5}Integration}{131}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Riemann Integral}{131}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Elementary Properties of the Integral}{136}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Piecewise Continuous Functions}{141}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}The Fundamental Theorem of Calculus}{141}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Improper Integrals}{146}{subsection.3.5.5}%
+\contentsline {subsubsection}{Integrals on an infinite domain}{146}{subsubsection*.34}%
+\contentsline {subsubsection}{Integrands with an isolated singularity}{147}{subsubsection*.35}%
+\contentsline {subsubsection}{Properties and examples of improper integral}{147}{subsubsection*.36}%
+\contentsline {subsubsection}{Integral test}{149}{subsubsection*.37}%
+\contentsline {subsection}{\numberline {3.5.6}Lebesgue's Criterion for Riemann Integrability}{150}{subsection.3.5.6}%
+\contentsline {subsubsection}{Oscillation of function}{151}{subsubsection*.38}%
+\contentsline {subsubsection}{Proof of necessity of Lebesgue's criterion}{151}{subsubsection*.39}%
+\contentsline {section}{\numberline {3.6}Example Sheets}{152}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Sheet 1}{152}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Sheet 2}{155}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Sheet 3}{157}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Sheet 4}{161}{subsection.3.6.4}%

@@ -1258,7 +1258,7 @@ By induction, we further can tell that \(\mathbb{Z}^k\) is countable for any \(k
     \[\bigcup_{n\in\mathbb{N}}A_n\]
     is countable. For each \(i\in\mathbb{N}\), since \(A_i\) is countable, we may list its elements as \(a_1^{(i)},a_2^{(i)},\ldots\). Define
     \[f:\bigcup_{n\in\mathbb{N}}A_n\to\mathbb{N},\quad x\mapsto 2^i3^j\]
-    where \(x=a_j^{(i)}\) for the least \(i\) such that \(x\in A_i\). hen \(f\) is injective by the fundamental theorem of arithmetic (Theorem \ref{thm:fta}).
+    where \(x=a_j^{(i)}\) for the least \(i\) such that \(x\in A_i\). hence \(f\) is injective by the fundamental theorem of arithmetic (Theorem \ref{thm:fta}).
 \end{proof}
 \begin{proof}
     (\emph{Method 2}) Let \(I\) be a countable index set, and for each \(i\in I\), \(A_i\) is a countable set. Since \(I\) is countable, there is an injection \(f:I\to\mathbb{N}\), and for each \(i\in I\), since \(A_i\) is countable, there is an injection \(g_i:A_i\to\mathbb{N}\). We construct an injection 
@@ -1875,7 +1875,7 @@ To multiply elements of \(D_{2n}\) with ease, we use the \emph{dihedral relation
     (\emph{Dihedral Relation}) For \(r,s\in D_{2n}\) as above, \(sr=r^{-1}s\).
 \end{lemma}
 \begin{proof}
-    We show that \(sr\) and \(rs^{-1}\) do the same thing to \(\{x,y,z\}\) as above. (\textbf{Incomplete})
+    We show that \(sr\) and \(r^{-1}s\) do the same thing to \(\{x,y,z\}\) as above. (\textbf{Incomplete})
 \end{proof}
 Using the dihedral relation, algebra becomes easy in \(D_{2n}\). For instance, \(r^kr^l=r^{k+l}\), \(r^k(r^ls)=r^{k+l}s\), \((r^ks)r^l=r^{k-l}s\), and \(r^ksr^ls=r^{k-l}ss=r^{k-l}\).
 \subsection{Homomorphisms}
@@ -2180,9 +2180,11 @@ In facts, there exists an action \(H\acts G\) which can show that left coset is 
 \end{example}
 \begin{example}
     Let \(T\) a regular tetrahedron. Let \(G\leq\isom(T)\) be the group of rotational symmetries. Let \(v\in T\) be a vertex. Then, size of the orbit \(|Gv|=4\), and \(|\stab_G(v)|=3\). So by Corollarly \ref{coro:orbit_stab}, \(|G|=12\). 
+    \label{eg:tetrahedron_rot}
 \end{example}
 \begin{example}
     Let \(G\) be a group of rotational isometries of a cube, \(C\). Let \(v\in C\) be a vertex. Then, \(|Gv|=8\) and \(|\stab_G(v)|=3\). So \(|G|=24\).
+    \label{eg:cube_rot}
 \end{example}
 \begin{theorem}
     (\emph{Cauchy's Theorem}) If \(|G|<\infty\), \(p\) prime such that \(p\big||G|\), then there is a \(g\in G\) such that \(o(g)=p\).
@@ -2224,6 +2226,7 @@ In facts, there exists an action \(H\acts G\) which can show that left coset is 
     Note that these are all reflections. Consider \(z_k=e^{2\pi ik/n}=r^k(z_0)\in X_n\). Then 
     \[(r^{2k}s)(z_k)=(r^ksr^{-k})(z_k)=((r^ksr^{-k})r^k)(z_0)=r^ks(z_0)=r^k(z_0)=z_k\]
     So \(r^{2k}s\) is the reflection in the line of symmetry through \(z_k\).
+    \label{eg:dihedral_conj}
 \end{example}
 Notice that \(G\) can acts on itself by conjugation. \(G\acts G\), \(g(\gamma)=g\gamma g^{-1}\). This is not the same with the regular action.
 \begin{definition}
@@ -2843,8 +2846,13 @@ Hence we can also compute the sizes of centralisers.
         \end{tabularx}
     \end{table}
     and check \(|S_4|=24\) if wanted.
+    \label{eg:conj_s4}
 \end{example}
-Now, let's turn to conjugacy classes in \(A_n\). Be careful, that conjugacy classes in \(S_n\) can split in \(A_n\). 
+Now, let's turn to conjugacy classes in \(A_n\). Be careful, that conjugacy classes in \(S_n\) can split in \(A_n\). Note that, by the isomorphism theorem (Theorem \ref{thm:isom}), 
+\[S_n/A_n\cong C_2\]
+and 
+\[|S_n|=|Sn/A_n||A_n|=2|A_n|\]
+by Lagrange's theorem.
 \begin{example}
     \((123),(321)\) are conjugate in \(S_3\). But \(A_3\cong C_3\) is abelian, so \((123)\) is not conjugate in \(A_3\) to \((321)\), because they are not equal.\footnote{There is no permutation \(\tau\) in \(A_n\) such that \(\tau(123)\tau^{-1}=(321)\).}
 \end{example}
@@ -2857,6 +2865,81 @@ Now, let's turn to conjugacy classes in \(A_n\). Be careful, that conjugacy clas
         where \(\tau\) is any transposition.
     \end{enumerate}
 \end{lemma}
+\begin{proof}
+    Orbit-stabiliser gives \(|S_n|=|\ccl_{S_n}(\gamma)||C_{S_n}(\gamma)|\), \(|A_n|=|\ccl_{A_n}(\gamma)||C_{A_n}(\gamma)|\). \\ Since \(|S_n|=2|A_n|\), 
+    \[|\ccl_{S_n}(\gamma)|=\frac{2|C_{A_n}(\gamma)|}{|C_{S_n}(\gamma)|}|\ccl_{A_n}(\gamma)|\]
+    Now, \(C_{A_n}(\gamma)=C_{S_n}(\gamma)\cap A_n\) by definition; so 
+    \[|C_{S_n}(\gamma):C_{A_n}(\gamma)|\leq 2\]
+    (because \(|S_n:A_n|=2\)).\footnote{Draw a diagram if confused.}
+    We take a look at two conditions from the lemma.
+    \begin{enumerate}
+        \item If there is an odd element of \(S_n\) that commutes with \(\gamma\), then \(|C_{S_n}(\gamma):C_{A_n}(\gamma)|=2\). So, \(|\ccl_{S_n}(\gamma)|=|\ccl_{A_n}(\gamma)|\) by Lagrange's theorem and \(\ccl_{S_n}(\gamma)=\ccl_{A_n}(\gamma)\) since \(\ccl_{A_n}(\gamma)\subseteq\ccl_{S_n}(\gamma)\).
+        \item The hypothesis means that \(C_{S_n}(\gamma)=C_{A_n}(\gamma)\). So \(|\ccl_{S_n}(\gamma)|=2|\ccl_{A_n}(\gamma)|\) and \(|\ccl_{S_n}(\gamma)|\) splits into two. Now, consider a transposition \(\tau\in S_n\). Note that \(\tau\gamma\tau^{-1}\in\ccl_{S_n}(\gamma)\). We need to prove that \(\tau\gamma\tau^{-1}\) and \(\gamma\) are not conjugate in \(A_n\). If they were, then there would be \(\alpha\in A_n\) such that 
+        \[\tau\gamma\tau^{-1}=\alpha\gamma\alpha^{-1}\Rightarrow(\alpha^{-1}\tau)\gamma=\gamma(\alpha^{-1}\tau)\]
+        so \(\alpha^{-1}\tau\) is an odd element of \(S_n\) that commutes with \(\gamma\), which is a contradiction.
+    \end{enumerate}
+\end{proof}
+This makes it possible to determine conjugacy classes in \(A_n\).
+\begin{example}
+    Consider \(A_4\). All even elements of \(S_4\) are \((2,2)\)-cycles or \(3\)-cycles. Recall that \((12)\) commutes with \((12)(34)\); so \(\ccl_{S_4}((12)(34))\) does not split. For a \(3\)-cycle, \(\sigma=(123)\), we have \(|C_{S_n}(123)|=3\) from Example \ref{eg:conj_s4}, so 
+    \[C_{S_4}\left((123)\right)=\{2,(123),(321)\}\subseteq A_4\]
+    and the conjugacy class splits. In summary,
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{0.6\textwidth}{Xcc}
+            \toprule
+            Typical element \(\gamma\) & \(|\ccl_{A_4}(\gamma)|\) & \(|C_{A_4}(\gamma)|\) \\
+            \midrule
+            \(e\) & 1 & 12 \\
+            \((12)(34)\) & 3 & 4 \\
+            \((123)\) & 4 & 3 \\
+            \((321)\) & 4 & 3 \\
+            \bottomrule 
+        \end{tabularx}
+    \end{table}
+\end{example}
+Finally, let's perform a similar calculation for \(S_5\) and \(A_5\).
+\begin{example}
+    For \(S_5\), we have the conjugacy classes as follows.
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{0.6\textwidth}{Xcc}
+            \toprule
+            Typical element \(\gamma\) & \(|\ccl_{S_5}(\gamma)|\) & \(|C_{S_5}(\gamma)|\) \\
+            \midrule
+            \(e\) & 1 & 120 \\
+            \((12)\) & 10 & 12 \\
+            \((123)\) & 20 & 6 \\
+            \((12)(34)\) & 15 & 8 \\
+            \((123)(45)\) & 20 & 6 \\
+            \((1234)\) & 30 & 4 \\
+            \((12345)\) & 24 & 5 \\
+            \bottomrule 
+        \end{tabularx}
+    \end{table}
+    Note that even cycles are \(\{e,(123),(12)(34),(12345)\}\subseteq A_5\). We take a closer look at each of them.
+    \begin{itemize}
+        \item \((45)\in C_{S_5}(123)\) so \(\ccl_{S_5}(123)\) does not split.
+        \item \((12)\in C_{S_5}((12)(34))\) so \(\ccl_{S_5}((12)(34))\) does not split.
+        \item \(|C_{S_5}(12345)|=5\) and \(C_{S_5}(12345)\supseteq\langle(12345)\rangle\cong C_5\). Hence \(C_{S_5}(12345)=\langle (12345)\rangle\subseteq A_5\)
+         and \(\ccl_{S_5}(12345)\) splits.
+    \end{itemize}
+    In summary,
+    \begin{table}[H]
+        \centering
+        \begin{tabularx}{0.6\textwidth}{Xcc}
+            \toprule
+            Typical element \(\gamma\) & \(|\ccl_{A_5}(\gamma)|\) & \(|C_{A_5}(\gamma)|\) \\
+            \midrule
+            \(e\) & 1 & 60 \\
+            \((123)\) & 20 & 3 \\
+            \((12)(34)\) & 15 & 4 \\
+            \((12345)\) & 12 & 5 \\
+            \((21345)\) & 12 & 5 \\
+            \bottomrule 
+        \end{tabularx}
+    \end{table}
+\end{example}
 \begin{theorem}
     \(A_5\) is simple.
 \end{theorem}
@@ -2991,6 +3074,269 @@ Hence \(\det A=\pm 1\).
 Note that \(\SO(n)=\ker(\det:\mathrm{O}(n)\to\{\pm 1\})\) so 
 \[|\mathrm{O}(n):\SO(n)|=2\]
 by the isomorphism theorem.
+\begin{definition}
+    Any \(\mathbf{v}\in\mathbb{R}^n\backslash\{0\}\) defines an orthogonal (hyper) plane 
+    \[P_\mathbf{v}=\{\mathbf{x}\in\mathbb{R}^n\:|\:\mathbf{x}\cdot\mathbf{v}=0\}\]
+    The \emph{reflection} of \(\mathbf{x}\) in \(P_\mathbf{v}\) is defined to be 
+    \[S_\mathbf{v}(\mathbf{x})=\mathbf{x}-\frac{2(\mathbf{x}\cdot\mathbf{v})\mathbf{v}}{||\mathbf{v}||^2}\]
+\end{definition}
+\begin{remark}
+    We may replace \(\mathbf{v}\) by \(\mathbf{v}/||\mathbf{v}||\). Hence, without loss of generality, we may assume that \(||\mathbf{v}||=1\). We may also abuse notation and write \(S_P\) to denote reflection in the plane \(P\).
+\end{remark}
+\begin{lemma}
+    For a reflection \(S_\mathbf{v}\), \(S_\mathbf{v}^2=I\) and \(S_\mathbf{v}\in\mathrm{O}(n)\).
+\end{lemma}
+\begin{proof}
+    We may assume that \(||\mathbf{v}||=1\), so 
+    \[S_\mathbf{v}(\mathbf{x})=\mathbf{x}-2(\mathbf{x}\cdot\mathbf{v})\mathbf{v}\]
+    Note that \(S_\mathbf{v}\) is linear in \(\mathbf{x}\), so \(S_\mathbf{v}\in M_n(\mathbb{R})\). Now,
+    \[(S_\mathbf{v}(\mathbf{x})\cdot\mathbf{v})=\mathbf{x}\cdot\mathbf{v}-2(\mathbf{x}\cdot\mathbf{v})(\mathbf{v}\cdot\mathbf{v})=-\mathbf{x}\cdot\mathbf{v}\]
+    so 
+    \[S_\mathbf{v}^2(\mathbf{x})=S_\mathbf{v}(\mathbf{x})-2(S_\mathbf{v}(\mathbf{x})\cdot\mathbf{v})\mathbf{v}=\mathbf{x}\]
+    and therefore \(S_\mathbf{v}^2=I\). Consequently, \(S_\mathbf{v}\in\GL(n,\mathbb{R})\) since it is invertible. Finally, for any \(\mathbf{x}\in\mathbb{R}^n\), 
+    \begin{align*}
+        ||S_\mathbf{v}(\mathbf{x})||^2&=(\mathbf{x}-2(\mathbf{x}\cdot\mathbf{v})\mathbf{v})\cdot(\mathbf{x}-2(\mathbf{x}\cdot\mathbf{v})\mathbf{v}) \\
+        &=||\mathbf{x}||^2-4(\mathbf{x}\cdot\mathbf{v})^2+4(\mathbf{x}\cdot\mathbf{v})^2||\mathbf{v}||^2 \\
+        &=||\mathbf{x}||^2
+    \end{align*}
+    so \(S_\mathbf{v}\in\mathrm{O}(n)\) as required.
+\end{proof}
+\begin{remark}
+    Let \(||\mathbf{v}||=1\) and put an orthnormal basis \(\mathbf{v}_1,\ldots,\mathbf{v}_{n-1}\) for \(P_\mathbf{v}\). In the basis \(\{\mathbf{v}_1,\ldots,\mathbf{v}_{n-1},\mathbf{v}\}\), \(S_\mathbf{v}\) has matrix 
+    \[\text{diag}(1,1,\ldots,1,-1)\]
+    so \(\det S_\mathbf{v}=-1\) and \(S_\mathbf{v}\notin\SO(n)\).
+\end{remark}
+\begin{theorem}
+    Every \(A\in\mathrm{O}(n)\) is a product of at most \(n\) reflections.
+    \label{thm:orth_reflect}
+\end{theorem}
+\begin{proof}
+    We proceed by induction on \(n\). For base case \(n=1\), \(\mathrm{O}(1)=\{I,S_1\}=\langle S_1\rangle\cong C_2\). Now, let \(\{\mathbf{e}_1,\ldots\mathbf{e}_n\}\) be the standard basis for \(\mathbb{R}^n\). Let \(\mathbf{v}=\mathbf{e}_n\cdot A\mathbf{e}_n\). Then,
+    \[S_\mathbf{v}A\mathbf{e}_n=\mathbf{e}_n\]
+    So \(S_\mathbf{v}A\) (since it preserves dot product) preserves \(\mathbb{R}^{n-1}\times\{0\}\subseteq\mathbb{R}^n\). By induction there exist \(\mathbf{v}_1,\ldots,\mathbf{v}_{n-1}\in\mathbb{R}^{n-1}\times\{0\}\) such that 
+    \[S_\mathbf{v}A=S_{\mathbf{v}_1}\cdots S_{\mathbf{v}_{n-1}}\]
+    on \(\mathbb{R}^{n-1}\). Since both sides of this equation also fix \(\mathbf{e}_n\), they are equal everywhere. Hence we may write 
+    \[A=S_\mathbf{v}S_{\mathbf{v}_1}\cdots S_{\mathbf{v}_{n-1}}\]
+    as required.  
+\end{proof}
+Orthogonal transformations are especially easy to analyse in low dimensions, e.g. \(n=2,3\).
+\begin{lemma}
+    Let \(A\in\mathrm{O}(2)\). 
+    \begin{enumerate}
+        \item If \(A\notin\SO(2)\), then \(A\) is a reflection.
+        \item If \(A\in\SO(2)\), then \(A\) is a \emph{rotation} about 0, i.e. \(A=I\) or \(\text{Fix}(A)=\{0\}\).
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Recall that \(\det S_\mathbf{v}=-1\); so \(\det(S_{\mathbf{v}_1}\cdots S_{\mathbf{v}_k})=(-1)^k\). Also, by Theorem \ref{thm:orth_reflect}, \(A=S_{\mathbf{v}_1}\cdots S_{\mathbf{v}_k}\) with \(k\leq 2\). 
+    \begin{enumerate}
+        \item If \(A\notin\SO(2)\), then \(k\) is odd so \(k=1\) and \(A\) is a reflection.
+        \item If \(A\in\SO(2)\), then \(k\) is even, so unless \(k=0\) and \(A=I\), \(k=2\) and \(A=S_\mathbf{u}S_\mathbf{v}\) for some \(S_\mathbf{u}\neq S_\mathbf{v}\). We claim that \(S_\mathbf{u}S_\mathbf{v}\) only fixes \(0\), so \(A\) is a rotation. Indeed, for \(x\neq 0\), 
+        \[S_\mathbf{u}S_\mathbf{v}\mathbf{x}=\mathbf{x}\Leftrightarrow S_\mathbf{v}\mathbf{x}=S_\mathbf{u}\mathbf{x}\]
+        But \(\mathbf{u}\) is parallel to \(\mathbf{x}-S_\mathbf{u}\mathbf{x}\) and \(\mathbf{v}\) is parallel to \(\mathbf{x}-S_\mathbf{v}\mathbf{x}\). So \(S_\mathbf{u}\mathbf{x}=S_\mathbf{v}\mathbf{x}\) means that \(\mathbf{u}\) is parallel to \(\mathbf{v}\). Hence \(S_\mathbf{u}=\mathbf{v}\), leading to contradiction. Thus \(\text{Fix}(A)=\{0\}\) as required.
+    \end{enumerate}
+\end{proof}
+We can also get an explicit formula for element of \(\SO(2)\). 
+\begin{remark}
+    Let \(A\in\SO(2)\). We have seen that the columns form an orthonormal basis, so 
+    \[A=\begin{pmatrix}
+        a & \pm b \\ -b & \pm a
+    \end{pmatrix}\]
+    with \(\pm(a^2+b^2)=1\), So we may write 
+    \[A=\begin{pmatrix}
+        \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+    \end{pmatrix}\]
+\end{remark}
+Let's analyse elements of \(\SO(3)\) similarly.
+\begin{lemma}
+    If \(A\in\SO(3)\), then \(A\) is a \emph{rotation}, i.e. \(A=I\) or \(\text{Fix}(A)\) is a line.
+\end{lemma}
+\begin{proof}
+    As above, \(A\) is a product of reflections \(S_{\mathbf{v}_1}\cdots S_{\mathbf{v}_k}\) with \(k\leq 3\) and \(k\) even. So \(A=I\) or \(A=S_\mathbf{u}S_\mathbf{v}\) for some \(S_\mathbf{u}\neq S_\mathbf{v}\). For the later case, since we are in dimension 3, \(P_\mathbf{u}\cap P_\mathbf{v}=l\) is a line. To see that \(A\) fixes \(l\), argue as in dimension 2:
+    \[S_\mathbf{u}S_\mathbf{v}\mathbf{x}=\mathbf{x}\Rightarrow S_\mathbf{u}\mathbf{x}=S_\mathbf{v}\mathbf{x}\Rightarrow\mathbf{x}\in P_\mathbf{u}\cap P_\mathbf{v}=l\]
+\end{proof}
+\section{Platonic Solids}
+There are infinitely many regular 2-dimensional polygons, however, in dimension 3, there are only five maximally symmetric polyhedra: the \emph{Platonic solids}.
+\begin{definition}
+    A convex polyhedron \(X\subseteq\mathbb{R}^3\) is a \emph{Platonic solid} if 
+    \begin{itemize}
+        \item every face is a regular \(n\)-gon for some \(n\);
+        \item \(G=\isom(X)\) acts transitively on faces;
+        \item if \(\mathbf{x}\in X\) is the midpoint of a face, \(\stab_G(\mathbf{x})\cong D_{2n}\).
+    \end{itemize}
+\end{definition}
+\begin{theorem}
+    (Very Ancient) There are, up to similarity, five Platonic solids:
+    \begin{itemize}
+        \item Tetrahedron (four triangular faces, four vertices).
+        \item Cube (Hexahedron) (six square faces, eight vertices).
+        \item Octahedron (eight triangular faces, six vertices).
+        \item Dodecahedron (12 pentagonal faces, 20 vertices).
+        \item Icosahedron (20 triangular faces, 12 vertices).
+    \end{itemize}
+\end{theorem}
+Furthermore, two solids \(X, Y\) are \emph{dual} if \(Y\) can be constructed by putting vertices in the centres of the faces of \(X\), and joining vertices in adjacent faces by edges.
+\begin{example}
+    The cube and the octahedron are dual.
+\end{example}
+\begin{example}
+    The tetrahedron is dual to itself.
+\end{example}
+\begin{example}
+    The dodecahedron and icosahedron are dual.
+\end{example}
+In particular, if \(X\) and \(Y\) are dual, then \(\isom(X)\cong\isom(Y)\), so we have only three symmetry groups to consider. Often, instead of computing the whole \(G=\isom(X)\), we will start with \(G_0\leq G\), the index two subgroup of rotational symmetries.\footnote{Consider map \(\det:G\to \{\pm 1\}\) (they are orthogonal transformation since the centre of mass is fixed).}
+\begin{example}
+    (\emph{Tetrahedron}) Let \(G_0\leq G=\isom(\textsc{Tetrahedron})\) be the index two subgroup of rotational symmetries. From Example \ref{eg:tetrahedron_rot}, \(|G_0|=12\) so \(|G|=24\). Meanwhile, the action on 4 vertices defines a homomorphism \(\theta:G\to S_4\), which is an injection by the \emph{4-point lemma}. Since \(|G|=24|S_4|\), \(\theta\) is an isomorphism, and \(G\cong S_4\).
+\end{example}
+\begin{lemma}
+    If \(H\leq S_n\) and \(|S_n:H|=2\), \(H=A_n\).
+\end{lemma}
+\begin{proof}
+    Because \(|S_n:H|=2\), \(H\lhd S_n\), and \(S_n/H\cong C_2\). We therefore have a surjective homomorphism \(\theta:S_n\to C_2=\{\pm 1\}\) with \(H=\ker\theta\). Since transpositions generate \(S_n\), there is a transposition \(\tau_0\) such that \(\theta(\tau_0)=-1\). But all transpositions are conjugate, so any transposition \(\tau\) is of the form \(\tau=\sigma\tau_0\sigma^{-1}\) for some \(\sigma\in S_n\). Therefore, since \(C_2\) abelian,
+    \[\theta(\tau)=\theta(\sigma\tau_0\sigma^{-1})=\theta(\sigma)\theta(\tau_0)\theta(\sigma)^{-1}=\theta(\tau_0)=-1\]
+    Hence \(\theta\) and \(\sgn\) agree on a generating set, so \(\theta=\sgn\Rightarrow \ker\theta=\ker(\sgn)=A_n\).
+\end{proof}
+Continuing with our example, in particular, \(G_0=A_4\leq S_4=G\) for tetrahedron.
+\begin{example}
+    (\emph{Cube}) Let \(G=\isom(\textsc{Cube})\) and \(G_0\leq G\) the index two subgroup of rotational symmetries. Since \(|G_0|=24\) from Example \ref{eg:cube_rot}, \(|G|=48\). In Example Sheet Q7, we saw that \(G_0\) acts on the set of four diagonals, so we obtain a homomorphism \(\theta:G_0\to S_4\). Recall that \(S_4\) is generated by \(\binom 42=6\) transpositions. Notice that rotation about midpoints of opposite pairs of edges give \(12/2=6\) transpositions in the image of \(\theta\). Thus \(\image\theta\) contains all transposition, so \(\image\theta=S_4\), \(\theta\) is surjective and hence and isomorphism. I.e. \(G_0\cong S_4\).
+\end{example}
+\newpage
+\section{Example Sheets}
+\subsection{Sheet 1}
+\begin{enumerate}[{1.}]
+    \item For \(g\in G\), \(g^2=g=ge\Rightarrow g=e\).
+    \item Easily prove that \(H\cap K\leq G\) by the subgroup criterion.
+    \item Check identity, closure, associativity. There exists inverse 
+    \[x^{-1}=-\frac{x}{1+x}\]
+    \item \begin{enumerate} [{(a)}]
+        \item Suppose \(g^n\neq e\) for all \(n\). If \(g^m=g^n\) for some \(m,n\), then \(e=g^{m-n}\); so \(g^m\neq g^n\) for all \(m,n\in\mathbb{N}\). But this contradicts the assumption that \(G\) is finite. 
+        \item By part (a), there exist \(n_1,\ldots,n_k\) such that 
+        \[g_1^{n_1}=\cdots=g_k^{n_k}=e\]
+        Then, we may choose \(N=\text{lcm}\{n_1,n_2,\ldots,n_k\}\).
+    \end{enumerate}
+    \item If \(z\in S\), then \(z^n\in S\) since \(S\) closed. For \(S\) to be finite, we require \(|z|=1\). Hence 
+    \[S\subseteq\{z\in\mathbb{C}\::\:|z|=1\}\]
+    
+    Associativity is trivial and \(S\) is closed under multiplication. Now, note that \(1\) is the identity, and using similar argument as in Q4, we can tell that \(1\in S\); and for any \(x\in S\), there exists \(m\in\mathbb{N}\) such that \(x^m=1\). Thus \(x^{-1}=x^{m-1}\in S\). Therefore, \(S\) is a group.
+
+    Let \(S\) contain \(n\) elements, i.e. 
+    \[S=\{1,z_1,\ldots,z_{n-1}\}\]
+    For any \(z_i\in S\), map \(z\mapsto z_iz\) is injective and thus surjective. Hence 
+    \[1\cdot z_1\cdots z_{n-1}=z_i^n(z_1\cdots z_{n-1})\]
+    so \(z_i^n=1\) for all \(z_i\) and \(z\in C_n\). This gives \(S\subseteq C_n\) but \(|C_n|=n\) so \(S=C_n\).
+    \item Can easily check that \(G\) is a group. Moreover, \(G\) is infinite. If \(G\) is finite, since it is closed under multiplication, \(G=C_n\) for some \(n\) by Q4, but then \(e^{2\pi i/(n+1)}\notin G\), which is a contradiction. However, for any element \(g=e^{\pi i t}=e^{\pi i p/q}\), \(g^{2q}=e^{2\pi i p}=1\). So \(o(g)\) is finite. 
+    \item Let \(o(g)=n\). Then \(\left(f(g)\right)^n=f(g^n)=f(e)=e\). Hence \(o(f(g))|n\).
+    \item Consider \(G\leq C_n=\langle g\rangle\). Let \(m\) be the smallest integer in \(\mathbb{N}\) such that \(g^m\in G\). We claim that \(g^m=c\) generates \(G\), i.e. 
+    \[G=\langle g^m\rangle=\langle c\rangle\]
+    Hence, for any \(b\in G\), we need to show that \(b\) is a power of \(c\). Suppose not. Since \(b=g^k\) for some \(k\), we write \(k=mq+r\) for some \(q,r\in\mathbb{N}\), \(0\leq r<m\). Then,
+    \[b=g^k=g^{mq+r}=(g^r)(g^m)^q=g^rc^q\]
+    This implies \(g^r=bc^{-q}\in G\), but \(r<m\) leads to a contradiction. Thus \(c\) generates \(G\) and it is cyclic.
+    \item We begin by a sublemma: given homomorphisms \(\phi:G\to H\) and \(\psi:G\to H\), 
+    \[S=\{x\in G\:|\:\phi(x)=\psi(x)\}\]
+    is a subgroup of \(G\).
+    \begin{proof}
+        Since \(\phi(e_G)=\psi(e_G)=e_G\in S\), \(S\) is non-empty. Let \(x,y\in S\). Then,
+        \[\phi(xy^{-1})=\phi(x)\phi(y^{-1})=\psi(x)\psi(y^{-1})=\psi(xy^{-1})\]
+        Hence \(xy^{-1}\in S\), and \(S\leq G\) by the subgroup criterion. 
+    \end{proof}
+    Note that \(\langle X\rangle=G\) implies that only subgroup of \(G\) that contains \(X\) is \(G\) itself. But \(X\subseteq S\) so \(S=G\). Therefore, \(\phi=\psi\).
+    \item If \(n\), recall the diherdral relation and the fact that \(C_n\) is abelian. If \(n\) odd, \(\theta(g)=e\), or \(\theta(r)=1\), \(\theta(s)=-1\) (contradiction when \(\theta(r)=-1\)).
+    
+    For \(C_n\to C_m\), instead consider \(\phi:\mathbb{Z}_n\to\mathbb{Z}_m\). If \(\phi\) is a homomorphism, then 
+    \[\phi(k)=\overbrace{\phi(1)+_m\cdots +_m\phi(1)}^{k}=k\times_m\phi(1)\]
+    Hence the homomorphism is completely determined by \(\phi(1)\). Let \(\phi(1)=a\). Since \(\phi(0)=\phi(n)\) implies \(na\equiv 0\mod m\), we have 
+    \[na=mb\] for some \(b\in\mathbb{Z}\). If we let \(d=\gcd(m,n)\), 
+    \[\frac nda=\frac mdb\]
+    But \(\gcd(n/d,m/d)=1\) so we require \((m/d)|a\). Thus are total of \(d\) numbers in \(\mathbb{Z}_m\) satisfying the condition:
+    \[0,\frac md,\ldots,\frac{d-1}{d}m\]
+    i.e. \(a\) can take one of the values above. Still, it remains to check that \(\phi(k)=k\times_m a\) is a homomorphism: if \(k,l\in\mathbb{Z}_n\),
+    \[\phi(k+_nl)=\phi(k)+_m\phi(l)\Leftrightarrow a(k+_n l)\equiv ka+la\mod m\Leftrightarrow a(k+l)\equiv ak+al\mod m\]
+    Therefore, there are \(d\) such homomorphism \(\phi:\mathbb{Z}_n\to\mathbb{Z}_m\), which are 
+    \[\phi(k)=k\times_m\frac{jm}{d}\]
+    for \(j=0,1,\ldots,d-1\).
+    \item Let \(a,b\in G\), \(a,b\neq e\), and \(a\neq b\). Then, \((ab)^2=abab=e\Leftarrow aba=b^{-1}=b \Leftrightarrow ba=a^{-1}b=ab\). Hence \(G\) is abelian.
+    
+    Suppose there are \(n\) minimal numbers of generators. Since group is abelian,
+    \[|G|\leq \sum_{j=0}^{n}\binom nj=2^n\]
+    However, all products of the generator should be distinct since otherwise we can rearrange to obtain the result that one generator is a product of other generators. Thus \(|G|=2^n\).
+    \item (\emph{Solution 1}) Clear from Cauchy's theorem.
+    
+    (\emph{Solution 2}) There are only one element of order 1, identity. Suppose all other elements have order greater than 2. Then, we may pair \((x,x^{-1})\) since \(x\neq x^{-1}\). But this contradicts our assumption that order of the group is even. Hence there is an element of order 2.
+
+    For the next part, suppose \(s,t\in G\) with \(o(s)=o(t)=2\). If \(s\) and \(t\) commute,
+    \[(st)^2=stst=s^2t^2=e\]
+    Hence \(o(st)=2\). Otherwise, if \(s,t\) does not commute, \(sts^{-1}\neq s,t\) and 
+    \[sts^{-1}sts^{-1}=e\]
+    So there is always a third element of order two.
+    \item Let \(f\) be such isometry, i.e. 
+    \[|f(z)-f(w)|=|z-w|\]
+    Since, \(|f(z)-f(0)|=|z|\), define \(g(z)=f(z)-f(0)\) to write \(|g(z)|=|z|\). Furthermore, since \(|g(1)|=1\), define \(h(z)=g(z)/|g(1)|\). We now have 
+    \[|h(z)-h(w)|=|z-w|\]
+    with \(h(0)=0\), \(h(1)=1\). But \(|z|=|h(z)|\) and \(|z-1|=|h(z)-1|\) implies \(h(z)=z\text{  or  }\bar{z}\). Moreover, \(h(z)=z\) for all \(z\in\mathbb{C}\) or \(h(z)=\bar{z}\) for all \(z\in\mathbb{C}\) since it is impossible for two \(z,w\in\mathbb{C}\backslash\mathbb{R}\) to satisfy \(|z-w|=|z-\bar{w}|\). Therefore, \(f(z)=az+b\) or \(f(z)=a\bar{z}+b\) with \(a=g(1)\) and \(b=g(0)\).
+    \item Think about it.
+\end{enumerate}
+\subsection{Sheet 2}
+\begin{enumerate}[{1.}]
+    \item Two orders divide each other and thus equal.
+    \item Let \(H\leq G\) and \(\gamma\in G\). Define a bijection \(\phi:G/H\to H\backslash G\), \(\gamma H\mapsto H\gamma^{-1}\). We need to prove this is well defined, injective, and surjective.
+    
+    Let \(\gamma_1 H=\gamma_2 H\). We want to show \(H\gamma_1^{-1}=H\gamma_2^{-1}\) to prove that \(\phi\) is well defined.  If some \(x\in H\gamma_1^{-1}\), \(x=h_1\gamma_1^{-1}\) for some \(h_1\in H\), and 
+    \[x^{-1}=\gamma_1h_1^{-1}\in\gamma_1 H=\gamma_2 H\]
+    so \(x^{-1}=\gamma_2h_2\) for some \(h_2\in H\), and \(x=h_2^{-1}\gamma_2^{-1}\in H\gamma_2^{-1}\). Hence \(H\gamma_1^{-1}\subseteq H\gamma_2^{-1}\). Similarly, \(H\gamma_1^{-1}\supseteq H\gamma_2^{-1}\) so \(H\gamma_1^{-1}=H\gamma_2^{-1}\).
+
+    Surjectivity is clear since for any \(H\gamma\in H\backslash G\), \(\phi(\gamma^{-1}H)=H\gamma\).
+
+    To prove injectivity, suppose \(H\gamma_1^{-1}=H\gamma_2^{-1}\). By the similar reasoning as above, \(\gamma_1H=\gamma_2H\). Thus, \(\phi\) is a well-defined bijection.
+    \item Clear from the Lagrange's theorem. \(30=\gcd(o(g_1),o(g_2))\big||G|\).
+    \item Similarly, clear from the Lagrange's theorem.
+    \item \begin{enumerate}[{(a)}]
+        \item Suppose \(g_1\in\stab_G(hx)\), i.e. \(g_1hx=hx\). Then \(h^{-1}g_1hx=x\). If we let \(g_2=h^{-1}gh\), \(g_1=hg_2h^{-1}\) with \(g_2\in G\), \(g_2x=x\). Hence \(g_1\in h\stab_G(x)h^{-1}\) and \(\stab_G(hx)\subseteq h\stab_G(x)h^{-1}\).
+    
+        Conversely,  \(\stab_G(hx)\supseteq h\stab_G(x)h^{-1}\). 
+        \item Suppose \(y_1\in\text{Fix}(hgh^{-1})\), i.e. \(hgh^{-1}y_1=y_1\). Then we have \(g(h^{-1}y_1)=h^{-1}y\) so \(h^{-1}y_1\in\text{Fix}(g)\). Now, 
+        \[h(h^{-1}y_1)=(hh^{-1})y_1=ey_1=y_1\in h\text{Fix}(g)=\{hx\:|\:x\in\text{Fix}(g)\}\]
+        so \(\text{Fix}(hgh^{-1})\subseteq h\text{Fix}(g)\).
+
+        Conversely, let \(y_2\in h\text{Fix}(g)\), i.e. \(y_2=hx_2\) where \(gx_2=x_2\), \(x_2\in X\). Then, 
+        \[y_2=hx_2=h(gx_2)=(hg)x_2\]
+        Put \(x_2=h^{-1}y_2\) to find \(y_2=(hg)(h^{-1}y_2)=(hgh^{-1})y_2\), giving \(y_2\in\text{Fix}(hgh^{-1})\). Hence, \(h\text{Fix}(g)\subseteq\text{Fix}(hgh^{-1})\).
+    \end{enumerate}
+    \item From Example \ref{eg:dihedral_conj}, \(s\) is conjugate with \(r^{2k}s=sr^{n-2k}\), which is the reflection in the line of symmetry through \(z_k\). If \(n\) odd, this will contain all \(s,\ldots,sr^{n-1}\). If \(n\) even, there will be \(\ccl_{D_{2n}}(s)\) (reflection through vertices) and \(\ccl_{D_{2n}}(sr)\) (reflection through midpoint of edges).
+    \item Let \(C\) a cube, and \(G=\isom(C)\), and \(X\) as the set of long diagonals. Then, a map \(\phi\in G\) should send \(X\to X\) since it is a isometry. Hence \(\phi\) is closed and there is a natural action \(G\acts X\). (Furthermore, one may encounter a hexagon, implying \(D_{12}\), when considering \(\stab_G(l)\).)
+    \item Since \(G\) is transitive, by orbit-stabiliser
+    \[|X|=|Gx|=|G|/|\stab_G(x)|\]
+    for all \(x\in X\). Thus 
+    \[|G|=|X|\Leftrightarrow\stab_G(x)=\{e\}\quad\forall x\in X\Leftrightarrow\forall x\in X,gx=x\text{  if and only if  }g=e\]
+    Suppose there exist \(g_1\in G\) and \(x\in X\) such that \(g_1x=x\). Then, since \(G\) abelian, for any \(g\in G\),
+    \[gx=g(g_1x)=(gg_1)x=g_1(gx)\]
+    But since the action is transitive, the above equation implies that \(g_1x=x\) for all \(x\in X\), which is a contradiction to the assumption that the action is faithful.
+    Hence \(g_1x\neq x\) and \(|G|=|X|\).
+    \item Showing \(G\acts\text{Sub}(G)\) is easy. By orbit-stabiliser,
+    \[|GH|=\frac{|G|}{|\stab_G(H)|}\]
+    and 
+    \[|G:H|=|G|/|H|\]
+    by Lagrange. Hence, 
+    \[|GH|\leq|G:H|\Leftrightarrow |H|\leq|\stab_G(H)|\]
+    We claim that \(H\subseteq\stab_G(H)\). Indeed, if \(h\in H\leq G\),
+    \[hHh^{-1}=H\]
+    Because \(hh_1h^{-1}=hh_2h^{-1}\Rightarrow h_1=h_2\) and the map \(H\to hHh^{-1}\), \(h^\prime\to hh^\prime h^{-1}\) is injective (and \(hHh^{-1}\subseteq H\)).
+    \item (\emph{Burnside's Lemma}) Note that 
+    \[\stab_G(x)=\{g\in G\:|\:gx=x\}\]
+    \[\text{Fix}(g)=\{x\in X\:|\:gx=x\}\]
+    By double counting \((g,x)\) pairs, and using the orbit-stabiliser theorem, we find out that 
+    \[\sum_g|\text{Fix}(g)|=\sum_x|\stab_G(x)|=\sum_x\frac{|G|}{|Gx|}\]
+    Recall that orbits partition, and every orbit has the same order, say \(N\). Hence 
+    \[\frac 1{|G|}\sum_g|\text{Fix}(g)|=\sum_x\frac{1}{|Gx|}=\frac 1N\sum_x 1=\frac{|X|}{N}=\text{number of orbits}\]
+
+    If \(G\) acts transitively, by the Burnside's lemma,
+    \[1=\frac 1{|G|}\sum_g|\text{Fix}(g)|\]
+    Furthermore, observe that \(\text{Fix}(e)=X\).
+    Therefore, since \(|X|>1\), there exists \(g\in G\) such that \(\text{Fix}(g)=\emptyset\).
+    \item  \(f(z)=(2z+3)/(z-4)=\beta_2\circ\alpha_{11}\circ\gamma\circ\beta_{-4}\).
+    \item Let \(G=\langle f,g\rangle\) and consider a map \(\phi: G\to D_{2n}\) with \(f\mapsto r\), \(g\mapsto s\). Using \(gf=f^{-1}g\), it can be checked \(\phi\) is a homomorphism.
+    \item Since Möbius transformations are sharply triply transitive, \(G\cong S_3\cong D_6\).
+\end{enumerate}
 \chapter{Analysis I}
 \chapterauthor{Lecture by Professor Claude Warnick. 
     Lent term 2024.}

@@ -803,6 +803,31 @@ However, we cannot be sure if the converse is true, i.e. does \(x\equiv 2\mod 3\
 \end{definition}
 For example, when \(p\) is prime, \(\varphi(p)=p-1\), and \(\varphi(p^2)=p^2-p\). When \(p\), \(q\) are distinct primes,
 \[\varphi(p,q)=pq-p-q+1\]
+For more general values of \(\varphi\), there are mainly two methods to calculate.
+\begin{proposition}
+    If \(p_1,\ldots,p_k\) are all prime factors of some \(N\in\mathbb{N}\),
+    \[\varphi(N)=N\prod_{j=1}^k\left(1-\frac{1}{p_j}\right)\]
+    \label{prop:eulerphi_calc}
+\end{proposition}
+\begin{proof}
+    Let \(S_N=\{1,2,\ldots,N\}\) and 
+    \[A_i=\{n\in S_N\::\:p_i|n\}\]
+    Then, by inclusion-exclusion,
+    \[|A_1\cup\cdots\cup A_{k}|=N\left(\sum\frac 1{p_i}-\sum\frac 1{p_ip_j}+\cdots\right)\]
+    and 
+    \begin{align*}
+        \varphi(N)&=1-|A_1\cup\cdots\cup A_{k}| \\
+        &=N\left(1-\sum\frac 1{p_i}+\sum\frac 1{p_ip_j}-\cdots+(-1)^k\frac{1}{p_1p_2\cdots p_k}\right) \\
+        &=N\prod_{j=1}^{k}\left(1-\frac 1{p_j}\right)
+    \end{align*}
+\end{proof}
+\begin{corollary}
+    If we write \(N=p_1^{e_1}p_2^{e_2}\cdots p_k^{e_k}\) where \(p_i\) prime, 
+    \[\varphi(N)=\prod_{j=1}^{k}(p_j-1)p_j^{e_j-1}\]
+\end{corollary}
+\begin{proof}
+    It immediately follows from Proposition \ref{prop:eulerphi_calc}.
+\end{proof}
 Next, let's take a look at behavior of a power of an integer modulo \(p\).
 \begin{theorem}
     (\emph{Fermat's Little Theorem})
@@ -1002,7 +1027,7 @@ A real that is not rational is called \emph{irrational}. For example, \(\sqrt{2}
 \[\sqrt{5}=\frac{a-2b}{3b}\in\mathbb{Q}\]
 The rationals are \emph{dense} in \(\mathbb{R}\), in a sense that \(\forall a<b\in\mathbb{R}\), \(\exists c\in\mathbb{Q}\) with \(a<c<b\). To show the assetion above, assume that \(a\geq 0\). By Corollary \ref{coro:1/n}, \(\exists n\in N\) with \(1/n<b-a\). Let 
 \[T=\{k\in\mathbb{N}\::\:k/n\geq b\}\]
-By the Axiom of Archimedes, \(\exists N\in\mathbb{N}\) such that \(N>b\). Hence \(Nn\in\mathbb{T}\), so \(T\neq\emptyset\). By the well-ordering principle (Theorem \ref{thm:wop}), \(T\) has a least element \(m\). Let's set \(c=(m-1)/n\). Since \(m-1\notin T\), \(c<b\). If \(c\leq a\), then 
+By the Axiom of Archimedes, \(\exists N\in\mathbb{N}\) such that \(N>b\). Hence \(N/n\in T\), so \(T\neq\emptyset\). By the well-ordering principle (Theorem \ref{thm:wop}), \(T\) has a least element \(m\). Let's set \(c=(m-1)/n\). Since \(m-1\notin T\), \(c<b\). If \(c\leq a\), then 
 \[\frac mn=c+\frac 1n<a+(b-a)=b\]
 which is a contradiction. Therefore, \(a<c<b\). Similarly, the irrationals are also dense in \(\mathbb{R}\), i.e. \(\forall a<b\in\mathbb{R}\), \(\exists c\in\mathbb{R}\backslash\mathbb{Q}\) with \(a<c<b\). For example, this can be constructed by taking a rational \(c\) with \(a\sqrt{2}<c<b\sqrt{2}\) and then
 \[a<\frac{c}{\sqrt{2}}<b\]
@@ -1323,7 +1348,7 @@ Note that the proof above is similar as the diagonal argument by Cantor.
     \[0.x_1x_2x_3\ldots\]
     with \(x_i\in\{0,1\}\), and set \(f(x)=\{n\in N\::\:x_n=1\}\). Then, \(f\) is an injection.
 \end{proof}
-\begin{theorem}
+\begin{theorem} (\emph{Cantor's Theorem})
     For any set \(X\), there is no bijection between \(X\) and its power set \(\mathcal{P}(X)\).
 \end{theorem}
 \begin{proof}
@@ -1922,7 +1947,7 @@ Thus \(\mathbb{Z_n}\cong{C_n}\)
 \begin{lemma} \item[]
     \begin{enumerate}
         \item If \(\phi:G\to H\) is a homomorphism, so is \(\phi^{-1}\).
-        \item If \(G\xrightarrow{\phi}H\xrightarrow{\psi}K\) are both Homomorphisms, then so is \(\psi\circ\phi\).
+        \item If \(G\xrightarrow{\phi}H\xrightarrow{\psi}K\) are both homomorphisms, then so is \(\psi\circ\phi\).
         \item \(\cong\) is an equivalence relations.\footnote{Recall Numbers and Sets.}
     \end{enumerate}
 \end{lemma}
@@ -2242,6 +2267,35 @@ Notice that \(G\) can acts on itself by conjugation. \(G\acts G\), \(g(\gamma)=g
     We define the \emph{centre} of \(G\) as 
     \[Z(G)=\{h\in G\:|\: hg=gh\text{  for all  }g\in G\}=\bigcap_{g\in G}C_G(g)\]
 \end{definition}
+\begin{definition}
+    Let \(G\acts X\) where \(G\) and \(X\) finite. For any \(T\subseteq G\), the \emph{fixed point set} is defined as 
+    \[X^T=\{x\in X\:|\:\forall g\in T, gx=x\}\]
+    and the \emph{fixed point} of element \(g\in G\) is 
+    \[\text{Fix}(g)=X^{\{g\}}\]
+\end{definition}
+\begin{example}
+    If \(G\) acts on \(X\) via conjugation, \(X^G=Z(G)\) (immediate from definition).
+    \label{eg:centre_fix}
+\end{example}
+\begin{theorem}
+    (\emph{Class Equation}) If \(G\acts X\) and \(G\), \(X\) finite, 
+    \[|X|=|X^G|+\sum_x|Gx|\]
+    where the sum is over a set of representatives for the orbits containing more than one element.
+    \label{thm:class_eq}
+\end{theorem}
+\begin{proof}
+    Recall that orbits partition. Hence \(|X|-\sum_x|Gx|\) is the number of orbits that contains only one element. But if \(Gx=\{x\}\), \(x\in X^G\) and conversely, if \(x\in X^G\), \(Gx=x\); so the result follows.
+\end{proof}
+\begin{corollary}
+    If \(G\) acts on itself by conjugation,
+    \[|G|=|Z(G)|+\sum_{g\notin Z(G)}|\ccl_G(g)|\]
+\end{corollary}
+\begin{proof}
+    Done from Example \ref{eg:centre_fix} and Theorem \ref{thm:class_eq}.
+\end{proof}
+\begin{example}
+    If order of group \(G\) is power of some prime \(p\), then its centre is nontrivial. Indeed, since \(p\big||G|\), by orbit-stabiliser theorem we have \(p\big||\ccl_G(g)|\) or \(1=|\ccl_G(g)|\) for all \(g\in G\). In particular, if \(g\notin Z(G)\),  \(p\big||\ccl_G(g)|\). Then, by the class equation for groups, \(p\big||Z(G)|\).
+\end{example}
 \section{The Möbius Group}
 \subsection{Möbius Transformation and Möbius Group}
 The Möbius group is almost a group of bijections of \(\mathbb{C}\), but to make good sense of it, we need to add in one extra point.
@@ -2311,7 +2365,7 @@ Before going further, we formally define a concept that we already know about.
 \end{lemma}
 \begin{proof}
     Let 
-    \[\alpha(z)=\frac{z-z_1}{z-z_3}\frac{z_2-z_3}{z_3-z_1},\quad\beta(z)=\frac{z-w_1}{z-w_3}\frac{w_2-w_3}{w_2-w_1}\]
+    \[\alpha(z)=\frac{z-z_1}{z-z_3}\frac{z_2-z_3}{z_2-z_1},\quad\beta(z)=\frac{z-w_1}{z-w_3}\frac{w_2-w_3}{w_2-w_1}\]
     Note that 
     \[\alpha:\:\begin{aligned}
         z_1&\mapsto 0 \\
@@ -2349,6 +2403,12 @@ Before going further, we formally define a concept that we already know about.
     \[\mu_3\circ\mu_2\circ\mu_1(z_3)=\infty\]
     So \((\mu_3\mu_2\circ\mu_1)^{-1}=\mu_1^{-1}\circ\mu_2^{-1}\circ\mu_3^{-1}\) sends \(0\mapsto z_1\), \(1\mapsto z_2\), and \(\infty\mapsto z_3\). Thus \(\mu\) and \(\mu_1^{-1}\circ\mu_2^{-1}\circ\mu_3^{-1}\) agree on \(0,1,\infty\), and hence everywhere, by the 3-point lemma (Lemma \ref{lemma:3point_mobius}).
 \end{proof}
+% \begin{proposition}
+%     Every finite abelian subgroup of Möbius group \(\mathcal{M}\) is either cyclic or isomorphic to \(C_2\times C_2\).
+% \end{proposition}
+% \begin{proof}
+    
+% \end{proof}
 \subsection{Circles}
 \begin{definition}
     A \emph{circle} in \(\mathbb{C}_\infty\) is:
@@ -2813,6 +2873,18 @@ Let's apply the facts to study conjugation in \(S_n\) and \(A_n\). We will start
     \[\sigma_2=(b_1^1\cdots b_{l_1}^1)\cdots(b_1^k\cdots b_{l_k}^k)\]
     where \(b_j^i=\tau(a_j^i)\). Therefore, \(\sigma_1\) and \(\sigma_2\) have the same cycle type.
 \end{proof}
+\begin{proposition}
+    Sign homomorphism is the only surjective homomorphism from \(S_n\) to \(C_2\). 
+\end{proposition}
+\begin{proof}
+    Since any two transpositions are conjugate, for arbitrary transpositions \(\tau^\prime\) and \(\tau\), there exists \(\sigma\in S_n\) such that 
+    \[\tau^\prime=\sigma\tau\sigma^{-1}\]
+    If we let \(\phi:S_n\to C_2\) a surjective homomorphism,
+    \[\phi(\tau^\prime)=\phi(\sigma\tau\sigma^{-1})=\phi(\tau)\]
+    Also, since any permutations be written as product of transpositions,
+    \[\phi(g)=\phi(\tau_1\cdots\tau_k)=(\phi(\tau_1))^k\]
+    and for \(\phi\) to be surjective, \(\phi(\tau_1)=-1\) and thus \(\phi=\sgn\).
+\end{proof}
 \begin{example}
     \((12)(123)(12)=(213)\); and, more generally, 
     \[\sigma(12\cdots l)\sigma^{-1}=\left(\sigma(1)\;\sigma(2)\cdots\sigma(l)\right)\]
@@ -2962,7 +3034,7 @@ where \(\mathbb{F}\) a field, e.g. \(\mathbb{R},\mathbb{C}\). Matrix multiplicat
     We have \(\det AB=\det A\det B\). Also, if \(A\) invertible, it has non-zero determinant and \(\det A\in\mathbb{F}\backslash\{0\}\). Furthermore, to prove surjectivity, for any \(x\in\mathbb{F}\backslash\{0\}\), we take \(I\) and replace \(I_{11}\) with \(x\). Then the determinant of such matrix is \(x\).
 \end{proof}
 \begin{definition}
-    We define the \emph{special linar group} as the kernal of \(\det:\GL(n,\mathbb{F})\to\mathbb{F}\backslash\{0\}\):
+    We define the \emph{special linar group} as the kernel of \(\det:\GL(n,\mathbb{F})\to\mathbb{F}\backslash\{0\}\):
     \[\SL(n,\mathbb{F})=\ker(\det)=\{A\in\GL\:|\:\det A=1\}\]
 \end{definition}
 It follows that \(\SL(n,\mathbb{F})\lhd\GL(n,\mathbb{F})\). Also note that \(Q_8\leq\SL(2,\mathbb{C})\).
@@ -3111,7 +3183,7 @@ by the isomorphism theorem.
     \label{thm:orth_reflect}
 \end{theorem}
 \begin{proof}
-    We proceed by induction on \(n\). For base case \(n=1\), \(\mathrm{O}(1)=\{I,S_1\}=\langle S_1\rangle\cong C_2\). Now, let \(\{\mathbf{e}_1,\ldots\mathbf{e}_n\}\) be the standard basis for \(\mathbb{R}^n\). Let \(\mathbf{v}=\mathbf{e}_n\cdot A\mathbf{e}_n\). Then,
+    We proceed by induction on \(n\). For base case \(n=1\), \(\mathrm{O}(1)=\{I,S_1\}=\langle S_1\rangle\cong C_2\). Now, let \(\{\mathbf{e}_1,\ldots\mathbf{e}_n\}\) be the standard basis for \(\mathbb{R}^n\). Let \(\mathbf{v}=\mathbf{e}_n + A\mathbf{e}_n\). Then,
     \[S_\mathbf{v}A\mathbf{e}_n=\mathbf{e}_n\]
     So \(S_\mathbf{v}A\) (since it preserves dot product) preserves \(\mathbb{R}^{n-1}\times\{0\}\subseteq\mathbb{R}^n\). By induction there exist \(\mathbf{v}_1,\ldots,\mathbf{v}_{n-1}\in\mathbb{R}^{n-1}\times\{0\}\) such that 
     \[S_\mathbf{v}A=S_{\mathbf{v}_1}\cdots S_{\mathbf{v}_{n-1}}\]
@@ -3133,7 +3205,7 @@ Orthogonal transformations are especially easy to analyse in low dimensions, e.g
         \item If \(A\notin\SO(2)\), then \(k\) is odd so \(k=1\) and \(A\) is a reflection.
         \item If \(A\in\SO(2)\), then \(k\) is even, so unless \(k=0\) and \(A=I\), \(k=2\) and \(A=S_\mathbf{u}S_\mathbf{v}\) for some \(S_\mathbf{u}\neq S_\mathbf{v}\). We claim that \(S_\mathbf{u}S_\mathbf{v}\) only fixes \(0\), so \(A\) is a rotation. Indeed, for \(x\neq 0\), 
         \[S_\mathbf{u}S_\mathbf{v}\mathbf{x}=\mathbf{x}\Leftrightarrow S_\mathbf{v}\mathbf{x}=S_\mathbf{u}\mathbf{x}\]
-        But \(\mathbf{u}\) is parallel to \(\mathbf{x}-S_\mathbf{u}\mathbf{x}\) and \(\mathbf{v}\) is parallel to \(\mathbf{x}-S_\mathbf{v}\mathbf{x}\). So \(S_\mathbf{u}\mathbf{x}=S_\mathbf{v}\mathbf{x}\) means that \(\mathbf{u}\) is parallel to \(\mathbf{v}\). Hence \(S_\mathbf{u}=\mathbf{v}\), leading to contradiction. Thus \(\text{Fix}(A)=\{0\}\) as required.
+        But \(\mathbf{u}\) is parallel to \(\mathbf{x}-S_\mathbf{u}\mathbf{x}\) and \(\mathbf{v}\) is parallel to \(\mathbf{x}-S_\mathbf{v}\mathbf{x}\). So \(S_\mathbf{u}\mathbf{x}=S_\mathbf{v}\mathbf{x}\) means that \(\mathbf{u}\) is parallel to \(\mathbf{v}\). Hence \(S_\mathbf{u}=S_\mathbf{v}\), leading to contradiction. Thus \(\text{Fix}(A)=\{0\}\) as required.
     \end{enumerate}
 \end{proof}
 We can also get an explicit formula for element of \(\SO(2)\). 
@@ -3326,8 +3398,8 @@ Continuing with our example, in particular, \(G_0=A_4\leq S_4=G\) for tetrahedro
     \[\text{Fix}(g)=\{x\in X\:|\:gx=x\}\]
     By double counting \((g,x)\) pairs, and using the orbit-stabiliser theorem, we find out that 
     \[\sum_g|\text{Fix}(g)|=\sum_x|\stab_G(x)|=\sum_x\frac{|G|}{|Gx|}\]
-    Recall that orbits partition, and every orbit has the same order, say \(N\). Hence 
-    \[\frac 1{|G|}\sum_g|\text{Fix}(g)|=\sum_x\frac{1}{|Gx|}=\frac 1N\sum_x 1=\frac{|X|}{N}=\text{number of orbits}\]
+    Observe that there are \(|Gx|\) element in \(X\) with the same orbit \(Gx\), so \(1/|Gx|\) will be counted \(|Gx|\) times. Hence,
+    \[\frac 1{|G|}\sum_g|\text{Fix}(g)|=\sum_x\frac{1}{|Gx|}=\text{number of orbits}\]
 
     If \(G\) acts transitively, by the Burnside's lemma,
     \[1=\frac 1{|G|}\sum_g|\text{Fix}(g)|\]
@@ -3335,7 +3407,76 @@ Continuing with our example, in particular, \(G_0=A_4\leq S_4=G\) for tetrahedro
     Therefore, since \(|X|>1\), there exists \(g\in G\) such that \(\text{Fix}(g)=\emptyset\).
     \item  \(f(z)=(2z+3)/(z-4)=\beta_2\circ\alpha_{11}\circ\gamma\circ\beta_{-4}\).
     \item Let \(G=\langle f,g\rangle\) and consider a map \(\phi: G\to D_{2n}\) with \(f\mapsto r\), \(g\mapsto s\). Using \(gf=f^{-1}g\), it can be checked \(\phi\) is a homomorphism.
-    \item Since Möbius transformations are sharply triply transitive, \(G\cong S_3\cong D_6\).
+    \item Since Möbius transformations are sharply triply transitive, \(G\cong S_3\cong D_6\). The elements of \(G\) are
+    \[z,\frac{z}{z-1},{1-z},\frac 1{1-z},\frac 1z,\frac{z-1}z\]
+    \item They are all false. See elements of \(G\) from Q13 as counterexamples.
+    \item Let \(h\in\mathcal{M}\) such that \(hfh^{-1}=g\). This implies
+    \[hfh^{-1}(z)=hf(h^{-1}(z))=h(\lambda h^{-1}(z))=\mu z\]
+    If we write 
+    \[h(z)=\frac{az+b}{cz+d}\]
+    then 
+    \[h^{-1}(z)=\frac{dz-b}{-cz+a}\]
+    and we obtain the condition 
+    \[\frac{(ad\lambda-bc)z+ab(1-\lambda)}{cd(\lambda-1)z+(ad-bc\lambda)}=\mu z\]
+    Thus, there are two cases:
+    \begin{itemize}
+        \item \(\lambda=\mu=1\).
+        \item \(cd=ab=0\) and 
+        \[\frac{ad\lambda-bc}{ad-bc\lambda}=\mu\]
+        so \(\lambda=\mu\) when \(c=0\) or \(d=0\) and \(\lambda\mu=1\).
+    \end{itemize}
+    Hence, \(f(z)=\lambda z\) and \(g=\mu z\) are conjugate if \(f=g\) or \(\lambda\mu=1\).
+    \item Clearly, \(o(f)=4\) and fixed points are \(\{0,\infty\}\). Now consider a map with \(0\mapsto 1\), \(\infty\mapsto -1\). One example of such map is 
+    \[g(z)=\frac{1+z}{1-z}\]
+    Now, compose to find \(h=g\circ f\circ g^{-1}\),
+    \[h(z)=\frac{(1+i)z+(1-i)}{(1-i)z+(1+i)}\]
+    with \(o(h)=4\) and \(\text{Fix}(h)=\{-1,1\}\).
+\end{enumerate}
+\subsection{Sheet 3}
+\begin{enumerate}[{1.}]
+    \item Doable.
+    \item By Cauchy's theorem. \(\exists a,b\in G\) such that \(o(a)=5\) and \(o(b)=2\). Note that 
+    \[e,a,a^2,a^3,a^4,b,ba,ba^2,ba^3,ba^4\]
+    are disjoint and they are all 10 elements of the group. Now consider the element \(ab\in G\). Then, if \(ab=ba\), group is abelian and \(G\cong C_{10}\). If not, only possible option is \(ab=ba^4\), i.e. \(ab=ba^{-1}\). Hence \(G\cong D_{10}\).
+    
+    Similar argument will hold to group \(X\) with \(|X|=2p\) (\(p\) prime). If \(o(a)=p\) and \(o(b)=2\), because \(|G:\langle a\rangle|=2\), \(\langle a\rangle\lhd G\) and \(bab^{-1}=a^j\) for some \(0\leq j\leq p-1\). But \(b^2=e\) so 
+    \[a=b^2ab^{-2}=b(bab^{-1})b^{-1}=ba^jb^{-1}=\underbrace{(bab^{-1})\cdots(bab^{-1})}_{j}=a^{j^2}\]
+    This implies \(1\equiv j^2\mod p\), i.e. \(j\equiv 1\mod p\) or \(j\equiv -1\mod p\).
+    Viz, \(X\cong D_{2p}\) or \(X\cong C_{2p}\).
+    \item It is clear that \(S_4\acts P\). Now, the orbit of \((x_1x_2+x_3x_4)\) is 
+    \[S_4(x_1x_2+x_3x_4)=\{x_1x_2+x_3x_4,x_2x_3+x_4x_1,x_2x_4+x_1x_3\}\]
+    so by orbit-stabiliser theorem, \(|\stab_{S_4}(x_1x_2+x_3x_4)|=8\). Thus we may identify 
+    \[\stab_{S_4}(x_1x_2+x_3x_4)=\{e,(12),(34),(12)(34),(13)(24),(14)(23),(1324),(1423)\}\]
+    \item Q4
+    \item We have 
+    \begin{align*}
+        H\lhd G&\Leftrightarrow\forall g\in G,x\in H,\quad gxg^{-1}\in H \\
+        &\Leftrightarrow \forall x\in H,\ccl_G(x)\subseteq H \\
+        &\Leftrightarrow H=\bigcup_{x\in H}\ccl_G(x)
+    \end{align*}
+    \item We have \(\ker\phi\lhd G\). Conversely, suppose \(K\lhd G\). Consider a map \(\phi:G\to G/K\), \(\gamma\mapsto\gamma K\). Then, \(\phi\) is a homomorphism with \(K\) as a kernel.
+    \item \begin{enumerate}[{(a)}]
+        \item \(H\leq C_n=\langle g\rangle\).Suppose \(xH\in C_n/H\). But \(x=g^k\) for some \(0\leq k<n\). If \(C_n/H\) is a group, then 
+        \[xH=g^kH=(gH)^k\]
+        Hence \(gH\) generates \(G/H\) and is cyclic.
+        \item We first check \(N\lhd D_{2n}\). Then, there is a homomorphism \(\phi:D_{2n}\to C_2\), \(s^ir^j\mapsto (-1)^i\) with \(\image\phi=C_2\), and \(\ker\phi=N\). Thus \(D_{2n}/N\cong C_2\).
+        \item Define a homomorphism \(\phi:\mathbb{C}\to\mathbb{C}\times\mathbb{C}\) with \(x+iy\mapsto (e^{2\pi i x},e^{2\pi i y})\) (\(x,y\in\mathbb{R}\)). This is a homomorphism with \(\ker\phi=\Gamma\), \(\image\phi=S^1\times S^1\). Thus \(C/\Gamma\cong S^1\times S^1\) by the isomorphism theorem.
+    \end{enumerate}
+    \item No. \(Q_8\) is \emph{Dedekind} and non-abelian, i.e. \emph{Hamiltonian}. 
+    \item We have \(|H|\nmid (k-1)!\).
+    \item Q10.
+    \item Q11.
+    \item \((1342)\), \((1423)\), \((12)(345)\) and 4,4,6 respectively.
+    \item We only need to consider each conjugacy classes. So, 6 and 20 for \(S_5\) and \(S_9\) respectively.
+    \item (a) is covered in course. For part (b), 
+    \[(j \; j+1)=(1j)(1+j)(1j)\]
+    and for part (c), if we let \(\sigma=(12\cdots n)\), 
+    \[\sigma(12)\sigma^{-1}=(23)\]
+    \[\sigma(12)\sigma^{-1}=(23)\]
+    \[\vdots\]
+    \[\sigma(n-2\;n-1)\sigma^{-1}=(n-1\;n)\]
+    so we are covered by part (a).
+    \item \(\sigma=(1\;2\;4\;8\;16)(3\;6\;12\;24\;17)(5\;10\;20\;9\;18)(7\;14\;28\;25\;19)(11\;22\;13\;26\;21)\), \(x\) represents \(x+31\mathbb{Z}\).
 \end{enumerate}
 \chapter{Analysis I}
 \chapterauthor{Lecture by Professor Claude Warnick. 
@@ -3389,7 +3530,7 @@ Note that similar definition can be made for greatest lower bound and infimum. I
     \label{fundlemma}
 \end{lemma}
 \begin{proof}
-    We will only prove 1, 2, and 5 here.
+    We will only prove 1, 2, 5, and 6 here.
     \begin{enumerate}
         \item For any \(\epsilon>0\), we can find \(N_1(\epsilon)\) and \(N_2(\epsilon)\) such that
         \[n\geq N_1(\epsilon)\Rightarrow|a_n-a|<\epsilon\]
@@ -3421,6 +3562,13 @@ Note that similar definition can be made for greatest lower bound and infimum. I
         Thus if \(n\geq N_3(\epsilon)=\max\{N_1(1),N_1(\epsilon),N_2(\epsilon)\}\) then
         \[|a_nb_n-ab|<(1+|a|)\epsilon+|b|\epsilon=(1+|a|+|b|)\epsilon\]
         which can be made as small as we like.
+        \item Observe that 
+        \[\left|\frac 1{a_n}-\frac 1a\right|=\frac{|a_n-a|}{|a||a_n|}\]
+        Meanwhile, for any \(\epsilon>0\), we can find \(N_1(\epsilon)\) and \(N_2\) such that
+        \[n\geq N_1(\epsilon)\Rightarrow|a_n-a|<\epsilon\]
+        \[n\geq N_2\Rightarrow|a_n|-|a|<|a_n-a|<|a|\]
+        so if \(n\geq\text{max}\{N_1(\epsilon),N_2\}\), we are done. Note that the hypothesis \(a\neq 0\) is necessary, e.g. consider \((-1)^n/n\).
+        \hfill\qedsymbol
     \end{enumerate}
 \end{proof}
 \begin{lemma}\item[]
@@ -3609,7 +3757,7 @@ Let's take a further look into convergence tests. A simple, but useful result is
 Note that converse of Lemma \ref{lemma:nth_test} is false. For example, consider \(\sum_{j=1}^{\infty}1/j\), i.e. \emph{harmonic series}. If we let \(S_n=\sum_{j=1}^{n}1/j\),
 \begin{align*}
     S_{2n}&=S_n+\frac{1}{n+1}+\frac{1}{n+2}+\cdots +\frac{1}{2n} \\
-    &\geq S_n+\frac{1}{2n}+\frac{1}{2n+1}+\cdots +\frac{1}{2n}
+    &\geq S_n+\frac{1}{2n}+\frac{1}{2n}+\cdots +\frac{1}{2n}
 \end{align*}
 Thus \(S_{2n}\geq S_n+1/2\) and \(S_{2n}-S_n\geq 1/2\). If \(S_n\to S\), then \(S_{2n}\to S\) and \(0\geq 1/2\), which is a contradiction. Therefore, \(S_n=\sum_{j=1}^{n}1/j\) diverges. 
 
@@ -4034,7 +4182,7 @@ Note that, for Lemma \ref{lemma:fn_bound} and Theorem \ref{thm:evt}, it is cruci
     \end{align*}
     If \(z=c\) or \(d\) similar argument works. Therefore \(f^{-1}\) is continuous.
 
-    To see \(f^{-1}\) is increasing, suppose not. Then \(\exists c\leq z_1<z_2\leq d\) with \(f^{-1}(z_1)\geq f^{-1}(z_2)\). But \(f\) is strictly increasing; this implies 
+    To see \(f^{-1}\) is strictly increasing, suppose not. Then \(\exists c\leq z_1<z_2\leq d\) with \(f^{-1}(z_1)\geq f^{-1}(z_2)\). But \(f\) is strictly increasing; this implies 
     \[f\left(f^{-1}(z_1)\right)\geq f\left(f^{-1}(z_2)\right)\Rightarrow z_1\geq z_2\]
     which is a contradiction. Thus \(f^{-1}\) is strictly increasing.
 \end{proof}
@@ -4400,7 +4548,7 @@ We now use Lemma \ref{lemma:small_conv} to show every power series has a well-de
     \[A=\left\{r\geq 0\:\left|\:\exists z\in\mathbb{C}\text{  with  }|z|=r\text{  such that }\sum_{n=0}^\infty a_nz^n\text{  converges}\right.\right\}\]
     Clearly, \(0\in A\), and \(A\) is non-empty. So let 
 \[R=\sup A\]
-with noting that \(\sup A=\infty\) meaning \(A\) is unbounded above. From definition of \(A\), \(\sum a_nz^n\) diverges for \(|z|>R\). Suppose \(|w|<R\). Then there exists \(r\in\mathbb{A}\) with \(|w|<r\) so \(\exists z\in\mathbb{C}\) with \(|z|=r\) and \(\sum a_nz^n\) converging. \(|w|<|z|\) so by Lemma \ref{lemma:small_conv} \(\sum a_nw^n\) converges absolutely.
+with noting that \(\sup A=\infty\) meaning \(A\) is unbounded above. From definition of \(A\), \(\sum a_nz^n\) diverges for \(|z|>R\). Suppose \(|w|<R\). Then there exists \(r\in A\) with \(|w|<r\) so \(\exists z\in\mathbb{C}\) with \(|z|=r\) and \(\sum a_nz^n\) converging. \(|w|<|z|\) so by Lemma \ref{lemma:small_conv} \(\sum a_nw^n\) converges absolutely.
 \end{proof}
 Note that \(R=0\) means \(\sum a_nz^n\) converges only for \(z=0\), and \(R=\infty\) means \(\sum a_nz^n\) converges absolutely for all \(z\in\mathbb{C}\). When \(0<R<\infty\) theorem tells us nothing about convergence for \(|z|=R\). Now we introduce a lemma that is useful at finding \(R\):
 \begin{lemma}
@@ -4466,7 +4614,7 @@ We conclude that nothing can be said in general about convergence on \(|z|=R\), 
     Now, using the triangle inequality and Lemma \ref{lemma:aux:rc_2} (2), 
     \begin{align*}
         |I_N|&\leq\frac 1{|h|}\sum_{n=0}^{N}|a_n||(z+h)^n-z^n-hnz^{n-1}| \\
-        &\leq\frac 1{|h|}\sum_{n=0}^{N}|a_n||n(n-1)(|z|+|h|)^{n-2}|h|^2| \\
+        &\leq\frac 1{|h|}\sum_{n=0}^{N}|a_n|n(n-1)(|z|+|h|)^{n-2}|h|^2 \\
         &\leq |h|\sum_{n=0}^{N}n(n-1)|a_n|r^{n-2} \\
         &\leq |h|\sum_{n=0}^\infty n(n-1)|a_n|r^{n-2} =|h|A_r
     \end{align*}
@@ -4500,7 +4648,7 @@ Here we proof two auxillary lemmas:
         \begin{align*}
             |(z+h)^n-z^n-nhz^{n-1}|&=\left|\sum_{r=2}^{n}\binom nrz^{n-r}h^r\right| \\
             &\leq\sum_{r=2}^{n}n(n-1)\binom{n-2}{r-2}|z|^{n-r}|h|^r \\
-            &=n(n-1)|h|^2\sum_{r=2}^{n}\binom{n-2}{r-2}|z|^{n-r} \\
+            &=n(n-1)|h|^2\sum_{r=2}^{n}\binom{n-2}{r-2}|z|^{n-r}|h|^{r-2} \\
             &=n(n-1)|h|^2(|z|+|h|)^{n-2}
         \end{align*}
     \end{enumerate}
@@ -4646,7 +4794,7 @@ In particular, \(f^\prime(x)>0\) for \(a>1\) and \(f^\prime(x)<0\) for \(a<1\).
         \[e^x=1+x+\frac{x^2}{2!}+\cdots+\frac{x^n}{n!}+\cdots>\frac{x^n}{n!}\]
         for any \(n\in\mathbb{N}\). Pick \(n\) such that \(n-r\geq 1\). Then,
         \[0\leq\frac{x^r}{e^x}\leq\frac{n!}{x^{n-r}}\leq\frac{n!}{x}\]
-        so \(x^re^-x\to 0\) as \(x\to\infty\).
+        so \(x^re^{-x}\to 0\) as \(x\to\infty\).
         \item Pick \(m\) such that \(m\geq 2/r\). For \(x>1\),
         \[0\leq\frac{x^{1/r}}{e^x}\leq\frac{m!}{x^{m-1/r}}\leq\frac{m!}{x^{1/r}}\]
         Let \(x=\ln y\) and write 
@@ -4919,17 +5067,31 @@ If \(f:[a,b]\to\mathbb{R}\) is continuous, then \(f\) is bounded by the extreme 
     \[f(y_{n_k})-f(z_{n_k})>\frac{\epsilon_0}{b-a}>0\]
     implies \(f(y_{n_k})\) and \(f(z_{n_k})\) cannot both converges to the same limit. So \(f\) is not continuous at \(\eta\) (Theorem \ref{thm:contd}).
 \end{proof}
-However, a function not being continuous nor monotone does not suggest that function is not integrable. Between monotone and continuous functions, we have a large class of integrable functions, e.g. \emph{Thomae's function}.\footnote{Moreover, this function is continuous at each irrational, and discontinuous at each rational.}
-% \begin{example}
-%     (\emph{Thomae's Function}) Consider \(f:[0,1]\to\mathbb{R}\),
-%     \[f(x)=\begin{cases}
-%         1/q & x=p/q \text{ where \(p,q\) are coprime integers;}\\
-%         0 & \text{ otherwise.} 
-%     \end{cases}\]
-%     We claim \(f\) is integrable. Note that for any dissection \(\mathcal{D}\), \(L(f,\mathcal{D})=0\). It is enough to show that for any \(\epsilon>0\) we can find a \(U(f,\mathcal{D})<\epsilon\). Pick \(N\in\mathbb{N}\) such that \(1/N<\epsilon/2\). Now consider 
-%     \[P=\{x\in[0,1]\:|\:f(x)\geq 1/N\}=\left\{\left.\frac pq\:\right|\:0\leq q\leq N,1\leq p\leq q\right\}\]
-%     \(P\) is a finite set:
-% \end{example}
+However, a function not being continuous nor monotone does not suggest that function is not integrable. Between monotone and continuous functions, we have a large class of integrable functions.
+\begin{example}
+    (\emph{Thomae's Function}) Consider \(f:[0,1]\to\mathbb{R}\),
+    \[f(x)=\begin{cases}
+        1/q & x=p/q \text{ where \(p,q\) are coprime integers;}\\
+        0 & \text{ otherwise.} 
+    \end{cases}\]
+    We claim \(f\) is integrable. Note that for any dissection \(\mathcal{D}\), \(L(f,\mathcal{D})=0\). It is enough to show that for any \(\epsilon>0\) we can find a \(U(f,\mathcal{D})<\epsilon\). Pick \(N\in\mathbb{N}\) such that \(1/N<\epsilon/2\). Consider 
+    \[P=\{x\in[0,1]\:|\:f(x)\geq 1/N\}=\left\{\left.\frac pq\:\right|\:1\leq q\leq N,1\leq p\leq q\right\}\]
+    \(P\) is a finite set, so we enumerate its elements as \(P=\{p_1,\ldots,p_M\}\) with \(p_1<p_2<\cdots<p_M=1\). Now consider a dissection \(\mathcal{D}\) of \([0,1]\) such that 
+    \begin{itemize}
+        \item each \(p_k\), \(1\leq k\leq M\) is in some \([x_{j-1},x_j]\);
+        \item for each \(p_k\) the unique subinterval containing \(p_k\) has length at most \(\epsilon/2M\).
+    \end{itemize}
+    Abusing notation slightly, we write \(I\in\mathcal{D}\) to mean \(I=[x_{j-1},x_j]\) for some \(1\leq j\leq n\). Then \(|I|=x_{j}-x_{j-1}\) and 
+    \begin{align*}
+        U(f,\mathcal{D})&=\sum_{I\in\mathcal{D}}|I|\sup_I f \\
+        &=\sum_{\substack{I\in\mathcal{D}\\I\cap P=\emptyset}}|I|\sup_I f+\sum_{\substack{I\in\mathcal{D}\\I\cap P\neq\emptyset}}|I|\sup_I f \\
+        &\leq \frac 1N+M\frac{\epsilon}{2M}<\epsilon
+    \end{align*}
+
+    Furthermore, Thomae's function is continuous at all irrational points, and discontinuous at each rationals. Indeed, for any rational \(x\in\mathbb{Q}\), if we consider some irrational sequence \(x_n\to x\), \(f(x_n)\to 0\neq f(x)\) so \(f\) is discontinuous at all rational points. For irrational points \(y\in\mathbb{R}\backslash\mathbb{Q}\), we only need to show for all rational sequence \(y_n\to y\), \(f(y_n)\to 0\). Given \(\epsilon>0\), there exists \(N\in\mathbb{N}\) such that \(1/N<\epsilon\). Since \(N\) is finite and number of integer less than \(N\), we may choose a suitable interval \((y-\delta,y+\delta)\) to contain only the fractions with denominator greater than \(N\). Hence
+    \[|x-y|<\delta\Rightarrow|f(x)|<\epsilon\]
+    as required.
+\end{example}
 \subsection{Elementary Properties of the Integral}
 Before establishing various properties of the integral, we first give some properties of infimum and supremum.
 \begin{lemma}
@@ -5512,7 +5674,9 @@ These cover \(N(\alpha)\), except for possibly \(\{x_0,\ldots,x_n\}\) which can 
     so 
     \[\sum_{j=1}^n\frac{z^{2^{j-1}}}{1-z^{2^j}}>\frac 12n\]
     diverges as \(n\to\infty\).
-    \item Consider sequence \((a_n)\), \(a_n\in\mathbb{R}\). We can easily construct monotonic subsequence \((a_{n_j})\) by choosing \(n_1=1\), and then \(n_i\) as the least greatest \(j\) such that \(a_j\geq a_{n_{i-1}}\), \(j\geq n_{i-1}\) inductively.
+    \item Consider sequence \((a_n)\), \(a_n\in\mathbb{R}\). Let 
+    \[S=\{n\:|\:a_m>a_n,\:\forall m>n\}\]
+    If \(S=\{a_{n_1},a_{n_2},\ldots\}\) is infinite, we can easily construct monotonic subsequence \(a_{n_1}<a_{n_2}<\cdots\). Otherwise, if \(S\) finite, there exists \(n_1\in\mathbb{N}\) such that \(n<n_1\) for all \(n\in S\). Then since \(n_1\notin S\), there exists \(n_2>n_1\) such that \(x_{n_2}\leq x_{n_1}\); as \(n_2\notin S\), there exists \(n_3\) such that \(x_{n_3}\leq x_{n_2}\leq x_{n_1}\), and so on. 
     
     Now assume the sequence is bounded. The subsequence we found above, \((a_{n_j})\) will also be bounded and by the monotone convergence theorem, \((a_{n_j})\) will converge. Thus we proved the Bolzano-Weierstrass theorem.
     \item Since \((x_n)\) converges, it is bounded. Now sequence \((|x_n|)\). Because it is bounded, we can rearrange terms to make \((|x_n|)\) decreasing. Then, by alternating series test, \(\sum (-1)^n|x_n|\) converges. \(\epsilon_n\) will follow based on the original signs of \(x_n\).
@@ -5852,4 +6016,121 @@ with \(a<x<b\). Furthermore, \(g(x)\to f^\prime(a)\) as \(x\to a\) and \(g(x)\to
     \[S(\mathcal{D}_n)=2\frac 1\pi\sum_{j=1}^{n-1}\left(\frac 1j+\frac 1{j+1}\right)+\frac 4{(2n+1)\pi}+2\left(\sin 1-\frac 2\pi\right)\to\infty\]
     So \(S\) is not bounded and therefore it is not the difference of two increasing functions.
     \end{enumerate}
+    % \chapter{Probability}
+    % \chapterauthor{Lecture by Professor J.R. Norris. 
+    % Lent term 2024.}
+    % We only give suggested solutions to example sheets, since there are already official typed notes, and I do not have enough time.
+    % \section{Distributions}
+    % \subsection{Discrete Random Variables}
+    % \subsection{Continuous Random Variables}
+    % \section{Example Sheets}
+    % \subsection{Sheet 1}
+    \chapter{Appendix}
+    Here we note some auxillary facts, which might come useful at some instances, e.g. the \emph{Tripos}.
+    \section{Groups}
+    \begin{itemize}
+        \item \(Q_8,C_4\times C_2, D_8, C_8\) are \emph{metacyclic}.
+        \item Every dihedral group is metacyclic.
+        \item \(S_n\) is metacyclic if and only if \(n\leq 3\).
+        \item \(\SO(n)\cong\mathrm{O}(n)\times C_2\) if and only if \(n\) odd.
+        \item Note the \emph{Heisenberg group} of the form 
+        \[\begin{pmatrix}
+            0 & x & y \\ 
+            0 & 0 & z \\
+            0 & 0 & 0
+        \end{pmatrix}\]
+        \item Finite abelian subgroup of \(\mathcal{M}\) is either cyclic or isomorphic to \(C_2\times C_2\).
+        \item Evey non-trivial quotient group of dihedral group is dihedral.
+        \item \(C_2,C_3,C_4,C_5,C_6\leq S_5\).
+        \item Lagrange's theorem does not hold for \emph{double cosets}, even though they partition.
+        \item If \(G/Z(G)\) is cyclic, then \(G\) is abelian. But centre of abelian group is itself.
+        \item Centre of dihedral group 
+        \[Z(D_{2n})=\begin{cases}
+            1 & \text{\(n\) odd} \\
+            \{e,r^{n/2}\} & \text{\(n\) even}
+        \end{cases}\]
+        \item Two elements of a group that are conjugate have same order.
+        \item Möbius transformation with finite order has precisely 2 fixed points.
+        \item Note doubly transitive actions.
+        \item If \(H\leq S_n\), exactly half of \(H\) are even.
+        \item \(\SO(2)\cong\mathbb{R}/\mathbb{Z}\).
+    \end{itemize}
+    \section{Numbers and Sets}
+    \begin{itemize}
+        \item \begin{itemize}
+            \item If \(g\circ f\) injective, then \(f\) is injective.
+            \item If \(g\circ f\) surjective, then \(g\) is surjective.
+        \end{itemize}
+        \item 
+    \end{itemize}
+    \section{Probability}
+    \begin{itemize}
+        \item Suppose that the coin was tossed repeatedly until heads came up k times in a row. The expected number of tosses is 
+        \[\frac{1-p^k}{p^k(1-p)}\]
+        \item Write 
+        \[N=\sum_{n\geq 1}1_{A_n}\]
+        to count the number of events that occured.
+        Note that \(\mathbb{E}(N)=\sum_{n\geq 1}\mathbb{P}(A_n)\)
+        \item If a monkey randomly types a keyboard, pattern ``HELLO'' will appear infinitely often.
+        \item If \(\mathbb{P}(A_i\cap A_j)\leq 1/n\) when \(i\neq j\), \(\sum\mathbb{P}(A_i)\leq 4\sqrt{n}\). [\emph{Hint: think first \(\lfloor{\sqrt{n}}\rfloor\) events}.]
+        \item \(M_X^\prime(0)=\mathbb{E}(X)\), \(M_X^\pprime(0)=\mathbb{E}(X^2)\) and so on.
+        \item \emph{Stirling's formula} \(n!\sim\sqrt{2\pi}n^{n+1/2}e^{-n}\).
+        \item If \(X\sim P(\lambda)\), \(Y\sim P(\mu)\), then \(X+Y\sim P(\lambda+\mu)\) (\(X,Y\) independent).
+        \item If \(X\) non-negative square integrable random variable,
+        \begin{align*}
+            \mathbb{E}(X)&=\mathbb{E}(X1_{\{X=0\}})+\mathbb{E}(X1_{\{X>0\}}) \\
+            &=\mathbb{E}(X1_{\{X>0\}}) \\
+            &\leq\sqrt{\mathbb{E}(X^2)\mathbb{E}(1^2_{\{X>0\}})}
+        \end{align*}
+        By Cauchy-Schwarz. So 
+        \[\mathbb{E}(X)^2\leq\mathbb{E}(X^2)\mathbb{P}(X>0)\]
+        \item If \(X\sim E(\lambda)\) and \(Y\sim E(\mu)\) are two independent random variables,
+        \[f_{X+Y}(x)=\frac{\mu\lambda}{\mu-\lambda}(e^{-\lambda x}-e^{-\mu x})\]
+        and \(\min\{X,Y\}\sim E(\lambda+\mu)\).
+    \end{itemize}
+    \section{Analysis}
+    \begin{itemize}
+        \item Let \((a_n)\) positive real sequence. If \(\sum a_n\) diverges, then \(\sum(a_n/s_n)\) diverges where \(s_n\) partial sum.
+        \begin{proof}
+            Since \(s_n\to\infty\), for any \(n\geq 1\), there exists \(m>n\) such that \(S_m\geq 2S_n\). Then 
+            \[\sum_{k=n+1}^m\frac{a_k}{s_k}\geq\sum_{k+1}^{m}\frac{a_k}{s_m}=1-\frac{s_n}{s_m}\geq\frac 12\]
+            So \(a_n/s_n\nrightarrow 0\) and \(\sum(a_n/s_n)\) diverges.
+        \end{proof}
+        \item Let \((x_n)\) be a decreasing sequence of positive real numbers. If \(\sum x_n\)  converges, then \(nx_n\to 0\). (Proof by contradiction or use the Cauchy condensation test).
+        \item Derivative of \emph{Volterra's function} is not Riemann integrable.
+        \item If \(a_n\to a\), \(s_n=(\sum a_n)/n\to a\). Converse holds if \(a_n\) is an increasing sequence of positive numbers.
+        \item Convex function is continuous.
+        \item If \(f\) is integrable and \(g:\mathbb{R}\to\mathbb{R}\) is continuously differentiable, then \(g\circ f\) is integrable.
+        \begin{proof}
+            For any \(a,b\in\mathbb{R}\), by the mean value theorem,
+            \[|g(a)-g(b)|=|g^\prime(c)||a-b|\]
+            But since \(g^\prime\) is continuous, it is bounded and we have 
+            \[|g(a)-g(b)|\leq K|a-b|\]
+            for some \(K>0\). So,
+            \begin{align*}
+                \sup g(f(x))-\inf g(f(x))&=\sup_{x,y}(g(f(x))-g(f(y))) \\
+                &\leq K\sup_{x,y}(f(x)-f(y)) \\
+                &=K(\sup f(x)-\inf f(x))
+            \end{align*}
+            Then the result follows from the fact that \(f\) is integrable.
+        \end{proof}
+        \item If \(g(x+y)=g(x)+g(y)\), \(g(x)=cx\). If \(h(x+y)=h(x)h(y)\), \(h(x)=e^{cx}\) or \(h(x)=0\). (Both should be continuous.)
+        \item Cantor set is uncountable but has measure zero.
+    \end{itemize}
+    \section{Differential Equations}
+    \begin{itemize}
+        \item Consider differential equation 
+        \[y^\pprime+p(x)y^\prime+q(x)y=0\]
+        Note that the Wronskian satisfies 
+        \[\frac{dW}{dx}+pW=0\]
+        and then 
+        \[y_2(x)=y_1(x)\int_{x_0}^x\frac{W(t)}{y_1(t)^2}dt\]
+    \end{itemize}
+    \section{Vector Calculus}
+    \begin{itemize}
+        \item For a rank 2 tensor \(T_{ij}\),
+        \[T_{ij}=S_{ij}+A_{ij}=P_{ij}+\epsilon_{ijk}B_k+\frac 13\delta_{ij}Q\]
+        where \(P\) symmetric traceless tensor, \(Q=S_{ii}\) and 
+        \[B_{k}=\frac 12\epsilon_{ijk}A_{ij}\]
+    \end{itemize}
 \end{document}

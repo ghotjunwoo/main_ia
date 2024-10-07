@@ -1153,7 +1153,7 @@ A real number is \emph{transcendental} if it is not algebraic.
 \end{proof}
     Now we are ready.
     Write
-    \[L_n=\sum_{k=1}^{n}\frac{1}{10^k}\]
+    \[L_n=\sum_{k=1}^{n}\frac{1}{10^{k!}}\]
     so \(L_n\to L\) as \(n\to\infty\). Suppose there is a polynomial \(p\) of which \(L\) is a root. By Lemma \ref{sub:a_liouville}, there exists \(K\) such that \(|p(x)-p(y)|\leq K|x-y|\) for all \(0\leq x,y\leq 1\).
 
     Suppose \(p\) has a degree \(d\), i.e. \(p(x)=a_dx^d+a_{d-1}x^{d-1}+\cdots+a_1x+a_0\) with \(a_i\in\mathbb{Z}\), \(a_d\neq 0\). Notice that \(L_n=s/10^{n!}\) for some \(s\in\mathbb{N}\), so
@@ -1561,7 +1561,7 @@ It would be nice to be able to say that for any two sets \(A\) and \(B\), either
     so \(x_n>x_{n+1}>0\) for all \(n\geq 1\) as required. Then, since \((x_n)\) is decreasing and bounded by \(0\), it converges by monotone convergence theorem. Now suppose \(x_n\to a\). Then 
     \[a=\frac{a}{1+\sqrt{a}}\]
     so \(a=0\).
-    \item Hmmm... it is trivial when it is rational (periodic). But what if not? I \emph{will} return.
+    \item Prove that every real number is repetitive.
     \item Since \(x_n\to 0\), there exists \(N\) such that \(n\geq N\Rightarrow x_n<1\). Hence 
     \[\sum_{n=1}^\infty x_n^2=\sum_{n=1}^{N-1}x_n^2+\sum_{N}^{\infty}x_n^2\geq\sum_{n=1}^{N-1}x_n^2+\sum_{N}^\infty x_n\]
     and thus convergent by comparison test.
@@ -2523,7 +2523,7 @@ We continue our classification of groups of small order. If \(|G|=5\), \(G\cong 
 \begin{remark}
     \(S_3\) is non-abelian group of order 6, so \(S_3\cong D_6\).
 \end{remark}
-Continuing with our journey, \(C\cong C_7\) if \(|G|=7\) since \(7\) is prime. If \(|G|=8\), we may think of groups \(C_8,C_4\times C_2,C_2\times C_2\times C_2,D_8\), and the fact that they are all different. However, this is not all we have.
+Continuing with our journey, \(C\cong C_7\) if \(|G|=7\) since \(7\) is prime. If \(|G|=8\), we may think of groups \(C_8,C_4\times C_2,C_2\times C_2\times C_2,D_8\), and in fact that they are all different. However, this is not all we have.
 \begin{example}
     (\emph{The Quaternion Group}) Let 
     \[Q_8=\{1,-1,i,-i,j,-j,k,-k\}\]
@@ -2869,7 +2869,7 @@ Let's apply the facts to study conjugation in \(S_n\) and \(A_n\). We will start
     \[\tau\sigma_1\tau^{-1}(b_j^i)=\tau\sigma_1(a_j^i)=\tau(a_{j+_{l_i}+1}^i)=b_{j+_{l_i}1}^i\]
     Hence \(\tau\sigma_1\tau^{-1}=\sigma_2\). So \(\sigma_1\) and \(\sigma_2\) are indeed conjugate.
 
-    Conversely, suppose \(\sigma_2=\tau\sigma\tau^{-1}\). The above argument says that if \[\sigma_1=(a_1^1\cdots a_{l_1}^1)\cdots(a_1^k\cdots a_{l_k}^k)\] then 
+    Conversely, suppose \(\sigma_2=\tau\sigma_1\tau^{-1}\). The above argument says that if \[\sigma_1=(a_1^1\cdots a_{l_1}^1)\cdots(a_1^k\cdots a_{l_k}^k)\] then 
     \[\sigma_2=(b_1^1\cdots b_{l_1}^1)\cdots(b_1^k\cdots b_{l_k}^k)\]
     where \(b_j^i=\tau(a_j^i)\). Therefore, \(\sigma_1\) and \(\sigma_2\) have the same cycle type.
 \end{proof}
@@ -2923,7 +2923,7 @@ Hence we can also compute the sizes of centralisers.
 Now, let's turn to conjugacy classes in \(A_n\). Be careful, that conjugacy classes in \(S_n\) can split in \(A_n\). Note that, by the isomorphism theorem (Theorem \ref{thm:isom}), 
 \[S_n/A_n\cong C_2\]
 and 
-\[|S_n|=|Sn/A_n||A_n|=2|A_n|\]
+\[|S_n|=|S_n/A_n||A_n|=2|A_n|\]
 by Lagrange's theorem.
 \begin{example}
     \((123),(321)\) are conjugate in \(S_3\). But \(A_3\cong C_3\) is abelian, so \((123)\) is not conjugate in \(A_3\) to \((321)\), because they are not equal.\footnote{There is no permutation \(\tau\) in \(A_n\) such that \(\tau(123)\tau^{-1}=(321)\).}
@@ -3016,7 +3016,7 @@ Finally, let's perform a similar calculation for \(S_5\) and \(A_5\).
     \(A_5\) is simple.
 \end{theorem}
 \begin{proof}
-    Suppose \(N\lhd A_5\). We need to prove that \(N=1\) or \(N=A_5\). By Example Sheet 3 Q5, \(N\) is an union of conjugacy classes of \(A_5\). Since it has to contain \(e\), the possible orders of \(N\) are: 1, 22, 37, 48, 33, 45, 16, 28, 40, 13, 25, 60. By Lagrange's theorem, only acceptable values are 1 and 60, which correspond to trivial subgroup and \(A_5\) respectively. Hence, \(A_5\) is indeed simple. (Also note that \(A_5\) is the smallest example of a non-abelian simple group).
+    Suppose \(N\lhd A_5\). We need to prove that \(N=1\) or \(N=A_5\). By Example Sheet 3 Q5, \(N\) is an union of conjugacy classes of \(A_5\). Since it has to contain \(e\), the possible orders of \(N\) are: 1, 21, 36, 48, 33, 45, 16, 28, 40, 13, 25, 60. By Lagrange's theorem, only acceptable values are 1 and 60, which correspond to trivial subgroup and \(A_5\) respectively. Hence, \(A_5\) is indeed simple. (Also note that \(A_5\) is the smallest example of a non-abelian simple group).
 \end{proof}
 \section{Matrix Groups}
 This section requires some knowledge from Vectors \& Matrices.
@@ -3056,7 +3056,7 @@ where \(P\in\GL(n,\mathbb{R})\) and \(A\in M_n(\mathbb{R})\).
     \[B=\psi^{-1}\circ\alpha\circ\psi=\psi^{-1}\circ(\phi\circ A\circ\phi^{-1})\circ\psi=(\psi^{-1}\circ\phi)\circ A\circ(\psi^{-1}\circ\phi)^{-1}\]
     Thus, \(B=PAP^{-1}\) where \(P=\psi^{-1}\circ\phi\in\GL(n,\mathbb{R})\). We have shown that every matrix representing \(\alpha\) is in \(\GL(n,\mathbb{R})\). We still need to prove the reverse inclusion.
 
-    Conversely, suppose \(B+PAP^{-1}\). Then, setting \(\psi=\phi\circ P^{-1}\), it defines a basis 
+    Conversely, suppose \(B=PAP^{-1}\). Then, setting \(\psi=\phi\circ P^{-1}\), it defines a basis 
     \[\{\mathbf{u}_i=\psi(\mathbf{e}_i)\}\]
     for \(V\) with \(\mathbf{e}_i\) as the standard \(i\)\textsuperscript{th}
     basis vector of \(\mathbb{R}^n\). Then, \(B\) is the matrix for \(\alpha\) in this basis.
@@ -3089,7 +3089,7 @@ Let's write \(||\bullet ||\) for the usual Euclidean notation of distance on \(\
     \[\text{O}(n)=\{A\in\GL(n,\mathbb{R})\::\:||A\mathbf{u}-A\mathbf{v}||=||\mathbf{u}-\mathbf{v}||,\quad\forall \mathbf{u,v}\in\mathbb{R}^n\}\]
 \end{definition}
 \begin{remark}
-    This is same as saying that \(||A\mathbf{x}=\mathbf{x}||\) for all \(\mathbf{x}\in\mathbb{R}^n\). In fact, the \emph{dot product}
+    This is same as saying that \(||A\mathbf{x}||=||\mathbf{x}||\) for all \(\mathbf{x}\in\mathbb{R}^n\). In fact, the \emph{dot product}
     \[\mathbf{u}\cdot\mathbf{v}=\sum_{i=1}^nu_iv_i\]
     is often more convinient to work with the notion of distance.
 \end{remark}
@@ -3568,7 +3568,6 @@ Note that similar definition can be made for greatest lower bound and infimum. I
         \[n\geq N_1(\epsilon)\Rightarrow|a_n-a|<\epsilon\]
         \[n\geq N_2\Rightarrow|a_n|-|a|<|a_n-a|<|a|\]
         so if \(n\geq\text{max}\{N_1(\epsilon),N_2\}\), we are done. Note that the hypothesis \(a\neq 0\) is necessary, e.g. consider \((-1)^n/n\).
-        \hfill\qedsymbol
     \end{enumerate}
 \end{proof}
 \begin{lemma}\item[]
@@ -3906,7 +3905,7 @@ Note that since \(|a_n|\geq 0\), previous tests can be applied to show absolute 
     \[|\bar{S}_m-\bar{S}_n|<\epsilon\Rightarrow|S_m-S_n|<\epsilon\]
     Thus \((S_n)\) is Cauchy and it converges (Theorem \ref{thm:conv_cauchy}).
 \end{proof}
-For example of absolute convergence, consider \(\sum_{n=1}^{\infty}a_n\) where \(z\in\mathbb{C}\) and \(a_n=(z^n/2^n)\). \(|a_n|=(|z|/2)^n\) so \(\sum|a_n|\) converges if and only if \(|z|/2<1\). This gives absolute convergence for \(|z|<2\). If \(|z|\geq 2\), \(|a_n|\geq 1\) and there is no absolute convergence. Finally, note that coverse of Theorem \ref{thm:abconv} is false. 
+For example of absolute convergence, consider \(\sum_{n=1}^{\infty}a_n\) where \(z\in\mathbb{C}\) and \(a_n=(z^n/2^n)\). \(|a_n|=(|z|/2)^n\) so \(\sum|a_n|\) converges if and only if \(|z|/2<1\). This gives absolute convergence for \(|z|<2\). If \(|z|\geq 2\), \(|a_n|\geq 1\) and there is no absolute convergence. Finally, note that converse of Theorem \ref{thm:abconv} is false. 
 \begin{definition}
     If \(\sum a_n\) converges, but \(\sum|a_n|\) does not, we say series is \emph{conditionally convergent}. 
 \end{definition}
@@ -3984,7 +3983,7 @@ for all sequences \((z_n)\) with \(z_n\in\mathrm{E}\), \(z_n\to a\).
 \end{lemma}
 \begin{proof}
     Using the sequential characterisation of continuity, this follows easily from analogous results for sequences (Lemma \ref{fundlemma}). E.g. if \(z_n\to a\),
-    \[f(z_n)\to f(a)\text{  and  }g(z)\to g(a)\Rightarrow f(z_n)+g(z_n)\to f(a)+g(a)\]
+    \[f(z_n)\to f(a)\text{  and  }g(z_n)\to g(a)\Rightarrow f(z_n)+g(z_n)\to f(a)+g(a)\]
     etc.
 \end{proof}
 Note that Lemma \ref{lemma:fund_contd} can also be directly proved from Definition \ref{def:contd}. We now show that composition of continuous functions is continuous.
@@ -6025,112 +6024,114 @@ with \(a<x<b\). Furthermore, \(g(x)\to f^\prime(a)\) as \(x\to a\) and \(g(x)\to
     % \subsection{Continuous Random Variables}
     % \section{Example Sheets}
     % \subsection{Sheet 1}
-    \chapter{Appendix}
-    Here we note some auxillary facts, which might come useful at some instances, e.g. the \emph{Tripos}.
-    \section{Groups}
-    \begin{itemize}
-        \item \(Q_8,C_4\times C_2, D_8, C_8\) are \emph{metacyclic}.
-        \item Every dihedral group is metacyclic.
-        \item \(S_n\) is metacyclic if and only if \(n\leq 3\).
-        \item \(\SO(n)\cong\mathrm{O}(n)\times C_2\) if and only if \(n\) odd.
-        \item Note the \emph{Heisenberg group} of the form 
-        \[\begin{pmatrix}
-            0 & x & y \\ 
-            0 & 0 & z \\
-            0 & 0 & 0
-        \end{pmatrix}\]
-        \item Finite abelian subgroup of \(\mathcal{M}\) is either cyclic or isomorphic to \(C_2\times C_2\).
-        \item Evey non-trivial quotient group of dihedral group is dihedral.
-        \item \(C_2,C_3,C_4,C_5,C_6\leq S_5\).
-        \item Lagrange's theorem does not hold for \emph{double cosets}, even though they partition.
-        \item If \(G/Z(G)\) is cyclic, then \(G\) is abelian. But centre of abelian group is itself.
-        \item Centre of dihedral group 
-        \[Z(D_{2n})=\begin{cases}
-            1 & \text{\(n\) odd} \\
-            \{e,r^{n/2}\} & \text{\(n\) even}
-        \end{cases}\]
-        \item Two elements of a group that are conjugate have same order.
-        \item Möbius transformation with finite order has precisely 2 fixed points.
-        \item Note doubly transitive actions.
-        \item If \(H\leq S_n\), exactly half of \(H\) are even.
-        \item \(\SO(2)\cong\mathbb{R}/\mathbb{Z}\).
-    \end{itemize}
-    \section{Numbers and Sets}
-    \begin{itemize}
-        \item \begin{itemize}
-            \item If \(g\circ f\) injective, then \(f\) is injective.
-            \item If \(g\circ f\) surjective, then \(g\) is surjective.
-        \end{itemize}
-        \item 
-    \end{itemize}
-    \section{Probability}
-    \begin{itemize}
-        \item Suppose that the coin was tossed repeatedly until heads came up k times in a row. The expected number of tosses is 
-        \[\frac{1-p^k}{p^k(1-p)}\]
-        \item Write 
-        \[N=\sum_{n\geq 1}1_{A_n}\]
-        to count the number of events that occured.
-        Note that \(\mathbb{E}(N)=\sum_{n\geq 1}\mathbb{P}(A_n)\)
-        \item If a monkey randomly types a keyboard, pattern ``HELLO'' will appear infinitely often.
-        \item If \(\mathbb{P}(A_i\cap A_j)\leq 1/n\) when \(i\neq j\), \(\sum\mathbb{P}(A_i)\leq 4\sqrt{n}\). [\emph{Hint: think first \(\lfloor{\sqrt{n}}\rfloor\) events}.]
-        \item \(M_X^\prime(0)=\mathbb{E}(X)\), \(M_X^\pprime(0)=\mathbb{E}(X^2)\) and so on.
-        \item \emph{Stirling's formula} \(n!\sim\sqrt{2\pi}n^{n+1/2}e^{-n}\).
-        \item If \(X\sim P(\lambda)\), \(Y\sim P(\mu)\), then \(X+Y\sim P(\lambda+\mu)\) (\(X,Y\) independent).
-        \item If \(X\) non-negative square integrable random variable,
-        \begin{align*}
-            \mathbb{E}(X)&=\mathbb{E}(X1_{\{X=0\}})+\mathbb{E}(X1_{\{X>0\}}) \\
-            &=\mathbb{E}(X1_{\{X>0\}}) \\
-            &\leq\sqrt{\mathbb{E}(X^2)\mathbb{E}(1^2_{\{X>0\}})}
-        \end{align*}
-        By Cauchy-Schwarz. So 
-        \[\mathbb{E}(X)^2\leq\mathbb{E}(X^2)\mathbb{P}(X>0)\]
-        \item If \(X\sim E(\lambda)\) and \(Y\sim E(\mu)\) are two independent random variables,
-        \[f_{X+Y}(x)=\frac{\mu\lambda}{\mu-\lambda}(e^{-\lambda x}-e^{-\mu x})\]
-        and \(\min\{X,Y\}\sim E(\lambda+\mu)\).
-    \end{itemize}
-    \section{Analysis}
-    \begin{itemize}
-        \item Let \((a_n)\) positive real sequence. If \(\sum a_n\) diverges, then \(\sum(a_n/s_n)\) diverges where \(s_n\) partial sum.
-        \begin{proof}
-            Since \(s_n\to\infty\), for any \(n\geq 1\), there exists \(m>n\) such that \(S_m\geq 2S_n\). Then 
-            \[\sum_{k=n+1}^m\frac{a_k}{s_k}\geq\sum_{k+1}^{m}\frac{a_k}{s_m}=1-\frac{s_n}{s_m}\geq\frac 12\]
-            So \(a_n/s_n\nrightarrow 0\) and \(\sum(a_n/s_n)\) diverges.
-        \end{proof}
-        \item Let \((x_n)\) be a decreasing sequence of positive real numbers. If \(\sum x_n\)  converges, then \(nx_n\to 0\). (Proof by contradiction or use the Cauchy condensation test).
-        \item Derivative of \emph{Volterra's function} is not Riemann integrable.
-        \item If \(a_n\to a\), \(s_n=(\sum a_n)/n\to a\). Converse holds if \(a_n\) is an increasing sequence of positive numbers.
-        \item Convex function is continuous.
-        \item If \(f\) is integrable and \(g:\mathbb{R}\to\mathbb{R}\) is continuously differentiable, then \(g\circ f\) is integrable.
-        \begin{proof}
-            For any \(a,b\in\mathbb{R}\), by the mean value theorem,
-            \[|g(a)-g(b)|=|g^\prime(c)||a-b|\]
-            But since \(g^\prime\) is continuous, it is bounded and we have 
-            \[|g(a)-g(b)|\leq K|a-b|\]
-            for some \(K>0\). So,
-            \begin{align*}
-                \sup g(f(x))-\inf g(f(x))&=\sup_{x,y}(g(f(x))-g(f(y))) \\
-                &\leq K\sup_{x,y}(f(x)-f(y)) \\
-                &=K(\sup f(x)-\inf f(x))
-            \end{align*}
-            Then the result follows from the fact that \(f\) is integrable.
-        \end{proof}
-        \item If \(g(x+y)=g(x)+g(y)\), \(g(x)=cx\). If \(h(x+y)=h(x)h(y)\), \(h(x)=e^{cx}\) or \(h(x)=0\). (Both should be continuous.)
-        \item Cantor set is uncountable but has measure zero.
-    \end{itemize}
-    \section{Differential Equations}
-    \begin{itemize}
-        \item Consider differential equation 
-        \[y^\pprime+p(x)y^\prime+q(x)y=0\]
-        Note that the Wronskian satisfies 
-        \[\frac{dW}{dx}+pW=0\]
-        and then 
-        \[y_2(x)=y_1(x)\int_{x_0}^x\frac{W(t)}{y_1(t)^2}dt\]
-    \end{itemize}
-    \section{Vector Calculus}
-    \begin{itemize}
-        \item For a rank 2 tensor \(T_{ij}\),
-        \[T_{ij}=S_{ij}+A_{ij}=P_{ij}+\epsilon_{ijk}B_k+\frac 13\delta_{ij}Q\]
-        where \(P\) symmetric traceless tensor, \(Q=S_{ii}\) and 
-        \[B_{k}=\frac 12\epsilon_{ijk}A_{ij}\]
-    \end{itemize}
+    % \chapter{Appendix}
+    % Here we note some auxillary facts, which might come useful at some instances, e.g. the \emph{Tripos}.
+    % \section{Groups}
+    % \begin{itemize}
+    %     \item \(Q_8,C_4\times C_2, D_8, C_8\) are \emph{metacyclic}.
+    %     \item Every dihedral group is metacyclic.
+    %     \item \(S_n\) is metacyclic if and only if \(n\leq 3\).
+    %     \item \(\SO(n)\cong\mathrm{O}(n)\times C_2\) if and only if \(n\) odd.
+    %     \item Note the \emph{Heisenberg group} of the form 
+    %     \[\begin{pmatrix}
+    %         0 & x & y \\ 
+    %         0 & 0 & z \\
+    %         0 & 0 & 0
+    %     \end{pmatrix}\]
+    %     \item Finite abelian subgroup of \(\mathcal{M}\) is either cyclic or isomorphic to \(C_2\times C_2\).
+    %     \item Evey non-trivial quotient group of dihedral group is dihedral.
+    %     \item \(C_2,C_3,C_4,C_5,C_6\leq S_5\).
+    %     \item Lagrange's theorem does not hold for \emph{double cosets}, even though they partition.
+    %     \item If \(G/Z(G)\) is cyclic, then \(G\) is abelian. But centre of abelian group is itself.
+    %     \item Centre of dihedral group 
+    %     \[Z(D_{2n})=\begin{cases}
+    %         1 & \text{\(n\) odd} \\
+    %         \{e,r^{n/2}\} & \text{\(n\) even}
+    %     \end{cases}\]
+    %     \item Two elements of a group that are conjugate have same order.
+    %     \item Möbius transformation with finite order has precisely 2 fixed points.
+    %     \item Note doubly transitive actions.
+    %     \item If \(H\leq S_n\), exactly half of \(H\) are even.
+    %     \item \(\SO(2)\cong\mathbb{R}/\mathbb{Z}\).
+    %     \item Group of order \(pq\).
+    % \end{itemize}
+    % \section{Numbers and Sets}
+    % \begin{itemize}
+    %     \item \begin{itemize}
+    %         \item If \(g\circ f\) injective, then \(f\) is injective.
+    %         \item If \(g\circ f\) surjective, then \(g\) is surjective.
+    %     \end{itemize}
+    %     \item 
+    % \end{itemize}
+    % \section{Probability}
+    % \begin{itemize}
+    %     \item Suppose that the coin was tossed repeatedly until heads came up k times in a row. The expected number of tosses is 
+    %     \[\frac{1-p^k}{p^k(1-p)}\]
+    %     \item Write 
+    %     \[N=\sum_{n\geq 1}1_{A_n}\]
+    %     to count the number of events that occured.
+    %     Note that \(\mathbb{E}(N)=\sum_{n\geq 1}\mathbb{P}(A_n)\)
+    %     \item If a monkey randomly types a keyboard, pattern ``HELLO'' will appear infinitely often.
+    %     \item If \(\mathbb{P}(A_i\cap A_j)\leq 1/n\) when \(i\neq j\), \(\sum\mathbb{P}(A_i)\leq 4\sqrt{n}\). [\emph{Hint: think first \(\lfloor{\sqrt{n}}\rfloor\) events}.]
+    %     \item \(M_X^\prime(0)=\mathbb{E}(X)\), \(M_X^\pprime(0)=\mathbb{E}(X^2)\) and so on.
+    %     \item \emph{Stirling's formula} \(n!\sim\sqrt{2\pi}n^{n+1/2}e^{-n}\).
+    %     \item If \(X\sim P(\lambda)\), \(Y\sim P(\mu)\), then \(X+Y\sim P(\lambda+\mu)\) (\(X,Y\) independent).
+    %     \item If \(X\) non-negative square integrable random variable,
+    %     \begin{align*}
+    %         \mathbb{E}(X)&=\mathbb{E}(X1_{\{X=0\}})+\mathbb{E}(X1_{\{X>0\}}) \\
+    %         &=\mathbb{E}(X1_{\{X>0\}}) \\
+    %         &\leq\sqrt{\mathbb{E}(X^2)\mathbb{E}(1^2_{\{X>0\}})}
+    %     \end{align*}
+    %     By Cauchy-Schwarz. So 
+    %     \[\mathbb{E}(X)^2\leq\mathbb{E}(X^2)\mathbb{P}(X>0)\]
+    %     \item If \(X\sim E(\lambda)\) and \(Y\sim E(\mu)\) are two independent random variables,
+    %     \[f_{X+Y}(x)=\frac{\mu\lambda}{\mu-\lambda}(e^{-\lambda x}-e^{-\mu x})\]
+    %     and \(\min\{X,Y\}\sim E(\lambda+\mu)\).
+    % \end{itemize}
+    % \section{Analysis}
+    % \begin{itemize}
+    %     \item Let \((a_n)\) positive real sequence. If \(\sum a_n\) diverges, then \(\sum(a_n/s_n)\) diverges where \(s_n\) partial sum.
+    %     \begin{proof}
+    %         Since \(s_n\to\infty\), for any \(n\geq 1\), there exists \(m>n\) such that \(S_m\geq 2S_n\). Then 
+    %         \[\sum_{k=n+1}^m\frac{a_k}{s_k}\geq\sum_{k+1}^{m}\frac{a_k}{s_m}=1-\frac{s_n}{s_m}\geq\frac 12\]
+    %         So \(a_n/s_n\nrightarrow 0\) and \(\sum(a_n/s_n)\) diverges.
+    %     \end{proof}
+    %     \item Let \((x_n)\) be a decreasing sequence of positive real numbers. If \(\sum x_n\)  converges, then \(nx_n\to 0\). (Proof by contradiction or use the Cauchy condensation test).
+    %     \item Derivative of \emph{Volterra's function} is not Riemann integrable.
+    %     \item If \(a_n\to a\), \(s_n=(\sum a_n)/n\to a\). Converse holds if \(a_n\) is an increasing sequence of positive numbers.
+    %     \item Convex function is continuous.
+    %     \item If \(f\) is integrable and \(g:\mathbb{R}\to\mathbb{R}\) is continuously differentiable, then \(g\circ f\) is integrable.
+    %     \begin{proof}
+    %         For any \(a,b\in\mathbb{R}\), by the mean value theorem,
+    %         \[|g(a)-g(b)|=|g^\prime(c)||a-b|\]
+    %         But since \(g^\prime\) is continuous, it is bounded and we have 
+    %         \[|g(a)-g(b)|\leq K|a-b|\]
+    %         for some \(K>0\). So,
+    %         \begin{align*}
+    %             \sup g(f(x))-\inf g(f(x))&=\sup_{x,y}(g(f(x))-g(f(y))) \\
+    %             &\leq K\sup_{x,y}(f(x)-f(y)) \\
+    %             &=K(\sup f(x)-\inf f(x))
+    %         \end{align*}
+    %         Then the result follows from the fact that \(f\) is integrable.
+    %     \end{proof}
+    %     \item If \(g(x+y)=g(x)+g(y)\), \(g(x)=cx\). If \(h(x+y)=h(x)h(y)\), \(h(x)=e^{cx}\) or \(h(x)=0\). (Both should be continuous.)
+    %     \item Cantor set is uncountable but has measure zero.
+    % \end{itemize}
+    % \section{Differential Equations}
+    % \begin{itemize}
+    %     \item Consider differential equation 
+    %     \[y^\pprime+p(x)y^\prime+q(x)y=0\]
+    %     Note that the Wronskian satisfies 
+    %     \[\frac{dW}{dx}+pW=0\]
+    %     and then 
+    %     \[y_2(x)=y_1(x)\int_{x_0}^x\frac{W(t)}{y_1(t)^2}dt\]
+    % \end{itemize}
+    % \section{Vector Calculus}
+    % \begin{itemize}
+    %     \item For a rank 2 tensor \(T_{ij}\),
+    %     \[T_{ij}=S_{ij}+A_{ij}=P_{ij}+\epsilon_{ijk}B_k+\frac 13\delta_{ij}Q\]
+    %     where \(P\) symmetric traceless tensor, \(Q=S_{ii}\) and 
+    %     \[B_{k}=\frac 12\epsilon_{ijk}A_{ij}\]
+    %     \item For a curve parameterised by its length,
+    % \end{itemize}
 \end{document}

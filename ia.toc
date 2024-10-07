@@ -1,109 +1,102 @@
-\contentsline {chapter}{\numberline {1}Numbers and Sets}{5}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Sets, Functions, and Relations}{5}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Sets}{5}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Functions}{7}{subsection.1.1.2}%
-\contentsline {subsection}{\numberline {1.1.3}Relations}{10}{subsection.1.1.3}%
-\contentsline {section}{\numberline {1.2}Numbers and Counting}{11}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Natural Number}{11}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Integer}{13}{subsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.2.3}Rational Number}{13}{subsection.1.2.3}%
-\contentsline {subsection}{\numberline {1.2.4}Finite and Infinite Sets}{14}{subsection.1.2.4}%
-\contentsline {subsubsection}{Binomial coefficients}{14}{subsubsection*.6}%
-\contentsline {subsubsection}{Sizes of sets}{16}{subsubsection*.7}%
-\contentsline {section}{\numberline {1.3}Elementary Number Theory}{16}{section.1.3}%
-\contentsline {subsection}{\numberline {1.3.1}Primes}{16}{subsection.1.3.1}%
-\contentsline {subsection}{\numberline {1.3.2}Modular Arithmetic}{21}{subsection.1.3.2}%
-\contentsline {subsubsection}{Solution of congruences}{22}{subsubsection*.8}%
-\contentsline {subsubsection}{Simultaneous congruences}{23}{subsubsection*.9}%
-\contentsline {subsection}{\numberline {1.3.3}Public Key Cryptography}{27}{subsection.1.3.3}%
-\contentsline {section}{\numberline {1.4}The Real Numbers}{27}{section.1.4}%
-\contentsline {subsection}{\numberline {1.4.1}Real Numbers}{27}{subsection.1.4.1}%
-\contentsline {subsection}{\numberline {1.4.2}Decimal Expansions}{31}{subsection.1.4.2}%
-\contentsline {subsection}{\numberline {1.4.3}Algebraic and Transcendental Numbers}{32}{subsection.1.4.3}%
-\contentsline {subsubsection}{Euler's Number}{32}{subsubsection*.10}%
-\contentsline {subsubsection}{Algebraic and transcendental numbers}{33}{subsubsection*.11}%
-\contentsline {subsection}{\numberline {1.4.4}Complex Numbers}{35}{subsection.1.4.4}%
-\contentsline {section}{\numberline {1.5}Countability}{35}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Example Sheets}{41}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}Sheet 1}{41}{subsection.1.6.1}%
-\contentsline {subsection}{\numberline {1.6.2}Sheet 2}{42}{subsection.1.6.2}%
-\contentsline {subsection}{\numberline {1.6.3}Sheet 3}{44}{subsection.1.6.3}%
-\contentsline {subsection}{\numberline {1.6.4}Sheet 4}{46}{subsection.1.6.4}%
-\contentsline {chapter}{\numberline {2}Groups}{50}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Groups}{50}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Introduction}{50}{subsection.2.1.1}%
-\contentsline {subsubsection}{Matrix groups}{52}{subsubsection*.13}%
-\contentsline {subsubsection}{Symmetric groups}{52}{subsubsection*.14}%
-\contentsline {subsection}{\numberline {2.1.2}Subgroups}{53}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Isometry}{54}{subsection.2.1.3}%
-\contentsline {subsection}{\numberline {2.1.4}Homomorphisms}{56}{subsection.2.1.4}%
-\contentsline {subsubsection}{Homomorphisms and isomorphisms}{56}{subsubsection*.15}%
-\contentsline {subsubsection}{Cyclic groups}{57}{subsubsection*.16}%
-\contentsline {section}{\numberline {2.2}Group Actions}{58}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Actions}{58}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Cosets}{60}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Conjugations}{63}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}The Möbius Group}{65}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Möbius Transformation and Möbius Group}{65}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Circles}{67}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}Small Finite Groups}{68}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Quotients}{72}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Normal Subgroups}{72}{subsection.2.5.1}%
-\contentsline {section}{\numberline {2.6}Permutations}{74}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Matrix Groups}{80}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}General Linear Group}{81}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Change of Basis and Action}{81}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}Möbius Transformation Revisited}{82}{subsection.2.7.3}%
-\contentsline {subsection}{\numberline {2.7.4}Orthogonal Groups}{82}{subsection.2.7.4}%
-\contentsline {section}{\numberline {2.8}Platonic Solids}{86}{section.2.8}%
-\contentsline {section}{\numberline {2.9}Example Sheets}{88}{section.2.9}%
-\contentsline {subsection}{\numberline {2.9.1}Sheet 1}{88}{subsection.2.9.1}%
-\contentsline {subsection}{\numberline {2.9.2}Sheet 2}{90}{subsection.2.9.2}%
-\contentsline {subsection}{\numberline {2.9.3}Sheet 3}{93}{subsection.2.9.3}%
-\contentsline {chapter}{\numberline {3}Analysis I}{95}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Limits and Convergence}{95}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Sequences}{95}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Series and Convergence Tests}{100}{subsection.3.1.2}%
-\contentsline {subsubsection}{Series with non-negative terms}{102}{subsubsection*.23}%
-\contentsline {subsubsection}{Alternating series}{105}{subsubsection*.24}%
-\contentsline {subsubsection}{Absolute and conditional convergence}{105}{subsubsection*.25}%
-\contentsline {section}{\numberline {3.2}Continuity}{107}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Continuity of a Function}{107}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Limit of a Function}{109}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Inverse Function Theorem}{113}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Differentiability}{113}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Differentiation of Sums and Products}{115}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}The Mean Value Theorem}{117}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Higher Derivatives and Taylor's Theorem}{120}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Power Series}{124}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}The Standard Functions}{128}{subsection.3.4.1}%
-\contentsline {subsubsection}{Exponentials and logarithms}{128}{subsubsection*.27}%
-\contentsline {subsubsection}{Trigonometric functions}{132}{subsubsection*.28}%
-\contentsline {subsubsection}{Periodicity of trigonometric functions}{133}{subsubsection*.30}%
-\contentsline {subsubsection}{Trigonometric functions and geometry}{134}{subsubsection*.31}%
-\contentsline {subsubsection}{Hyperbolic functions}{134}{subsubsection*.32}%
-\contentsline {section}{\numberline {3.5}Integration}{135}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Riemann Integral}{135}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Elementary Properties of the Integral}{140}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}Piecewise Continuous Functions}{146}{subsection.3.5.3}%
-\contentsline {subsection}{\numberline {3.5.4}The Fundamental Theorem of Calculus}{146}{subsection.3.5.4}%
-\contentsline {subsection}{\numberline {3.5.5}Improper Integrals}{151}{subsection.3.5.5}%
-\contentsline {subsubsection}{Integrals on an infinite domain}{151}{subsubsection*.34}%
-\contentsline {subsubsection}{Integrands with an isolated singularity}{151}{subsubsection*.35}%
-\contentsline {subsubsection}{Properties and examples of improper integral}{152}{subsubsection*.36}%
-\contentsline {subsubsection}{Integral test}{153}{subsubsection*.37}%
-\contentsline {subsection}{\numberline {3.5.6}Lebesgue's Criterion for Riemann Integrability}{154}{subsection.3.5.6}%
-\contentsline {subsubsection}{Oscillation of function}{155}{subsubsection*.38}%
-\contentsline {subsubsection}{Proof of necessity of Lebesgue's criterion}{155}{subsubsection*.39}%
-\contentsline {section}{\numberline {3.6}Example Sheets}{157}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Sheet 1}{157}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Sheet 2}{160}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Sheet 3}{162}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Sheet 4}{166}{subsection.3.6.4}%
-\contentsline {chapter}{\numberline {4}Appendix}{172}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Groups}{172}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Numbers and Sets}{173}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Probability}{173}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Analysis}{174}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Differential Equations}{175}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Vector Calculus}{175}{section.4.6}%
+\contentsline {chapter}{\numberline {1}Numbers and Sets}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Sets, Functions, and Relations}{4}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Sets}{4}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Functions}{6}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Relations}{9}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Numbers and Counting}{10}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Natural Number}{10}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Integer}{12}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Rational Number}{12}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Finite and Infinite Sets}{13}{subsection.1.2.4}%
+\contentsline {subsubsection}{Binomial coefficients}{13}{subsubsection*.6}%
+\contentsline {subsubsection}{Sizes of sets}{15}{subsubsection*.7}%
+\contentsline {section}{\numberline {1.3}Elementary Number Theory}{15}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Primes}{15}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Modular Arithmetic}{20}{subsection.1.3.2}%
+\contentsline {subsubsection}{Solution of congruences}{21}{subsubsection*.8}%
+\contentsline {subsubsection}{Simultaneous congruences}{22}{subsubsection*.9}%
+\contentsline {subsection}{\numberline {1.3.3}Public Key Cryptography}{26}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}The Real Numbers}{26}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Real Numbers}{26}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Decimal Expansions}{30}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Algebraic and Transcendental Numbers}{31}{subsection.1.4.3}%
+\contentsline {subsubsection}{Euler's Number}{31}{subsubsection*.10}%
+\contentsline {subsubsection}{Algebraic and transcendental numbers}{32}{subsubsection*.11}%
+\contentsline {subsection}{\numberline {1.4.4}Complex Numbers}{34}{subsection.1.4.4}%
+\contentsline {section}{\numberline {1.5}Countability}{34}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Example Sheets}{40}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Sheet 1}{40}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}Sheet 2}{41}{subsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.6.3}Sheet 3}{43}{subsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.6.4}Sheet 4}{45}{subsection.1.6.4}%
+\contentsline {chapter}{\numberline {2}Groups}{49}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Groups}{49}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Introduction}{49}{subsection.2.1.1}%
+\contentsline {subsubsection}{Matrix groups}{51}{subsubsection*.13}%
+\contentsline {subsubsection}{Symmetric groups}{51}{subsubsection*.14}%
+\contentsline {subsection}{\numberline {2.1.2}Subgroups}{52}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Isometry}{53}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Homomorphisms}{55}{subsection.2.1.4}%
+\contentsline {subsubsection}{Homomorphisms and isomorphisms}{55}{subsubsection*.15}%
+\contentsline {subsubsection}{Cyclic groups}{56}{subsubsection*.16}%
+\contentsline {section}{\numberline {2.2}Group Actions}{57}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Actions}{57}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Cosets}{59}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Conjugations}{62}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}The Möbius Group}{64}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Möbius Transformation and Möbius Group}{64}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Circles}{66}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Small Finite Groups}{67}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Quotients}{71}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Normal Subgroups}{71}{subsection.2.5.1}%
+\contentsline {section}{\numberline {2.6}Permutations}{73}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Matrix Groups}{79}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}General Linear Group}{80}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Change of Basis and Action}{80}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Möbius Transformation Revisited}{81}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.4}Orthogonal Groups}{81}{subsection.2.7.4}%
+\contentsline {section}{\numberline {2.8}Platonic Solids}{85}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Example Sheets}{87}{section.2.9}%
+\contentsline {subsection}{\numberline {2.9.1}Sheet 1}{87}{subsection.2.9.1}%
+\contentsline {subsection}{\numberline {2.9.2}Sheet 2}{89}{subsection.2.9.2}%
+\contentsline {subsection}{\numberline {2.9.3}Sheet 3}{92}{subsection.2.9.3}%
+\contentsline {chapter}{\numberline {3}Analysis I}{94}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Limits and Convergence}{94}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Sequences}{94}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Series and Convergence Tests}{99}{subsection.3.1.2}%
+\contentsline {subsubsection}{Series with non-negative terms}{101}{subsubsection*.23}%
+\contentsline {subsubsection}{Alternating series}{104}{subsubsection*.24}%
+\contentsline {subsubsection}{Absolute and conditional convergence}{104}{subsubsection*.25}%
+\contentsline {section}{\numberline {3.2}Continuity}{106}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Continuity of a Function}{106}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Limit of a Function}{108}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Inverse Function Theorem}{112}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Differentiability}{112}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Differentiation of Sums and Products}{114}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}The Mean Value Theorem}{116}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Higher Derivatives and Taylor's Theorem}{119}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Power Series}{123}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}The Standard Functions}{127}{subsection.3.4.1}%
+\contentsline {subsubsection}{Exponentials and logarithms}{127}{subsubsection*.27}%
+\contentsline {subsubsection}{Trigonometric functions}{131}{subsubsection*.28}%
+\contentsline {subsubsection}{Periodicity of trigonometric functions}{132}{subsubsection*.30}%
+\contentsline {subsubsection}{Trigonometric functions and geometry}{133}{subsubsection*.31}%
+\contentsline {subsubsection}{Hyperbolic functions}{133}{subsubsection*.32}%
+\contentsline {section}{\numberline {3.5}Integration}{134}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Riemann Integral}{134}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Elementary Properties of the Integral}{139}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Piecewise Continuous Functions}{145}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}The Fundamental Theorem of Calculus}{145}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Improper Integrals}{150}{subsection.3.5.5}%
+\contentsline {subsubsection}{Integrals on an infinite domain}{150}{subsubsection*.34}%
+\contentsline {subsubsection}{Integrands with an isolated singularity}{150}{subsubsection*.35}%
+\contentsline {subsubsection}{Properties and examples of improper integral}{151}{subsubsection*.36}%
+\contentsline {subsubsection}{Integral test}{152}{subsubsection*.37}%
+\contentsline {subsection}{\numberline {3.5.6}Lebesgue's Criterion for Riemann Integrability}{153}{subsection.3.5.6}%
+\contentsline {subsubsection}{Oscillation of function}{154}{subsubsection*.38}%
+\contentsline {subsubsection}{Proof of necessity of Lebesgue's criterion}{154}{subsubsection*.39}%
+\contentsline {section}{\numberline {3.6}Example Sheets}{156}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Sheet 1}{156}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Sheet 2}{159}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Sheet 3}{161}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Sheet 4}{165}{subsection.3.6.4}%
